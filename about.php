@@ -1,0 +1,111 @@
+<?php
+ini_set("display_errors", 0);
+$curl = curl_init();
+curl_setopt($curl, CURLOPT_URL, "http://192.168.2.11:8983/solr/anime_cl/admin/luke?wt=json");
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+$res = curl_exec($curl);
+$result = json_decode($res);
+curl_close($curl);
+$lastModified = date_timestamp_get(date_create($result->index->lastModified));
+
+function humanTiming($time){
+    $time = time() - $time; // to get the time since that moment
+    $time = ($time<1)? 1 : $time;
+    $tokens = array (
+        31536000 => 'year',
+        2592000 => 'month',
+        604800 => 'week',
+        86400 => 'day',
+        3600 => 'hour',
+        60 => 'minute',
+        1 => 'second'
+    );
+    foreach ($tokens as $unit => $text) {
+        if ($time < $unit) continue;
+        $numberOfUnits = floor($time / $unit);
+        return $numberOfUnits.' '.$text.(($numberOfUnits>1)?'s':'');
+    }
+}
+$numDocs = $result->index->numDocs;
+$numDocsMillion = floor($numDocs / 1000000);
+
+$vmTouchFile = file_get_contents('./vmtouch.log');
+$vmTouch = explode(" ",explode("\n", $vmTouchFile)[2]);
+?><!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WAIT: What Anime Is This? - About</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="icon" type="image/png" href="/favicon128.png" sizes="128x128">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/style.css" rel="stylesheet">
+<script src="/analytics.js" defer></script>
+  </head>
+  <body>
+        <div class="container">
+      <div class="page-header">
+        <h1>About</h1>
+      </div>
+      <img src="/favicon128.png" alt="" style="display:none" />
+<p>Life is too short to answer all the "What is the anime?" questions. Let computers do that for you.</p>
+<p>
+whatanime.ga is a test-of-concept prototype search engine that helps users trace back the original anime by screenshot. 
+It searches over 15600 hours of anime and find the best matching scene. 
+It tells you what anime it is, from which episode and the time that scene appears. 
+Since the search result may not be accurate, it provides a few seconds of preview for verification. 
+</p>
+<p>
+There has been a lot of anime screencaps and GIFs spreading around the internet, but very few of them mention the source. While those online platforms are gaining popularity, whatanime.ga respects the original producers and staffs by showing interested anime fans what the original source is. This search engine encourages users to give credits to the original creater / owner before they share stuff online.
+</p>
+<p>
+This website is non-profit making. There is no pro/premium features at all.
+This website is not intended for watching anime. The server has effective measures to forbid users to access the original video beyond the preview limit. I would like to redirect users to somewhere they can watch that anime legally, if possible.
+</p>
+<p>
+Most Anime since 2000 are indexed, but some are excluded (see FAQ).
+No Doujin work, no derived art work are indexed. The system only analyzes officially published anime. 
+If you wish to search artwork / wallpapers, try to use <a href="https://saucenao.com/" target="_blank">SauceNAO</a> and <a href="https://iqdb.org/" target="_blank">iqdb.org</a>
+</p>
+<p>Now you can use the <a href="https://chrome.google.com/webstore/detail/search-anime-by-screensho/gkamnldpllcbiidlfacaccdoadedncfp" target="_blank">Chrome Extension</a> to search.</p>
+<p>&nbsp;</p>
+<p>This database automatically index new airing anime in about 24 hours after broadcast. </p>
+<p><?php echo 'Last Database Index update: '.humanTiming($lastModified).' ago with '.$numDocsMillion.' Million analyzed frames.<br>'; ?></p>
+<p><?php if($vmTouch) echo $vmTouch[6]."B (".$vmTouch[8].") index is cached in RAM, the rest are in SSD."; ?></p>
+<p>&nbsp;</p>
+<p>If you have any feedback, suggestions or anything else, you may contact <a href="mailto:help@whatanime.ga">help@whatanime.ga</a>.</p>
+<p>Follow the development of whatanime.ga and learn more about the underlying technologies at the <a href="https://plus.google.com/communities/115025102250573417080" target="_blank">Official Google+ Community</a> or <a href="https://www.facebook.com/whatanime.ga/" target="_blank">Official Facebook Page</a>.</p>
+
+<div class="page-header">
+<h3>Credit</h3>
+</div>
+<p>
+Dr. Mathias Lux (LIRE Project)<br>
+<a href="http://www.lire-project.net/" target="_blank">http://www.lire-project.net/</a><br>
+Lux Mathias, Savvas A. Chatzichristofis. Lire: Lucene Image Retrieval – An Extensible Java CBIR Library. In proceedings of the 16th ACM International Conference on Multimedia, pp. 1085-1088, Vancouver, Canada, 2008<br>
+<a href="http://www.morganclaypool.com/doi/abs/10.2200/S00468ED1V01Y201301ICR025" target="_blank">Visual Information Retrieval with Java and LIRE</a><br>
+<br>
+ANILIST<br>
+Josh (Anilist developer) and Anilist administration team<br>
+<a href="https://anilist.co/" target="_blank">https://anilist.co/</a><br>
+<br>
+And of cause, contributions and support from all anime lovers!<br>
+<br>
+</p>
+
+</div>
+<footer class="footer">
+<div class="container">
+<ol class="breadcrumb">
+<li><a href="/">Home</a></li>
+<li><a href="/about">About</a></li>
+<li><a href="/changelog">Changelog</a></li>
+<li><a href="/faq">FAQ</a></li>
+<li><a href="/terms" class="active">Terms</a></li>
+</ol>
+      </div>
+    </footer>
+  </body>
+</html>
