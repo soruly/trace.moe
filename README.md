@@ -3,7 +3,9 @@ The website of whatanime.ga
 
 Image Reverse Search for Anime Scenes
 
-Only the code of the website is included, please read the rest to understand how it works.
+This repo for studying purpose only. Some settings and config are not included, it won't work out of the box after you clone this repo. Plase understand what you are doing before you fork this repo.
+
+Please read the rest to understand how it works.
 
 - [Overview of the system](https://go-talks.appspot.com/github.com/soruly/slides/whatanime.ga.slide)
 
