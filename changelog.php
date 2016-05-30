@@ -15,6 +15,10 @@
 <div class="container">
 <div class="page-header"><h1>Changelog</h1></div>
 
+<h3>Added preview thumbnails</h3>
+<h6>30 May 2016</h6>
+<p>The thumbnail may not be at the exact moment, since the seeking is not very accurate. Play the preview to see if it's what you are looking for.</p>
+
 <h3>Fixed some bugs in URL loading</h3>
 <h6>6 May 2016</h6>
 <p>In case the image cannot be loaded, upload the image from file or copy image itself (not URL) then Ctrl+V</p>

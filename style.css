@@ -35,3 +35,7 @@ body {
 .container .text-muted {
   margin: 20px 0;
 }
+
+.result img{
+  width:295px;
+}

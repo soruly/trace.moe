@@ -219,6 +219,8 @@ if(isset($_POST['data'])){
         $doc->expires = $expires;
         $token = str_replace(array('+','/','='),array('-','_',''),base64_encode(md5($expires.'/'.$path.$ip.$start.$end.$secretSalt,true)));
         $doc->token = $token;
+        $tokenthumb = str_replace(array('+','/','='),array('-','_',''),base64_encode(md5($expires.$ip.$t.$secretSalt,true)));
+        $doc->tokenthumb = $tokenthumb;
         $doc->diff = $doc->d;
         unset($doc->id);
         unset($doc->d);
