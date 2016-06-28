@@ -1,4 +1,6 @@
 # whatanime.ga
+[![Website](https://img.shields.io/website-up-down-green-red/http/whatanime.ga.svg?maxAge=2592000)](https://whatanime.ga/)
+
 The website of whatanime.ga
 
 Image Reverse Search for Anime Scenes
