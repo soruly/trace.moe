@@ -1,5 +1,6 @@
 # whatanime.ga
-[![Website](https://img.shields.io/website-up-down-green-red/http/whatanime.ga.svg?maxAge=2592000)](https://whatanime.ga/)
+[![Website](https://img.shields.io/website-up-down-green-red/http/whatanime.ga.svg?maxAge=3600)](https://whatanime.ga/)
+[![License](https://img.shields.io/github/license/soruly/whatanime.ga.svg?maxAge=2592000)](https://github.com/soruly/whatanime.ga/blob/master/LICENSE)
 
 The website of whatanime.ga
 
