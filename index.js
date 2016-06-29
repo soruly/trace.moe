@@ -98,6 +98,7 @@ var search = function () {
   // ga('send', 'event', 'search', 'imgDataURLLength', imgDataURL.length, imgDataURL.length)
   searchRequest = $.post('/search',
     {'data': imgDataURL}, function (data, textStatus) {
+      document.querySelector('#loading').classList.add('hidden')
       document.querySelector('#searchBtn').disabled = false
       document.querySelector('#flipBtn').disabled = false
       document.querySelector('#imageURL').disabled = false
@@ -165,7 +166,7 @@ var search = function () {
         ga('send', 'event', 'search', 'topResult', topResult, data.docs[0].diff)
         $('.result').click(playfile)
         firstPlay = true
-        document.querySelector('#loading').classList.add('hidden')
+
         if (parseFloat(data.docs[0].diff) > 10) { // && data.trial >= 5
           $('#results').prepend('<div id="status">Image not found.<br>But there are visually similar scenes</div>')
         // document.querySelector("#autoplay").checked = false
