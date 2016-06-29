@@ -8,7 +8,7 @@ $(document).ready(function () {
   } else {
     // $('a.desktop-other').show()
   }
-  if (navigator.language == 'ja' || navigator.language == 'ja-jp') {
+  if (navigator.language.indexOf('ja') == 0) {
     $('#searchBtn').contents().last()[0].textContent = ' 検索'
     $('#safeBtn').contents().last()[0].textContent = ' セーフサーチ'
     $('#flipBtn').contents().last()[0].textContent = ' 反転'
@@ -20,20 +20,7 @@ $(document).ready(function () {
     $('#fitHeightRadio').parent().contents().last()[0].textContent = '縦幅設定'
     $('#imageURL').attr('placeholder', '画像 URL')
   }
-  if (navigator.language == 'zh-tw' || navigator.language == 'zh-hk') {
-    $('#searchBtn').contents().last()[0].textContent = ' 搜尋'
-    $('#safeBtn').contents().last()[0].textContent = ' 安全過濾'
-    $('#flipBtn').contents().last()[0].textContent = ' 反轉'
-    $('.btn-file').contents().first()[0].textContent = '選取檔案'
-    $('#autoplay').parent().contents().last()[0].textContent = '自動播放'
-    $('#loop').parent().contents().last()[0].textContent = '循環播放'
-    $('#mute').parent().contents().last()[0].textContent = '靜音'
-    $('#fitWidthRadio').parent().contents().last()[0].textContent = '乎合寬度'
-    $('#fitHeightRadio').parent().contents().last()[0].textContent = '乎合高度'
-    $('#imageURL').attr('placeholder', '圖片網址')
-    $('#instruction').text(' / 拖放圖片至上方 / Ctrl+V 貼上 / 輸入圖片網址')
-  }
-  if (navigator.language == 'zh-cn') {
+  if (navigator.language.toLocaleLowerCase() == 'zh-cn') {
     $('#searchBtn').contents().last()[0].textContent = ' 搜寻'
     $('#safeBtn').contents().last()[0].textContent = ' 安全过滤'
     $('#flipBtn').contents().last()[0].textContent = ' 反转'
@@ -45,6 +32,19 @@ $(document).ready(function () {
     $('#fitHeightRadio').parent().contents().last()[0].textContent = '符合高度'
     $('#imageURL').attr('placeholder', '图片网址')
     $('#instruction').text(' / 拖放图片至上方 / Ctrl+V 贴上 / 输入图片网址')
+  }
+  else if (navigator.language.indexOf('zh') == 0) {
+    $('#searchBtn').contents().last()[0].textContent = ' 搜尋'
+    $('#safeBtn').contents().last()[0].textContent = ' 安全過濾'
+    $('#flipBtn').contents().last()[0].textContent = ' 反轉'
+    $('.btn-file').contents().first()[0].textContent = '選取檔案'
+    $('#autoplay').parent().contents().last()[0].textContent = '自動播放'
+    $('#loop').parent().contents().last()[0].textContent = '循環播放'
+    $('#mute').parent().contents().last()[0].textContent = '靜音'
+    $('#fitWidthRadio').parent().contents().last()[0].textContent = '乎合寬度'
+    $('#fitHeightRadio').parent().contents().last()[0].textContent = '乎合高度'
+    $('#imageURL').attr('placeholder', '圖片網址')
+    $('#instruction').text(' / 拖放圖片至上方 / Ctrl+V 貼上 / 輸入圖片網址')
   }
 })
 
@@ -134,6 +134,8 @@ var search = function () {
             result.setAttribute('data-season', entry.season)
             result.setAttribute('data-anime', entry.anime)
             result.setAttribute('data-title', entry.title)
+            result.setAttribute('data-title-english', entry.title_english)
+            result.setAttribute('data-title-romaji', entry.title_romaji)
             result.setAttribute('data-file', entry.file)
             result.setAttribute('data-episode', entry.episode)
             result.setAttribute('data-start', entry.start)
@@ -148,10 +150,14 @@ var search = function () {
             var thumbnailLink = '/thumbnail.php?season=' + encodeURIComponent(entry.season) + '&anime=' + encodeURIComponent(entry.anime) + '&file=' + encodeURIComponent(entry.file) + '&t=' + (entry.t) + '&expires=' + entry.expires + '&token=' + entry.tokenthumb
             var opacity = (Math.pow(((100 - parseFloat(entry.diff)) / 100), 4) + 0.2).toFixed(3)
             result.style.opacity = opacity > 1 ? 1 : opacity
+            var title_display = entry.anime
+            if (navigator.language.indexOf('ja') == 0) title_display = entry.title || entry.anime
+            if (navigator.language.indexOf('zh') == 0) title_display = entry.anime || entry.anime
+            if (navigator.language.indexOf('en') == 0) title_display = entry.title_romaji || entry.anime
             if (formatTime(entry.from) == formatTime(entry.to))
-              result.innerHTML = '<a href="#"><span class="title">' + entry.title + '</span><br><span class="ep">EP#' + zeroPad(entry.episode, 2) + '</span> <span class="time">' + formatTime(entry.from) + '</span> <span class="similarity">~' + similarity + '%</span><br><span class="file">' + entry.file + '</span><img src="' + thumbnailLink + '"></a>'
+              result.innerHTML = '<a href="#"><span class="title">' + title_display + '</span><br><span class="ep">EP#' + zeroPad(entry.episode, 2) + '</span> <span class="time">' + formatTime(entry.from) + '</span> <span class="similarity">~' + similarity + '%</span><br><span class="file">' + entry.file + '</span><img src="' + thumbnailLink + '"></a>'
             else
-              result.innerHTML = '<a href="#"><span class="title">' + entry.title + '</span><br><span class="ep">EP#' + zeroPad(entry.episode, 2) + '</span> <span class="time">' + formatTime(entry.from) + '-' + formatTime(entry.to) + '</span> <span class="similarity">~' + similarity + '%</span><br><span class="file">' + entry.file + '</span><img src="' + thumbnailLink + '"></a>'
+              result.innerHTML = '<a href="#"><span class="title">' + title_display + '</span><br><span class="ep">EP#' + zeroPad(entry.episode, 2) + '</span> <span class="time">' + formatTime(entry.from) + '-' + formatTime(entry.to) + '</span> <span class="similarity">~' + similarity + '%</span><br><span class="file">' + entry.file + '</span><img src="' + thumbnailLink + '"></a>'
             document.querySelector('#results').appendChild(result)
           // $("#results").append('<div class="highlight"><a class="result" href="#">'+url+'</a> Score:'+entry.diff+'</div>')
           }
