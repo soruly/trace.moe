@@ -150,10 +150,9 @@ var search = function () {
             var thumbnailLink = '/thumbnail.php?season=' + encodeURIComponent(entry.season) + '&anime=' + encodeURIComponent(entry.anime) + '&file=' + encodeURIComponent(entry.file) + '&t=' + (entry.t) + '&expires=' + entry.expires + '&token=' + entry.tokenthumb
             var opacity = (Math.pow(((100 - parseFloat(entry.diff)) / 100), 4) + 0.2).toFixed(3)
             result.style.opacity = opacity > 1 ? 1 : opacity
-            var title_display = entry.anime
+            var title_display = entry.title_romaji
             if (navigator.language.indexOf('ja') == 0) title_display = entry.title || entry.anime
             if (navigator.language.indexOf('zh') == 0) title_display = entry.anime || entry.anime
-            if (navigator.language.indexOf('en') == 0) title_display = entry.title_romaji || entry.anime
             if (formatTime(entry.from) == formatTime(entry.to))
               result.innerHTML = '<a href="#"><span class="title">' + title_display + '</span><br><span class="ep">EP#' + zeroPad(entry.episode, 2) + '</span> <span class="time">' + formatTime(entry.from) + '</span> <span class="similarity">~' + similarity + '%</span><br><span class="file">' + entry.file + '</span><img src="' + thumbnailLink + '"></a>'
             else
