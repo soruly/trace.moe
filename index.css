@@ -95,6 +95,24 @@ td:nth-child(3) {
 	-o-filter: blur(5px); 
 	-ms-filter: blur(5px); 
 }
+#loading{
+    width:642px;
+    height:362px;
+    position:absolute;
+    text-align:center;
+    -webkit-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease-out;
+    -ms-transition: all 0.5s ease-out;
+    -o-transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out;
+}
+#loading>span{
+    font-size:3em;
+    color:white;
+    text-shadow:0 0 3px #000;
+    opacity:.8;
+    top:160px;
+}
 #preview {
     display: block;
     cursor: default;

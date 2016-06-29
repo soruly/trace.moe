@@ -82,7 +82,8 @@ var search = function () {
     searchRequest.abort()
   }
   preview.classList.remove('movable')
-  preview.classList.add('blur')
+  // preview.classList.add('blur')
+  document.querySelector('#loading').classList.remove('hidden')
   document.querySelector('#searchBtn span').classList.remove('glyphicon-search')
   document.querySelector('#searchBtn span').classList.add('glyphicon-refresh')
   document.querySelector('#searchBtn span').classList.add('spinning')
@@ -159,7 +160,7 @@ var search = function () {
         ga('send', 'event', 'search', 'topResult', topResult, data.docs[0].diff)
         $('.result').click(playfile)
         firstPlay = true
-
+        document.querySelector('#loading').classList.add('hidden')
         if (parseFloat(data.docs[0].diff) > 10) { // && data.trial >= 5
           $('#results').prepend('<div id="status">Image not found.<br>But there are visually similar scenes</div>')
         // document.querySelector("#autoplay").checked = false
@@ -185,7 +186,7 @@ var search = function () {
     document.querySelector('#flipBtn').disabled = false
     document.querySelector('#imageURL').disabled = false
   }).complete(function (e) {
-    preview.classList.remove('blur')
+    // preview.classList.remove('blur')
     document.querySelector('#searchBtn span').classList.remove('glyphicon-refresh')
     document.querySelector('#searchBtn span').classList.remove('spinning')
     document.querySelector('#searchBtn span').classList.add('glyphicon-search')
@@ -297,6 +298,7 @@ var playfile = function () {
   var tto = $(this).attr('data-to')
   var t = $(this).attr('data-t')
   var src = '/' + season + '/' + encodeURIComponent(anime) + '/' + encodeURIComponent(file) + '?start=' + start + '&end=' + end + '&token=' + token + '&expires=' + expires
+  document.querySelector('#loading').classList.remove('hidden')
   document.querySelector('#player').src = src
   if (document.querySelector('#autoplay').checked) {
     time = parseFloat(tfrom) - parseFloat(start)
@@ -322,14 +324,18 @@ var playPause = function () {
   else
     player.pause()
 }
-var loadeddata = function (event) {
+var canPlayThrough = function () {
+  document.querySelector('#loading').classList.add('hidden')
+}
+var loadedmetadata = function (event) {
   preview.addEventListener('click', playPause)
   player.currentTime = time
   if (document.querySelector('#autoplay').checked) {
+    player.oncanplaythrough = canPlayThrough
     player.play()
   }
 }
-document.querySelector('#player').addEventListener('loadeddata', loadeddata , false)
+document.querySelector('#player').addEventListener('loadedmetadata', loadedmetadata , false)
 var ended = function (event) {
   if (document.querySelector('#loop').checked) {
     document.querySelector('#player').currentTime = time - 0.3
