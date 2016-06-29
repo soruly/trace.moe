@@ -15,6 +15,14 @@
 <div class="container">
 <div class="page-header"><h1>Changelog</h1></div>
 
+<h3>Improved anime title language</h3>
+<h6>30 Jun 2016</h6>
+<p>It now shows anime titles according to users' browser language.</p>
+
+<h3>Added loading icon</h3>
+<h6>30 Jun 2016</h6>
+<p>It now shows a loading icon (instead of blurring) while searching. Also display a loading icon when the video preview is loading.</p>
+
 <h3>Added preview thumbnails</h3>
 <h6>30 May 2016</h6>
 <p>The thumbnail may not be at the exact moment, since the seeking is not very accurate. Play the preview to see if it's what you are looking for.</p>
