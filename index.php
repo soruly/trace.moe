@@ -89,7 +89,7 @@ Browse a file <input type="file" id="file" name="files[]" />
 Please read <a href="/faq">FAQ</a> to understand what can / cannot be searched.<br>
 <span style="color:#FF6D6D">Caution: some results may be NSFW (Not Safe for Work).</span><br>
 <span id="mobilePreviewDisabledText" style="display:none;color:#4CAF50">Preview is disabled on mobile devices. Use it on a Desktop / Laptop.<br></span>
-Get the <a href="https://chrome.google.com/webstore/detail/search-anime-by-screensho/gkamnldpllcbiidlfacaccdoadedncfp" target="_blank">Chrome Extension</a>.<br>
+Official WebExtension available on <a href="https://chrome.google.com/webstore/detail/search-anime-by-screensho/gkamnldpllcbiidlfacaccdoadedncfp" target="_blank">Chrome</a>, <a href="https://addons.mozilla.org/en-US/firefox/addon/search-anime-by-screenshot/" target="_blank">Firefox</a>, and <a href="https://addons.opera.com/en/extensions/details/search-anime-by-screenshot/" target="_blank">Opera</a>.<br>
 <br>
 <div class="share">
 <span class="facebook"><div class="fb-share-button" data-href="https://whatanime.ga/" data-layout="button_count"></div></span>

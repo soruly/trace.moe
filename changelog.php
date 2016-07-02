@@ -15,6 +15,15 @@
 <div class="container">
 <div class="page-header"><h1>Changelog</h1></div>
 
+<h3>WebExtension for Chrome, Firefox and Opera</h3>
+<h6>1 July 2016</h6>
+<p>
+<a href="https://chrome.google.com/webstore/detail/search-anime-by-screensho/gkamnldpllcbiidlfacaccdoadedncfp" target="_blank">Chrome Extension</a>, 
+<a href="https://addons.mozilla.org/en-US/firefox/addon/search-anime-by-screenshot/" target="_blank">Firefox Add-on</a>, 
+<a href="https://addons.opera.com/en/extensions/details/search-anime-by-screenshot/" target="_blank">Opera Add-on</a> has been relased.<br>
+Source code available on <a href="https://github.com/soruly/whatanime.ga-WebExtension" target="_blank">GitHub</a>
+</p>
+
 <h3>Improved anime title language</h3>
 <h6>30 Jun 2016</h6>
 <p>It now shows anime titles according to users' browser language.</p>

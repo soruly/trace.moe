@@ -118,9 +118,9 @@ For Firefox Users please refer to screenshots below.<br>
 <a href="/img/imgsearchoptions1.jpg" target="_blank"><img src="/img/imgsearchoptions1.jpg" style="max-width:640px;max-height:360px"></a><br>
 <a href="/img/imgsearchoptions1.jpg" target="_blank"><img src="/img/imgsearchoptions2.jpg" style="max-width:640px;max-height:360px"></a>
 </p>
-<h3>How to stop the Chrome from auto search?</h3>
-<p>If you need to crop the image before searching, you should uncheck this option in Chrome Extension.</p>
-<p><img src="/img/chrome-setting-1.png" style="max-width:640px;max-height:360px"><br><br><img src="/img/chrome-setting-2.png" style="max-width:640px;max-height:360px"><br><br></p>
+<h3>How to stop the WebExtension from auto search?</h3>
+<p>If you need to crop the image before searching, you should uncheck this option in WebExtension.</p>
+<p><img src="/img/chrome-setting.png" style="max-width:640px;"></p>
 <p>&nbsp;</p>
 </div>
 
