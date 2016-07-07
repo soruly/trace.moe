@@ -34,5 +34,5 @@ Once the page is loaded, the `auto` parameter is removed from URL. Then it would
 
 The intention of not searching automatically is because some users may need to crop / flip the image before searching.
 
-There may be changes to these parameters, but the official Chrome Extension is always up-to-date.
-https://github.com/soruly/whatanime.ga-Chrome-Extension
+There may be changes to these parameters, but the official WebExtension is always up-to-date.
+https://github.com/soruly/whatanime.ga-WebExtension
