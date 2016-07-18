@@ -12,6 +12,17 @@
 <script src="/analytics.js" defer></script>
 </head>
 <body>
+<nav class="navbar header">
+<div class="container">
+<ul class="nav navbar-nav">
+<li><a href="/">Home</a></li>
+<li><a href="/about">About</a></li>
+<li><a href="/changelog" class="active">Changelog</a></li>
+<li><a href="/faq">FAQ</a></li>
+<li><a href="/terms">Terms</a></li>
+</ul>
+</div>
+</nav>
 <div class="container">
 <div class="page-header"><h1>Changelog</h1></div>
 

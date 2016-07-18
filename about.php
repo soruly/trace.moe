@@ -45,6 +45,17 @@ $vmTouch = explode(" ",explode("\n", $vmTouchFile)[2]);
 <script src="/analytics.js" defer></script>
   </head>
   <body>
+<nav class="navbar header">
+<div class="container">
+<ul class="nav navbar-nav">
+<li><a href="/">Home</a></li>
+<li><a href="/about" class="active">About</a></li>
+<li><a href="/changelog">Changelog</a></li>
+<li><a href="/faq">FAQ</a></li>
+<li><a href="/terms">Terms</a></li>
+</ul>
+</div>
+</nav>
         <div class="container">
       <div class="page-header">
         <h1>About</h1>

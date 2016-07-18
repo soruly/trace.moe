@@ -10,8 +10,21 @@
 <link href="/css/bootstrap.min.css" rel="stylesheet">
 <link href="/style.css" rel="stylesheet">
 <script src="/analytics.js" defer></script>
+<style>
+</style>
 </head>
 <body>
+<nav class="navbar header">
+<div class="container">
+<ul class="nav navbar-nav">
+<li><a href="/">Home</a></li>
+<li><a href="/about">About</a></li>
+<li><a href="/changelog">Changelog</a></li>
+<li><a href="/faq">FAQ</a></li>
+<li><a href="/terms" class="active">Terms</a></li>
+</ul>
+</div>
+</nav>
 <div class="container">
 <div class="page-header"><h1>Terms</h1></div>
 <p>

@@ -12,6 +12,26 @@ body {
 .page-header{
   border-bottom: 1px solid #9E9E9E;
 }
+.navbar{
+  margin-bottom: 0;
+}
+.header{
+  background-color: #60738B;
+  border-radius: 0;
+}
+.header a{
+  color:#FFF;
+  transition: all 0.2s ease-out;
+}
+.header .active{
+  color: #CCC;
+  background-color: #485667;
+  transition: all 0.2s ease-out;
+}
+.header li>a:hover{
+  background-color: #485667;
+  transition: all 0.2s ease-out;
+}
 .footer {
   position: absolute;
   bottom: 0;
