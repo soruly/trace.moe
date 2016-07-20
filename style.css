@@ -7,7 +7,7 @@ body {
   background-color: #F7F8FF;
   background-image: url("/bright-squares.png");
   text-shadow: 1px 1px 3px #ccc;
-  font-family: Meiryo, "Microsoft JhengHei", "Microsoft YaHei", sans-serif;
+  font-family: Helvetica, Arial, Meiryo, "Microsoft JhengHei", "Microsoft YaHei", sans-serif;
 }
 .page-header{
   border-bottom: 1px solid #9E9E9E;
