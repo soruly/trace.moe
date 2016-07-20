@@ -189,7 +189,7 @@ div#main{
     background-color:rgba(255,255,255,1);
     color:#333;
     box-shadow:1px 1px 10px rgba(0,0,0,0.3);
-    font-family: Meiryo, "Microsoft JhengHei", sans-serif;
+    font-family: Helvetica, Arial, Meiryo, "Microsoft JhengHei", "Microsoft YaHei", sans-serif;
 }
 div#main>form{
     margin: 1em;
@@ -202,7 +202,7 @@ div#results-list{
     background-color:rgba(255,255,255,1);
     color:#333;
     box-shadow:1px 1px 10px rgba(0,0,0,0.3);
-    font-family: Meiryo, "Microsoft JhengHei", sans-serif;
+    font-family: Helvetica, Arial, Meiryo, "Microsoft JhengHei", "Microsoft YaHei", sans-serif;
 }
 div#results-list #controls{
     padding: 10px;
@@ -231,7 +231,7 @@ div#results-list div#status{
     font-size:0.9em;
     line-height:1.5em;
     padding:1em;
-    font-family: Meiryo, "Microsoft JhengHei", sans-serif;
+    font-family: Helvetica, Arial, Meiryo, "Microsoft JhengHei", "Microsoft YaHei", sans-serif;
 }
 #info #naturalText, #info #table{
     display:block;
@@ -254,7 +254,7 @@ div#results-list div#status{
     font-size:16px;
 }
 #info h2{
-    font-family: Meiryo, "Microsoft JhengHei", sans-serif;
+    font-family: Helvetica, Arial, Meiryo, "Microsoft JhengHei", "Microsoft YaHei", sans-serif;
     font-size:12px;
 }
 #info h1{
