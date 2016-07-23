@@ -1,4 +1,6 @@
 # whatanime.ga
+
+[![Join the chat at https://gitter.im/soruly/whatanime.ga](https://badges.gitter.im/soruly/whatanime.ga.svg)](https://gitter.im/soruly/whatanime.ga?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Website](https://img.shields.io/website-up-down-green-red/http/whatanime.ga.svg?maxAge=3600)](https://whatanime.ga/)
 [![License](https://img.shields.io/github/license/soruly/whatanime.ga.svg?maxAge=2592000)](https://github.com/soruly/whatanime.ga/blob/master/LICENSE)
 
