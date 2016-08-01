@@ -80,12 +80,20 @@ Most Anime since 2000 are indexed, but some are excluded (see FAQ).
 No Doujin work, no derived art work are indexed. The system only analyzes officially published anime. 
 If you wish to search artwork / wallpapers, try to use <a href="https://saucenao.com/" target="_blank">SauceNAO</a> and <a href="https://iqdb.org/" target="_blank">iqdb.org</a>
 </p>
-<p>Now you can use the WebExtension for <a href="https://chrome.google.com/webstore/detail/search-anime-by-screensho/gkamnldpllcbiidlfacaccdoadedncfp" target="_blank">Chrome</a>, <a href="https://addons.mozilla.org/en-US/firefox/addon/search-anime-by-screenshot/" target="_blank">Firefox</a>, or <a href="https://addons.opera.com/en/extensions/details/search-anime-by-screenshot/" target="_blank">Opera</a> to search.</p>
-<p>&nbsp;</p>
+<p>It has official WebExtension for <a href="https://chrome.google.com/webstore/detail/search-anime-by-screensho/gkamnldpllcbiidlfacaccdoadedncfp" target="_blank">Chrome</a>, <a href="https://addons.mozilla.org/en-US/firefox/addon/search-anime-by-screenshot/" target="_blank">Firefox</a>, or <a href="https://addons.opera.com/en/extensions/details/search-anime-by-screenshot/" target="_blank">Opera</a> to search.</p>
+<div class="page-header">
+<h3>Go-talk presentation</h3>
+</div>
+<p><a href="https://go-talks.appspot.com/github.com/soruly/slides/whatanime.ga.slide" target="_blank">Go-talk presentation on 27 May 2016</a></p>
+<div class="page-header">
+<h3>System Status</h3>
+</div>
 <p>This database automatically index new airing anime in about 24 hours after broadcast. </p>
 <p><?php echo 'Last Database Index update: '.humanTiming($lastModified).' ago with '.$numDocsMillion.' Million analyzed frames.<br>'; ?></p>
 <p><?php if($vmTouch) echo $vmTouch[6]."B (".$vmTouch[8].") index is cached in RAM, the rest are in SSD."; ?></p>
-<p>&nbsp;</p>
+<div class="page-header">
+<h3>Contact</h3>
+</div>
 <p>If you have any feedback, suggestions or anything else, you may contact <a href="mailto:help@whatanime.ga">help@whatanime.ga</a>.</p>
 <p>Follow the development of whatanime.ga and learn more about the underlying technologies at the <a href="https://plus.google.com/communities/115025102250573417080" target="_blank">Official Google+ Community</a> or <a href="https://www.facebook.com/whatanime.ga/" target="_blank">Official Facebook Page</a>.</p>
 
