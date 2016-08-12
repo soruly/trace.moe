@@ -482,7 +482,7 @@ var crop = function () {
   searchImage.getContext('2d').restore()
 
   drawPreview(searchImage)
-  imgDataURL = searchImage.toDataURL('image/jpeg', 90)
+  imgDataURL = searchImage.toDataURL('image/jpeg', 0.8)
 }
 
 var cropping = false
