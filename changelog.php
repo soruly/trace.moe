@@ -26,6 +26,11 @@
 <div class="container">
 <div class="page-header"><h1>Changelog</h1></div>
 
+<h3>WebExtension Changes</h3>
+<h6>14 Aug 2016</h6>
+<p>The ?auto url param is no longer used. Now it would always automatically search.</p>
+<p>WebExtension has updated. Now it would copy and paste using dataURL in background. It allows searching images from pages that's not publicly available such as Facebook Feeds. It also supports searching from HTML5 videos using the frame extracted at the moment you click it. Now extensions no longer use the ?url to send search images.</p>
+
 <h3>WebExtension for Chrome, Firefox and Opera</h3>
 <h6>1 July 2016</h6>
 <p>
