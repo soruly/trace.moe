@@ -517,7 +517,7 @@ var flip = function () {
   }
   crop()
   drawPreview(searchImage)
-  imgDataURL = searchImage.toDataURL('image/jpeg', 90)
+  imgDataURL = searchImage.toDataURL('image/jpeg', 0.9)
 }
 
 var drawPreview = function (source) {
