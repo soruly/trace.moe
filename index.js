@@ -70,9 +70,10 @@ function zeroPad (n, width, z) {
 
 var player = document.querySelector('#player')
 var preview = document.querySelector('#preview')
+var autoSearch = document.querySelector('#autoSearch')
+var originalImage = document.querySelector('#originalImage')
 var fitWidth = true
 var firstPlay = true
-var auto = false
 
 var safeSearch = false
 var imgDataURL
@@ -356,8 +357,6 @@ var searchImage = document.createElement('canvas')
 searchImage.width = 0
 searchImage.height = 0
 
-var originalImage = new Image()
-originalImage.crossOrigin = 'anonymous'
 var cropOffset = 0
 
 var changeAspectRatio = function () {
@@ -423,8 +422,8 @@ originalImage.onload = function () {
   document.querySelector('#messageText').classList.add('success')
   document.querySelector('#messageText').innerHTML = ''
   document.querySelector('#results').innerHTML = '<div id="status">Press Search button to begin searching.</div>'
-  if (auto) {
-    auto = false
+  if(document.querySelector("#autoSearch").checked){
+    document.querySelector("#autoSearch").checked = false;
     search()
   }
 }

@@ -25,21 +25,32 @@ $numDocsMillion = floor($numDocs / 1000000);
 <link href="/style.css" rel="stylesheet">
 <link href="/index.css" rel="stylesheet">
 <link rel="dns-prefetch" href="https://image.whatanime.ga/">
-<script src="https://www.google.com/recaptcha/api.js" defer></script>
+<script src="/recaptcha.js" defer></script>
 <script src="/analytics.js" defer></script>
-<script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 <body>
 <div id="fb-root"></div>
-<script>(function(d, s, id) {
+<script>
+var showShareBtn = function(){
+
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "/googleplatform.js";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'googleplatform'));
+
+(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
   js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
   fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-<script>
+}(document, 'script', 'facebook-jssdk'));
+
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
 (function async(u, c) {
   var d = document, t = 'script',
       o = d.createElement(t),
@@ -50,11 +61,19 @@ $numDocsMillion = floor($numDocs / 1000000);
 })('//vk.com/js/api/share.js?93',function(){
   if(typeof VK !== "undefined"){document.getElementById('vk_share_button').innerHTML = VK.Share.button({url: "https://whatanime.ga/"},{type: "round", text: "Share"});}
 });
+
+}
+setTimeout(showShareBtn,2000);
+</script>
+<script></script>
+<script>
 </script>
 <!--<div class="alert alert-warning">
   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
   <strong>Scheduled Maintenance</strong> A server maintenance will be carried out on 22 Mar, 2016 01:30-09:30am (UTC)
 </div>-->
+<input id="autoSearch" type="checkbox" style="display: none;">
+<img id="originalImage" src="" crossorigin="anonymous" style="display: none;">
 <div class="row">
 <div class="col-xs-8">
 <div id="main">
@@ -93,9 +112,9 @@ Official WebExtension available on <a href="https://chrome.google.com/webstore/d
 <br>
 <div class="share">
 <span class="facebook"><div class="fb-share-button" data-href="https://whatanime.ga/" data-layout="button_count"></div></span>
-<span class="twitter"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Anime Reverse Search Engine">Tweet</a></span>
+<span class="twitter"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Anime Reverse Search Engine"></a></span>
 <span class="vk" id="vk_share_button"></span>
-<span class="google"><g:plus action="share"></g:plus></span>
+<span class="google"><div class="g-plus" data-action="share" data-annotation="bubble"></div></span>
 </div>
 
 <br>
@@ -135,11 +154,10 @@ Official WebExtension available on <a href="https://chrome.google.com/webstore/d
 <script src="/js/bootstrap.min.js"></script>
 <script src="/jquery.html5uploader.min.js"></script>
 <script src="/index.js"></script>
-<?php if(isset($_GET["url"])){
-	if(isset($_GET["auto"])){
-		echo '<script>auto = true;</script>';
-	}
+<?php
+if(isset($_GET["url"])){
 echo '<script>
+document.querySelector("#autoSearch").checked = true;
 document.querySelector("#messageText").classList.remove("error");
 document.querySelector("#messageText").classList.remove("success");
 document.querySelector("#messageText").innerHTML = \'<span class="glyphicon glyphicon-repeat spinning"></span>\';
