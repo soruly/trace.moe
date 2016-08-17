@@ -7,6 +7,22 @@ The website of whatanime.ga
 
 Image Reverse Search for Anime Scenes
 
+Use anime screenshots to search where this scene is taken from.
+
+It tells you which anime, which episode, and exactly which moment this scene appears in Japanese Anime.
+
+## Demo
+
+Demo image
+
+![](https://images.plurk.com/2FKxneXP64qiKwjlUA7sKj.jpg)
+
+Search result tells you which moment it appears.
+
+![](https://addons.cdn.mozilla.net/user-media/previews/full/175/175674.png)
+
+## How does it work
+
 This repo for studying purpose only. Some settings and config are not included, it won't work out of the box after you clone this repo. Plase understand what you are doing before you fork this repo.
 
 Please read the rest to understand how it works.
