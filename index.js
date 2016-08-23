@@ -46,6 +46,21 @@ $(document).ready(function () {
     $('#imageURL').attr('placeholder', '圖片網址')
     $('#instruction').text(' / 拖放圖片至上方 / Ctrl+V 貼上 / 輸入圖片網址')
   }
+
+function adBlockNotDetected() {
+      ga('send', 'event', 'adblock', 'not detected')
+}
+function adBlockDetected() {
+      ga('send', 'event', 'adblock', 'detected')
+}
+
+if(typeof fuckAdBlock === 'undefined') {
+    adBlockDetected();
+} else {
+    fuckAdBlock.onDetected(adBlockDetected);
+    fuckAdBlock.onNotDetected(adBlockNotDetected);
+}
+
 })
 
 var formatTime = function (timeInSeconds) {

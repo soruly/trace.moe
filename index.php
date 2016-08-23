@@ -27,6 +27,7 @@ $numDocsMillion = floor($numDocs / 1000000);
 <link rel="dns-prefetch" href="https://image.whatanime.ga/">
 <script src="/recaptcha.js" defer></script>
 <script src="/analytics.js" defer></script>
+<script src="/fuckadblock.js" defer></script>
 </head>
 <body>
 <div id="fb-root"></div>
@@ -50,7 +51,7 @@ var showShareBtn = function(){
 }(document, 'script', 'facebook-jssdk'));
 
 !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
-
+/*
 (function async(u, c) {
   var d = document, t = 'script',
       o = d.createElement(t),
@@ -61,7 +62,7 @@ var showShareBtn = function(){
 })('//vk.com/js/api/share.js?93',function(){
   if(typeof VK !== "undefined"){document.getElementById('vk_share_button').innerHTML = VK.Share.button({url: "https://whatanime.ga/"},{type: "round", text: "Share"});}
 });
-
+*/
 }
 setTimeout(showShareBtn,2000);
 </script>
@@ -110,7 +111,7 @@ Official WebExtension available on <a href="https://chrome.google.com/webstore/d
 <div class="share">
 <span class="facebook"><div class="fb-share-button" data-href="https://whatanime.ga/" data-layout="button_count"></div></span>
 <span class="twitter"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Anime Reverse Search Engine"></a></span>
-<span class="vk" id="vk_share_button"></span>
+<!--<span class="vk" id="vk_share_button"></span>-->
 <span class="google"><div class="g-plus" data-action="share" data-annotation="bubble"></div></span>
 </div>
 
