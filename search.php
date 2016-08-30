@@ -217,9 +217,9 @@ if(isset($_POST['data'])){
         $doc->episode = $episode;
         $expires = time() + 300;
         $doc->expires = $expires;
-        $token = str_replace(array('+','/','='),array('-','_',''),base64_encode(md5($expires.'/'.$path.$ip.$start.$end.$secretSalt,true)));
+        $token = str_replace(array('+','/','='),array('-','_',''),base64_encode(md5('/'.$path.$start.$end.$secretSalt,true)));
         $doc->token = $token;
-        $tokenthumb = str_replace(array('+','/','='),array('-','_',''),base64_encode(md5($expires.$ip.$t.$secretSalt,true)));
+        $tokenthumb = str_replace(array('+','/','='),array('-','_',''),base64_encode(md5($t.$secretSalt,true)));
         $doc->tokenthumb = $tokenthumb;
         $doc->diff = $doc->d;
         unset($doc->id);

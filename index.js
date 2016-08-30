@@ -164,7 +164,7 @@ var search = function () {
             result.setAttribute('data-to', entry.to)
             result.setAttribute('data-t', entry.t)
             // encodeURIComponent
-            var thumbnailLink = '/thumbnail.php?season=' + encodeURIComponent(entry.season) + '&anime=' + encodeURIComponent(entry.anime) + '&file=' + encodeURIComponent(entry.file) + '&t=' + (entry.t) + '&expires=' + entry.expires + '&token=' + entry.tokenthumb
+            var thumbnailLink = '/thumbnail.php?season=' + encodeURIComponent(entry.season) + '&anime=' + encodeURIComponent(entry.anime) + '&file=' + encodeURIComponent(entry.file) + '&t=' + (entry.t) + '&token=' + entry.tokenthumb
             var opacity = (Math.pow(((100 - parseFloat(entry.diff)) / 100), 4) + 0.2).toFixed(3)
             result.style.opacity = opacity > 1 ? 1 : opacity
             var title_display = entry.title_romaji
@@ -319,7 +319,7 @@ var playfile = function () {
   var tfrom = $(this).attr('data-from')
   var tto = $(this).attr('data-to')
   var t = $(this).attr('data-t')
-  var src = '/' + season + '/' + encodeURIComponent(anime) + '/' + encodeURIComponent(file) + '?start=' + start + '&end=' + end + '&token=' + token + '&expires=' + expires
+  var src = '/' + season + '/' + encodeURIComponent(anime) + '/' + encodeURIComponent(file) + '?start=' + start + '&end=' + end + '&token=' + token
   document.querySelector('#loading').classList.remove('hidden')
   document.querySelector('#player').src = src
   if (document.querySelector('#autoplay').checked) {
