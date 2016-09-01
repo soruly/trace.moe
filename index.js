@@ -923,9 +923,6 @@ var displayInfo = function (src) {
     row.appendTo('#info #table')
   }
 
-  var character_ids = []
-  var staff_ids = []
-
   if (src.staff.length > 0) {
     $('<br>', {style: 'clear:both'}).appendTo('#info')
     $('<h3>', {text: 'Staff'}).appendTo('#info')
@@ -933,13 +930,11 @@ var displayInfo = function (src) {
 
     var staffTable = $('<table>', {id: 'staff'})
     $.each(src.staff, function (key, entry) {
-      staff_ids.push(entry.id)
       var row = $('<tr>')
-      var name = ''
-      if (entry.language == 'English')
-        name = entry.name_first + ' ' + entry.name_last
-      else
-        name = entry.name_last + ' ' + entry.name_first
+      var name = entry.name_first;
+      if (entry.name_last) name += " " + entry.name_last;
+      if (entry.names_first_japanese && entry.names_last_japanese)
+        name = entry.names_first_japanese + entry.names_last_japanese;
       if (entry.role)
         $('<td>', {text: entry.role}).appendTo(row)
       else
@@ -970,7 +965,6 @@ var displayInfo = function (src) {
     $('<div>', {style: 'clear:both; border-bottom:1px solid #666; margin-bottom:3px'}).appendTo('#info')
     var characterDIV = $('<div>', {style: 'display:inline-block'})
     $.each(src.characters, function (key, entry) {
-      character_ids.push(entry.id)
       var charDIV = $('<div>', {class: 'character'})
       var charImgDiv = $('<div>')
       if (entry.image_url_lge == '//anilist.co')
@@ -981,12 +975,18 @@ var displayInfo = function (src) {
       $('<div>', {style: 'background-image:url(' + entry.image_url_med.replace('http:', '') + ')'}).appendTo(charIMG)
       charImgDiv.appendTo(charDIV)
       var charNameDiv = $('<div>')
+      var charName = $('<div>');
+      var char_name = entry.name_first;
+      if (entry.name_last) char_name += ' ' + entry.name_last;
+      if (entry.name_japanese) char_name = entry.name_japanese;
       var charName = $('<div>')
-      $('<a>', {class: 'character_' + entry.id, href: '//anilist.co/character/' + entry.id, target: '_blank', text: entry.name_last + ' ' + entry.name_first}).appendTo(charName)
+      $('<a>', {class: 'character_' + entry.id, href: '//anilist.co/character/' + entry.id, target: '_blank', text: char_name}).appendTo(charName)
       if (entry.actor.length > 0) {
-        staff_ids.push(entry.actor[0].id)
         $('<br>').appendTo(charName)
-        var name = entry.actor[0].name_last + ' ' + entry.actor[0].name_first
+        var name = entry.actor[0].name_first;
+        if (entry.actor[0].name_last) name += " " + entry.actor[0].name_last;
+        if (entry.actor[0].names_first_japanese && entry.actor[0].names_last_japanese)
+          name = entry.actor[0].names_first_japanese + entry.actor[0].names_last_japanese;
         charName.append(document.createTextNode('(CV: '))
         $('<a>', {class: 'staff_' + entry.actor[0].id, href: '//anilist.co/staff/' + entry.actor[0].id, target: '_blank', text: name}).appendTo(charName)
         charName.append(document.createTextNode(')'))
@@ -996,73 +996,6 @@ var displayInfo = function (src) {
       charDIV.appendTo(characterDIV)
     })
     characterDIV.appendTo('#info')
-  }
-
-  if (staff_ids.length > 0) {
-    var request = {}
-    request.size = 100
-    request.fields = ['name_first_japanese', 'name_last_japanese']
-    request.query = {
-      'ids': {
-        'type': 'staff',
-        'values': staff_ids
-      }
-    }
-    $.ajax({
-      type: 'POST',
-      url: '/staff/',
-      dataType: 'json',
-      data: JSON.stringify(request),
-      async: true,
-      cache: false,
-      timeout: 2000,
-      success: function (data) {
-        if (data.hits.total > 0) {
-          $.each(data.hits.hits, function (key, entry) {
-            var name_japanese = entry.fields.name_last_japanese[0] + entry.fields.name_first_japanese[0]
-            if (name_japanese != '') {
-              $('.staff_' + entry._id).text(name_japanese)
-            }
-          })
-        }
-      },
-      error: function (jqxhr, textStatus, error) {
-        console.log(error)
-      }
-    })
-  }
-  if (character_ids.length > 0) {
-    var request = {}
-    request.size = 100
-    request.fields = ['name_japanese']
-    request.query = {
-      'ids': {
-        'type': 'character',
-        'values': character_ids
-      }
-    }
-    $.ajax({
-      type: 'POST',
-      url: '/character/',
-      dataType: 'json',
-      data: JSON.stringify(request),
-      async: true,
-      cache: false,
-      timeout: 2000,
-      success: function (data) {
-        if (data.hits.total > 0) {
-          $.each(data.hits.hits, function (key, entry) {
-            var name_japanese = entry.fields.name_japanese[0]
-            if (name_japanese != '') {
-              $('.character_' + entry._id).text(name_japanese)
-            }
-          })
-        }
-      },
-      error: function (jqxhr, textStatus, error) {
-        console.log(error)
-      }
-    })
   }
 
   $('<div>', {style: 'clear:both; border-bottom:1px solid #666; margin-bottom:3px'}).appendTo('#info')
