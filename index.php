@@ -11,7 +11,7 @@ $numDocs = $result->index->numDocs;
 $numDocsMillion = floor($numDocs / 1000000);
 
 ?><!DOCTYPE html>
-<html>
+<html itemscope itemtype="http://schema.org/Webpage">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <meta name="description" content="Search Anime by ScreenShot. Search over <?php echo $numDocsMillion; ?> millions of images to lookup what anime, which episode, which moment the screenshot is taken from.">
@@ -19,6 +19,30 @@ $numDocsMillion = floor($numDocs / 1000000);
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=995, initial-scale=1">
 <title>WAIT: What Anime Is This? - Anime Reverse Search Engine</title>
+
+<!-- Schema.org markup (Google) -->
+<meta itemprop="name" content="WAIT: What Anime Is This?">
+<meta itemprop="description" content="Anime Reverse Search Engine. Search over 453 millions of images to lookup what anime, which episode, which moment the screenshot is taken from.">
+<meta itemprop="image" content="https://whatanime.ga/favicon128.png">
+
+<!-- Twitter Card markup-->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@soruly">
+<meta name="twitter:title" content="WAIT: What Anime Is This?">
+<meta name="twitter:description" content="Anime Reverse Search Engine. Search over 453 millions of images to lookup what anime, which episode, which moment the screenshot is taken from.">
+<meta name="twitter:creator" content="@soruly">
+<!-- Twitter summary card with large image must be at least 280x150px -->
+<meta name="twitter:image" content="https://whatanime.ga/favicon128.png">
+<meta name="twitter:image:alt" content="Anime Reverse Search Engine. Search over 453 millions of images to lookup what anime, which episode, which moment the screenshot is taken from.">
+
+<!-- Open Graph markup (Facebook, Pinterest) -->
+<meta property="og:title" content="WAIT: What Anime Is This?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://whatanime.ga" />
+<meta property="og:image" content="https://whatanime.ga/favicon128.png" />
+<meta property="og:description" content="Anime Reverse Search Engine. Search over 453 millions of images to lookup what anime, which episode, which moment the screenshot is taken from." />
+<meta property="og:site_name" content="whatanime.ga" />
+
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="icon" type="image/png" href="/favicon128.png" sizes="128x128">
 <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -29,7 +53,7 @@ $numDocsMillion = floor($numDocs / 1000000);
 <script src="/analytics.js" defer></script>
 <script src="/fuckadblock.js" defer></script>
 </head>
-<body>
+<body><!--
 <div id="fb-root"></div>
 <script>
 var showShareBtn = function(){
@@ -65,7 +89,7 @@ var showShareBtn = function(){
 */
 }
 setTimeout(showShareBtn,2000);
-</script>
+</script>-->
 <!--<div class="alert alert-warning">
   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
   <strong>Scheduled Maintenance</strong> A server maintenance will be carried out on 22 Mar, 2016 01:30-09:30am (UTC)
