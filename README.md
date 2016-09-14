@@ -39,6 +39,9 @@ Please read the rest to understand how it works.
 ## Official WebExtension
 https://github.com/soruly/whatanime.ga-WebExtension
 
+## Official Bot
+https://github.com/soruly/whatanime.ga-telegram-bot
+
 ## Integrating search with whatanime.ga
 To add whatanime.ga as a search option for your site, pass the image URL via query string like this
 ```
