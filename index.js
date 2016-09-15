@@ -55,10 +55,10 @@ function adBlockDetected() {
 }
 
 if(typeof fuckAdBlock === 'undefined') {
-    adBlockDetected();
+//    adBlockDetected();
 } else {
-    fuckAdBlock.onDetected(adBlockDetected);
-    fuckAdBlock.onNotDetected(adBlockNotDetected);
+//    fuckAdBlock.onDetected(adBlockDetected);
+//    fuckAdBlock.onNotDetected(adBlockNotDetected);
 }
 
 })
