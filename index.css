@@ -192,7 +192,9 @@ div#main{
     font-family: Helvetica, Arial, Meiryo, "Microsoft JhengHei", "Microsoft YaHei", sans-serif;
 }
 div#main>form{
-    margin: 1em;
+    padding: 1em;
+    display: inline-block;
+    width: 100%;
 }
 div#main .btn.disabled, div#main .btn[disabled]{
     cursor: default !important;

@@ -1,20 +1,8 @@
-<?php
-ini_set("display_errors", 0);
-$curl = curl_init();
-curl_setopt($curl, CURLOPT_URL, "http://192.168.2.11:8983/solr/anime_cl/admin/luke?wt=json");
-curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-$res = curl_exec($curl);
-$result = json_decode($res);
-curl_close($curl);
-
-$numDocs = $result->index->numDocs;
-$numDocsMillion = floor($numDocs / 1000000);
-
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <html itemscope itemtype="http://schema.org/Webpage">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-<meta name="description" content="Search Anime by ScreenShot. Search over <?php echo $numDocsMillion; ?> millions of images to lookup what anime, which episode, which moment the screenshot is taken from.">
+<meta name="description" content="Search Anime by ScreenShot. Search over 453 millions of images to lookup what anime, which episode, which moment the screenshot is taken from.">
 <meta name="keywords" content="Anime Reverse Search, Search by image, which Anime, 逆向動畫搜尋, Reverse Image Search for Anime, アニメのキャプ画像">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=995, initial-scale=1">
@@ -51,9 +39,16 @@ $numDocsMillion = floor($numDocs / 1000000);
 <link rel="dns-prefetch" href="https://image.whatanime.ga/">
 <script src="/recaptcha.js" defer></script>
 <script src="/analytics.js" defer></script>
-<script src="/fuckadblock.js" defer></script>
+<!--<script src="/fuckadblock.js" defer></script>-->
 </head>
-<body><!--
+<body>
+<!--
+<div class="alert alert-warning">
+    <a href="#" class="close" data-dismiss="alert">&times;</a>
+    <strong>Warning!</strong> Server is under heavy load. Search would be slow or may fail to return anything.
+</div>
+-->
+<!--
 <div id="fb-root"></div>
 <script>
 var showShareBtn = function(){
@@ -131,15 +126,15 @@ Please read <a href="/faq">FAQ</a> to understand what can / cannot be searched.<
 <span style="color:#FF6D6D">Caution: some results may be NSFW (Not Safe for Work).</span><br>
 <span id="mobilePreviewDisabledText" style="display:none;color:#4CAF50">Preview is disabled on mobile devices. Use it on a Desktop / Laptop.<br></span>
 Official WebExtension available on <a href="https://chrome.google.com/webstore/detail/search-anime-by-screensho/gkamnldpllcbiidlfacaccdoadedncfp" target="_blank">Chrome</a>, <a href="https://addons.mozilla.org/en-US/firefox/addon/search-anime-by-screenshot/" target="_blank">Firefox</a>, and <a href="https://addons.opera.com/en/extensions/details/search-anime-by-screenshot/" target="_blank">Opera</a>.<br>
+<!--
 <br>
 <div class="share">
 <span class="facebook"><div class="fb-share-button" data-href="https://whatanime.ga/" data-layout="button_count"></div></span>
 <span class="twitter"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Anime Reverse Search Engine"></a></span>
-<!--<span class="vk" id="vk_share_button"></span>-->
+<span class="vk" id="vk_share_button"></span>
 <span class="google"><div class="g-plus" data-action="share" data-annotation="bubble"></div></span>
 </div>
-
-<br>
+-->
 <!-- or <input type="text" placeholder="Or right click and paste image here" /> (Not URL, copy the image itself)-->
 <!--<input type="range" id="volume" name="volume" min="0" max="1" step="0.01" value="0.3" /> Volume-->
 </form>
