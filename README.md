@@ -26,15 +26,21 @@ Search result tells you which moment it appears.
 
 This repo for studying purpose only. Some settings and config are not included, it won't work out of the box after you clone this repo. Plase understand what you are doing before you fork this repo.
 
-Please read the rest to understand how it works.
+[Presentation slides](https://go-talks.appspot.com/github.com/soruly/slides/whatanime.ga.slide)
 
-- [Overview of the system](https://go-talks.appspot.com/github.com/soruly/slides/whatanime.ga.slide)
+System Overview
 
-- [Shell Script for analyzing video for LireSolr](https://gist.github.com/soruly/032613e350cdbbe7b0dbe4a7f60bbefd)
+![](https://pbs.twimg.com/media/CstZmrxUIAAi8La.jpg)
+
+Some other components are also on GitHub
+
+- [Shell Script and Python script for analyzing video for LireSolr](https://gist.github.com/soruly/032613e350cdbbe7b0dbe4a7f60bbefd)
 
 - [Modified LireSolr search handler](https://gist.github.com/soruly/6d162ac7cc807e3ceb98)
 
 - [Shell Script for checking video format](https://gist.github.com/soruly/1f8ec6f0a8772dfb59e49389bdde991f)
+
+- [anilist-crawler](https://github.com/soruly/anilist-crawler)
 
 ## Official WebExtension
 https://github.com/soruly/whatanime.ga-WebExtension
