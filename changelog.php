@@ -26,6 +26,10 @@
 <div class="container">
 <div class="page-header"><h1>Changelog</h1></div>
 
+<h3>Adding Raw Anime</h3>
+<h6>1 Oct 2016</h6>
+<p>The database has started indexing raw anime from now on.</p>
+
 <h3>Added Telegram Bot</h3>
 <h6>14 Sep 2016</h6>
 <p>This telegram bot can tell you where an anime screenshot is taken from. Just send / forward an image to <a href="https://telegram.me/WhatAnimeBot" target="_blank">https://telegram.me/WhatAnimeBot</a> .</p>

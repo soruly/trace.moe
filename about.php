@@ -31,6 +31,12 @@ $numDocsMillion = floor($numDocs / 1000000);
 
 $vmTouchFile = file_get_contents('./vmtouch.log');
 $vmTouch = explode(" ",explode("\n", $vmTouchFile)[2]);
+
+$uptimeFile = file_get_contents('./uptime.log');
+$loadAverage = explode("load average: ",$uptimeFile)[1];
+
+$recentFile = str_replace('.xml','',file_get_contents('./recent.log'));
+$recentlyIndexedFiles = explode("\n",$recentFile);
 ?><!DOCTYPE html>
 <html>
   <head>
@@ -88,9 +94,11 @@ If you wish to search artwork / wallpapers, try to use <a href="https://saucenao
 <div class="page-header">
 <h3>System Status</h3>
 </div>
-<p>This database automatically index new airing anime in about 24 hours after broadcast. </p>
-<p><?php echo 'Last Database Index update: '.humanTiming($lastModified).' ago with '.$numDocsMillion.' Million analyzed frames.<br>'; ?></p>
+<p><?php if($loadAverage) echo "System load average 1, 5, 15 minutes: ".$loadAverage." (server is overloaded when it is >= 8.0)"; ?></p>
 <p><?php if($vmTouch) echo $vmTouch[6]."B (".$vmTouch[8].") index is cached in RAM, the rest are in SSD."; ?></p>
+<p>This database automatically index most airing anime in a few hours after broadcast. </p>
+<p><?php echo 'Last Database Index update: '.humanTiming($lastModified).' ago with '.$numDocsMillion.' Million analyzed frames.<br>'; ?></p>
+<p><?php if($recentlyIndexedFiles) echo "Recently indexed files: (last 3 hours) <pre>".$recentFile."</pre>"; ?></p>
 <div class="page-header">
 <h3>Contact</h3>
 </div>
