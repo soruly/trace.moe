@@ -13,8 +13,9 @@ else{
 
 if(isset($_GET['season']) && isset($_GET['anime'])){
 $regex = "/[\\+\\-\\=\\&\\|\\ \\!\\(\\)\\{\\}\\[\\]\\^\\\"\\~\\*\\<\\>\\?\\:\\\\\\/]/";
-$season = preg_replace($regex, addslashes('\\$0'), urldecode($_GET['season']));
-$anime = preg_replace($regex, addslashes('\\$0'), urldecode($_GET['anime']));
+$season = preg_replace($regex, addslashes('\\$0'), rawurldecode($_GET['season']));
+$anime = preg_replace($regex, addslashes('\\$0'), rawurldecode($_GET['anime']));
+$anime = str_replace('\+','+',$anime);
 
 $request = array(
 "size" => 1,
