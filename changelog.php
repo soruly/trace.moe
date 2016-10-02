@@ -26,6 +26,10 @@
 <div class="container">
 <div class="page-header"><h1>Changelog</h1></div>
 
+<h3>Added more server status</h3>
+<h6>1 Oct 2016</h6>
+<p>You can see server load and recently indexed files in /about</p>
+
 <h3>Adding Raw Anime</h3>
 <h6>1 Oct 2016</h6>
 <p>The database has started indexing raw anime from now on.</p>
