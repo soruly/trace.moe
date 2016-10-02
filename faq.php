@@ -105,6 +105,15 @@ Searching with a real photo (of an anime) definitely won't work.<br>
 <div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/gif-good.jpg" style="float:left;max-width:320px;max-height:180px"><br>Original Screenshot</div>
 <p style="clear:both">If the color distortion is accetable, GIF is also OK. </p>
 <br>
+<h4>Drawings of the anime scene</h4>
+<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/draw-bad.jpg" style="max-width:320px;max-height:180px"><br>Acceptable Screenshot</div>
+<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/draw-good.jpg" style="float:left;max-width:320px;max-height:180px"><br>Original Screenshot</div>
+<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/draw2-bad.jpg" style="max-width:320px;max-height:180px"><br>Acceptable Screenshot</div>
+<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/draw2-good.jpg" style="float:left;max-width:320px;max-height:180px"><br>Original Screenshot</div>
+<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/draw3-bad.jpg" style="max-width:320px;max-height:180px"><br>Acceptable Screenshot</div>
+<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/draw3-good.jpg" style="float:left;max-width:320px;max-height:180px"><br>Original Screenshot</div>
+<p style="clear:both">The search image does not has to be taken from anime screencap directly. You can use drawings of some scenes as long as it is similar to the original one.</p>
+<br>
 <h3>How does it work?</h3>
 <p>It uses the MPEG 7 Color Layout Descriptor for comparing images. Wikipedia has a good illustration about it. This would also explain why you can't find your image. <a href="https://en.wikipedia.org/wiki/Color_layout_descriptor" target="_blank">https://en.wikipedia.org/wiki/Color_layout_descriptor</a></p>
 <h3>How to make the search for a more accurate result?</h3>
