@@ -99,6 +99,9 @@ If you wish to search artwork / wallpapers, try to use <a href="https://saucenao
 <p>This database automatically index most airing anime in a few hours after broadcast. </p>
 <p><?php echo 'Last Database Index update: '.humanTiming($lastModified).' ago with '.$numDocsMillion.' Million analyzed frames.<br>'; ?></p>
 <p><?php if($recentlyIndexedFiles) echo "Recently indexed files: (last 3 hours) <pre>".$recentFile."</pre>"; ?></p>
+<p>Full Database Dump 2016-10 (20.4GB)<br>
+<a href="magnet:?xt=urn:btih:ec1e85c19cadfbf4e83e9d59fccf3b8abedd49db&dn=whatanime.ga%20database%20dump%202016-10&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopentor.org%3A2710&tr=udp%3A%2F%2Ftracker.ccc.de%3A80&tr=udp%3A%2F%2Ftracker.blackunicorn.xyz%3A6969&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969">magnet:?xt=urn:btih:ec1e85c19cadfbf4e83e9d59fccf3b8abedd49db</a>
+</p>
 <div class="page-header">
 <h3>Contact</h3>
 </div>
