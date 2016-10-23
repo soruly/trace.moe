@@ -33,7 +33,7 @@ if(isset($_POST['g-recaptcha-response'])){
     $recaptcha = new \ReCaptcha\ReCaptcha($secret);
     $resp = $recaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['HTTP_X_FORWARDED_FOR']);
     if ($resp->isSuccess()){
-        $quota = 30;
+        $quota = 10;
         $redis->set($_SERVER['HTTP_X_FORWARDED_FOR'], $quota);
         $redis->expire($_SERVER['HTTP_X_FORWARDED_FOR'], 3600);
         exit(header('Content-Type: application/json',true,204));
@@ -50,10 +50,11 @@ if($redis->exists($_SERVER['HTTP_X_FORWARDED_FOR'])){
     }
 }
 else{
-    $quota = 30;
+    $quota = 10;
     $redis->set($_SERVER['HTTP_X_FORWARDED_FOR'], $quota);
     $redis->expire($_SERVER['HTTP_X_FORWARDED_FOR'], 3600);
 }
+
 
 
 if(isset($_POST['data'])){
@@ -96,7 +97,7 @@ if(isset($_POST['data'])){
             $trial++;
             $final_result->trial = $trial;
             $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, "http://192.168.2.11:8983/solr/anime_cl/lireq?field=cl_ha&accuracy=".$trial."&candidates=10000000&rows=10&feature=".$cl_hi."&hashes=".implode($cl_ha,","));
+            curl_setopt($curl, CURLOPT_URL, "http://192.168.2.11:8983/solr/anime_cl/lireq?field=cl_ha&accuracy=".$trial."&candidates=3000000&rows=10&feature=".$cl_hi."&hashes=".implode($cl_ha,","));
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
             $res = curl_exec($curl);
             $result = json_decode($res);
