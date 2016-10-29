@@ -129,9 +129,7 @@ document.querySelector("#messageText").classList.remove("success");
 document.querySelector("#messageText").innerHTML = \'<span class="glyphicon glyphicon-repeat spinning"></span>\';
 originalImage.src = "https://image.whatanime.ga/imgproxy?url='.str_replace(' ','%20',rawurldecode($_GET["url"])).'";
 document.querySelector("#imageURL").value = "'.str_replace(' ','%20',rawurldecode($_GET["url"])).'";
-history.replaceState(null,null,\'/?url=\'+encodeURI(document.querySelector("#imageURL").value.replace(/ /g,\'%20\')));
 </script>';
-
 }
 ?>
 </body>
