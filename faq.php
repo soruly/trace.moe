@@ -133,7 +133,9 @@ If you wish to watch the anime, you may check which TV channel is broadcasting t
 <p>For now, you have to upload the image somewhere else, then search by image URL, and share the result URL. If you have any feedback or suggestions, feel free to contact <a href="mailto:help@whatanime.ga">help@whatanime.ga</a>.</p>
 <h3>How to add whatanime.ga to Image Search Options</h3>
 <p>
-If you prefer to use whatanime.ga with <a href="https://chrome.google.com/webstore/detail/image-search-options/kljmejbpilkadikecejccebmccagifhl" target="_blank">Image Search Options</a>, go to settings and add this: <pre>https://whatanime.ga/?url=</pre><br>
+If you prefer to use whatanime.ga with <a href="https://chrome.google.com/webstore/detail/image-search-options/kljmejbpilkadikecejccebmccagifhl" target="_blank">Image Search Options</a>, go to settings and add this: <pre>https://whatanime.ga/?url=</pre>
+You can also configure playback options via URL params:
+<pre>https://whatanime.ga/?autoplay=0&loop&mute=1&url=</pre>
 </p>
 </div>
 

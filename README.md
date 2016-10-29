@@ -55,9 +55,21 @@ To add whatanime.ga as a search option for your site, pass the image URL via que
 ```
 https://whatanime.ga/?url=http://searchimageurl
 ```
-Note that the server cannot access private images via URL.
-In that case, users has to copy and paste (Ctrl+V/Cmd+V) the image directly, or save and upload the file.
 
-~~To begin search immediately after the image has loaded, you can add the `auto` option~~
+You can also specify playback options like this
+```
+https://whatanime.ga/?autoplay=0&loop&mute=1&url=http://searchimageurl
+```
+
+Playback URL params:
+
+| param    | value  | default (not set in URL param) | set with empty or other value |
+|----------|--------|---|---|
+| autoplay | 0 or 1 | 1 | 1 |
+| mute     | 0 or 1 | 0 | 1 |
+| loop     | 0 or 1 | 0 | 1 |
 
 The `auto` URL parameter is no longer used, it would always search automatically when there is `?url=` param.
+
+Note that the server cannot access private image URLs.
+In that case, users has to copy and paste (Ctrl+V/Cmd+V) the image directly, or save and upload the file.

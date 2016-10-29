@@ -42,7 +42,56 @@ $(document).ready(function () {
     $('#imageURL').attr('placeholder', '圖片網址')
     $('#instruction').text(' / 拖放圖片至上方 / Ctrl+V 貼上 / 輸入圖片網址')
   }
+
+  document.querySelector("#autoplay").checked = true;
+  document.querySelector("#mute").checked = false;
+  document.querySelector("#loop").checked = false;
+
+  location.search.substr(1).split('&').forEach(function(param){
+    let key = param.split('=')[0];
+    let val = param.split('=')[1];
+    if (key === "autoplay") {
+      document.querySelector("#autoplay").checked = val !== "0" ? true : false;
+    }
+    if (key === "mute") {
+      document.querySelector("#mute").checked = val !== "0" ? true : false;
+    }
+    if (key === "loop") {
+      document.querySelector("#loop").checked = val !== "0" ? true : false;
+    }
+  });
+
+  document.querySelector("#autoplay").onchange = updateURLParam;
+  document.querySelector("#mute").onchange = updateURLParam;
+  document.querySelector("#loop").onchange = updateURLParam;
 })
+
+var updateURLParam = function(){
+  let urlString = '';
+  let params = [];
+  if(document.querySelector("#autoplay").checked !== true){
+    params.push("autoplay=0");
+  }
+  if(document.querySelector("#mute").checked === true){
+    params.push("mute");
+  }
+  if(document.querySelector("#loop").checked === true){
+    params.push("loop");
+  }
+  urlString += params.sort().join('&');
+  if(document.querySelector("#imageURL").value){
+    if(params.length > 0){
+      urlString += '&';
+    }
+    urlString += 'url='+encodeURI(document.querySelector("#imageURL").value.replace(/ /g,'%20'))
+  }
+  if(urlString.length > 0){
+    history.replaceState(null,null,'/?'+urlString);
+  }
+  else{
+    history.replaceState(null,null,'/');
+  }
+}
 
 var formatTime = function (timeInSeconds) {
   var sec_num = parseInt(timeInSeconds, 10)
@@ -219,7 +268,6 @@ $('#imageURL').bind('input', function () {
 var safeToggle = function () {
   if ($('#safeBtn').children('.glyphicon').hasClass('glyphicon-unchecked')) {
     safeSearch = true
-    document.querySelector('#autoplay').checked = false
     $('#safeBtn').children('.glyphicon').removeClass('glyphicon-unchecked')
     $('#safeBtn').children('.glyphicon').addClass('glyphicon-check')
   } else {
