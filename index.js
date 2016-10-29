@@ -3,11 +3,7 @@ $(document).ready(function () {
   if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile/i.test(ua)) {
     $('#mobilePreviewDisabledText').show()
   }
-  else if (/Chrome/i.test(ua)) {
-    // $('#ctrlV').show()
-  } else {
-    // $('a.desktop-other').show()
-  }
+  
   if (navigator.language.indexOf('ja') == 0) {
     $('#searchBtn').contents().last()[0].textContent = ' 検索'
     $('#safeBtn').contents().last()[0].textContent = ' セーフサーチ'
@@ -46,21 +42,6 @@ $(document).ready(function () {
     $('#imageURL').attr('placeholder', '圖片網址')
     $('#instruction').text(' / 拖放圖片至上方 / Ctrl+V 貼上 / 輸入圖片網址')
   }
-
-function adBlockNotDetected() {
-      ga('send', 'event', 'adblock', 'not detected')
-}
-function adBlockDetected() {
-      ga('send', 'event', 'adblock', 'detected')
-}
-
-if(typeof fuckAdBlock === 'undefined') {
-//    adBlockDetected();
-} else {
-//    fuckAdBlock.onDetected(adBlockDetected);
-//    fuckAdBlock.onNotDetected(adBlockNotDetected);
-}
-
 })
 
 var formatTime = function (timeInSeconds) {
@@ -98,7 +79,6 @@ var search = function () {
     searchRequest.abort()
   }
   preview.classList.remove('movable')
-  // preview.classList.add('blur')
   document.querySelector('#loading').classList.remove('hidden')
   document.querySelector('#searchBtn span').classList.remove('glyphicon-search')
   document.querySelector('#searchBtn span').classList.add('glyphicon-refresh')
@@ -111,7 +91,7 @@ var search = function () {
   document.querySelector('#searchBtn').disabled = true
   document.querySelector('#flipBtn').disabled = true
   document.querySelector('#imageURL').disabled = true
-  // ga('send', 'event', 'search', 'imgDataURLLength', imgDataURL.length, imgDataURL.length)
+  
   searchRequest = $.post('/search',
     {'data': imgDataURL}, function (data, textStatus) {
       document.querySelector('#loading').classList.add('hidden')
@@ -128,19 +108,11 @@ var search = function () {
         rawDocsSearchTimeTotal += data.RawDocsSearchTime[i]
       for (i in data.ReRankSearchTime)
         reRankSearchTimeTotal += data.ReRankSearchTime[i]
-      /*
-      console.log("RawDocsCount: "+data.RawDocsCount.join('+')+' = '+rawDocsCountTotal)
-      console.log("RawDocsSearchTime: "+data.RawDocsSearchTime.join('+')+' = '+rawDocsSearchTimeTotal)
-      console.log("ReRankSearchTime: "+data.ReRankSearchTime.join('+')+' = '+reRankSearchTimeTotal)
-      console.log("Trial: "+data.trial)
-      console.log("CacheHit: "+data.CacheHit)
-      */
+      
       ga('send', 'event', 'search', 'RawDocsCount', data.RawDocsCount.join('+') + ' = ' + rawDocsCountTotal, rawDocsCountTotal)
       ga('send', 'event', 'search', 'RawDocsSearchTime', data.RawDocsSearchTime.join('+') + ' = ' + rawDocsSearchTimeTotal, rawDocsSearchTimeTotal)
       ga('send', 'event', 'search', 'ReRankSearchTime', data.ReRankSearchTime.join('+') + ' = ' + reRankSearchTimeTotal, reRankSearchTimeTotal)
       ga('send', 'event', 'search', 'Trial', data.trial, data.trial)
-      // ga('send', 'event', 'search', 'CacheHit', data.CacheHit, data.CacheHit)
-      // ga('send', 'event', 'search', 'numResult', data.docs.length, data.docs.length)
       document.querySelector('#results').innerHTML = '<div id="status">' + rawDocsCountTotal + ' images searched in ' + ((rawDocsSearchTimeTotal + reRankSearchTimeTotal) / 1000).toFixed(2) + ' seconds</div>'
       if (data.docs.length > 0) {
         $.each(data.docs, function (key, entry) {
@@ -163,7 +135,7 @@ var search = function () {
             result.setAttribute('data-from', entry.from)
             result.setAttribute('data-to', entry.to)
             result.setAttribute('data-t', entry.t)
-            // encodeURIComponent
+            
             var thumbnailLink = '/thumbnail.php?season=' + encodeURIComponent(entry.season) + '&anime=' + encodeURIComponent(entry.anime) + '&file=' + encodeURIComponent(entry.file) + '&t=' + (entry.t) + '&token=' + entry.tokenthumb
             var opacity = (Math.pow(((100 - parseFloat(entry.diff)) / 100), 4) + 0.2).toFixed(3)
             result.style.opacity = opacity > 1 ? 1 : opacity
@@ -175,7 +147,6 @@ var search = function () {
             else
               result.innerHTML = '<a href="#"><span class="title">' + title_display + '</span><br><span class="ep">EP#' + zeroPad(entry.episode, 2) + '</span> <span class="time">' + formatTime(entry.from) + '-' + formatTime(entry.to) + '</span> <span class="similarity">~' + similarity + '%</span><br><span class="file">' + entry.file + '</span><img src="' + thumbnailLink + '"></a>'
             document.querySelector('#results').appendChild(result)
-          // $("#results").append('<div class="highlight"><a class="result" href="#">'+url+'</a> Score:'+entry.diff+'</div>')
           }
         })
         var topResult = '/' + data.docs[0].season + '/' + data.docs[0].anime + '/' + data.docs[0].file + '?start=' + data.docs[0].start + '&end=' + data.docs[0].end + '&t=' + data.docs[0].t
@@ -183,12 +154,10 @@ var search = function () {
         $('.result').click(playfile)
         firstPlay = true
 
-        if (parseFloat(data.docs[0].diff) > 10) { // && data.trial >= 5
+        if (parseFloat(data.docs[0].diff) > 10) {
           $('#results').prepend('<div id="status">Image not found.<br>But there are visually similar scenes</div>')
-        // document.querySelector("#autoplay").checked = false
         } else {
           if (safeSearch == false) {
-            // document.querySelector("#autoplay").checked = true
             $('.result')[0].click()
           }
         }
@@ -208,7 +177,6 @@ var search = function () {
     document.querySelector('#flipBtn').disabled = false
     document.querySelector('#imageURL').disabled = false
   }).complete(function (e) {
-    // preview.classList.remove('blur')
     document.querySelector('#searchBtn span').classList.remove('glyphicon-refresh')
     document.querySelector('#searchBtn span').classList.remove('spinning')
     document.querySelector('#searchBtn span').classList.add('glyphicon-search')
@@ -219,7 +187,6 @@ var recaptcha_success = function () {
   $.post('/search',
     {'g-recaptcha-response': document.querySelector('#g-recaptcha-response').value}, function (data, textStatus) {
       $('.g-recaptcha').addClass('hidden')
-      // document.querySelector("#results").innerHTML = '<div id="status">Thanks, you can now search again</div>'
       search()
     }).fail(function (e) {
     document.querySelector('#results').innerHTML = '<div id="status">Connection to Search Server Failed</div>'
@@ -262,7 +229,6 @@ var safeToggle = function () {
   }
 }
 
-// $("#volume").change(function(){document.querySelector('#player').volume = $("#volume").val();})
 $('#mute').change(function () {
   if (document.querySelector('#mute').checked)
     document.querySelector('#player').volume = 0
@@ -324,12 +290,10 @@ var playfile = function () {
   document.querySelector('#player').src = src
   if (document.querySelector('#autoplay').checked) {
     time = parseFloat(tfrom) - parseFloat(start)
-  // time = time - 0.3
   } else {
     time = parseFloat(t) - parseFloat(start)
   }
   if (time < 0) time = 0
-  // player.currentTime = time
   ga('send', 'event', 'playfile', 'src', '/' + season + '/' + (anime) + '/' + (file), t)
 
   if (animeInfo != season + anime) {
@@ -419,17 +383,6 @@ var resetAll = function () {
 originalImage.onload = function () {
   clearTimeout(fetchImageMsgDelay)
   resetAll()
-  // var imageAspectRatio = originalImage.width/originalImage.height
-  /*
-  if(imageAspectRatio > (4/3 - 0.05) && imageAspectRatio < (4/3 + 0.05) || imageAspectRatio > (16/9 + 0.05)){
-      document.querySelector("#fitWidthRadio").checked = true
-      fitWidth = false
-  }
-  else{
-      document.querySelector("#fitWidthRadio").checked = false
-      fitWidth = true
-  }
-  */
   changeAspectRatio()
   drawPreview(searchImage)
   document.querySelector('#searchBtn').disabled = false
@@ -553,7 +506,6 @@ var drawPreview = function (source) {
     x = (640 - w) / 2
     y = 0
   }
-  // preview.getContext('2d').drawImage(source, x, y, w, h)
   var ctx = preview.getContext('2d')
   ctx.save()
   ctx.scale(-1, 1)
@@ -577,7 +529,6 @@ var drawVideoPreview = function (source) {
     x = 0
     y = (360 - h) / 2
   }
-  // preview.getContext('2d').drawImage(source, x, y, w, h)
   var ctx = preview.getContext('2d')
   ctx.save()
   ctx.scale(-1, 1)
@@ -608,9 +559,6 @@ function handleFileSelect (evt) {
       document.querySelector('#results').innerHTML = '<div id="status">Error: File is not an image</div>'
       return false
     }
-  } else {
-    // document.querySelector("#results").innerHTML = '<div id="status">Error: File is not an image</div>'
-    // return false
   }
 }
 
@@ -794,7 +742,6 @@ var displayInfo = function (src) {
   $('<h2>', {text: src.title_romaji}).appendTo('#info')
   $('<h2>', {text: src.title_english}).appendTo('#info')
   $('<h2>', {text: src.title_chinese}).appendTo('#info')
-  // $('<h3>', {text: src.title_english}).appendTo('#info')
   $('<div>', {style: 'clear:both; border-bottom:1px solid #666; margin-bottom:13px'}).appendTo('#info')
 
   if (src.image_url_lge) {

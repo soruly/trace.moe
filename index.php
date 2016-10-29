@@ -39,52 +39,8 @@
 <link rel="dns-prefetch" href="https://image.whatanime.ga/">
 <script src="/recaptcha.js" defer></script>
 <script src="/analytics.js" defer></script>
-<!--<script src="/fuckadblock.js" defer></script>-->
 </head>
 <body>
-<!--
-<div class="alert alert-warning">
-    <a href="#" class="close" data-dismiss="alert">&times;</a>
-    <strong>Warning!</strong> Server is under heavy load. Search would be slow or may fail to return anything.
-</div>
--->
-<!--
-<div id="fb-root"></div>
-<script>
-var showShareBtn = function(){
-
-(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "/googleplatform.js";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'googleplatform'));
-
-(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-
-!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
-/*
-(function async(u, c) {
-  var d = document, t = 'script',
-      o = d.createElement(t),
-      s = d.getElementsByTagName(t)[0];
-  o.src = '//' + u;
-  if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
-  s.parentNode.insertBefore(o, s);
-})('//vk.com/js/api/share.js?93',function(){
-  if(typeof VK !== "undefined"){document.getElementById('vk_share_button').innerHTML = VK.Share.button({url: "https://whatanime.ga/"},{type: "round", text: "Share"});}
-});
-*/
-}
-setTimeout(showShareBtn,2000);
-</script>-->
 <!--<div class="alert alert-warning">
   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
   <strong>Scheduled Maintenance</strong> A server maintenance will be carried out on 22 Mar, 2016 01:30-09:30am (UTC)
@@ -126,17 +82,6 @@ Please read <a href="/faq">FAQ</a> to understand what can / cannot be searched.<
 <span style="color:#FF6D6D">Caution: some results may be NSFW (Not Safe for Work).</span><br>
 <span id="mobilePreviewDisabledText" style="display:none;color:#4CAF50">Preview is disabled on mobile devices. Use it on a Desktop / Laptop.<br></span>
 Official WebExtension available on <a href="https://chrome.google.com/webstore/detail/search-anime-by-screensho/gkamnldpllcbiidlfacaccdoadedncfp" target="_blank">Chrome</a>, <a href="https://addons.mozilla.org/en-US/firefox/addon/search-anime-by-screenshot/" target="_blank">Firefox</a>, and <a href="https://addons.opera.com/en/extensions/details/search-anime-by-screenshot/" target="_blank">Opera</a>.<br>
-<!--
-<br>
-<div class="share">
-<span class="facebook"><div class="fb-share-button" data-href="https://whatanime.ga/" data-layout="button_count"></div></span>
-<span class="twitter"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Anime Reverse Search Engine"></a></span>
-<span class="vk" id="vk_share_button"></span>
-<span class="google"><div class="g-plus" data-action="share" data-annotation="bubble"></div></span>
-</div>
--->
-<!-- or <input type="text" placeholder="Or right click and paste image here" /> (Not URL, copy the image itself)-->
-<!--<input type="range" id="volume" name="volume" min="0" max="1" step="0.01" value="0.3" /> Volume-->
 </form>
 </div>
 <div id="info"></div>
