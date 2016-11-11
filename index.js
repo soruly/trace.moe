@@ -1,7 +1,10 @@
 $(document).ready(function () {
   var ua = navigator.userAgent
   if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile/i.test(ua)) {
-    $('#mobilePreviewDisabledText').show()
+    document.querySelector("#mute").checked = true;
+  }
+  else{
+    document.querySelector("#mute").checked = false;
   }
   
   if (navigator.language.indexOf('ja') == 0) {
@@ -44,7 +47,6 @@ $(document).ready(function () {
   }
 
   document.querySelector("#autoplay").checked = true;
-  document.querySelector("#mute").checked = false;
   document.querySelector("#loop").checked = false;
 
   location.search.substr(1).split('&').forEach(function(param){

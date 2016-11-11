@@ -26,6 +26,10 @@
 <div class="container">
 <div class="page-header"><h1>Changelog</h1></div>
 
+<h3>Enabled autoplay on mobile</h3>
+<h6>11 Nov 2016</h6>
+<p>Now mobile devies will mute and autoplay the video preview.</p>
+
 <h3>Added URL params for playback options</h3>
 <h6>29 Oct 2016</h6>
 <p>You can now use URL params to control playback options, for example:<pre>https://whatanime.ga/?autoplay=0&loop&mute=1&url=</pre></p>

@@ -55,7 +55,7 @@
 <span class="glyphicon glyphicon-repeat spinning"></span>
 </div>
 <canvas id="preview" width="640" height="360"></canvas>
-<video id="player" style="display:none" volume="1" ></video>
+<video id="player" style="display:none" volume="1" autoplay muted></video>
 </div>
 <form action="" method="get">
 <span class="btn btn-default btn-file btn-sm">
@@ -80,7 +80,6 @@ Browse a file <input type="file" id="file" name="files[]" />
 </div>
 Please read <a href="/faq">FAQ</a> to understand what can / cannot be searched.<br>
 <span style="color:#FF6D6D">Caution: some results may be NSFW (Not Safe for Work).</span><br>
-<span id="mobilePreviewDisabledText" style="display:none;color:#4CAF50">Preview is disabled on mobile devices. Use it on a Desktop / Laptop.<br></span>
 Official WebExtension available on <a href="https://chrome.google.com/webstore/detail/search-anime-by-screensho/gkamnldpllcbiidlfacaccdoadedncfp" target="_blank">Chrome</a>, <a href="https://addons.mozilla.org/en-US/firefox/addon/search-anime-by-screenshot/" target="_blank">Firefox</a>, and <a href="https://addons.opera.com/en/extensions/details/search-anime-by-screenshot/" target="_blank">Opera</a>.<br>
 </form>
 </div>
@@ -93,7 +92,7 @@ Official WebExtension available on <a href="https://chrome.google.com/webstore/d
     <div id="controls" class="checkbox">
       <label><input type="checkbox" id="autoplay" name="autoplay" checked />AutoPlay</label>
       <label><input type="checkbox" id="loop" name="loop" />Loop</label>
-      <label><input type="checkbox" id="mute" name="mute" />Mute</label>
+      <label><input type="checkbox" id="mute" name="mute" checked />Mute</label>
     </div>
     <div class="g-recaptcha hidden" data-sitekey="6LdluhITAAAAAD4-wl-hL-gR6gxesY6b4_SZew7v" data-callback="recaptcha_success" data-size="normal"></div>
     <ul id="results" class="nav nav-pills nav-stacked"></ul>
