@@ -55,7 +55,7 @@
 <span class="glyphicon glyphicon-repeat spinning"></span>
 </div>
 <canvas id="preview" width="640" height="360"></canvas>
-<video id="player" style="display:none" volume="1" autoplay muted></video>
+<video id="player" style="display:none" volume="1" autoplay></video>
 </div>
 <form action="" method="get">
 <span class="btn btn-default btn-file btn-sm">
@@ -92,7 +92,7 @@ Official WebExtension available on <a href="https://chrome.google.com/webstore/d
     <div id="controls" class="checkbox">
       <label><input type="checkbox" id="autoplay" name="autoplay" checked />AutoPlay</label>
       <label><input type="checkbox" id="loop" name="loop" />Loop</label>
-      <label><input type="checkbox" id="mute" name="mute" checked />Mute</label>
+      <label><input type="checkbox" id="mute" name="mute" />Mute</label>
     </div>
     <div class="g-recaptcha hidden" data-sitekey="6LdluhITAAAAAD4-wl-hL-gR6gxesY6b4_SZew7v" data-callback="recaptcha_success" data-size="normal"></div>
     <ul id="results" class="nav nav-pills nav-stacked"></ul>

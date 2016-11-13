@@ -2,9 +2,11 @@ $(document).ready(function () {
   var ua = navigator.userAgent
   if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile/i.test(ua)) {
     document.querySelector("#mute").checked = true;
+    document.querySelector('#player').muted = true;
   }
   else{
     document.querySelector("#mute").checked = false;
+    document.querySelector('#player').muted = false;
   }
   
   if (navigator.language.indexOf('ja') == 0) {
@@ -281,9 +283,9 @@ var safeToggle = function () {
 
 $('#mute').change(function () {
   if (document.querySelector('#mute').checked)
-    document.querySelector('#player').volume = 0
+    document.querySelector('#player').muted = true;
   else
-    document.querySelector('#player').volume = 1
+    document.querySelector('#player').muted = false;
 })
 
 $('input[type=radio][name=fitRadio]').change(function () {
