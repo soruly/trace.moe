@@ -26,6 +26,10 @@
 <div class="container">
 <div class="page-header"><h1>Changelog</h1></div>
 
+<h3>WebExtension updated</h3>
+<h6>16 Nov 2016</h6>
+<p>The image extraction method of WebExtension has changed. This would be able to fix some issues on grabbing the correct image on webpage to search. Now the Extension also supports Microsoft Edge. You may try loading the zip from <a href="https://github.com/soruly/whatanime.ga-WebExtension/releases" target="_blank">GitHub</a> by enabling extension developer features in about:flags.</p>
+
 <h3>Enabled autoplay on mobile</h3>
 <h6>11 Nov 2016</h6>
 <p>Now mobile devies will mute and autoplay the video preview.</p>
