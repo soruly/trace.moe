@@ -244,7 +244,7 @@ if(isset($_POST['data'])){
         );
         $payload = json_encode($request);
         $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, "http://127.0.0.1:9200/karikari/anime/_search");
+        curl_setopt($curl, CURLOPT_URL, "https://api.whatanime.ga/s/");
         curl_setopt($curl, CURLOPT_POSTFIELDS, $payload);
         curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
