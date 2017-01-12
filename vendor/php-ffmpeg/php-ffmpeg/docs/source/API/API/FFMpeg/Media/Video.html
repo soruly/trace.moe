@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="index, follow, all" />
+        <title>FFMpeg\Media\Video | PHP-FFMpeg API</title>
+                    <link rel="stylesheet" type="text/css" href="../../stylesheet.css">
+                            </head>
+        <body id="class">
+            <div class="header">
+        <ul>
+            <li><a href="../../classes.html">Classes</a></li>
+                            <li><a href="../../namespaces.html">Namespaces</a></li>
+                        <li><a href="../../interfaces.html">Interfaces</a></li>
+            <li><a href="../../traits.html">Traits</a></li>
+            <li><a href="../../doc-index.html">Index</a></li>
+            
+        </ul>
+
+        <div id="title">PHP-FFMpeg API</div>
+
+            <div class="type">Class</div>
+    <h1><a href="../../FFMpeg/Media.html">FFMpeg\Media</a>\Video</h1>
+    </div>
+        <div class="content">
+                <p>    class
+    <strong>Video</strong>        extends <a href="../../FFMpeg/Media/Audio.html"><abbr title="FFMpeg\Media\Audio">Audio</abbr></a></p>
+
+    
+    
+    
+            <h2>Methods</h2>
+
+            <table>
+                    <tr>
+                <td class="type">
+                    
+                </td>
+                <td class="last">
+                    <a href="#method___construct">__construct</a>($pathfile, <a href="../../FFMpeg/Driver/FFMpegDriver.html"><abbr title="FFMpeg\Driver\FFMpegDriver">FFMpegDriver</abbr></a> $driver, <a href="../../FFMpeg/FFProbe.html"><abbr title="FFMpeg\FFProbe">FFProbe</abbr></a> $ffprobe)
+                    <p>
+</p>
+                </td>
+                <td><small>from&nbsp;<a href="../../FFMpeg/Media/AbstractMediaType.html#method___construct"><abbr title="FFMpeg\Media\AbstractMediaType">AbstractMediaType</abbr></a></small></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    <a href="../../FFMpeg/Driver/FFMpegDriver.html"><abbr title="FFMpeg\Driver\FFMpegDriver">FFMpegDriver</abbr></a>
+                </td>
+                <td class="last">
+                    <a href="#method_getFFMpegDriver">getFFMpegDriver</a>()
+                    <p>
+</p>
+                </td>
+                <td><small>from&nbsp;<a href="../../FFMpeg/Media/AbstractMediaType.html#method_getFFMpegDriver"><abbr title="FFMpeg\Media\AbstractMediaType">AbstractMediaType</abbr></a></small></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    <a href="../../FFMpeg/Media/MediaTypeInterface.html"><abbr title="FFMpeg\Media\MediaTypeInterface">MediaTypeInterface</abbr></a>
+                </td>
+                <td class="last">
+                    <a href="#method_setFFMpegDriver">setFFMpegDriver</a>(<a href="../../FFMpeg/Driver/FFMpegDriver.html"><abbr title="FFMpeg\Driver\FFMpegDriver">FFMpegDriver</abbr></a> $driver)
+                    <p>
+</p>
+                </td>
+                <td><small>from&nbsp;<a href="../../FFMpeg/Media/AbstractMediaType.html#method_setFFMpegDriver"><abbr title="FFMpeg\Media\AbstractMediaType">AbstractMediaType</abbr></a></small></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    <a href="../../FFMpeg/FFProbe.html"><abbr title="FFMpeg\FFProbe">FFProbe</abbr></a>
+                </td>
+                <td class="last">
+                    <a href="#method_getFFProbe">getFFProbe</a>()
+                    <p>
+</p>
+                </td>
+                <td><small>from&nbsp;<a href="../../FFMpeg/Media/AbstractMediaType.html#method_getFFProbe"><abbr title="FFMpeg\Media\AbstractMediaType">AbstractMediaType</abbr></a></small></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    <a href="../../FFMpeg/Media/MediaTypeInterface.html"><abbr title="FFMpeg\Media\MediaTypeInterface">MediaTypeInterface</abbr></a>
+                </td>
+                <td class="last">
+                    <a href="#method_setFFProbe">setFFProbe</a>(<a href="../../FFMpeg/FFProbe.html"><abbr title="FFMpeg\FFProbe">FFProbe</abbr></a> $ffprobe)
+                    <p>
+</p>
+                </td>
+                <td><small>from&nbsp;<a href="../../FFMpeg/Media/AbstractMediaType.html#method_setFFProbe"><abbr title="FFMpeg\Media\AbstractMediaType">AbstractMediaType</abbr></a></small></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    string
+                </td>
+                <td class="last">
+                    <a href="#method_getPathfile">getPathfile</a>()
+                    <p>
+</p>
+                </td>
+                <td><small>from&nbsp;<a href="../../FFMpeg/Media/AbstractMediaType.html#method_getPathfile"><abbr title="FFMpeg\Media\AbstractMediaType">AbstractMediaType</abbr></a></small></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    <a href="../../FFMpeg/Media/MediaTypeInterface.html"><abbr title="FFMpeg\Media\MediaTypeInterface">MediaTypeInterface</abbr></a>
+                </td>
+                <td class="last">
+                    <a href="#method_setFiltersCollection">setFiltersCollection</a>(<a href="../../FFMpeg/Filters/FiltersCollection.html"><abbr title="FFMpeg\Filters\FiltersCollection">FiltersCollection</abbr></a> $filters)
+                    <p>
+</p>
+                </td>
+                <td><small>from&nbsp;<a href="../../FFMpeg/Media/AbstractMediaType.html#method_setFiltersCollection"><abbr title="FFMpeg\Media\AbstractMediaType">AbstractMediaType</abbr></a></small></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    <a href="../../FFMpeg/Media/MediaTypeInterface.html"><abbr title="FFMpeg\Media\MediaTypeInterface">MediaTypeInterface</abbr></a>
+                </td>
+                <td class="last">
+                    <a href="#method_getFiltersCollection">getFiltersCollection</a>()
+                    <p>
+</p>
+                </td>
+                <td><small>from&nbsp;<a href="../../FFMpeg/Media/AbstractMediaType.html#method_getFiltersCollection"><abbr title="FFMpeg\Media\AbstractMediaType">AbstractMediaType</abbr></a></small></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    <a href="../../FFMpeg/FFProbe/DataMapping/StreamCollection.html"><abbr title="FFMpeg\FFProbe\DataMapping\StreamCollection">StreamCollection</abbr></a>
+                </td>
+                <td class="last">
+                    <a href="#method_getStreams">getStreams</a>()
+                    <p>
+</p>
+                </td>
+                <td><small>from&nbsp;<a href="../../FFMpeg/Media/AbstractStreamableMedia.html#method_getStreams"><abbr title="FFMpeg\Media\AbstractStreamableMedia">AbstractStreamableMedia</abbr></a></small></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    <a href="../../FFMpeg/FFProbe/DataMapping/Stream.html"><abbr title="FFMpeg\FFProbe\DataMapping\Stream">Stream</abbr></a>
+                </td>
+                <td class="last">
+                    <a href="#method_getFormat">getFormat</a>()
+                    <p>
+</p>
+                </td>
+                <td><small>from&nbsp;<a href="../../FFMpeg/Media/AbstractStreamableMedia.html#method_getFormat"><abbr title="FFMpeg\Media\AbstractStreamableMedia">AbstractStreamableMedia</abbr></a></small></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    <a href="../../FFMpeg/Filters/Video/VideoFilters.html"><abbr title="FFMpeg\Filters\Video\VideoFilters">VideoFilters</abbr></a>
+                </td>
+                <td class="last">
+                    <a href="#method_filters">filters</a>()
+                    <p>Returns the available filters.</p>
+                </td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    <a href="../../FFMpeg/Media/Video.html"><abbr title="FFMpeg\Media\Video">Video</abbr></a>
+                </td>
+                <td class="last">
+                    <a href="#method_addFilter">addFilter</a>(<a href="../../FFMpeg/Filters/FilterInterface.html"><abbr title="FFMpeg\Filters\FilterInterface">FilterInterface</abbr></a> $filter)
+                    <p>{@inheritdoc}</p>
+                </td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    <a href="../../FFMpeg/Media/Video.html"><abbr title="FFMpeg\Media\Video">Video</abbr></a>
+                </td>
+                <td class="last">
+                    <a href="#method_save">save</a>(<a href="../../FFMpeg/Format/FormatInterface.html"><abbr title="FFMpeg\Format\FormatInterface">FormatInterface</abbr></a> $format, string $outputPathfile)
+                    <p>Exports the video in the desired format, applies registered filters.</p>
+                </td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    <a href="../../FFMpeg/Media/Frame.html"><abbr title="FFMpeg\Media\Frame">Frame</abbr></a>
+                </td>
+                <td class="last">
+                    <a href="#method_frame">frame</a>(<a href="../../FFMpeg/Coordinate/TimeCode.html"><abbr title="FFMpeg\Coordinate\TimeCode">TimeCode</abbr></a> $at)
+                    <p>Gets the frame at timecode.</p>
+                </td>
+                <td></td>
+            </tr>
+            </table>
+
+
+        <h2>Details</h2>
+
+                        <h3 id="method___construct">
+        <div class="location">in <a href="../../FFMpeg/Media/AbstractMediaType.html#method___construct"><abbr title="FFMpeg\Media\AbstractMediaType">AbstractMediaType</abbr></a> at line 29</div>
+        <code>            public            
+    <strong>__construct</strong>($pathfile, <a href="../../FFMpeg/Driver/FFMpegDriver.html"><abbr title="FFMpeg\Driver\FFMpegDriver">FFMpegDriver</abbr></a> $driver, <a href="../../FFMpeg/FFProbe.html"><abbr title="FFMpeg\FFProbe">FFProbe</abbr></a> $ffprobe)</code>
+    </h3>
+    <div class="details">
+        <p>
+</p>
+        <p>
+</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td></td>
+                <td>$pathfile</td>
+                <td>
+</td>
+            </tr>
+                    <tr>
+                <td><a href="../../FFMpeg/Driver/FFMpegDriver.html"><abbr title="FFMpeg\Driver\FFMpegDriver">FFMpegDriver</abbr></a></td>
+                <td>$driver</td>
+                <td>
+</td>
+            </tr>
+                    <tr>
+                <td><a href="../../FFMpeg/FFProbe.html"><abbr title="FFMpeg\FFProbe">FFProbe</abbr></a></td>
+                <td>$ffprobe</td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+                <h3 id="method_getFFMpegDriver">
+        <div class="location">in <a href="../../FFMpeg/Media/AbstractMediaType.html#method_getFFMpegDriver"><abbr title="FFMpeg\Media\AbstractMediaType">AbstractMediaType</abbr></a> at line 40</div>
+        <code>            public            <a href="../../FFMpeg/Driver/FFMpegDriver.html"><abbr title="FFMpeg\Driver\FFMpegDriver">FFMpegDriver</abbr></a>
+    <strong>getFFMpegDriver</strong>()</code>
+    </h3>
+    <div class="details">
+        <p>
+</p>
+        <p>
+</p>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td><a href="../../FFMpeg/Driver/FFMpegDriver.html"><abbr title="FFMpeg\Driver\FFMpegDriver">FFMpegDriver</abbr></a></td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+                <h3 id="method_setFFMpegDriver">
+        <div class="location">in <a href="../../FFMpeg/Media/AbstractMediaType.html#method_setFFMpegDriver"><abbr title="FFMpeg\Media\AbstractMediaType">AbstractMediaType</abbr></a> at line 50</div>
+        <code>            public            <a href="../../FFMpeg/Media/MediaTypeInterface.html"><abbr title="FFMpeg\Media\MediaTypeInterface">MediaTypeInterface</abbr></a>
+    <strong>setFFMpegDriver</strong>(<a href="../../FFMpeg/Driver/FFMpegDriver.html"><abbr title="FFMpeg\Driver\FFMpegDriver">FFMpegDriver</abbr></a> $driver)</code>
+    </h3>
+    <div class="details">
+        <p>
+</p>
+        <p>
+</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td><a href="../../FFMpeg/Driver/FFMpegDriver.html"><abbr title="FFMpeg\Driver\FFMpegDriver">FFMpegDriver</abbr></a></td>
+                <td>$driver</td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td><a href="../../FFMpeg/Media/MediaTypeInterface.html"><abbr title="FFMpeg\Media\MediaTypeInterface">MediaTypeInterface</abbr></a></td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+                <h3 id="method_getFFProbe">
+        <div class="location">in <a href="../../FFMpeg/Media/AbstractMediaType.html#method_getFFProbe"><abbr title="FFMpeg\Media\AbstractMediaType">AbstractMediaType</abbr></a> at line 60</div>
+        <code>            public            <a href="../../FFMpeg/FFProbe.html"><abbr title="FFMpeg\FFProbe">FFProbe</abbr></a>
+    <strong>getFFProbe</strong>()</code>
+    </h3>
+    <div class="details">
+        <p>
+</p>
+        <p>
+</p>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td><a href="../../FFMpeg/FFProbe.html"><abbr title="FFMpeg\FFProbe">FFProbe</abbr></a></td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+                <h3 id="method_setFFProbe">
+        <div class="location">in <a href="../../FFMpeg/Media/AbstractMediaType.html#method_setFFProbe"><abbr title="FFMpeg\Media\AbstractMediaType">AbstractMediaType</abbr></a> at line 70</div>
+        <code>            public            <a href="../../FFMpeg/Media/MediaTypeInterface.html"><abbr title="FFMpeg\Media\MediaTypeInterface">MediaTypeInterface</abbr></a>
+    <strong>setFFProbe</strong>(<a href="../../FFMpeg/FFProbe.html"><abbr title="FFMpeg\FFProbe">FFProbe</abbr></a> $ffprobe)</code>
+    </h3>
+    <div class="details">
+        <p>
+</p>
+        <p>
+</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td><a href="../../FFMpeg/FFProbe.html"><abbr title="FFMpeg\FFProbe">FFProbe</abbr></a></td>
+                <td>$ffprobe</td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td><a href="../../FFMpeg/Media/MediaTypeInterface.html"><abbr title="FFMpeg\Media\MediaTypeInterface">MediaTypeInterface</abbr></a></td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+                <h3 id="method_getPathfile">
+        <div class="location">in <a href="../../FFMpeg/Media/AbstractMediaType.html#method_getPathfile"><abbr title="FFMpeg\Media\AbstractMediaType">AbstractMediaType</abbr></a> at line 80</div>
+        <code>            public            string
+    <strong>getPathfile</strong>()</code>
+    </h3>
+    <div class="details">
+        <p>
+</p>
+        <p>
+</p>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td>string</td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+                <h3 id="method_setFiltersCollection">
+        <div class="location">in <a href="../../FFMpeg/Media/AbstractMediaType.html#method_setFiltersCollection"><abbr title="FFMpeg\Media\AbstractMediaType">AbstractMediaType</abbr></a> at line 90</div>
+        <code>            public            <a href="../../FFMpeg/Media/MediaTypeInterface.html"><abbr title="FFMpeg\Media\MediaTypeInterface">MediaTypeInterface</abbr></a>
+    <strong>setFiltersCollection</strong>(<a href="../../FFMpeg/Filters/FiltersCollection.html"><abbr title="FFMpeg\Filters\FiltersCollection">FiltersCollection</abbr></a> $filters)</code>
+    </h3>
+    <div class="details">
+        <p>
+</p>
+        <p>
+</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td><a href="../../FFMpeg/Filters/FiltersCollection.html"><abbr title="FFMpeg\Filters\FiltersCollection">FiltersCollection</abbr></a></td>
+                <td>$filters</td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td><a href="../../FFMpeg/Media/MediaTypeInterface.html"><abbr title="FFMpeg\Media\MediaTypeInterface">MediaTypeInterface</abbr></a></td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+                <h3 id="method_getFiltersCollection">
+        <div class="location">in <a href="../../FFMpeg/Media/AbstractMediaType.html#method_getFiltersCollection"><abbr title="FFMpeg\Media\AbstractMediaType">AbstractMediaType</abbr></a> at line 100</div>
+        <code>            public            <a href="../../FFMpeg/Media/MediaTypeInterface.html"><abbr title="FFMpeg\Media\MediaTypeInterface">MediaTypeInterface</abbr></a>
+    <strong>getFiltersCollection</strong>()</code>
+    </h3>
+    <div class="details">
+        <p>
+</p>
+        <p>
+</p>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td><a href="../../FFMpeg/Media/MediaTypeInterface.html"><abbr title="FFMpeg\Media\MediaTypeInterface">MediaTypeInterface</abbr></a></td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+                <h3 id="method_getStreams">
+        <div class="location">in <a href="../../FFMpeg/Media/AbstractStreamableMedia.html#method_getStreams"><abbr title="FFMpeg\Media\AbstractStreamableMedia">AbstractStreamableMedia</abbr></a> at line 24</div>
+        <code>            public            <a href="../../FFMpeg/FFProbe/DataMapping/StreamCollection.html"><abbr title="FFMpeg\FFProbe\DataMapping\StreamCollection">StreamCollection</abbr></a>
+    <strong>getStreams</strong>()</code>
+    </h3>
+    <div class="details">
+        <p>
+</p>
+        <p>
+</p>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td><a href="../../FFMpeg/FFProbe/DataMapping/StreamCollection.html"><abbr title="FFMpeg\FFProbe\DataMapping\StreamCollection">StreamCollection</abbr></a></td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+                <h3 id="method_getFormat">
+        <div class="location">in <a href="../../FFMpeg/Media/AbstractStreamableMedia.html#method_getFormat"><abbr title="FFMpeg\Media\AbstractStreamableMedia">AbstractStreamableMedia</abbr></a> at line 36</div>
+        <code>            public            <a href="../../FFMpeg/FFProbe/DataMapping/Stream.html"><abbr title="FFMpeg\FFProbe\DataMapping\Stream">Stream</abbr></a>
+    <strong>getFormat</strong>()</code>
+    </h3>
+    <div class="details">
+        <p>
+</p>
+        <p>
+</p>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td><a href="../../FFMpeg/FFProbe/DataMapping/Stream.html"><abbr title="FFMpeg\FFProbe\DataMapping\Stream">Stream</abbr></a></td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+                <h3 id="method_filters">
+        <div class="location">at line 34</div>
+        <code>            public            <a href="../../FFMpeg/Filters/Video/VideoFilters.html"><abbr title="FFMpeg\Filters\Video\VideoFilters">VideoFilters</abbr></a>
+    <strong>filters</strong>()</code>
+    </h3>
+    <div class="details">
+        <p>Returns the available filters.</p>
+        <p>
+</p>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td><a href="../../FFMpeg/Filters/Video/VideoFilters.html"><abbr title="FFMpeg\Filters\Video\VideoFilters">VideoFilters</abbr></a></td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+                <h3 id="method_addFilter">
+        <div class="location">at line 44</div>
+        <code>            public            <a href="../../FFMpeg/Media/Video.html"><abbr title="FFMpeg\Media\Video">Video</abbr></a>
+    <strong>addFilter</strong>(<a href="../../FFMpeg/Filters/FilterInterface.html"><abbr title="FFMpeg\Filters\FilterInterface">FilterInterface</abbr></a> $filter)</code>
+    </h3>
+    <div class="details">
+        <p>{@inheritdoc}</p>
+        <p>
+</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td><a href="../../FFMpeg/Filters/FilterInterface.html"><abbr title="FFMpeg\Filters\FilterInterface">FilterInterface</abbr></a></td>
+                <td>$filter</td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td><a href="../../FFMpeg/Media/Video.html"><abbr title="FFMpeg\Media\Video">Video</abbr></a></td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+                <h3 id="method_save">
+        <div class="location">at line 61</div>
+        <code>            public            <a href="../../FFMpeg/Media/Video.html"><abbr title="FFMpeg\Media\Video">Video</abbr></a>
+    <strong>save</strong>(<a href="../../FFMpeg/Format/FormatInterface.html"><abbr title="FFMpeg\Format\FormatInterface">FormatInterface</abbr></a> $format, string $outputPathfile)</code>
+    </h3>
+    <div class="details">
+        <p>Exports the video in the desired format, applies registered filters.</p>
+        <p>
+</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td><a href="../../FFMpeg/Format/FormatInterface.html"><abbr title="FFMpeg\Format\FormatInterface">FormatInterface</abbr></a></td>
+                <td>$format</td>
+                <td>
+</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$outputPathfile</td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td><a href="../../FFMpeg/Media/Video.html"><abbr title="FFMpeg\Media\Video">Video</abbr></a></td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table>
+                    <tr>
+                <td><a href="http://php.net/RuntimeException"><abbr title="RuntimeException">RuntimeException</abbr></a></td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+                <h3 id="method_frame">
+        <div class="location">at line 180</div>
+        <code>            public            <a href="../../FFMpeg/Media/Frame.html"><abbr title="FFMpeg\Media\Frame">Frame</abbr></a>
+    <strong>frame</strong>(<a href="../../FFMpeg/Coordinate/TimeCode.html"><abbr title="FFMpeg\Coordinate\TimeCode">TimeCode</abbr></a> $at)</code>
+    </h3>
+    <div class="details">
+        <p>Gets the frame at timecode.</p>
+        <p>
+</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td><a href="../../FFMpeg/Coordinate/TimeCode.html"><abbr title="FFMpeg\Coordinate\TimeCode">TimeCode</abbr></a></td>
+                <td>$at</td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td><a href="../../FFMpeg/Media/Frame.html"><abbr title="FFMpeg\Media\Frame">Frame</abbr></a></td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+    
+            </div>
+            <div id="footer">
+        Generated by <a href="http://sami.sensiolabs.org/" target="_top">Sami, the API Documentation Generator</a>.
+    </div>
+    </body>
+</html>

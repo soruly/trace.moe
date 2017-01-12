@@ -1,0 +1,54 @@
+{
+    "name": "php-ffmpeg/php-ffmpeg",
+    "type": "library",
+    "description": "FFMpeg PHP, an Object Oriented library to communicate with AVconv / ffmpeg",
+    "keywords": ["video processing", "video", "audio processing", "audio", "avconv", "ffmpeg", "avprobe", "ffprobe"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Romain Neutron",
+            "email": "imprec@gmail.com",
+            "homepage": "http://www.lickmychip.com/"
+        },
+        {
+            "name": "Phraseanet Team",
+            "email": "info@alchemy.fr",
+            "homepage": "http://www.phraseanet.com/"
+        },
+        {
+            "name": "Patrik Karisch",
+            "email": "patrik@karisch.guru",
+            "homepage": "http://www.karisch.guru"
+        }
+    ],
+    "require": {
+        "php": "^5.3.9 || ^7.0",
+        "alchemy/binary-driver": "^1.5",
+        "doctrine/cache": "^1.0",
+        "evenement/evenement": "^2.0 || ^1.0",
+        "neutron/temporary-filesystem": "^2.1.1"
+    },
+    "suggest": {
+        "php-ffmpeg/extras": "A compilation of common audio & video drivers for PHP-FFMpeg"
+    },
+    "require-dev": {
+        "sami/sami": "~1.0",
+        "silex/silex": "~1.0",
+        "phpunit/phpunit": "^4.8"
+    },
+    "autoload": {
+        "psr-0": {
+            "FFMpeg": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\FFMpeg\\": "tests"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.6-dev"
+        }
+    }
+}

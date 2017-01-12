@@ -1,0 +1,32 @@
+language: php
+
+branches:
+  only:
+    - master
+
+php:
+  - 5.3
+  - 5.4
+  - 5.5
+  - 5.6
+  - 7.0
+  - hhvm
+
+matrix:
+  allow_failures:
+    - php: hhvm
+  include:
+    - php: 5.3
+      env: COMPOSER_FLAGS="--prefer-lowest"
+
+before_install:
+  - sudo apt-get update
+  - composer self-update
+  - if [ "$COMPOSER_FLAGS" == "--prefer-lowest" ]; then composer require "roave/security-advisories" dev-master --no-update; fi;
+
+install:
+  - sudo apt-get install -y ffmpeg libavcodec-extra-53
+  - composer update --prefer-source $COMPOSER_FLAGS
+
+script:
+  - vendor/bin/phpunit --verbose

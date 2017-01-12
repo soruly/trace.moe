@@ -1,0 +1,16 @@
+[FORMAT]
+filename=Interview5mm4500.mp4
+nb_streams=2
+format_name=mov,mp4,m4a,3gp,3g2,mj2
+format_long_name=QuickTime / MOV
+start_time=0.000000
+duration=300.011000
+size=173833712
+bit_rate=4635395
+TAG:major_brand=isom
+TAG:minor_version=512
+TAG:compatible_brands=isomiso2avc1mp41
+TAG:creation_time=1970-01-01 00:00:00
+TAG:title=5mm 4500.mp4
+TAG:encoder=Lavf52.108.0
+[/FORMAT]

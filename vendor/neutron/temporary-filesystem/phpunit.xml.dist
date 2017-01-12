@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stopOnFailure="false"
+         syntaxCheck="true"
+         verbose="false"
+         bootstrap="tests/bootstrap.php"
+>
+    <logging>
+      <log type="coverage-html" target="tests/phpunit_report/report" charset="UTF-8"
+           yui="true" highlight="false"
+           lowUpperBound="35" highLowerBound="70"/>
+    </logging>
+    <php>
+      <ini name="display_errors" value="on"/>
+    </php>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">src/</directory>
+        </whitelist>
+    </filter>
+
+    <testsuites>
+        <testsuite name="TemporaryFilesystem tests Suite">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+      <blacklist>
+        <directory>vendor</directory>
+        <directory>tests</directory>
+      </blacklist>
+    </filter>
+
+</phpunit>
+
