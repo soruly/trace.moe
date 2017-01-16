@@ -51,7 +51,7 @@ https://github.com/soruly/whatanime.ga-WebExtension
 https://github.com/soruly/whatanime.ga-telegram-bot
 
 ## Official API (Beta)
-http://soruly.github.io/whatanime.ga/
+https://soruly.github.io/whatanime.ga/
 
 ## Integrating search with whatanime.ga
 To add whatanime.ga as a search option for your site, pass the image URL via query string like this
