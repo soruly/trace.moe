@@ -110,7 +110,7 @@ if(isset($_POST['image'])){
         $trial = 3;
         while($trial < 6){
             $trial++;
-            $final_result->trial = $trial;
+            $final_result->trial = $trial - 3;
             $curl = curl_init();
             curl_setopt($curl, CURLOPT_URL, "http://192.168.2.11:8983/solr/anime_cl/lireq?field=cl_ha&accuracy=".$trial."&candidates=2000000&rows=10&feature=".$cl_hi."&hashes=".implode($cl_ha,","));
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
