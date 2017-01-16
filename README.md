@@ -1,5 +1,6 @@
 # whatanime.ga
 
+[![Docs](https://img.shields.io/badge/docs-beta-green.svg)](http://soruly.github.io/whatanime.ga/)
 [![License](https://img.shields.io/github/license/soruly/whatanime.ga.svg?maxAge=2592000)](https://github.com/soruly/whatanime.ga/blob/master/LICENSE)
 [![Join the chat at https://gitter.im/soruly/whatanime.ga](https://badges.gitter.im/soruly/whatanime.ga.svg)](https://gitter.im/soruly/whatanime.ga?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Donate](https://img.shields.io/badge/donate-patreon-orange.svg)](https://www.patreon.com/soruly)
