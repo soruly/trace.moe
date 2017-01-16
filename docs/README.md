@@ -150,7 +150,6 @@ Example Response
 }
 ```
 
-
 | Fields        | Meaning       | Value  |
 | ------------- |---------------| -------|
 | RawDocsCount       | Number of frames compared for each trial | Array of Numbers |
@@ -184,3 +183,19 @@ Notes:
 - `episode` is only an estimated number extraction from `filename`, it may fail and return empty string
 - With `anilist_id`, you may get more anime info from `https://anilist.co/anime/{anilist_id}` . Read [AniList API](https://github.com/joshstar/AniList-API-Docs) for more information.
 - The list of chinese translation can be obtained from [anilist-chinese](https://github.com/soruly/anilist-chinese)
+
+
+### Search Quota
+
+The `/api/search` endpoint has a request limit.
+
+Each API token has 10 search quota, this quota reset every 5 minutes. (subject to change, may increase in future)
+
+Once the limit is reached. Server would respond HTTP 429 Too Many Requests, with a text message showing when the quota will reset.
+
+Example
+```
+Search quota exceeded. Please wait 87 seconds.
+```
+
+Note that the server is served via cloudflare, their servers may have some rate limit control and anti-flood mechanism.
