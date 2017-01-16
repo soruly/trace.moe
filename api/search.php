@@ -32,8 +32,12 @@ else{
 
 mysqli_close($sql);
 }
+else{
+  header("HTTP/1.1 401 Unauthorized");
+  exit("Missing API token");
+}
 
-$uid = isset($user_id) ? $user_id : $_SERVER['HTTP_X_FORWARDED_FOR'];
+$uid = isset($user_id);
 
 require '../vendor/autoload.php';
 
@@ -59,8 +63,8 @@ if($redis->exists($uid)){
     }
 }
 else{
-  $quota = isset($user_id) ? 10 : 20;
-  $ttl = isset($user_id) ? 300 : 3600;
+  $quota = 10;
+  $ttl = 300;
   $redis->set($uid, $quota);
   $redis->expire($uid, $ttl);
 }
@@ -68,14 +72,14 @@ else{
 
 header('Content-Type: application/json');
 
-if(isset($_POST['data'])){
+if(isset($_POST['image'])){
     $quota--;
     $expire = $redis->ttl($uid);
     $redis->set($uid, $quota);
     $redis->expire($uid, $expire);
     $savePath = '/usr/share/nginx/html/pic/';
     $filename = microtime(true).'.jpg';
-    $data = str_replace('data:image/jpeg;base64,', '', $_POST['data']);
+    $data = str_replace('data:image/jpeg;base64,', '', $_POST['image']);
 	$data = str_replace(' ', '+', $data);
     file_put_contents($savePath.$filename, base64_decode($data));
     
