@@ -37,7 +37,7 @@ else{
   exit("Missing API token");
 }
 
-$uid = isset($user_id);
+$uid = $user_id;
 
 require '../vendor/autoload.php';
 
