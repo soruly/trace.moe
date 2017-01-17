@@ -26,9 +26,13 @@
 <div class="container">
 <div class="page-header"><h1>Changelog</h1></div>
 
+<h3>Official API released</h3>
+<h6>17 Jan 2017</h6>
+<p>The official API is now open for testing. Interested developers may read the page on <a href="https://soruly.github.io/whatanime.ga/">GitHub Pages</a>.</p>
+
 <h3>WebExtension updated</h3>
 <h6>16 Nov 2016</h6>
-<p>The image extraction method of WebExtension has changed. This would be able to fix some issues on grabbing the correct image on webpage to search. Now the Extension also supports Microsoft Edge. You may try loading the zip from <a href="https://github.com/soruly/whatanime.ga-WebExtension/releases" target="_blank">GitHub</a> by enabling extension developer features in about:flags.</p>
+<p>The image extraction method of WebExtension has changed. This would be able to fix some issues on grabbing the correct image on webpage to search. Now the Extension also supports Microsoft Edge. You may try loading the zip from <a href="https://github.com/soruly/whatanime.ga-WebExtension/releases">GitHub</a> by enabling extension developer features in about:flags.</p>
 
 <h3>Enabled autoplay on mobile</h3>
 <h6>11 Nov 2016</h6>
@@ -56,7 +60,7 @@
 
 <h3>Added Telegram Bot</h3>
 <h6>14 Sep 2016</h6>
-<p>This telegram bot can tell you where an anime screenshot is taken from. Just send / forward an image to <a href="https://telegram.me/WhatAnimeBot" target="_blank">https://telegram.me/WhatAnimeBot</a> .</p>
+<p>This telegram bot can tell you where an anime screenshot is taken from. Just send / forward an image to <a href="https://telegram.me/WhatAnimeBot">https://telegram.me/WhatAnimeBot</a> .</p>
 
 <h3>WebExtension Changes</h3>
 <h6>14 Aug 2016</h6>
@@ -66,10 +70,10 @@
 <h3>WebExtension for Chrome, Firefox and Opera</h3>
 <h6>1 July 2016</h6>
 <p>
-<a href="https://chrome.google.com/webstore/detail/search-anime-by-screensho/gkamnldpllcbiidlfacaccdoadedncfp" target="_blank">Chrome Extension</a>, 
-<a href="https://addons.mozilla.org/en-US/firefox/addon/search-anime-by-screenshot/" target="_blank">Firefox Add-on</a>, 
-<a href="https://addons.opera.com/en/extensions/details/search-anime-by-screenshot/" target="_blank">Opera Add-on</a> has been relased.<br>
-Source code available on <a href="https://github.com/soruly/whatanime.ga-WebExtension" target="_blank">GitHub</a>
+<a href="https://chrome.google.com/webstore/detail/search-anime-by-screensho/gkamnldpllcbiidlfacaccdoadedncfp">Chrome Extension</a>, 
+<a href="https://addons.mozilla.org/en-US/firefox/addon/search-anime-by-screenshot/">Firefox Add-on</a>, 
+<a href="https://addons.opera.com/en/extensions/details/search-anime-by-screenshot/">Opera Add-on</a> has been relased.<br>
+Source code available on <a href="https://github.com/soruly/whatanime.ga-WebExtension">GitHub</a>
 </p>
 
 <h3>Improved anime title language</h3>
@@ -131,7 +135,7 @@ Source code available on <a href="https://github.com/soruly/whatanime.ga-WebExte
 <p>The Safe Search Option can hide most Hentai Anime from search result. But you should aware that some regular season Animes can still be obscene. (NSFW)</p>
 <h3>Try the Chrome Extension</h3>
 <h6>28 Feb 2016</h6>
-<p>Now you can use the <a href="https://chrome.google.com/webstore/detail/search-anime-by-screensho/gkamnldpllcbiidlfacaccdoadedncfp" target="_blank">Chrome Extension</a> to search.</p>
+<p>Now you can use the <a href="https://chrome.google.com/webstore/detail/search-anime-by-screensho/gkamnldpllcbiidlfacaccdoadedncfp">Chrome Extension</a> to search.</p>
 <h3>Added some Heitai Anime</h3>
 <h6>28 Feb 2016</h6>
 <p>About 168 Heitai Anime series has been added.</p>

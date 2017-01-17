@@ -32,7 +32,7 @@ Possible reasons:<br>
 2. The anime has not been analyzed yet. <br>
 3. Your image is flipped. <br>
 4. Your image is of bad quality. <br>
-Regarding 1. You may try to use <a href="https://saucenao.com/" target="_blank">SauceNAO</a> and <a href="https://iqdb.org/" target="_blank">iqdb.org</a> which is best for searching anime artwork.<br>
+Regarding 1. You may try to use <a href="https://saucenao.com/">SauceNAO</a> and <a href="https://iqdb.org/">iqdb.org</a> which is best for searching anime artwork.<br>
 Regarding 2. New animes currently airing would be analyzed around 24 hours after TV broadcast. Long-running animes / cartoons are excluded at this stage. See "What animes are indexed" at the bottom of this page.<br>
 As for 3. If you image comes from AMV / Anime Compilations, it's likely its flipped horizontally. Use the flip button to search again.<br>
 As for 4. The image search algorithm is designed for almost-exact match, not similar match. It analyze the color layout of the image. So, when your image is not a full un-cropped original 16:9 screenshot (i.e. cropped image), the search would likely fail. <br>
@@ -57,7 +57,7 @@ Searching with a real photo (of an anime) definitely won't work.<br>
 <h4>Flipped image</h4>
 <div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/flipped-bad.jpg" style="max-width:320px;max-height:180px"><br>Bad Screenshot</div>
 <div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/flipped-good.jpg" style="float:left;max-width:320px;max-height:180px"><br>Original Screenshot</div>
-<p style="clear:both">This screenshot from <a href="https://www.youtube.com/watch?v=TUoWYoTWcnA&feature=youtu.be&t=2m59s" target="_blank">AMV - Animegraphy 2015</a> flipped the original scene in the anime. Try to search with the flip button if you guess the image has been flipped.</p>
+<p style="clear:both">This screenshot from <a href="https://www.youtube.com/watch?v=TUoWYoTWcnA&feature=youtu.be&t=2m59s">AMV - Animegraphy 2015</a> flipped the original scene in the anime. Try to search with the flip button if you guess the image has been flipped.</p>
 <br>
 <h4>Tinted images</h4>
 <div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/tinted-bad.jpg" style="max-width:320px;max-height:180px"><br>Not a good Screenshot</div>
@@ -75,7 +75,7 @@ Searching with a real photo (of an anime) definitely won't work.<br>
 <br>
 <h4>Not from Anime Screenshot</h4>
 <div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/notanime-bad.jpg" style="max-width:320px;max-height:180px"><br>Sample Screenshot</div>
-<p style="clear:both">You should try <a href="https://saucenao.com/" target="_blank">SauceNAO</a> and <a href="https://iqdb.org/" target="_blank">https://iqdb.org/</a> to search anime / doujin artwork.</p>
+<p style="clear:both">You should try <a href="https://saucenao.com/">SauceNAO</a> and <a href="https://iqdb.org/">https://iqdb.org/</a> to search anime / doujin artwork.</p>
 <br>
 <h4>Not Japanese Anime</h4>
 <div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/nonjapanese-bad.jpg" style="max-width:320px;max-height:180px"><br>Sample Screenshot</div>
@@ -115,7 +115,7 @@ Searching with a real photo (of an anime) definitely won't work.<br>
 <p style="clear:both">The search image does not has to be taken from anime screencap directly. You can use drawings of some scenes as long as it is similar to the original one.</p>
 <br>
 <h3>How does it work?</h3>
-<p>It uses the MPEG 7 Color Layout Descriptor for comparing images. Wikipedia has a good illustration about it. This would also explain why you can't find your image. <a href="https://en.wikipedia.org/wiki/Color_layout_descriptor" target="_blank">https://en.wikipedia.org/wiki/Color_layout_descriptor</a></p>
+<p>It uses the MPEG 7 Color Layout Descriptor for comparing images. Wikipedia has a good illustration about it. This would also explain why you can't find your image. <a href="https://en.wikipedia.org/wiki/Color_layout_descriptor">https://en.wikipedia.org/wiki/Color_layout_descriptor</a></p>
 <h3>How to make the search for a more accurate result?</h3>
 <p>Crop your screenshot to 16:9 or 4:3 before searching. Remove any extra borders in screencap (if any). By default, it crops the image to 16:9, if you upload a 16:10 screenshot, it should be cropped automatically. If the position is incorrect, you can drag the image and adjust the crop position.</p>
 <h3>What animes are being indexed?</h3>
@@ -133,7 +133,7 @@ If you wish to watch the anime, you may check which TV channel is broadcasting t
 <p>For now, you have to upload the image somewhere else, then search by image URL, and share the result URL. If you have any feedback or suggestions, feel free to contact <a href="mailto:help@whatanime.ga">help@whatanime.ga</a>.</p>
 <h3>How to add whatanime.ga to Image Search Options</h3>
 <p>
-If you prefer to use whatanime.ga with <a href="https://chrome.google.com/webstore/detail/image-search-options/kljmejbpilkadikecejccebmccagifhl" target="_blank">Image Search Options</a>, go to settings and add this: <pre>https://whatanime.ga/?url=</pre>
+If you prefer to use whatanime.ga with <a href="https://chrome.google.com/webstore/detail/image-search-options/kljmejbpilkadikecejccebmccagifhl">Image Search Options</a>, go to settings and add this: <pre>https://whatanime.ga/?url=</pre>
 You can also configure playback options via URL params:
 <pre>https://whatanime.ga/?autoplay=0&loop&mute=1&url=</pre>
 </p>

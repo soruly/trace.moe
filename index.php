@@ -81,6 +81,7 @@ Browse a file <input type="file" id="file" name="files[]" />
 Please read <a href="/faq">FAQ</a> to understand what can / cannot be searched.<br>
 <span style="color:#FF6D6D">Caution: some results may be NSFW (Not Safe for Work).</span><br>
 Official WebExtension available on <a href="https://chrome.google.com/webstore/detail/search-anime-by-screensho/gkamnldpllcbiidlfacaccdoadedncfp" target="_blank">Chrome</a>, <a href="https://addons.mozilla.org/en-US/firefox/addon/search-anime-by-screenshot/" target="_blank">Firefox</a>, and <a href="https://addons.opera.com/en/extensions/details/search-anime-by-screenshot/" target="_blank">Opera</a>.<br>
+Official Telegram Bot available <a href="https://telegram.me/WhatAnimeBot">@WhatAnimeBot</a><br>
 </form>
 </div>
 <div id="info"></div>

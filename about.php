@@ -84,13 +84,24 @@ This website is not intended for watching anime. The server has effective measur
 <p>
 Most Anime since 2000 are indexed, but some are excluded (see FAQ).
 No Doujin work, no derived art work are indexed. The system only analyzes officially published anime. 
-If you wish to search artwork / wallpapers, try to use <a href="https://saucenao.com/" target="_blank">SauceNAO</a> and <a href="https://iqdb.org/" target="_blank">iqdb.org</a>
+If you wish to search artwork / wallpapers, try to use <a href="https://saucenao.com/">SauceNAO</a> and <a href="https://iqdb.org/">iqdb.org</a>
 </p>
-<p>It has official WebExtension for <a href="https://chrome.google.com/webstore/detail/search-anime-by-screensho/gkamnldpllcbiidlfacaccdoadedncfp" target="_blank">Chrome</a>, <a href="https://addons.mozilla.org/en-US/firefox/addon/search-anime-by-screenshot/" target="_blank">Firefox</a>, or <a href="https://addons.opera.com/en/extensions/details/search-anime-by-screenshot/" target="_blank">Opera</a> to search.</p>
+<div class="page-header">
+<h3>Official WebExtension</h3>
+</div>
+<p>WebExtension available for <a href="https://chrome.google.com/webstore/detail/search-anime-by-screensho/gkamnldpllcbiidlfacaccdoadedncfp">Chrome</a>, <a href="https://addons.mozilla.org/en-US/firefox/addon/search-anime-by-screenshot/">Firefox</a>, or <a href="https://addons.opera.com/en/extensions/details/search-anime-by-screenshot/">Opera</a> to search.</p>
+<div class="page-header">
+<h3>Official Telegram Bot</h3>
+</div>
+<p>Official Telegram Bot available <a href="https://telegram.me/WhatAnimeBot">@WhatAnimeBot</a></p>
+<div class="page-header">
+<h3>Official API (Beta)</h3>
+</div>
+<p>Official API Docs available at <a href="https://soruly.github.io/whatanime.ga/#/">GitHub</a></p>
 <div class="page-header">
 <h3>Go-talk presentation</h3>
 </div>
-<p><a href="https://go-talks.appspot.com/github.com/soruly/slides/whatanime.ga.slide" target="_blank">Go-talk presentation on 27 May 2016</a></p>
+<p><a href="https://go-talks.appspot.com/github.com/soruly/slides/whatanime.ga.slide">Go-talk presentation on 27 May 2016</a></p>
 <div class="page-header">
 <h3>System Status</h3>
 </div>
@@ -106,20 +117,20 @@ If you wish to search artwork / wallpapers, try to use <a href="https://saucenao
 <h3>Contact</h3>
 </div>
 <p>If you have any feedback, suggestions or anything else, you may contact <a href="mailto:help@whatanime.ga">help@whatanime.ga</a>.</p>
-<p>Follow the development of whatanime.ga and learn more about the underlying technologies at the <a href="https://plus.google.com/communities/115025102250573417080" target="_blank">Official Google+ Community</a> or <a href="https://www.facebook.com/whatanime.ga/" target="_blank">Official Facebook Page</a>.</p>
+<p>Follow the development of whatanime.ga and learn more about the underlying technologies at the <a href="https://plus.google.com/communities/115025102250573417080">Official Google+ Community</a> or <a href="https://www.facebook.com/whatanime.ga/">Official Facebook Page</a>.</p>
 
 <div class="page-header">
 <h3>Credit</h3>
 </div>
 <p>
 Dr. Mathias Lux (LIRE Project)<br>
-<a href="http://www.lire-project.net/" target="_blank">http://www.lire-project.net/</a><br>
+<a href="http://www.lire-project.net/">http://www.lire-project.net/</a><br>
 Lux Mathias, Savvas A. Chatzichristofis. Lire: Lucene Image Retrieval – An Extensible Java CBIR Library. In proceedings of the 16th ACM International Conference on Multimedia, pp. 1085-1088, Vancouver, Canada, 2008<br>
-<a href="http://www.morganclaypool.com/doi/abs/10.2200/S00468ED1V01Y201301ICR025" target="_blank">Visual Information Retrieval with Java and LIRE</a><br>
+<a href="http://www.morganclaypool.com/doi/abs/10.2200/S00468ED1V01Y201301ICR025">Visual Information Retrieval with Java and LIRE</a><br>
 <br>
 ANILIST<br>
 Josh (Anilist developer) and Anilist administration team<br>
-<a href="https://anilist.co/" target="_blank">https://anilist.co/</a><br>
+<a href="https://anilist.co/">https://anilist.co/</a><br>
 <br>
 And of cause, contributions and support from all anime lovers!<br>
 <br>
