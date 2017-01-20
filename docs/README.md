@@ -35,7 +35,7 @@ Returns HTTP 401 if API token is missing.
 ## Search
 
 ```
-GET /api/search?token={your_api_token} HTTP/1.1
+POST /api/search?token={your_api_token} HTTP/1.1
 Content-Type: application/x-www-form-urlencoded; charset=UTF-8
 Host: whatanime.ga
 
