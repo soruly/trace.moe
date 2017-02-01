@@ -189,7 +189,7 @@ Notes:
 
 The `/api/search` endpoint has a request limit.
 
-Each API token is limited to 3 searchs per minute. (subject to change, may increase in future)
+Each API token is limited to 10 search per minute. (subject to change, may increase in future)
 
 Once the limit is reached. Server would respond HTTP 429 Too Many Requests, with a text message showing when the quota will reset.
 
