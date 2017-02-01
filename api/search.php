@@ -63,8 +63,8 @@ if($redis->exists($uid)){
     }
 }
 else{
-  $quota = 10;
-  $ttl = 300;
+  $quota = 3;
+  $ttl = 60;
   $redis->set($uid, $quota);
   $redis->expire($uid, $ttl);
 }
