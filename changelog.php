@@ -26,6 +26,10 @@
 <div class="container">
 <div class="page-header"><h1>Changelog</h1></div>
 
+<h3>Video preview for Telegram Bot</h3>
+<h6>4 Feb 2017</h6>
+<p>The <a href="https://telegram.me/WhatAnimeBot">Telegram Bot</a> will now sends you a video preview.</p>
+
 <h3>Official API released</h3>
 <h6>17 Jan 2017</h6>
 <p>The official API is now open for testing. Interested developers may read the page on <a href="https://soruly.github.io/whatanime.ga/">GitHub Pages</a>.</p>
