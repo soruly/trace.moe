@@ -39,6 +39,26 @@ else{
 
 $uid = $user_id;
 
+$url = 'https://www.google-analytics.com/collect';
+$data = array(
+  'v' => '1',
+  't' => 'event',
+  'tid' => 'UA-70950149-1',
+  'cid' => $uid,
+  'ec' => 'api',
+  'ea' => 'search'
+);
+
+$options = array(
+  'http' => array(
+    'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+    'method'  => 'POST',
+    'content' => http_build_query($data)
+  )
+);
+$context  = stream_context_create($options);
+$result = file_get_contents($url, false, $context);
+
 require '../vendor/autoload.php';
 
 use Predis\Collection\Iterator;
@@ -225,8 +245,8 @@ if(isset($_POST['image'])){
         //$doc->start = $start;
         //$doc->end = $end;
         $doc->at = $t;
-        //$doc->season = $season;
-        //$doc->anime = $anime;
+        $doc->season = $season;
+        $doc->anime = $anime;
         $doc->filename = $file;
         $doc->episode = $episode;
         $expires = time() + 300;
@@ -234,7 +254,7 @@ if(isset($_POST['image'])){
         $token = str_replace(array('+','/','='),array('-','_',''),base64_encode(md5('/'.$path.$start.$end.$secretSalt,true)));
         //$doc->token = $token;
         $tokenthumb = str_replace(array('+','/','='),array('-','_',''),base64_encode(md5($t.$secretSalt,true)));
-        #$doc->tokenthumb = $tokenthumb;
+        $doc->tokenthumb = $tokenthumb;
         $doc->similarity = 1 - ($doc->d/100);
         unset($doc->id);
         unset($doc->d);
