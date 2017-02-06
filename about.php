@@ -32,11 +32,13 @@ $numDocsMillion = floor($numDocs / 1000000);
 $vmTouchFile = file_get_contents('./vmtouch.log');
 $vmTouch = explode(" ",explode("\n", $vmTouchFile)[2]);
 
-$uptimeFile = file_get_contents('./uptime.log');
-$loadAverage = explode("load average: ",$uptimeFile)[1];
+$to_percent = function($load_average){
+  return round(floatval($load_average) / 8 * 100, 1) ."%";
+};
+$loadAverage = implode(", ",array_map($to_percent, explode(", ",explode("load average: ",exec("uptime"))[1])));
 
-$recentFile = str_replace('.xml','',file_get_contents('./recent.log'));
-$recentlyIndexedFiles = explode("\n",$recentFile);
+$recentFile = str_replace('.xml','',shell_exec('find /mnt/Data/Anime\ Hash/ -type f -mmin -180 -name "*.xml" -exec basename "{}" \;'));
+
 ?><!DOCTYPE html>
 <html>
   <head>
@@ -51,6 +53,7 @@ $recentlyIndexedFiles = explode("\n",$recentFile);
 <script src="/analytics.js" defer></script>
   </head>
   <body>
+  <?php echo '<div style="display:none">'.$output."</div>"; ?>
 <nav class="navbar header">
 <div class="container">
 <ul class="nav navbar-nav">
@@ -105,11 +108,11 @@ If you wish to search artwork / wallpapers, try to use <a href="https://saucenao
 <div class="page-header">
 <h3>System Status</h3>
 </div>
-<p><?php if($loadAverage) echo "System load average 1, 5, 15 minutes: ".$loadAverage." (server is overloaded when it is >= 8.0)"; ?></p>
+<p><?php if($loadAverage) echo "System load average in 1, 5, 15 minutes: ".$loadAverage ?></p>
 <p><?php if($vmTouch) echo $vmTouch[6]."B (".$vmTouch[8].") index is cached in RAM, the rest are in SSD."; ?></p>
 <p>This database automatically index most airing anime in a few hours after broadcast. </p>
 <p><?php echo 'Last Database Index update: '.humanTiming($lastModified).' ago with '.$numDocsMillion.' Million analyzed frames.<br>'; ?></p>
-<p><?php if($recentlyIndexedFiles) echo "Recently indexed files: (last 3 hours) <pre>".$recentFile."</pre>"; ?></p>
+<p><?php if($recentFile) echo "Recently indexed files: (last 3 hours) <pre>".$recentFile."</pre>"; ?></p>
 <p>Full Database Dump 2016-10 (20.4GB)<br>
 <a href="magnet:?xt=urn:btih:ec1e85c19cadfbf4e83e9d59fccf3b8abedd49db&dn=whatanime.ga%20database%20dump%202016-10&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopentor.org%3A2710&tr=udp%3A%2F%2Ftracker.ccc.de%3A80&tr=udp%3A%2F%2Ftracker.blackunicorn.xyz%3A6969&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969">magnet:?xt=urn:btih:ec1e85c19cadfbf4e83e9d59fccf3b8abedd49db</a>
 </p>
