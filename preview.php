@@ -3,8 +3,8 @@ ini_set("display_errors", 0);
 
 $thumbdir = 'clip/';
 $uuid = uniqid();
-$start = floatval($_GET['t']) - 0.5;
-$duration = 2.5;
+$start = floatval($_GET['t']) - 0.9;
+$duration = 3;
 $season = rawurldecode($_GET['season']);
 $anime = rawurldecode($_GET['anime']);
 $file = rawurldecode($_GET['file']);
