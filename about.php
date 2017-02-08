@@ -120,7 +120,7 @@ If you wish to search artwork / wallpapers, try to use <a href="https://saucenao
 <h3>Contact</h3>
 </div>
 <p>If you have any feedback, suggestions or anything else, you may contact <a href="mailto:help@whatanime.ga">help@whatanime.ga</a>.</p>
-<p>Follow the development of whatanime.ga and learn more about the underlying technologies at the <a href="https://plus.google.com/communities/115025102250573417080">Official Google+ Community</a> or <a href="https://www.facebook.com/whatanime.ga/">Official Facebook Page</a>.</p>
+<p>Follow the development of whatanime.ga and learn more about the underlying technologies at the <a href="https://plus.google.com/communities/115025102250573417080">Google+ Community</a> or <a href="https://www.facebook.com/whatanime.ga/">Facebook Page</a>.</p>
 
 <div class="page-header">
 <h3>Credit</h3>
@@ -136,6 +136,8 @@ Josh (Anilist developer) and Anilist administration team<br>
 <a href="https://anilist.co/">https://anilist.co/</a><br>
 <br>
 And of cause, contributions and support from all anime lovers!<br>
+<br>
+<a href="https://www.patreon.com/soruly">Support whatanime.ga on Patreon.</a><br>
 <br>
 </p>
 
