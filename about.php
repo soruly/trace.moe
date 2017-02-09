@@ -39,6 +39,8 @@ $loadAverage = implode(", ",array_map($to_percent, explode(", ",explode("load av
 
 $recentFile = str_replace('.xml','',shell_exec('find /mnt/Data/Anime\ Hash/ -type f -mmin -180 -name "*.xml" -exec basename "{}" \;'));
 
+$cpu_load = trim(shell_exec('mpstat 1 1 | tail -n 1 | awk \'$12 ~ /[0-9.]+/ { print 100 - $12"%" }\''));
+
 ?><!DOCTYPE html>
 <html>
   <head>
@@ -53,7 +55,6 @@ $recentFile = str_replace('.xml','',shell_exec('find /mnt/Data/Anime\ Hash/ -typ
 <script src="/analytics.js" defer></script>
   </head>
   <body>
-  <?php echo '<div style="display:none">'.$output."</div>"; ?>
 <nav class="navbar header">
 <div class="container">
 <ul class="nav navbar-nav">
@@ -109,6 +110,7 @@ If you wish to search artwork / wallpapers, try to use <a href="https://saucenao
 <h3>System Status</h3>
 </div>
 <p><?php if($loadAverage) echo "System load average in 1, 5, 15 minutes: ".$loadAverage ?></p>
+<p><?php if($cpu_load) echo "Current CPU load: ".$cpu_load ?></p>
 <p><?php if($vmTouch) echo $vmTouch[6]."B (".$vmTouch[8].") index is cached in RAM, the rest are in SSD."; ?></p>
 <p>This database automatically index most airing anime in a few hours after broadcast. </p>
 <p><?php echo 'Last Database Index update: '.humanTiming($lastModified).' ago with '.$numDocsMillion.' Million analyzed frames.<br>'; ?></p>
