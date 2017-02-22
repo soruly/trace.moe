@@ -26,6 +26,10 @@
 <div class="container">
 <div class="page-header"><h1>Changelog</h1></div>
 
+<h3>Image proxy relocated</h3>
+<h6>21 Feb 2017</h6>
+<p>The image proxy server has been moved from Singapore (Digital Ocean) to Tokyo (Linode). It may affect loading times of images from ?url= params.</p>
+
 <h3>Video preview for Telegram Bot</h3>
 <h6>4 Feb 2017</h6>
 <p>The <a href="https://telegram.me/WhatAnimeBot">Telegram Bot</a> will now sends you a video preview.</p>
