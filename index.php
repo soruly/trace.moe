@@ -121,7 +121,7 @@ Official Telegram Bot available <a href="https://telegram.me/WhatAnimeBot">@What
 <script src="/jquery.html5uploader.min.js"></script>
 <script src="/index.js"></script>
 <?php
-if(isset($_GET["url"])){
+if(isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)){
 echo '<script>
 document.querySelector("#autoSearch").checked = true;
 document.querySelector("#messageText").classList.remove("error");
