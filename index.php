@@ -37,7 +37,7 @@
 <link href="/style.css" rel="stylesheet">
 <link href="/index.css" rel="stylesheet">
 <link rel="dns-prefetch" href="https://image.whatanime.ga/">
-<script src="/recaptcha.js" defer></script>
+<script src="https://www.google.com/recaptcha/api.js"></script>
 <script src="/analytics.js" defer></script>
 </head>
 <body>
