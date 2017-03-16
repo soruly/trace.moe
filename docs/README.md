@@ -8,6 +8,22 @@ This API is still under development. Make sure you stay up-to-date with me and t
 3. Read the docs and try the API
 4. Give feedbacks and suggestions
 
+## Quick Start
+
+Once you've got your API token, check your identity first.
+
+`curl https://whatanime.ga/api/me?token=${your_token}`
+
+Now base64 encode an image file and POST to /search.
+
+`curl -X POST https://whatanime.ga/api/search?token=${your_token} -d "image=data:image/jpeg;base64,$(base64 -w 0 search_image.jpg)"`
+
+Or if you prefer using [HTTPie](https://httpie.org/) :
+
+`http --body https://whatanime.ga/api/me?token=${your_token}`
+
+`http --body --form POST https://whatanime.ga/api/search?token=${your_token} image="data:image/jpeg;base64,$(base64 -w 0 search_image.jpg)"`
+
 ## Me
 
 Let you verify that you have a valid user account.
