@@ -4,8 +4,8 @@ self.$config = {
   repo: 'soruly/whatanime.ga',
   twitter: 'soruly',
   url: 'https://whatanime.ga',
-  sidebar: false,
-  disableSidebarToggle: true,
+  sidebar: true,
+  disableSidebarToggle: false,
   nav: {
     default: []
   },
