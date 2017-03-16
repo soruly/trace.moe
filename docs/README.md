@@ -78,7 +78,6 @@ Example Response
       "from": 706.833,
       "to": 708.667,
       "at": 708.667,
-      "filename": "[KTXP][Aldnoah.Zero][03][BIG5][720p].mp4",
       "episode": 3,
       "similarity": 0.96267949,
       "title": "アルドノア・ゼロ",
@@ -89,13 +88,16 @@ Example Response
       ],
       "title_english": "ALDNOAH.ZERO",
       "synonyms": [],
-      "title_romaji": "ALDNOAH.ZERO"
+      "title_romaji": "ALDNOAH.ZERO",
+      "season": "2014-07",
+      "anime": "ALDNOAH.ZERO",
+      "filename": "[KTXP][Aldnoah.Zero][03][BIG5][720p].mp4",
+      "tokenthumb": "KXOniyuAe7Aa0mBslMA9ng"
     },
     {
       "from": 705.5,
       "to": 705.583,
       "at": 705.5,
-      "filename": "[KTXP][Aldnoah.Zero][03][BIG5][720p].mp4",
       "episode": 3,
       "similarity": 0.920253086,
       "title": "アルドノア・ゼロ",
@@ -106,13 +108,16 @@ Example Response
       ],
       "title_english": "ALDNOAH.ZERO",
       "synonyms": [],
-      "title_romaji": "ALDNOAH.ZERO"
+      "title_romaji": "ALDNOAH.ZERO",
+      "season": "2014-07",
+      "anime": "ALDNOAH.ZERO",
+      "filename": "[KTXP][Aldnoah.Zero][03][BIG5][720p].mp4",
+      "tokenthumb": "-TfMF8eePyCcDEFVsURcDA"
     },
     {
       "from": 996.667,
       "to": 997,
       "at": 997,
-      "filename": "[EMD][Shinsekai Yori][14][BIG5][X264_AAC][1280X720][FD1DF5EB].mp4",
       "episode": 14,
       "similarity": 0.86513167,
       "title": "新世界より",
@@ -125,13 +130,16 @@ Example Response
       "synonyms": [
         "Shin Sekai Yori"
       ],
-      "title_romaji": "Shinsekai Yori"
+      "title_romaji": "Shinsekai Yori",
+      "season": "2012-10",
+      "anime": "來自新世界",
+      "filename": "[EMD][Shinsekai Yori][14][BIG5][X264_AAC][1280X720][FD1DF5EB].mp4",
+      "tokenthumb": "wmDu4AgKG331bMnVUKAzUQ"
     },
     {
       "from": 1316.08,
       "to": 1316.08,
       "at": 1316.08,
-      "filename": "022.mp4",
       "episode": 22,
       "similarity": 0.85306277,
       "title": "ブリーチ",
@@ -144,7 +152,11 @@ Example Response
       ],
       "title_english": "Bleach",
       "synonyms": [],
-      "title_romaji": "Bleach"
+      "title_romaji": "Bleach",
+      "season": "2004-10",
+      "anime": "BLEACH",
+      "filename": "022.mp4",
+      "tokenthumb": "PltxiqyJRXyNTvABe6F0tg"
     }
   ]
 }
@@ -167,7 +179,6 @@ Example Response
 | from             | Starting time of the matching scene | Number (seconds, in 3 decimal places)
 | to               | Ending time of the matching scene | Number (seconds, in 3 decimal places)
 | at               | Exact time of the matching scene | Number (seconds, in 3 decimal places)
-| filename         | The filename of file where the match is found | String
 | episode          | The extracted episode number from filename | Number, "OVA/OAD", "Special", ""
 | similarity       | Similarity compared to the search image | Number (float between 0-1)
 | anilist_id       | The matching [AniList](https://anilist.co/) ID | Number or null
@@ -177,6 +188,10 @@ Example Response
 | title_romaji     | Title in romaji | String
 | synonyms         | Alternate english titles | Array of String or []
 | synonyms_chinese | Alternate chinese titles | Array of String or []
+| season           | The parent folder where the file is located | String (Movie, OVA, Others, Sukebei, 1970-1989, 1990-1999, 2000-01, 2017-01, etc)
+| anime            | The folder where the file is located (This may act as a fallback when title is not found) | String
+| filename         | The filename of file where the match is found | String
+| tokenthumb       | A token for generating preview | String
 
 Notes:
 - If multiple results are found in the same file, near the same timecode and has similarity > 98%, results are grouped as one, using `from` and `to` to indicate the starting time and ending time of that scene.
@@ -199,3 +214,13 @@ Search quota exceeded. Please wait 87 seconds.
 ```
 
 Note that the server is served via cloudflare, their servers may have some rate limit control and anti-flood mechanism.
+
+### Previews (experimental, sometimes not working)
+
+With `tokenthumb`, you can access image preview of the matched scene. (not quite accurate due to timecode and seeking method)
+
+`https://whatanime.ga/thumbnail.php?season=${season}&anime=${encodeURIComponent(anime)}&file=${encodeURIComponent(filename)}&t=${at}&token=${tokenthumb}`
+
+There is a 3 second video preview of the matched scene. (1 seconds before and 2 seconds ahead)
+
+`https://whatanime.ga/preview.php?season=${season}&anime=${encodeURIComponent(anime)}&file=${encodeURIComponent(filename)}&t=${at}&token=${tokenthumb}`
