@@ -216,6 +216,21 @@ Notes:
 - The list of chinese translation can be obtained from [anilist-chinese](https://github.com/soruly/anilist-chinese)
 
 
+In case nothing was found, docs would be an empty array. 
+
+```
+{
+  "RawDocsCount": [0, 0, 0],
+  "RawDocsSearchTime": [0, 0, 0],
+  "ReRankSearchTime": [0, 0, 0],
+  "CacheHit": true,
+  "trial": 6,
+  "quota": 9,
+  "expire": 60,
+  "docs": []
+}
+```
+
 ### Search Quota
 
 The `/api/search` endpoint has a request limit.
