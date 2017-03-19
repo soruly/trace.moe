@@ -1,4 +1,4 @@
-self.$config = {
+docute.init({
   landing: false,
   debug: false,
   repo: 'soruly/whatanime.ga',
@@ -11,4 +11,4 @@ self.$config = {
   },
   icons: [],
   plugins: []
-}
+});
