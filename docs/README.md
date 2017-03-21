@@ -58,7 +58,9 @@ Host: whatanime.ga
 image={Base64 Encoded Image}
 ```
 
-Note that there is a hard limit of 1MB post size. You should ensure your Base64 encoded image is < 1MB. Otherwise the server responds with HTTP 413 (Request Entity Too Large).
+<p class="warning">
+  Note that there is a hard limit of 1MB post size. You should ensure your Base64 encoded image is < 1MB. Otherwise the server responds with HTTP 413 (Request Entity Too Large).
+</p>
 
 jQuery Example
 ```
@@ -244,7 +246,9 @@ Example
 Search quota exceeded. Please wait 87 seconds.
 ```
 
-Note that the server is served via cloudflare, their servers may have some rate limit control and anti-flood mechanism.
+<p class="warning">
+  Note that the server is served via cloudflare, their servers may have some rate limit control and anti-flood mechanism.
+</p>
 
 ### Previews (experimental, sometimes not working)
 
