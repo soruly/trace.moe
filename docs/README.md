@@ -216,7 +216,7 @@ Notes:
 - `episode` is only an estimated number extraction from `filename`, it may fail and return empty string
 - With `anilist_id`, you may get more anime info from `https://anilist.co/anime/{anilist_id}` . Read [AniList API](https://github.com/joshstar/AniList-API-Docs) for more information.
 - The list of chinese translation can be obtained from [anilist-chinese](https://github.com/soruly/anilist-chinese)
-
+- Search results would be cached for 5-60 minutes. Higher accuracy cache longer.
 
 In case nothing was found, docs would be an empty array. 
 
@@ -237,7 +237,7 @@ In case nothing was found, docs would be an empty array.
 
 The `/api/search` endpoint has a request limit.
 
-Each API token is limited to 10 search per minute. (subject to change, may increase in future)
+Each API token is limited to 10 search per minute.
 
 Once the limit is reached. Server would respond HTTP 429 Too Many Requests, with a text message showing when the quota will reset.
 
@@ -248,6 +248,10 @@ Search quota exceeded. Please wait 87 seconds.
 
 <p class="warning">
   Note that the server is served via cloudflare, their servers may have some rate limit control and anti-flood mechanism.
+</p>
+
+<p class="tip">
+  It is recommended to handle any exception cases properly in your application, such as rate limit, timeouts and network errors.
 </p>
 
 ### Previews (experimental, sometimes not working)
