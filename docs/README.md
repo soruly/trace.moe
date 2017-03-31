@@ -211,27 +211,16 @@ Example Response
 | filename         | The filename of file where the match is found | String
 | tokenthumb       | A token for generating preview | String
 
+<p class="tip">
+  Search results with similarity lower than 85% are probably incorrect result (just similar, not a match). It's up to you to decide the cut-off value.
+</p>
+
 Notes:
 - If multiple results are found in the same file, near the same timecode and has similarity > 98%, results are grouped as one, using `from` and `to` to indicate the starting time and ending time of that scene.
 - `episode` is only an estimated number extraction from `filename`, it may fail and return empty string
 - With `anilist_id`, you may get more anime info from `https://anilist.co/anime/{anilist_id}` . Read [AniList API](https://github.com/joshstar/AniList-API-Docs) for more information.
 - The list of chinese translation can be obtained from [anilist-chinese](https://github.com/soruly/anilist-chinese)
 - Search results would be cached for 5-60 minutes. Higher accuracy cache longer.
-
-In case nothing was found, docs would be an empty array. 
-
-```
-{
-  "RawDocsCount": [0, 0, 0],
-  "RawDocsSearchTime": [0, 0, 0],
-  "ReRankSearchTime": [0, 0, 0],
-  "CacheHit": true,
-  "trial": 6,
-  "quota": 9,
-  "expire": 60,
-  "docs": []
-}
-```
 
 ### Search Quota
 
