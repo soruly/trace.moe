@@ -168,10 +168,6 @@ if(isset($_POST['data'])){
     }
     
     foreach($docs as $key => $doc){
-        if($doc->d > 20){
-            unset($docs[$key]);
-            continue;
-        }
         $path = explode('?t=',$doc->id)[0];
         $t = floatval(explode('?t=',$doc->id)[1]);
         //$from = floatval(explode('?t=',$doc->id)[1]);
