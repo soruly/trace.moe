@@ -87,17 +87,25 @@ if(isset($_POST['data'])){
     $final_result->trial = 0;
     $final_result->docs = [];
     
-    if($redis->exists($cl_hi_key)){ //toggle caching here
+    if(false && $redis->exists($cl_hi_key)){ //toggle caching here
         $final_result = json_decode($redis->get($cl_hi_key));
         $final_result->CacheHit = true;
     }
     else{
+        $filter = '*';
+        if(isset($_POST['filter'])){
+            $filter = str_replace('"','',rawurldecode($_POST['filter']));
+        }
+        $max_trial = 6;
+        if(intval($_POST['trial'])){
+            $max_trial = intval($_POST['trial']) > 12 ? 12 : intval($_POST['trial']);
+        }
         $trial = 3;
-        while($trial < 6){
+        while($trial < $max_trial){
             $trial++;
             $final_result->trial = $trial;
             $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, "http://192.168.2.11:8983/solr/anime_cl/lireq?field=cl_ha&accuracy=".$trial."&candidates=2000000&rows=10&feature=".$cl_hi."&hashes=".implode($cl_ha,","));
+            curl_setopt($curl, CURLOPT_URL, "http://192.168.2.11:8983/solr/anime_cl/lireq?filter=".rawurlencode($filter)."&field=cl_ha&accuracy=".$trial."&candidates=2000000&rows=10&feature=".$cl_hi."&hashes=".implode($cl_ha,","));
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
             $res = curl_exec($curl);
             $result = json_decode($res);
@@ -109,12 +117,14 @@ if(isset($_POST['data'])){
                 usort($final_result->docs, "reRank");
                 $total_search_time = array_sum($final_result->RawDocsSearchTime) + array_sum($final_result->ReRankSearchTime);
                 foreach($final_result->docs as $doc){
-                    if($doc->d <= 10 && $trial == 4)
-                        break 2; //break outer loop
-                    if($doc->d <= 11 && $trial == 5)
-                        break 2; //break outer loop
-                    if($doc->d <= 12 && $trial == 6)
-                        break 2; //break outer loop
+                    if($max_trial <= 6){
+                        if($doc->d <= 10 && $trial == 4)
+                            break 2; //break outer loop
+                        if($doc->d <= 11 && $trial == 5)
+                            break 2; //break outer loop
+                        if($doc->d <= 12 && $trial == 6)
+                            break 2; //break outer loop
+                    }
                 }
             }
             curl_close($curl);
