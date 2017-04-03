@@ -124,13 +124,13 @@ if(isset($_POST['data'])){
 
         $redis->set($cl_hi_key,json_encode($final_result));
         if($top_doc->d < 5 )
-            $redis->expire($cl_hi_key,3600);
-        elseif($top_doc->d < 10 )
             $redis->expire($cl_hi_key,1800);
+        elseif($top_doc->d < 10 )
+            $redis->expire($cl_hi_key,600);
         elseif($top_doc->d < 13 )
-            $redis->expire($cl_hi_key,900);
-        else
             $redis->expire($cl_hi_key,300);
+        else
+            $redis->expire($cl_hi_key,30);
     }
     $final_result->quota = $quota;
     $final_result->expire = $expire;
