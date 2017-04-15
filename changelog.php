@@ -26,6 +26,10 @@
 <div class="container">
 <div class="page-header"><h1>Changelog</h1></div>
 
+<h3>System status page</h3>
+<h6>14 Apr 2017</h6>
+<p>You can now see the system status in <a href="https://status.whatanime.ga">https://status.whatanime.ga</a> (Powered by UptimeRobot).</p>
+
 <h3>Partial service interruption</h3>
 <h6>23 Feb 2017</h6>
 <p>Anime info panel was not showing since Feb 21 21:13 UTC , the service has been restored on Feb 23 03:34 UTC.</p>

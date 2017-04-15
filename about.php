@@ -109,6 +109,7 @@ If you wish to search artwork / wallpapers, try to use <a href="https://saucenao
 <div class="page-header">
 <h3>System Status</h3>
 </div>
+<p>System status page: <a href="https://status.whatanime.ga">https://status.whatanime.ga</a> (Powered by UptimeRobot)</p>
 <p><?php if($loadAverage) echo "System load average in 1, 5, 15 minutes: ".$loadAverage ?></p>
 <p><?php if($cpu_load) echo "Current CPU load: ".$cpu_load ?></p>
 <p><?php if($vmTouch) echo $vmTouch[6]."B (".$vmTouch[8].") index is cached in RAM, the rest are in SSD."; ?></p>
