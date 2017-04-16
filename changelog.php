@@ -26,6 +26,10 @@
 <div class="container">
 <div class="page-header"><h1>Changelog</h1></div>
 
+<h3>System maintenance</h3>
+<h6>15 Apr 2017</h6>
+<p>Server upgrade and cleanup was completed on 15 Apr 2017. An additional hard drive and new network adapter has been installed.</p>
+
 <h3>System status page</h3>
 <h6>14 Apr 2017</h6>
 <p>You can now see the system status in <a href="https://status.whatanime.ga">https://status.whatanime.ga</a> (Powered by UptimeRobot).</p>
