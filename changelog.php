@@ -26,6 +26,10 @@
 <div class="container">
 <div class="page-header"><h1>Changelog</h1></div>
 
+<h3>Search in specific season</h3>
+<h6>18 Apr 2017</h6>
+<p>You can now select a particular year / season to search. If you like this project, feel free to <a href="https://www.patreon.com/soruly">Support whatanime.ga on Patreon.</a></p>
+
 <h3>System maintenance</h3>
 <h6>15 Apr 2017</h6>
 <p>Server upgrade and cleanup was completed on 15 Apr 2017. An additional hard drive and new network adapter has been installed.</p>
