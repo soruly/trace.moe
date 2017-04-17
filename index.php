@@ -62,15 +62,116 @@
 Browse a file <input type="file" id="file" name="files[]" />
 </span>
 <span id="instruction"> / Drag &amp; Drop Anime ScreenShot / Ctrl+V / Enter Image URL</span>
+<button id="flipBtn" type="button" class="btn btn-default btn-sm" disabled>
+<span class="glyphicon glyphicon-unchecked"></span> Flip Image
+</button>
 <br>
 <input type="text" class="form-control" id="imageURL" placeholder="Image URL" style="margin:5px 0 5px 0">
 <div style="text-align: right">
 <span id="messageText" style="float:left;line-height:30px"></span>
+<!--
 <label class="radio-inline"><input type="radio" name="fitRadio" id="fitWidthRadio" checked>Fit Width</label>
 <label class="radio-inline" style="margin-right:10px"><input type="radio" name="fitRadio" id="fitHeightRadio">Fit Height</label>
-<button id="flipBtn" type="button" class="btn btn-default btn-sm" disabled>
-<span class="glyphicon glyphicon-unchecked"></span> Flip Image
-</button>
+-->
+<label for="seasonSelector" style="font-weight: inherit">Search in:</label>
+<select id="seasonSelector" class="form-control input-sm" style="display:inline-block; width:100px">
+<option value="*" selected>All</option>
+<option value="2000-*">2000</option>
+<option value="2001-*">2001</option>
+<option value="2002-*">2002</option>
+<option value="2003-*">2003</option>
+<option value="2004-*">2004</option>
+<option value="2005-*">2005</option>
+<option value="2006-*">2006</option>
+<option value="2007-*">2007</option>
+<option value="2008-*">2008</option>
+<option value="2009-*">2009</option>
+<option value="2010-*">2010</option>
+<option value="2011-*">2011</option>
+<option value="2012-*">2012</option>
+<option value="2013-*">2013</option>
+<option value="2014-*">2014</option>
+<option value="2015-*">2015</option>
+<option value="2016-*">2016</option>
+<option value="2017-*">2017</option>
+<option value="Movie/*">Movie</option>
+<option value="Others/*">Others</option>
+<option value="OVA/*">OVA</option>
+<option value="Sukebei/*">Sukebei</option>
+<option value="1970-1989/*">1970-1989</option>
+<option value="1990-1999/*">1990-1999</option>
+<option value="2000-01/*">2000-01</option>
+<option value="2000-04/*">2000-04</option>
+<option value="2000-07/*">2000-07</option>
+<option value="2000-10/*">2000-10</option>
+<option value="2001-01/*">2001-01</option>
+<option value="2001-04/*">2001-04</option>
+<option value="2001-07/*">2001-07</option>
+<option value="2001-10/*">2001-10</option>
+<option value="2002-01/*">2002-01</option>
+<option value="2002-04/*">2002-04</option>
+<option value="2002-07/*">2002-07</option>
+<option value="2002-10/*">2002-10</option>
+<option value="2003-01/*">2003-01</option>
+<option value="2003-04/*">2003-04</option>
+<option value="2003-07/*">2003-07</option>
+<option value="2003-10/*">2003-10</option>
+<option value="2004-01/*">2004-01</option>
+<option value="2004-04/*">2004-04</option>
+<option value="2004-07/*">2004-07</option>
+<option value="2004-10/*">2004-10</option>
+<option value="2005-01/*">2005-01</option>
+<option value="2005-04/*">2005-04</option>
+<option value="2005-07/*">2005-07</option>
+<option value="2005-10/*">2005-10</option>
+<option value="2006-01/*">2006-01</option>
+<option value="2006-04/*">2006-04</option>
+<option value="2006-07/*">2006-07</option>
+<option value="2006-10/*">2006-10</option>
+<option value="2007-01/*">2007-01</option>
+<option value="2007-04/*">2007-04</option>
+<option value="2007-07/*">2007-07</option>
+<option value="2007-10/*">2007-10</option>
+<option value="2008-01/*">2008-01</option>
+<option value="2008-04/*">2008-04</option>
+<option value="2008-07/*">2008-07</option>
+<option value="2008-10/*">2008-10</option>
+<option value="2009-01/*">2009-01</option>
+<option value="2009-04/*">2009-04</option>
+<option value="2009-07/*">2009-07</option>
+<option value="2009-10/*">2009-10</option>
+<option value="2010-01/*">2010-01</option>
+<option value="2010-04/*">2010-04</option>
+<option value="2010-07/*">2010-07</option>
+<option value="2010-10/*">2010-10</option>
+<option value="2011-01/*">2011-01</option>
+<option value="2011-04/*">2011-04</option>
+<option value="2011-07/*">2011-07</option>
+<option value="2011-10/*">2011-10</option>
+<option value="2012-01/*">2012-01</option>
+<option value="2012-04/*">2012-04</option>
+<option value="2012-07/*">2012-07</option>
+<option value="2012-10/*">2012-10</option>
+<option value="2013-01/*">2013-01</option>
+<option value="2013-04/*">2013-04</option>
+<option value="2013-07/*">2013-07</option>
+<option value="2013-10/*">2013-10</option>
+<option value="2014-01/*">2014-01</option>
+<option value="2014-04/*">2014-04</option>
+<option value="2014-07/*">2014-07</option>
+<option value="2014-10/*">2014-10</option>
+<option value="2015-01/*">2015-01</option>
+<option value="2015-04/*">2015-04</option>
+<option value="2015-07/*">2015-07</option>
+<option value="2015-10/*">2015-10</option>
+<option value="2016-01/*">2016-01</option>
+<option value="2016-04/*">2016-04</option>
+<option value="2016-07/*">2016-07</option>
+<option value="2016-10/*">2016-10</option>
+<option value="2017-01/*">2017-01</option>
+<option value="2017-04/*">2017-04</option>
+</select>
+
 <button id="safeBtn" type="button" class="btn btn-default btn-sm">
 <span class="glyphicon glyphicon-unchecked"></span> Safe Search
 </button>

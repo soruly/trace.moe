@@ -146,7 +146,7 @@ var search = function () {
   document.querySelector('#imageURL').disabled = true
   
   searchRequest = $.post('/search',
-    {'data': imgDataURL}, function (data, textStatus) {
+    {'data': imgDataURL, 'filter': document.querySelector('#seasonSelector').value, 'trial': window.trial}, function (data, textStatus) {
       document.querySelector('#loading').classList.add('hidden')
       document.querySelector('#searchBtn').disabled = false
       document.querySelector('#flipBtn').disabled = false
