@@ -92,7 +92,7 @@ image={Base64 Encoded Image}&filter=*
 | Fields        | Value         | Notes  |
 | ------------- |---------------| -------|
 | image         | String (Required) | Base64 Encoded Image |
-| filter        | String (Optional, defaults to *) | Limit search in specific year / season, which works like searching in folders. You must add a wildcard at the end (e.g. 2017-* , 2017-04/*).  A complete list of paths can be obtained from the /list endpoint. |
+| filter        | String (Optional, defaults to \*) | Limit search in specific year / season, which works like searching in folders. You must add a wildcard at the end (e.g. 2017-\* , 2017-04/\*).  A complete list of paths can be obtained from the /list endpoint. |
 
 <p class="warning">
   Note that there is a hard limit of 1MB post size. You should ensure your Base64 encoded image is < 1MB. Otherwise the server responds with HTTP 413 (Request Entity Too Large).
