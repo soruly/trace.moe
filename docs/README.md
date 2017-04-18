@@ -48,6 +48,37 @@ Returns HTTP 403 if API token is invalid.
 
 Returns HTTP 401 if API token is missing.
 
+## List
+
+Get a list of all indexed anime (for search filtering)
+
+URL
+
+```
+GET /api/list?token={your_api_token} HTTP/1.1
+Host: whatanime.ga
+```
+
+Example Response
+
+```
+[
+  "1970-1989/City Hunter",
+  "1970-1989/City Hunter 2",
+  "1970-1989/City Hunter 3",
+  "1970-1989/Gundam 0079",
+  "1970-1989/Gundam Z"
+]
+```
+
+The first part of the path is the year/season when the anime starts airing.
+
+The second part of the path is anime name the server use internally. Ignore this if you can't read Chinese.
+
+<p class="tip">
+  Remember to always append wildcard * at the end of path.
+</p>
+
 ## Search
 
 ```
@@ -55,8 +86,13 @@ POST /api/search?token={your_api_token} HTTP/1.1
 Content-Type: application/x-www-form-urlencoded; charset=UTF-8
 Host: whatanime.ga
 
-image={Base64 Encoded Image}
+image={Base64 Encoded Image}&filter=*
 ```
+
+| Fields        | Value         | Notes  |
+| ------------- |---------------| -------|
+| image         | String (Required) | Base64 Encoded Image |
+| filter        | String (Optional, defaults to *) | Limit search in specific year / season, which works like searching in folders. You must add a wildcard at the end (e.g. 2017-* , 2017-04/*).  A complete list of paths can be obtained from the /list endpoint. |
 
 <p class="warning">
   Note that there is a hard limit of 1MB post size. You should ensure your Base64 encoded image is < 1MB. Otherwise the server responds with HTTP 413 (Request Entity Too Large).
