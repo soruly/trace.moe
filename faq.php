@@ -8,8 +8,8 @@
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="icon" type="image/png" href="/favicon128.png" sizes="128x128">
 <link href="/css/bootstrap.min.css" rel="stylesheet">
-<link href="/style.css" rel="stylesheet">
-<script src="/analytics.js" defer></script>
+<link href="/css/style.css" rel="stylesheet">
+<script src="/js/analytics.js" defer></script>
 </head>
 <body>
 <nav class="navbar header">

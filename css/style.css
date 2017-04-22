@@ -5,7 +5,7 @@ html {
 body {
   margin-bottom: 60px;
   background-color: #e9eaef;
-  background-image: url("/bright-squares.jpg");
+  background-image: url("/img/bright-squares.jpg");
   text-shadow: 1px 1px 3px #ccc;
   font-family: Helvetica, Arial, Meiryo, "Microsoft JhengHei", "Microsoft YaHei", sans-serif;
 }
