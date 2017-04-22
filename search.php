@@ -97,7 +97,7 @@ if(isset($_POST['data'])){
             $filter = str_replace('"','',rawurldecode($_POST['filter']));
         }
         $max_trial = 6;
-        if(intval($_POST['trial'])){
+        if(isset($_POST['trial']) && intval($_POST['trial'])){
             $max_trial = intval($_POST['trial']) > 12 ? 12 : intval($_POST['trial']);
         }
         $trial = 3;
