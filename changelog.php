@@ -27,6 +27,10 @@
 <div class="page-header"><h1>Changelog</h1></div>
 
 <h3>Search in specific season</h3>
+<h6>23 Apr 2017</h6>
+<p>You can now keep searching the database for more results. Previously, the search would stop when it has found any result > 90% similarity. Now keep searching to discover more results with even higher similarity!</p>
+
+<h3>Search in specific season</h3>
 <h6>18 Apr 2017</h6>
 <p>You can now select a particular year / season to search. If you like this project, feel free to <a href="https://www.patreon.com/soruly">Support whatanime.ga on Patreon.</a></p>
 
