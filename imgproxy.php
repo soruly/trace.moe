@@ -1,6 +1,4 @@
 <?php
-header("access-control-allow-origin: https://whatanime.ga");
-
 if(isset($_GET["url"])){
   ini_set('user_agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3011.0 Safari/537.36');
   $url = str_replace(' ','%20',rawurldecode($_GET["url"]));
