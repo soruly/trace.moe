@@ -41,10 +41,10 @@
 <script src="/js/analytics.js" defer></script>
 </head>
 <body>
-<!--<div class="alert alert-warning">
+<div class="alert alert-info" style="position: relative; top: 10px; left: 10px; box-shadow: 0 0 20px 0px; width: 975px">
   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-  <strong>Scheduled Maintenance</strong> A server maintenance will be carried out on 22 Mar, 2016 01:30-09:30am (UTC)
-</div>-->
+  We need a more powerful server. Support whatanime.ga on Patreon! <a href="https://www.patreon.com/soruly" target="_blank">https://www.patreon.com/soruly</a>
+</div>
 <input id="autoSearch" type="checkbox" style="display: none;">
 <img id="originalImage" src="" crossorigin="anonymous" style="display: none;">
 <div class="row">
