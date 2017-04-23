@@ -127,7 +127,8 @@ var firstPlay = true
 var safeSearch = false
 var imgDataURL
 var searchRequest
-var search = function () {
+var search = function (trial, prev_result) {
+  if (!trial) trial = 4;
   if (searchRequest && searchRequest.readyState != 4) {
     searchRequest.abort()
   }
@@ -136,37 +137,44 @@ var search = function () {
   document.querySelector('#searchBtn span').classList.remove('glyphicon-search')
   document.querySelector('#searchBtn span').classList.add('glyphicon-refresh')
   document.querySelector('#searchBtn span').classList.add('spinning')
+  if (document.querySelector('#search2Btn span')) {
+    document.querySelector('#search2Btn span').classList.remove('glyphicon-search')
+    document.querySelector('#search2Btn span').classList.add('glyphicon-refresh')
+    document.querySelector('#search2Btn span').classList.add('spinning')
+  }
   resetInfo()
   animeInfo = ''
   document.querySelector('#player').pause()
   preview.removeEventListener('click', playPause)
-  document.querySelector('#results').innerHTML = '<div id="status">Submitting image for searching...</div>'
+  if (!trial) document.querySelector('#results').innerHTML = '<div id="status">Submitting image for searching...</div>'
   document.querySelector('#searchBtn').disabled = true
+  if (document.querySelector('#search2Btn span')) document.querySelector('#search2Btn').disabled = true
   document.querySelector('#flipBtn').disabled = true
   document.querySelector('#imageURL').disabled = true
   
   searchRequest = $.post('/search',
-    {'data': imgDataURL, 'filter': document.querySelector('#seasonSelector').value, 'trial': window.trial}, function (data, textStatus) {
+    {'data': imgDataURL, 'filter': document.querySelector('#seasonSelector').value, 'trial': trial}, function (data, textStatus) {
       document.querySelector('#loading').classList.add('hidden')
       document.querySelector('#searchBtn').disabled = false
+      if (document.querySelector('#search2Btn span')) document.querySelector('#search2Btn').disabled = false
       document.querySelector('#flipBtn').disabled = false
       document.querySelector('#imageURL').disabled = false
       document.querySelector('#results').innerHTML = ''
-      var rawDocsCountTotal = 0
-      var rawDocsSearchTimeTotal = 0
-      var reRankSearchTimeTotal = 0
-      for (i in data.RawDocsCount)
-        rawDocsCountTotal += data.RawDocsCount[i]
-      for (i in data.RawDocsSearchTime)
-        rawDocsSearchTimeTotal += data.RawDocsSearchTime[i]
-      for (i in data.ReRankSearchTime)
-        reRankSearchTimeTotal += data.ReRankSearchTime[i]
+      if (prev_result){
+        data.RawDocsCount += prev_result.RawDocsCount
+        data.RawDocsSearchTime += prev_result.RawDocsSearchTime
+        data.ReRankSearchTime += prev_result.ReRankSearchTime
+      }
       
-      ga('send', 'event', 'search', 'RawDocsCount', data.RawDocsCount.join('+') + ' = ' + rawDocsCountTotal, rawDocsCountTotal)
-      ga('send', 'event', 'search', 'RawDocsSearchTime', data.RawDocsSearchTime.join('+') + ' = ' + rawDocsSearchTimeTotal, rawDocsSearchTimeTotal)
-      ga('send', 'event', 'search', 'ReRankSearchTime', data.ReRankSearchTime.join('+') + ' = ' + reRankSearchTimeTotal, reRankSearchTimeTotal)
+      ga('send', 'event', 'search', 'RawDocsCount', data.RawDocsCount)
+      ga('send', 'event', 'search', 'RawDocsSearchTime', data.RawDocsSearchTime)
+      ga('send', 'event', 'search', 'ReRankSearchTime', data.ReRankSearchTime)
       ga('send', 'event', 'search', 'Trial', data.trial, data.trial)
-      document.querySelector('#results').innerHTML = '<div id="status">' + rawDocsCountTotal + ' images searched in ' + ((rawDocsSearchTimeTotal + reRankSearchTimeTotal) / 1000).toFixed(2) + ' seconds</div>'
+      document.querySelector('#results').innerHTML += '<div id="status">' + data.RawDocsCount + ' images searched in ' + ((data.RawDocsSearchTime + data.ReRankSearchTime) / 1000).toFixed(2) + ' seconds</div>'
+      if (prev_result) data.docs = data.docs.concat(prev_result.docs);
+      data.docs.sort(function(a,b){
+        return a.diff - b.diff;
+      });
       if (data.docs.length > 0) {
         $.each(data.docs, function (key, entry) {
           if (safeSearch == false || entry.season != 'Sukebei') {
@@ -207,32 +215,49 @@ var search = function () {
         $('.result').click(playfile)
         firstPlay = true
 
-        if (parseFloat(data.docs[0].diff) > 10) {
-          $('#results').prepend('<div id="status">Image not found.<br>But there are visually similar scenes</div>')
+        if (parseFloat(data.docs[0].diff) > 13) {
+          if (trial < 6) search(trial + 1, data);
+          else {
+            if (trial < 12){
+              $('#results').prepend('<div style="text-align:center"><button id="search2Btn" type="button" class="btn btn-default btn-sm btn-primary"><span class="glyphicon glyphicon-search"></span> Keep Searching</button></div>')
+              $('#search2Btn').click(function(){search(trial + 1, data)})
+            }
+          }
         } else {
+          if (trial < 12){
+            $('#results').prepend('<div style="text-align:center"><button id="search2Btn" type="button" class="btn btn-default btn-sm btn-primary"><span class="glyphicon glyphicon-search"></span> Keep Searching</button></div>')
+            $('#search2Btn').click(function(){search(trial + 1, data)})
+          }
           if (safeSearch == false) {
             $('.result')[0].click()
           }
         }
+        
       } else {
         document.querySelector('#results').innerHTML = '<div id="status">No result</div>'
       }
     }, 'json').fail(function (e) {
     if (e.status == 429) {
       ga('send', 'event', 'search', 'recaptcha', 'challenge')
-      document.querySelector('#results').innerHTML = ''
+      //document.querySelector('#results').innerHTML = ''
       grecaptcha.reset()
       $('.g-recaptcha').removeClass('hidden')
     } else {
       document.querySelector('#results').innerHTML = '<div id="status">Connection to Search Server Failed</div>'
     }
     document.querySelector('#searchBtn').disabled = false
+    if (document.querySelector('#search2Btn span')) document.querySelector('#search2Btn').disabled = false
     document.querySelector('#flipBtn').disabled = false
     document.querySelector('#imageURL').disabled = false
   }).complete(function (e) {
     document.querySelector('#searchBtn span').classList.remove('glyphicon-refresh')
     document.querySelector('#searchBtn span').classList.remove('spinning')
     document.querySelector('#searchBtn span').classList.add('glyphicon-search')
+    if (document.querySelector('#search2Btn span')) {
+      document.querySelector('#search2Btn span').classList.remove('glyphicon-refresh')
+      document.querySelector('#search2Btn span').classList.remove('spinning')
+      document.querySelector('#search2Btn span').classList.add('glyphicon-search')
+    }
   })
 }
 var recaptcha_success = function () {
@@ -240,7 +265,7 @@ var recaptcha_success = function () {
   $.post('/search',
     {'g-recaptcha-response': document.querySelector('#g-recaptcha-response').value}, function (data, textStatus) {
       $('.g-recaptcha').addClass('hidden')
-      search()
+      document.querySelector('#loading').classList.add('hidden')
     }).fail(function (e) {
     document.querySelector('#results').innerHTML = '<div id="status">Connection to Search Server Failed</div>'
   })
