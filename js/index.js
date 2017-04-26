@@ -146,7 +146,7 @@ var search = function (trial, prev_result) {
   animeInfo = ''
   document.querySelector('#player').pause()
   preview.removeEventListener('click', playPause)
-  if (!trial) document.querySelector('#results').innerHTML = '<div id="status">Submitting image for searching...</div>'
+  if (trial === 4) document.querySelector('#results').innerHTML = '<div id="status">Submitting image for searching...</div>'
   document.querySelector('#searchBtn').disabled = true
   if (document.querySelector('#search2Btn span')) document.querySelector('#search2Btn').disabled = true
   document.querySelector('#flipBtn').disabled = true
