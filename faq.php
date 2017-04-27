@@ -25,6 +25,10 @@
 </nav>
 <div class="container">
 <div class="page-header"><h1>FAQ</h1></div>
+<h3>Search is not working!</h3>
+<p>Some anti-virus / internet security software such as kaspersky may have blocked the website. You need to whitelist the website.</p>
+<h3>Cannot open the website!</h3>
+<p>Some browser does not support latest version of SSL/TLS, such as 360 Browser in China. Try another browser.</p>
 <h3>Why I can't find the search result?</h3>
 <p>
 Possible reasons:<br>
