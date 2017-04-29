@@ -219,7 +219,6 @@ Official Telegram Bot available <a href="https://telegram.me/WhatAnimeBot">@What
 </footer>
 <script src="/js/jquery-2.1.1.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
-<script src="/js/jquery.html5uploader.min.js"></script>
 <script src="/js/index.js"></script>
 <?php
 if(isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)){
