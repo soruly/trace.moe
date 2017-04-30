@@ -122,11 +122,6 @@ td:nth-child(3) {
 #preview {
     display: block;
     cursor: default;
-    -webkit-transition: all 2s ease-out;
-    -moz-transition: all 2s ease-out;
-    -ms-transition: all 2s ease-out;
-    -o-transition: all 2s ease-out;
-    transition: all 2s ease-out;
 }
 
 #image_url_lge {
