@@ -103,7 +103,7 @@ var search = function (trial, prev_result) {
     searchRequest.abort();
   }
   document.querySelector("#loading").classList.remove("hidden");
-  if (navigator.userAgent.indexOf("Safari") && !navigator.userAgent.indexOf("Chrome")) {
+  if (navigator.userAgent.indexOf("Chrome") || !navigator.userAgent.indexOf("Safari")) {
     document.querySelector("#loader").classList.add("ripple");
   }
   document.querySelector("#searchBtn span").classList.remove("glyphicon-search");
@@ -324,7 +324,7 @@ var playfile = function () {
   var src = "/" + season + "/" + encodeURIComponent(anime) + "/" + encodeURIComponent(file) + "?start=" + start + "&end=" + end + "&token=" + token;
 
   document.querySelector("#loading").classList.remove("hidden");
-  if (navigator.userAgent.indexOf("Safari") && !navigator.userAgent.indexOf("Chrome")) {
+  if (navigator.userAgent.indexOf("Chrome") || !navigator.userAgent.indexOf("Safari")) {
     document.querySelector("#loader").classList.add("ripple");
   }
   document.querySelector("#player").src = src;
