@@ -23,6 +23,8 @@ try {
 
   list($width, $height) = getimagesize($thumbpath);
 
+  $new_height = $height / $width * $new_width;
+
   $image_p = imagecreatetruecolor($new_width, $new_height);
   $image = imagecreatefromjpeg($thumbpath);
   imagecopyresampled($image_p, $image, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
