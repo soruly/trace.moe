@@ -103,6 +103,9 @@ var search = function (trial, prev_result) {
     searchRequest.abort();
   }
   document.querySelector("#loading").classList.remove("hidden");
+  if (navigator.userAgent.indexOf("Safari") && !navigator.userAgent.indexOf("Chrome")) {
+    document.querySelector("#loader").classList.add("ripple");
+  }
   document.querySelector("#searchBtn span").classList.remove("glyphicon-search");
   document.querySelector("#searchBtn span").classList.add("glyphicon-refresh");
   document.querySelector("#searchBtn span").classList.add("spinning");
@@ -132,6 +135,7 @@ var search = function (trial, prev_result) {
       "trial": trial
     }, function (data) {
       document.querySelector("#loading").classList.add("hidden");
+      document.querySelector("#loader").classList.remove("ripple");
       document.querySelector("#searchBtn").disabled = false;
       if (document.querySelector("#search2Btn span")) {
         document.querySelector("#search2Btn").disabled = false;
@@ -320,6 +324,9 @@ var playfile = function () {
   var src = "/" + season + "/" + encodeURIComponent(anime) + "/" + encodeURIComponent(file) + "?start=" + start + "&end=" + end + "&token=" + token;
 
   document.querySelector("#loading").classList.remove("hidden");
+  if (navigator.userAgent.indexOf("Safari") && !navigator.userAgent.indexOf("Chrome")) {
+    document.querySelector("#loader").classList.add("ripple");
+  }
   document.querySelector("#player").src = src;
   if (document.querySelector("#autoplay").checked) {
     time = parseFloat(tfrom) - parseFloat(start);
@@ -350,6 +357,7 @@ var playPause = function () {
 };
 var canPlayThrough = function () {
   document.querySelector("#loading").classList.add("hidden");
+  document.querySelector("#loader").classList.remove("ripple");
 };
 var loadedmetadata = function () {
   var aspectRatio;
@@ -363,7 +371,7 @@ var loadedmetadata = function () {
   preview.width = 640;
   preview.height = 640 / aspectRatio;
   document.querySelector("#loading").style.height = preview.height + "px";
-  document.querySelector(".ripple").style.top = (preview.height - 800) / 2 + "px";
+  document.querySelector("#loader").style.top = (preview.height - 800) / 2 + "px";
   preview.addEventListener("click", playPause);
   player.currentTime = time;
   if (document.querySelector("#autoplay").checked) {
@@ -390,7 +398,7 @@ var resetAll = function () {
   preview.width = 640;
   preview.height = 360;
   document.querySelector("#loading").style.height = preview.height + "px";
-  document.querySelector(".ripple").style.top = (preview.height - 800) / 2 + "px";
+  document.querySelector("#loader").style.top = (preview.height - 800) / 2 + "px";
   preview.getContext("2d").fillStyle = "#FFFFFF";
   preview.getContext("2d").fillRect(0, 0, preview.width, preview.height);
   resetInfo();
@@ -426,7 +434,7 @@ var prepareSearchImage = function () {
 
   preview.height = searchImage.height;
   document.querySelector("#loading").style.height = preview.height + "px";
-  document.querySelector(".ripple").style.top = (preview.height - 800) / 2 + "px";
+  document.querySelector("#loader").style.top = (preview.height - 800) / 2 + "px";
 
   preview.getContext("2d").drawImage(searchImage, 0, 0, searchImage.width, searchImage.height);
 
