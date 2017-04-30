@@ -111,51 +111,12 @@ td:nth-child(3) {
     width: 280px;
 }
 
-.glyphicon.spinning {
-    animation: spin 1s infinite linear;
-    -webkit-animation: spin2 1s infinite linear;
-}
-
-@keyframes spin {
-    from {
-        transform: scale(1) rotate(0deg);
-    }
-
-    to {
-        transform: scale(1) rotate(360deg);
-    }
-
-}
-
-@-webkit-keyframes spin2 {
-    from {
-        -webkit-transform: rotate(0deg);
-    }
-
-    to {
-        -webkit-transform: rotate(360deg);
-    }
-
-}
-
 #loading {
     width: 642px;
     height: 362px;
+    overflow: hidden;
     position: absolute;
     text-align: center;
-    -webkit-transition: all 0.5s ease-out;
-    -moz-transition: all 0.5s ease-out;
-    -ms-transition: all 0.5s ease-out;
-    -o-transition: all 0.5s ease-out;
-    transition: all 0.5s ease-out;
-}
-
-#loading>span {
-    font-size: 3em;
-    color: white;
-    text-shadow: 0 0 3px #000;
-    opacity: .8;
-    top: 160px;
 }
 
 #preview {
@@ -401,4 +362,35 @@ td:nth-child(3) {
 #info .character>div:last-child div {
     padding: 10px;
     text-align: center;
+}
+
+.ripple {
+  position: relative;
+  left: -80px;
+  top: -220px;
+  box-sizing: content-box;
+  display: block;
+  border-style: double;
+  border-radius: 800px;
+  animation: ripple 1s cubic-bezier(0, 0, 0.2, 1);
+  animation-iteration-count: infinite;
+}
+
+@keyframes ripple {
+  0% {
+    width: 0px;
+    height: 0px;
+    transform: translate(350px, 350px);
+    border-width: 50px;
+    border-color: #ffffff;
+    opacity: 1;
+  }
+  100% {
+    width: 800px;
+    height: 800px;
+    transform: translate(0px, 0px);
+    border-width: 0;
+    border-color: #0000ff;
+    opacity: 0;
+  }
 }

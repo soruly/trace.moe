@@ -51,7 +51,7 @@
 <div id="main">
 <div class="noselect">
 <div id="loading" class="hidden">
-<span class="glyphicon glyphicon-repeat spinning"></span>
+<div class="ripple"></div>
 </div>
 <canvas id="preview" width="640" height="360"></canvas>
 <video id="player" style="display:none" volume="1" autoplay></video>

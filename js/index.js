@@ -362,6 +362,8 @@ var loadedmetadata = function () {
 
   preview.width = 640;
   preview.height = 640 / aspectRatio;
+  document.querySelector("#loading").style.height = preview.height + "px";
+  document.querySelector(".ripple").style.top = (preview.height - 800) / 2 + "px";
   preview.addEventListener("click", playPause);
   player.currentTime = time;
   if (document.querySelector("#autoplay").checked) {
@@ -387,6 +389,8 @@ var searchImage = document.createElement("canvas");
 var resetAll = function () {
   preview.width = 640;
   preview.height = 360;
+  document.querySelector("#loading").style.height = preview.height + "px";
+  document.querySelector(".ripple").style.top = (preview.height - 800) / 2 + "px";
   preview.getContext("2d").fillStyle = "#FFFFFF";
   preview.getContext("2d").fillRect(0, 0, preview.width, preview.height);
   resetInfo();
@@ -420,7 +424,10 @@ var prepareSearchImage = function () {
     searchImage.getContext("2d").restore();
   }
 
-  document.querySelector("#preview").height = searchImage.height;
+  preview.height = searchImage.height;
+  document.querySelector("#loading").style.height = preview.height + "px";
+  document.querySelector(".ripple").style.top = (preview.height - 800) / 2 + "px";
+
   preview.getContext("2d").drawImage(searchImage, 0, 0, searchImage.width, searchImage.height);
 
   imgDataURL = searchImage.toDataURL("image/jpeg", 0.8);
