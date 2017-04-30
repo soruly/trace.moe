@@ -29,35 +29,19 @@ catch (Predis\Connection\ConnectionException $exception) {
 
 $lang = 'en';
 
-if(isset($_POST['g-recaptcha-response'])){
-    $recaptcha = new \ReCaptcha\ReCaptcha($secret);
-    $resp = $recaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['HTTP_X_FORWARDED_FOR']);
-    if ($resp->isSuccess()){
-        $quota = 20;
-        $redis->set($_SERVER['HTTP_X_FORWARDED_FOR'], $quota);
-        $redis->expire($_SERVER['HTTP_X_FORWARDED_FOR'], 3600);
-        exit(header('Content-Type: application/json',true,204));
-    }
-    else{
-        exit(header("Status: 406 Not Acceptable"));
-    }
-}
-
 if($redis->exists($_SERVER['HTTP_X_FORWARDED_FOR'])){
     $quota = intval($redis->get($_SERVER['HTTP_X_FORWARDED_FOR']));
-    if($quota < 1){
-        exit(header("HTTP/1.0 429 Too Many Requests"));
-    }
 }
 else{
     $quota = 20;
     $redis->set($_SERVER['HTTP_X_FORWARDED_FOR'], $quota);
-    $redis->expire($_SERVER['HTTP_X_FORWARDED_FOR'], 3600);
+    $redis->expire($_SERVER['HTTP_X_FORWARDED_FOR'], 600);
 }
 
-
-
 if(isset($_POST['data'])){
+    if($quota < 1){
+        exit(header("HTTP/1.0 429 Too Many Requests"));
+    }
     $quota--;
     $expire = $redis->ttl($_SERVER['HTTP_X_FORWARDED_FOR']);
     $redis->set($_SERVER['HTTP_X_FORWARDED_FOR'], $quota);
