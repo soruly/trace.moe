@@ -332,7 +332,8 @@ var playfile = function () {
 
   if (animeInfo !== season + anime) {
     animeInfo = season + anime;
-    getInfo(season, anime);
+    resetInfo();
+    showAnilistInfo(season, anime);
   }
 };
 
@@ -554,17 +555,6 @@ function CLIPBOARD_CLASS (canvas_id) {
     originalImage.src = source;
   };
 }
-
-var getInfo = function (season, anime) {
-  resetInfo();
-  $.get("/info?season=" + encodeURIComponent(season) + "&anime=" + encodeURIComponent(anime), function (data, textStatus) {
-    if (data.length > 0) {
-      displayInfo(data[0]);
-      document.querySelector("#info").style.visibility = "visible";
-      document.querySelector("#info").style.opacity = 1;
-    }
-  }, "json");
-};
 
 var resetInfo = function () {
   document.querySelector("#info").innerHTML = "";

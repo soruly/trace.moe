@@ -1,3 +1,15 @@
+"use strict";
+
+var showAnilistInfo = function (season, anime) {
+  $.get("/info?season=" + encodeURIComponent(season) + "&anime=" + encodeURIComponent(anime), function (data, textStatus) {
+    if (data.length > 0) {
+      displayInfo(data[0]);
+      document.querySelector("#info").style.visibility = "visible";
+      document.querySelector("#info").style.opacity = 1;
+    }
+  }, "json");
+};
+
 var displayInfo = function (src) {
   $("<h1>", {
     "text": src.title_japanese,
@@ -55,7 +67,7 @@ var displayInfo = function (src) {
     } else {
       naturalText += ". Airing from " + src.start_date.replace(/(\d+)-(\d+)-(\d+)T.*/, "$1-$2-$3") + " to " + src.end_date.replace(/(\d+)-(\d+)-(\d+)T.*/, "$1-$2-$3");
     }
-  } else if (src.start_date.replace(/(\d+)-(\d+)-(\d+)T.*/, "$1") != "1970") {
+  } else if (src.start_date.replace(/(\d+)-(\d+)-(\d+)T.*/, "$1") !== "1970") {
     if (src.type === "TV" || src.type === "TV Short") {
       naturalText += ". Airing since " + src.start_date.replace(/(\d+)-(\d+)-(\d+)T.*/, "$1-$2-$3");
     }
