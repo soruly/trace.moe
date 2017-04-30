@@ -26,7 +26,11 @@
 <div class="container">
 <div class="page-header"><h1>Changelog</h1></div>
 
-<h3>Search in specific season</h3>
+<h3>Search changes</h3>
+<h6>30 Apr 2017</h6>
+<p>You can now search scenes with any aspect ratio. Thumbnail preview also respect aspect ratio now. Recaptcha is removed, you must wait up to 10 minutes once you have reached search quota limit (20 search per 10 minutes). Homepage code has been re-written, the webpage now loads faster. And a new loading animation was added.</p>
+
+<h3>Search for more results</h3>
 <h6>23 Apr 2017</h6>
 <p>You can now keep searching the database for more results. Previously, the search would stop when it has found any result > 90% similarity. Now keep searching to discover more results with even higher similarity!</p>
 
