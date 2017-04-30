@@ -300,9 +300,10 @@ var preview_heartbeat;
 var time;
 var animeInfo;
 var playfile = function () {
-  document.querySelectorAll(".result").forEach(function (element) {
-    element.classList.remove("active");
+  [].forEach.call(document.querySelectorAll(".result"), function (result) {
+    result.classList.remove("active");
   });
+
   this.classList.add("active");
   document.querySelector("#player").pause();
   window.cancelAnimationFrame(preview_heartbeat);
