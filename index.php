@@ -37,8 +37,7 @@
 <link href="/css/style.css" rel="stylesheet">
 <link href="/css/index.css" rel="stylesheet">
 <link rel="dns-prefetch" href="https://image.whatanime.ga/">
-<script src="https://www.google.com/recaptcha/api.js"></script>
-<script src="/js/analytics.js" defer></script>
+<script src="/js/analytics.js" async defer></script>
 </head>
 <body>
 <div class="alert alert-info" style="position: relative; top: 10px; left: 10px; box-shadow: 0 0 20px 0px; width: 975px">
@@ -57,7 +56,7 @@
 <canvas id="preview" width="640" height="360"></canvas>
 <video id="player" style="display:none" volume="1" autoplay></video>
 </div>
-<form action="" method="get">
+<div id="form">
 <span class="btn btn-default btn-file btn-sm">
 Browse a file <input type="file" id="file" name="files[]" />
 </span>
@@ -66,13 +65,12 @@ Browse a file <input type="file" id="file" name="files[]" />
 <span class="glyphicon glyphicon-unchecked"></span> Flip Image
 </button>
 <br>
-<input type="text" class="form-control" id="imageURL" placeholder="Image URL" style="margin:5px 0 5px 0">
+<form method="post">
+<input type="url" pattern="https?://.+" name="imageURL" class="form-control" id="imageURL" placeholder="Image URL" style="margin:5px 0 5px 0">
+<input type="submit" id="submit" style="display:none">
+</form>
 <div style="text-align: right">
 <span id="messageText" style="float:left;line-height:30px"></span>
-<!--
-<label class="radio-inline"><input type="radio" name="fitRadio" id="fitWidthRadio" checked>Fit Width</label>
-<label class="radio-inline" style="margin-right:10px"><input type="radio" name="fitRadio" id="fitHeightRadio">Fit Height</label>
--->
 <label for="seasonSelector" style="font-weight: inherit">Search in:</label>
 <select id="seasonSelector" class="form-control input-sm" style="display:inline-block; width:100px">
 <option value="*" selected>All</option>
@@ -183,7 +181,7 @@ Please read <a href="/faq">FAQ</a> to understand what can / cannot be searched.<
 <span style="color:#FF6D6D">Caution: some results may be NSFW (Not Safe for Work).</span><br>
 Official WebExtension available on <a href="https://chrome.google.com/webstore/detail/search-anime-by-screensho/gkamnldpllcbiidlfacaccdoadedncfp" target="_blank">Chrome</a>, <a href="https://addons.mozilla.org/en-US/firefox/addon/search-anime-by-screenshot/" target="_blank">Firefox</a>, and <a href="https://addons.opera.com/en/extensions/details/search-anime-by-screenshot/" target="_blank">Opera</a>.<br>
 Official Telegram Bot available <a href="https://telegram.me/WhatAnimeBot">@WhatAnimeBot</a><br>
-</form>
+</div>
 </div>
 <div id="info"></div>
 
@@ -196,7 +194,6 @@ Official Telegram Bot available <a href="https://telegram.me/WhatAnimeBot">@What
       <label><input type="checkbox" id="loop" name="loop" />Loop</label>
       <label><input type="checkbox" id="mute" name="mute" />Mute</label>
     </div>
-    <div class="g-recaptcha hidden" data-sitekey="6LdluhITAAAAAD4-wl-hL-gR6gxesY6b4_SZew7v" data-callback="recaptcha_success" data-size="normal"></div>
     <ul id="results" class="nav nav-pills nav-stacked"></ul>
   </div>
 </div>
@@ -217,9 +214,10 @@ Official Telegram Bot available <a href="https://telegram.me/WhatAnimeBot">@What
 </ol>
 </div>
 </footer>
-<script src="/js/jquery-2.1.1.min.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/index.js"></script>
+<script src="/js/displayInfo.js"></script>
 <?php
 if(isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)){
 echo '<script>
