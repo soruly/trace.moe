@@ -74,7 +74,7 @@ $cpu_load = trim(shell_exec('mpstat 1 1 | tail -n 1 | awk \'$12 ~ /[0-9.]+/ { pr
 <p>Life is too short to answer all the "What is the anime?" questions. Let computers do that for you.</p>
 <p>
 whatanime.ga is a test-of-concept prototype search engine that helps users trace back the original anime by screenshot. 
-It searches over 15600 hours of anime and find the best matching scene. 
+It searches over 21500 hours of anime and find the best matching scene. 
 It tells you what anime it is, from which episode and the time that scene appears. 
 Since the search result may not be accurate, it provides a few seconds of preview for verification. 
 </p>
