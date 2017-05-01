@@ -28,7 +28,7 @@
 <h3>Search is not working!</h3>
 <p>Some anti-virus / internet security software such as kaspersky may have blocked the website. You need to whitelist the website.</p>
 <h3>Cannot open the website!</h3>
-<p>Some browser does not support latest version of SSL/TLS, such as 360 Browser in China. Try another browser.</p>
+<p>Some browser does not support latest version of SSL/TLS, such as 360 Browser in China. Try another browser. Primary supported browsers are Chrome and Firefox.</p>
 <h3>Why I can't find the search result?</h3>
 <p>
 Possible reasons:<br>
@@ -67,11 +67,6 @@ Searching with a real photo (of an anime) definitely won't work.<br>
 <div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/tinted-bad.jpg" style="max-width:320px;max-height:180px"><br>Not a good Screenshot</div>
 <div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/tinted-good.jpg" style="float:left;max-width:320px;max-height:180px"><br>Original Screenshot</div>
 <p style="clear:both">Tinted images are hard to search. Because the applied filter effects heavily distorted the information in the original screenshot. The color layout image descriptor can no longer find such images.</p>
-<br>
-<h4>Image covered by big text</h4>
-<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/bigtext-bad.jpg" style="max-width:320px;max-height:180px"><br>Not so good Screenshot</div>
-<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/bigtext-good.jpg" style="float:left;max-width:320px;max-height:180px"><br>Original Screenshot</div>
-<p style="clear:both">If you are lucky, you can still get correct search result.<br>(P.S. spot the difference between TV and Bluray?)</p>
 <br>
 <h4>Old Japanese Anime</h4>
 <div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/old-bad.jpg" style="max-width:320px;max-height:180px"><br>Sample Screenshot</div>
@@ -116,6 +111,8 @@ Searching with a real photo (of an anime) definitely won't work.<br>
 <div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/draw2-good.jpg" style="float:left;max-width:320px;max-height:180px"><br>Original Screenshot</div>
 <div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/draw3-bad.jpg" style="max-width:320px;max-height:180px"><br>Acceptable Screenshot</div>
 <div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/draw3-good.jpg" style="float:left;max-width:320px;max-height:180px"><br>Original Screenshot</div>
+<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/draw4-bad.jpg" style="max-width:320px;max-height:180px"><br>Acceptable Screenshot</div>
+<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/draw4-good.jpg" style="float:left;max-width:320px;max-height:180px"><br>Original Screenshot</div>
 <p style="clear:both">The search image does not has to be taken from anime screencap directly. You can use drawings of some scenes as long as it is similar to the original one.</p>
 <br>
 <h3>How does it work?</h3>
@@ -123,7 +120,7 @@ Searching with a real photo (of an anime) definitely won't work.<br>
 <h3>How to make the search for a more accurate result?</h3>
 <p>Crop your screenshot to 16:9 or 4:3 before searching. Remove any extra borders in screencap (if any). By default, it crops the image to 16:9, if you upload a 16:10 screenshot, it should be cropped automatically. If the position is incorrect, you can drag the image and adjust the crop position.</p>
 <h3>What animes are being indexed?</h3>
-<p>Most japan anime since 2000 are indexed, plus some popular anime in 1990s, and little anime before 1990. A list of anime are incomplete in index at this stage, including Aikatsu!, Pretty Rhythm, PriPara, Precure, Jewelpet, Yu-Gi-Oh!, Dragon Ball, Crayon Shin-chan, Doraemon, Pokemon, Detective Conan, Chibi Maruko-chan and Hentai-anime.</p>
+<p>Most japan anime since 2000 are indexed, plus some popular anime in 1990s, and little anime before 1990. A list of anime are incomplete in index at this stage, including Jewelpet, Yu-Gi-Oh!, Dragon Ball, Crayon Shin-chan, Doraemon, Pokemon, Detective Conan, Chibi Maruko-chan and old Hentai-anime.</p>
 <h3>Why I can't preview the search result?</h3>
 <p>There is no preview for mobile devices. Some animes are being removed or relocated, so some of the previews are offline now. The preview uses a considerable amount of network bandwidth, it would takes time to load if you have a slow connection.</p>
 <h3>Why the anime are chinese-subbed?</h3>
