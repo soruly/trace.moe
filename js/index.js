@@ -204,7 +204,7 @@ var search = function (trial, prev_result) {
         ga("send", "event", "search", "topResult", topResult, data.docs[0].diff);
         $(".result").click(playfile);
 
-        if (parseFloat(data.docs[0].diff) > 13) {
+        if (parseFloat(data.docs[0].diff) > 10) {
           if (trial < 6) {
             search(trial + 1, data);
           } else if (trial < 12) {
