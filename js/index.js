@@ -149,10 +149,6 @@ var search = function (trial, prev_result) {
         data.ReRankSearchTime += prev_result.ReRankSearchTime;
       }
 
-      ga("send", "event", "search", "RawDocsCount", data.RawDocsCount);
-      ga("send", "event", "search", "RawDocsSearchTime", data.RawDocsSearchTime);
-      ga("send", "event", "search", "ReRankSearchTime", data.ReRankSearchTime);
-      ga("send", "event", "search", "Trial", data.trial, data.trial);
       document.querySelector("#results").innerHTML += "<div id=\"status\">" + data.RawDocsCount + " images searched in " + ((data.RawDocsSearchTime + data.ReRankSearchTime) / 1000).toFixed(2) + " seconds</div>";
       if (prev_result) {
         data.docs = data.docs.concat(prev_result.docs);
