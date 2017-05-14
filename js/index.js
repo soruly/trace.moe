@@ -149,7 +149,7 @@ var search = function (trial, prev_result) {
         data.ReRankSearchTime += prev_result.ReRankSearchTime;
       }
 
-      document.querySelector("#results").innerHTML += "<div id=\"status\">" + data.RawDocsCount + " images searched in " + ((data.RawDocsSearchTime + data.ReRankSearchTime) / 1000).toFixed(2) + " seconds</div>";
+      document.querySelector("#results").innerHTML += "<div id=\"status\">" + data.RawDocsCount + " images searched.</div>";
       if (prev_result) {
         data.docs = data.docs.concat(prev_result.docs);
       }
