@@ -93,6 +93,8 @@ var player = document.querySelector("#player");
 var preview = document.querySelector("#preview");
 var originalImage = document.querySelector("#originalImage");
 
+player.volume = 0.5;
+
 var imgDataURL;
 var searchRequest;
 var search = function (trial, prev_result) {
