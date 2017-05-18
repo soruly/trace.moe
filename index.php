@@ -54,7 +54,7 @@
 <div id="loader" class="ripple"></div>
 </div>
 <canvas id="preview" width="640" height="360"></canvas>
-<video id="player" style="display:none" volume="1" autoplay></video>
+<video id="player" style="display:none" volume="0.5" autoplay></video>
 </div>
 <div id="form">
 <span class="btn btn-default btn-file btn-sm">
