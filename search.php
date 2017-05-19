@@ -33,7 +33,7 @@ if($redis->exists($_SERVER['HTTP_X_FORWARDED_FOR'])){
     $quota = intval($redis->get($_SERVER['HTTP_X_FORWARDED_FOR']));
 }
 else{
-    $quota = 20;
+    $quota = 30;
     $redis->set($_SERVER['HTTP_X_FORWARDED_FOR'], $quota);
     $redis->expire($_SERVER['HTTP_X_FORWARDED_FOR'], 600);
 }
