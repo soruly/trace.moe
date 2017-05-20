@@ -28,6 +28,9 @@ else{
     mysqli_stmt_fetch($stmt);
     mysqli_stmt_close($stmt);
   }
+  if($user_id) {
+    mysqli_query($sql, "UPDATE `users` SET `search_count`=`search_count`+1 WHERE `user_id`=".intval($user_id));
+  }
 }
 
 mysqli_close($sql);
