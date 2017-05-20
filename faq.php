@@ -102,7 +102,7 @@ Searching with a real photo (of an anime) definitely won't work.<br>
 <h4>A frame of GIF</h4>
 <div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/gif-bad.jpg" style="max-width:320px;max-height:180px"><br>Acceptable Screenshot</div>
 <div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/gif-good.jpg" style="float:left;max-width:320px;max-height:180px"><br>Original Screenshot</div>
-<p style="clear:both">If the color distortion is accetable, GIF is also OK. </p>
+<p style="clear:both">If the color distortion is acceptable, GIF is also OK. </p>
 <br>
 <h4>Drawings of the anime scene</h4>
 <div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/draw-bad.jpg" style="max-width:320px;max-height:180px"><br>Acceptable Screenshot</div>
