@@ -8,10 +8,15 @@
 <meta name="viewport" content="width=995, initial-scale=1">
 <title>WAIT: What Anime Is This? - Anime Scene Search Engine</title>
 
+<?php
+$og_image = 'https://whatanime.ga/favicon128.png';
+if(isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL))
+  $og_image = 'https://image.whatanime.ga/imgproxy?url='.$_GET["url"];
+?>
 <!-- Schema.org markup (Google) -->
 <meta itemprop="name" content="WAIT: What Anime Is This?">
 <meta itemprop="description" content="Anime Scene Search Engine. Search over 500 million images to lookup what anime, which episode, which moment the screenshot is taken from.">
-<meta itemprop="image" content="https://whatanime.ga/favicon128.png">
+<meta itemprop="image" content="<?php echo $og_image ?>">
 
 <!-- Twitter Card markup-->
 <meta name="twitter:card" content="summary_large_image">
@@ -20,14 +25,14 @@
 <meta name="twitter:description" content="Anime Scene Search Engine. Search over 500 million images to lookup what anime, which episode, which moment the screenshot is taken from.">
 <meta name="twitter:creator" content="@soruly">
 <!-- Twitter summary card with large image must be at least 280x150px -->
-<meta name="twitter:image" content="https://whatanime.ga/favicon128.png">
+<meta name="twitter:image" content="<?php echo $og_image ?>">
 <meta name="twitter:image:alt" content="Anime Scene Search Engine. Search over 500 million images to lookup what anime, which episode, which moment the screenshot is taken from.">
 
 <!-- Open Graph markup (Facebook, Pinterest) -->
 <meta property="og:title" content="WAIT: What Anime Is This?" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://whatanime.ga" />
-<meta property="og:image" content="https://whatanime.ga/favicon128.png" />
+<meta property="og:image" content="<?php echo $og_image ?>" />
 <meta property="og:description" content="Anime Scene Search Engine. Search over 500 million images to lookup what anime, which episode, which moment the screenshot is taken from." />
 <meta property="og:site_name" content="whatanime.ga" />
 
