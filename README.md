@@ -34,7 +34,7 @@ System Overview
 
 You may find some other component here
 
-- [LireSolr](https://bitbucket.org/dermotte/liresolr) developed by Mathias Lux
+- [LireSolr](https://github.com/soruly/liresolr)
 
 - [Shell Script and Python script for analyzing video for LireSolr](https://gist.github.com/soruly/032613e350cdbbe7b0dbe4a7f60bbefd)
 
