@@ -28,6 +28,8 @@ This repo for studying purpose only. Some settings and config are not included, 
 
 You may read a brief [Presentation slides](https://go-talks.appspot.com/github.com/soruly/slides/whatanime.ga.slide) given in May 2016
 
+And [Presentation slides](https://go-talks.appspot.com/github.com/soruly/slides/whatanime.ga-2017.slide) given in Jun 2017
+
 System Overview
 
 ![](https://pbs.twimg.com/media/CstZmrxUIAAi8La.jpg)

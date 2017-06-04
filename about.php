@@ -106,6 +106,7 @@ If you wish to search artwork / wallpapers, try to use <a href="https://saucenao
 <h3>Go-talk presentation</h3>
 </div>
 <p><a href="https://go-talks.appspot.com/github.com/soruly/slides/whatanime.ga.slide">Go-talk presentation on 27 May 2016</a></p>
+<p><a href="https://go-talks.appspot.com/github.com/soruly/slides/whatanime.ga-2017.slide">Go-talk presentation on 4 Jun 2017</a></p>
 <div class="page-header">
 <h3>System Status</h3>
 </div>
