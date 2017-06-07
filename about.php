@@ -127,18 +127,19 @@ If you wish to search artwork / wallpapers, try to use <a href="https://saucenao
 <h3>Credit</h3>
 </div>
 <p>
-Dr. Mathias Lux (LIRE Project)<br>
-<a href="http://www.lire-project.net/">http://www.lire-project.net/</a><br>
-Lux Mathias, Savvas A. Chatzichristofis. Lire: Lucene Image Retrieval – An Extensible Java CBIR Library. In proceedings of the 16th ACM International Conference on Multimedia, pp. 1085-1088, Vancouver, Canada, 2008<br>
-<a href="http://www.morganclaypool.com/doi/abs/10.2200/S00468ED1V01Y201301ICR025">Visual Information Retrieval with Java and LIRE</a><br>
+<h4>Dr. Mathias Lux (<a href="http://www.lire-project.net/">LIRE Project</a>)</h4>
+<small>Lux Mathias, Savvas A. Chatzichristofis. Lire: Lucene Image Retrieval – An Extensible Java CBIR Library. In proceedings of the 16th ACM International Conference on Multimedia, pp. 1085-1088, Vancouver, Canada, 2008 <a href="http://www.morganclaypool.com/doi/abs/10.2200/S00468ED1V01Y201301ICR025">Visual Information Retrieval with Java and LIRE</a></small><br>
 <br>
-ANILIST<br>
-Josh (Anilist developer) and Anilist administration team<br>
-<a href="https://anilist.co/">https://anilist.co/</a><br>
+<h4>Josh (<a href="https://anilist.co/">Anilist</a>) and Anilist administration team</h4>
 <br>
-And of cause, contributions and support from all anime lovers!<br>
+<h4>List of Patreons:</h4>
+<a href="http://desmonding.me/">Desmond</a>, WelkinWill, <a href="https://twitter.com/yuriks">yuriks</a> and dozons of anonymous patreons<br>
 <br>
-<a href="https://www.patreon.com/soruly">Support whatanime.ga on Patreon.</a><br>
+<a href="https://www.patreon.com/soruly">Become one of the Patrons now!</a><br>
+<br>
+<br>
+<h4>And of cause, contributions and support from all anime lovers!</h4>
+<br><br>
 <br>
 </p>
 
