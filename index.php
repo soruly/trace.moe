@@ -47,7 +47,7 @@ if(isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL))
 <body>
 <div class="alert alert-info" style="position: relative; top: 10px; left: 10px; box-shadow: 0 0 20px 0px; width: 975px">
   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-  Want to know more about whatanime.ga? Read the <a href="https://go-talks.appspot.com/github.com/soruly/slides/whatanime.ga-2017.slide" target="_blank">Presentation slides on June 2017</a>.
+  Take a look at a demo on <a href="https://demo.whatanime.ga" target="_blank">https://demo.whatanime.ga</a>
 </div>
 <input id="autoSearch" type="checkbox" style="display: none;">
 <img id="originalImage" src="" crossorigin="anonymous" style="display: none;">
