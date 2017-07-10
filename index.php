@@ -173,6 +173,7 @@ Browse a file <input type="file" id="file" name="files[]" />
 <option value="2016-10/*">2016-10</option>
 <option value="2017-01/*">2017-01</option>
 <option value="2017-04/*">2017-04</option>
+<option value="2017-07/*">2017-07</option>
 </select>
 
 <button id="safeBtn" type="button" class="btn btn-default btn-sm">
