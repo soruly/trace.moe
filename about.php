@@ -117,6 +117,10 @@ If you wish to search artwork / wallpapers, try to use <a href="https://saucenao
 <p>This database automatically index most airing anime in a few hours after broadcast. </p>
 <p><?php echo 'Last Database Index update: '.humanTiming($lastModified).' ago with '.$numDocsMillion.' Million analyzed frames.<br>'; ?></p>
 <p><?php if($recentFile) echo "Recently indexed files: (last 3 hours) <pre>".$recentFile."</pre>"; ?></p>
+<p></p>
+<a href="https://nyaa.si/download/942384.torrent">Full Database Dump 2017-04 (25.3GB)</a><br>
+<a href="magnet:?xt=urn:btih:MK74447RUAB7L577MIYJAKT5GU2GRME4&dn=whatanime.ga+database+dump+2017-04&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.doko.moe%3A6969&tr=udp%3A%2F%2Ftracker.zer0day.to%3A1337%2Fannounce">magnet:?xt=urn:btih:MK74447RUAB7L577MIYJAKT5GU2GRME4</a>
+</p>
 <div class="page-header">
 <h3>Contact</h3>
 </div>
