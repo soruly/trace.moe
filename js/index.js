@@ -203,7 +203,7 @@ var search = function (trial, prev_result) {
         });
         var topResult = "/" + data.docs[0].season + "/" + data.docs[0].anime + "/" + data.docs[0].file + "?start=" + data.docs[0].start + "&end=" + data.docs[0].end + "&t=" + data.docs[0].t;
 
-        ga("send", "event", "search", "topResult", topResult, data.docs[0].diff);
+        if(typeof ga === "function"){ga("send", "event", "search", "topResult", topResult, data.docs[0].diff);}
         $(".result").click(playfile);
 
         if (parseFloat(data.docs[0].diff) > 10) {
@@ -334,7 +334,7 @@ var playfile = function () {
   if (time < 0) {
     time = 0;
   }
-  ga("send", "event", "playfile", "src", "/" + season + "/" + anime + "/" + file, t);
+  if(typeof ga === "function"){ga("send", "event", "playfile", "src", "/" + season + "/" + anime + "/" + file, t);}
 
   if (animeInfo !== season + anime) {
     animeInfo = season + anime;
