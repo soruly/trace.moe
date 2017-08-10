@@ -86,6 +86,7 @@ var formatTime = function (timeInSeconds) {
 };
 
 var zeroPad = function (n, width) {
+  if(n.length === undefined) return n.toString();
   return n.length >= width ? n.toString() : new Array(width - n.toString().length + 1).join("0") + n;
 };
 
