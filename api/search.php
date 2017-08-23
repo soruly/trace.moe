@@ -80,7 +80,7 @@ $lang = 'en';
 if($redis->exists($uid)){
   $quota = intval($redis->get($uid));
   $expire = $redis->ttl($uid);
-    if($quota < 1){
+    if($uid > 1000 && $quota < 1){
       header("HTTP/1.1 429 Too Many Requests");
       exit("Search quota exceeded. Please wait ".$expire." seconds.");
     }
