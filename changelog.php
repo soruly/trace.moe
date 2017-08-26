@@ -26,6 +26,38 @@
 <div class="container">
 <div class="page-header"><h1>Changelog</h1></div>
 
+<h3>Telegram Channel</h3>
+<h6>26 Aug 2017</h6>
+<p>You can subscribe the <a href="https://telegram.me/whatanimeupdates">Telegram Channel</a> for database and news updates.</p>
+
+<h3>GIF and video support for Telegram Bot</h3>
+<h6>24 Aug 2017</h6>
+<p>You can now send GIF or video to the <a href="https://telegram.me/WhatAnimeBot">Telegram Bot</a>.</p>
+
+<h3>Group chat support for Telegram Bot</h3>
+<h6>23 Aug 2017</h6>
+<p>You can now add the <a href="https://telegram.me/WhatAnimeBot">Telegram Bot</a> to Telegram group. Use @ to mention the bot on any photo to search.</p>
+
+<h3>Fix search requests failed when Google Analytics is blocked</h3>
+<h6>5 Aug 2017</h6>
+<p>Identified and fixed an issue where browsers failed to search due to blocked scripts.</p>
+
+<h3>Added 2017-04 database dump</h3>
+<h6>26 Jul 2017</h6>
+<p>Database dump updated to 2017-04.</p>
+
+<h3>Added demo for the upcoming search engine update</h3>
+<h6>14 Jun 2017</h6>
+<p>Take a look at a demo on <a href="https://demo.whatanime.ga" target="_blank">https://demo.whatanime.ga</a></p>
+
+<h3>New Icon</h3>
+<h6>5 Jun 2017</h6>
+<p><img src="/favicon128.png" alt="favicon"><br>This is the new icon for whatanime.ga</p>
+
+<h3>2017 Presentation slides updates</h3>
+<h6>4 Jun 2017</h6>
+<p>Want to know more about whatanime.ga? Read the <a href="https://go-talks.appspot.com/github.com/soruly/slides/whatanime.ga-2017.slide" target="_blank">Presentation slides on June 2017</a>.</p>
+
 <h3>Search changes</h3>
 <h6>30 Apr 2017</h6>
 <p>You can now search scenes with any aspect ratio. Thumbnail preview also respect aspect ratio now. Recaptcha is removed, you must wait up to 10 minutes once you have reached search quota limit (20 search per 10 minutes). Homepage code has been re-written, the webpage now loads faster. And a new loading animation was added.</p>
