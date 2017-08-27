@@ -1,5 +1,11 @@
 <?php
 ini_set("display_errors", 0);
+
+if(isset($_GET["cpu_load"])){
+  header("content-type: application/javascript");
+  exit("document.querySelector(\"#cpu_load\").innerText = \"".trim(shell_exec('mpstat 1 1 | tail -n 1 | awk \'$12 ~ /[0-9.]+/ { print 100 - $12"%" }\''))."\"");
+}
+
 $curl = curl_init();
 curl_setopt($curl, CURLOPT_URL, "http://192.168.2.11:8983/solr/anime_cl/admin/luke?wt=json");
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
@@ -39,8 +45,6 @@ $loadAverage = implode(", ",array_map($to_percent, explode(", ",explode("load av
 
 $recentFile = str_replace('.xml','',shell_exec('find /mnt/Data/Anime\ Hash/ -type f -mmin -180 -name "*.xml" -exec basename "{}" \;'));
 
-$cpu_load = trim(shell_exec('mpstat 1 1 | tail -n 1 | awk \'$12 ~ /[0-9.]+/ { print 100 - $12"%" }\''));
-
 ?><!DOCTYPE html>
 <html>
   <head>
@@ -53,6 +57,7 @@ $cpu_load = trim(shell_exec('mpstat 1 1 | tail -n 1 | awk \'$12 ~ /[0-9.]+/ { pr
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
     <script src="/js/analytics.js" defer></script>
+    <script src="/about?cpu_load" async defer></script>
   </head>
   <body>
 <nav class="navbar header">
@@ -112,7 +117,7 @@ If you wish to search artwork / wallpapers, try to use <a href="https://saucenao
 </div>
 <p>System status page: <a href="https://status.whatanime.ga">https://status.whatanime.ga</a> (Powered by UptimeRobot)</p>
 <p><?php if($loadAverage) echo "System load average in 1, 5, 15 minutes: ".$loadAverage ?></p>
-<p><?php if($cpu_load) echo "Current CPU load: ".$cpu_load ?></p>
+<p>Current CPU load: <span id="cpu_load"></span></p>
 <p><?php if($vmTouch) echo $vmTouch[6]."B (".$vmTouch[8].") index is cached in RAM, the rest are in SSD."; ?></p>
 <p>This database automatically index most airing anime in a few hours after broadcast. </p>
 <p><?php echo 'Last Database Index update: '.humanTiming($lastModified).' ago with '.$numDocsMillion.' Million analyzed frames.<br>'; ?></p>
