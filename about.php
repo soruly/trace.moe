@@ -137,13 +137,20 @@ If you wish to search artwork / wallpapers, try to use <a href="https://saucenao
 <h4>Josh (<a href="https://anilist.co/">Anilist</a>) and Anilist team</h4>
 <br>
 <h4>List of Patreons: (no particular order)</h4>
-<a href="http://desmonding.me/">Desmond</a>, <a href="http://imvery.moe/">FangzhouL</a>, Snadzies, WelkinWill, <a href="https://twitter.com/yuriks">yuriks</a>, and dozons of anonymous patreons<br>
-<br>
-<a href="https://www.patreon.com/soruly">Become one of the Patrons now!</a><br>
-<br>
+<p>
+<a href="http://desmonding.me/">Desmond</a><br>
+<a href="http://imvery.moe/">FangzhouL</a><br>
+Snadzies<br>
+WelkinWill<br>
+<a href="https://twitter.com/yuriks">yuriks</a><br>
+...and dozons of anonymous patreons<br>
 <br>
 <h4>And of cause, contributions and support from all anime lovers!</h4>
-<br><br>
+<br>
+<a href="https://www.patreon.com/soruly"><img src="img/become_a_patron_button.png" alt="Become a Patron!"></a>
+<br>
+<br>
+<br>
 <br>
 </p>
 
