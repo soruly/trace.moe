@@ -110,12 +110,19 @@ if(isset($_POST['image'])){
     $curl = curl_init();
     curl_setopt($curl, CURLOPT_URL, "http://192.168.2.11:8983/solr/anime_cl/lireq?field=cl_ha&extract=http://192.168.2.11/pic/".$filename);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-    $res = curl_exec($curl);
-    $extract_result = json_decode($res);
-    $cl_hi = $extract_result->histogram;
-    $cl_ha = $extract_result->hashes;
-    $cl_hi_key = "cl_hi:".$cl_hi;
-    curl_close($curl);
+    try{
+        $res = curl_exec($curl);
+        $extract_result = json_decode($res);
+        $cl_hi = $extract_result->histogram;
+        $cl_ha = $extract_result->hashes;
+        $cl_hi_key = "cl_hi:".$cl_hi;
+    }
+    catch(Exception $e){
+
+    }
+    finally{
+        curl_close($curl);
+    }
     
     $final_result = new stdClass;
     $final_result->RawDocsCount = [];
@@ -145,27 +152,34 @@ if(isset($_POST['image'])){
             $curl = curl_init();
             curl_setopt($curl, CURLOPT_URL, "http://192.168.2.11:8983/solr/anime_cl/lireq?filter=".rawurlencode($filter)."&field=cl_ha&accuracy=".$trial."&candidates=4000000&rows=10&feature=".$cl_hi."&hashes=".implode($cl_ha,","));
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-            $res = curl_exec($curl);
-            $result = json_decode($res);
-            $final_result->RawDocsCount[] = intval($result->RawDocsCount);
-            $final_result->RawDocsSearchTime[] = intval($result->RawDocsSearchTime);
-            $final_result->ReRankSearchTime[] = intval($result->ReRankSearchTime);
-            if(intval($result->RawDocsCount) > 0){
-                $final_result->docs = array_merge($final_result->docs,$result->docs);
-                usort($final_result->docs, "reRank");
-                $total_search_time = array_sum($final_result->RawDocsSearchTime) + array_sum($final_result->ReRankSearchTime);
-                foreach($final_result->docs as $doc){
-                    if($max_trial <= 6){
-                        if($doc->d <= 10 && $trial == 4)
-                            break 2; //break outer loop
-                        if($doc->d <= 11 && $trial == 5)
-                            break 2; //break outer loop
-                        if($doc->d <= 12 && $trial == 6)
-                            break 2; //break outer loop
+            try{
+                $res = curl_exec($curl);
+                $result = json_decode($res);
+                $final_result->RawDocsCount[] = intval($result->RawDocsCount);
+                $final_result->RawDocsSearchTime[] = intval($result->RawDocsSearchTime);
+                $final_result->ReRankSearchTime[] = intval($result->ReRankSearchTime);
+                if(intval($result->RawDocsCount) > 0){
+                    $final_result->docs = array_merge($final_result->docs,$result->docs);
+                    usort($final_result->docs, "reRank");
+                    $total_search_time = array_sum($final_result->RawDocsSearchTime) + array_sum($final_result->ReRankSearchTime);
+                    foreach($final_result->docs as $doc){
+                        if($max_trial <= 6){
+                            if($doc->d <= 10 && $trial == 4)
+                                break 2; //break outer loop
+                            if($doc->d <= 11 && $trial == 5)
+                                break 2; //break outer loop
+                            if($doc->d <= 12 && $trial == 6)
+                                break 2; //break outer loop
+                        }
                     }
                 }
             }
-            curl_close($curl);
+            catch(Exception $e){
+
+            }
+            finally{
+                curl_close($curl);
+            }
         }
         usort($final_result->docs, "reRank");
         $top_doc = $final_result->docs[0];
@@ -294,16 +308,23 @@ if(isset($_POST['image'])){
         curl_setopt($curl, CURLOPT_POSTFIELDS, $payload);
         curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-        $res = curl_exec($curl);
-        $result = json_decode($res);
-        $doc->anilist_id = $result->hits->hits[0]->_source->id ? $result->hits->hits[0]->_source->id : null;
-        $doc->title = $result->hits->hits[0]->_source->title_japanese ? $result->hits->hits[0]->_source->title_japanese : $doc->title;
-        $doc->title_chinese = $result->hits->hits[0]->_source->title_chinese ? $result->hits->hits[0]->_source->title_chinese : $doc->title;
-        $doc->synonyms_chinese = $result->hits->hits[0]->_source->synonyms_chinese ? $result->hits->hits[0]->_source->synonyms_chinese : [];
-        $doc->title_english = $result->hits->hits[0]->_source->title_english ? $result->hits->hits[0]->_source->title_english : $doc->title;
-        $doc->synonyms = $result->hits->hits[0]->_source->synonyms ? $result->hits->hits[0]->_source->synonyms : [];
-        $doc->title_romaji = $result->hits->hits[0]->_source->title_romaji ? $result->hits->hits[0]->_source->title_romaji : $doc->title;
-        curl_close($curl);
+        try{
+            $res = curl_exec($curl);
+            $result = json_decode($res);
+            $doc->anilist_id = $result->hits->hits[0]->_source->id ? $result->hits->hits[0]->_source->id : null;
+            $doc->title = $result->hits->hits[0]->_source->title_japanese ? $result->hits->hits[0]->_source->title_japanese : $doc->title;
+            $doc->title_chinese = $result->hits->hits[0]->_source->title_chinese ? $result->hits->hits[0]->_source->title_chinese : $doc->title;
+            $doc->synonyms_chinese = $result->hits->hits[0]->_source->synonyms_chinese ? $result->hits->hits[0]->_source->synonyms_chinese : [];
+            $doc->title_english = $result->hits->hits[0]->_source->title_english ? $result->hits->hits[0]->_source->title_english : $doc->title;
+            $doc->synonyms = $result->hits->hits[0]->_source->synonyms ? $result->hits->hits[0]->_source->synonyms : [];
+            $doc->title_romaji = $result->hits->hits[0]->_source->title_romaji ? $result->hits->hits[0]->_source->title_romaji : $doc->title;
+        }
+        catch(Exception $e){
+
+        }
+        finally{
+            curl_close($curl);
+        }
     }
     unset($final_result->docs);
     $final_result->docs = $docs;
