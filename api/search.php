@@ -12,12 +12,12 @@ if(isset($_GET['token'])) {
 else{
   mysqli_query($sql, "SET NAMES 'utf8'");
 
-  if ($stmt = mysqli_prepare($sql, "SELECT `user_id`,`email` FROM `users` WHERE `api_key`=? LIMIT 0,1")){
+  if ($stmt = mysqli_prepare($sql, "SELECT `user_id`,`email`,`quota`,`quota_ttl` FROM `users` WHERE `api_key`=? LIMIT 0,1")){
 
     mysqli_stmt_bind_param($stmt, "s", $_GET['token']);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_store_result($stmt);
-    mysqli_stmt_bind_result($stmt, $user_id, $user_email);
+    mysqli_stmt_bind_result($stmt, $user_id, $user_email, $quota, $quota_ttl);
     if( mysqli_stmt_num_rows($stmt) == 0) {
       header('HTTP/1.1 403 Forbidden');
       exit("Invalid API token");
@@ -86,10 +86,8 @@ if($redis->exists($uid)){
     }
 }
 else{
-  $quota = 10;
-  $ttl = 60;
   $redis->set($uid, $quota);
-  $redis->expire($uid, $ttl);
+  $redis->expire($uid, $quota_ttl);
 }
 
 
