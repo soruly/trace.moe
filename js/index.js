@@ -508,10 +508,6 @@ function CLIPBOARD_CLASS (canvas_id) {
   }, false);
 
   this.init = (function () {
-    // if using auto
-    if (window.Clipboard) {
-      return true;
-    }
 
     pasteCatcher = document.createElement("div");
     pasteCatcher.setAttribute("contenteditable", "");
