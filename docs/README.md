@@ -26,7 +26,7 @@ Or if you prefer using [HTTPie](https://httpie.org/) :
 
 ## Me
 
-Let you verify that you have a valid user account.
+Let you verify that you have a valid user account. And see your search quota limit for your account.
 
 URL
 
@@ -40,7 +40,9 @@ Example Response
 ```
 {
   "user_id": 1001,
-  "email": "soruly@gmail.com"
+  "email": "soruly@gmail.com",
+  "quota": 10,
+  "quota_ttl": 60
 }
 ```
 
