@@ -43,7 +43,7 @@ $to_percent = function($load_average){
 };
 $loadAverage = implode(", ",array_map($to_percent, explode(", ",explode("load average: ",exec("uptime"))[1])));
 
-$recentFile = str_replace('.xml','',shell_exec('find /mnt/Data/Anime\ Hash/ -type f -mmin -180 -name "*.xml" -exec basename "{}" \;'));
+$recentFile = str_replace('.xml','',shell_exec('find /mnt/Data/anime_hash/ -type f -mmin -180 -name "*.xml" -exec basename "{}" \;'));
 
 ?><!DOCTYPE html>
 <html>
