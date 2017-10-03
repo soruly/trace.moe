@@ -110,6 +110,18 @@ If you wish to search artwork / wallpapers, try to use <a href="https://saucenao
 </div>
 <p>Official API Docs available at <a href="https://soruly.github.io/whatanime.ga/#/">GitHub</a></p>
 <div class="page-header">
+<h3>Mobile Apps</h3>
+</div>
+<p>
+WhatAnime by Andrée Torres<br>
+<a href="https://play.google.com/store/apps/details?id=com.maddog05.whatanime">https://play.google.com/store/apps/details?id=com.maddog05.whatanime</a><br>
+Source: <a href="https://github.com/maddog05/whatanime-android">https://github.com/maddog05/whatanime-android</a><br>
+<br>
+WhatAnime - 以图搜番 by Mystery0 (Simplified Chinese)<br>
+<a href="https://play.google.com/store/apps/details?id=pw.janyo.whatanime">https://play.google.com/store/apps/details?id=pw.janyo.whatanime</a><br>
+Source: <a href="https://github.com/JanYoStudio/WhatAnime">https://github.com/JanYoStudio/WhatAnime</a><br>
+</p>
+<div class="page-header">
 <h3>Presentation slides</h3>
 </div>
 <p><a href="https://go-talks.appspot.com/github.com/soruly/slides/whatanime.ga.slide">Go-talk presentation on 27 May 2016</a></p>

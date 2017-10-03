@@ -55,6 +55,15 @@ https://github.com/soruly/whatanime.ga-telegram-bot
 ## Official API (Beta)
 https://soruly.github.io/whatanime.ga/
 
+## Mobile Apps
+WhatAnime by Andrée Torres
+https://play.google.com/store/apps/details?id=com.maddog05.whatanime
+Source: https://github.com/maddog05/whatanime-android
+
+WhatAnime - 以图搜番 by Mystery0 (Simplified Chinese)
+https://play.google.com/store/apps/details?id=pw.janyo.whatanime
+Source: https://github.com/JanYoStudio/WhatAnime
+
 ## Integrating search with whatanime.ga
 To add whatanime.ga as a search option for your site, pass the image URL via query string like this
 ```
