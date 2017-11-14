@@ -102,7 +102,18 @@ if(isset($_POST['image'])){
     $filename = microtime(true).'.jpg';
     $data = str_replace('data:image/jpeg;base64,', '', $_POST['image']);
 	$data = str_replace(' ', '+', $data);
-    file_put_contents($savePath.$filename, base64_decode($data));
+    
+    // file_put_contents($savePath.$filename, base64_decode($data));
+    $crop = true;
+    if($crop){
+      file_put_contents("../thumbnail/".$filename, base64_decode($data));
+      exec("cd .. && python crop.py thumbnail/".$filename." ".$savePath.$filename);
+      // exec("cd .. && python crop.py thumbnail/".$filename." thumbnail/".$filename.".jpg");
+      unlink("../thumbnail/".$filename);
+    }
+    else{
+      file_put_contents($savePath.$filename, base64_decode($data));
+    }
     
     //extract image feature
     $curl = curl_init();

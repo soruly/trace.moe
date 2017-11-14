@@ -26,6 +26,14 @@
 <div class="container">
 <div class="page-header"><h1>Changelog</h1></div>
 
+<h3>Added auto black border crop</h3>
+<h6>13 Nov 2017</h6>
+<p>
+This will automatically detect and crop black borders on search image, significantly increase the accuracy on bad screenshots<br>
+This is applied to both web, telegram bot and all API clients<br>
+This is achieved by openCV using a simple python script
+</p>
+
 <h3>Telegram Channel</h3>
 <h6>26 Aug 2017</h6>
 <p>You can subscribe the <a href="https://telegram.me/whatanimeupdates">Telegram Channel</a> for database and news updates.</p>
