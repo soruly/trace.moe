@@ -35,9 +35,6 @@ function humanTiming($time){
 $numDocs = $result->index->numDocs;
 $numDocsMillion = floor($numDocs / 1000000);
 
-$vmTouchFile = file_get_contents('./vmtouch.log');
-$vmTouch = explode(" ",explode("\n", $vmTouchFile)[2]);
-
 $to_percent = function($load_average){
   return round(floatval($load_average) / 8 * 100, 1) ."%";
 };
@@ -132,13 +129,12 @@ Source: <a href="https://github.com/JanYoStudio/WhatAnime">https://github.com/Ja
 <p>System status page: <a href="https://status.whatanime.ga">https://status.whatanime.ga</a> (Powered by UptimeRobot)</p>
 <p><?php if($loadAverage) echo "System load average in 1, 5, 15 minutes: ".$loadAverage ?></p>
 <p>Current CPU load: <span id="cpu_load"></span></p>
-<p><?php if($vmTouch) echo $vmTouch[6]."B (".$vmTouch[8].") index is cached in RAM, the rest are in SSD."; ?></p>
 <p><?php echo 'Last Database Index update: '.humanTiming($lastModified).' ago with '.$numDocsMillion.' Million analyzed frames.<br>'; ?></p>
 <p>This database automatically index most airing anime in a few hours after broadcast.<br>You may subscribe to the updates on Telegram <a href="https://t.me/whatanimeupdates">@whatanimeupdates</a></p>
 <p><?php if($recentFile) echo "Recently indexed files: (last 3 hours) <pre>".$recentFile."</pre>"; ?></p>
 <p></p>
-<a href="https://nyaa.si/download/942384.torrent">Full Database Dump 2017-04 (25.3GB)</a><br>
-<a href="magnet:?xt=urn:btih:MK74447RUAB7L577MIYJAKT5GU2GRME4&dn=whatanime.ga+database+dump+2017-04&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.doko.moe%3A6969&tr=udp%3A%2F%2Ftracker.zer0day.to%3A1337%2Fannounce">magnet:?xt=urn:btih:MK74447RUAB7L577MIYJAKT5GU2GRME4</a>
+<a href="https://nyaa.si/download/977285.torrent">Full Database Dump 2017-10 (27.9GB)</a><br>
+<a href="magnet:?xt=urn:btih:4WBF3SDZW3TASQQ4D6GOHWPQPKSGZ4XD&dn=whatanime.ga+database+dump+2017-10&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce">magnet:?xt=urn:btih:4WBF3SDZW3TASQQ4D6GOHWPQPKSGZ4XD</a>
 </p>
 <div class="page-header">
 <h3>Contact</h3>
