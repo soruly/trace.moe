@@ -2,7 +2,7 @@
 <html itemscope itemtype="http://schema.org/Webpage">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-<meta name="description" content="Search Anime by ScreenShot. Search over 500 million images to lookup what anime, which episode, which moment the screenshot is taken from.">
+<meta name="description" content="Search Anime by ScreenShot. Search over 600 million images to lookup what anime, which episode, which moment the screenshot is taken from.">
 <meta name="keywords" content="Anime Scene Search, Search by image, Anime Image Search, アニメのキャプ画像">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=995, initial-scale=1">
@@ -15,25 +15,25 @@ if(isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL))
 ?>
 <!-- Schema.org markup (Google) -->
 <meta itemprop="name" content="WAIT: What Anime Is This?">
-<meta itemprop="description" content="Anime Scene Search Engine. Search over 500 million images to lookup what anime, which episode, which moment the screenshot is taken from.">
+<meta itemprop="description" content="Anime Scene Search Engine. Search over 600 million images to lookup what anime, which episode, which moment the screenshot is taken from.">
 <meta itemprop="image" content="<?php echo $og_image ?>">
 
 <!-- Twitter Card markup-->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@soruly">
 <meta name="twitter:title" content="WAIT: What Anime Is This?">
-<meta name="twitter:description" content="Anime Scene Search Engine. Search over 500 million images to lookup what anime, which episode, which moment the screenshot is taken from.">
+<meta name="twitter:description" content="Anime Scene Search Engine. Search over 600 million images to lookup what anime, which episode, which moment the screenshot is taken from.">
 <meta name="twitter:creator" content="@soruly">
 <!-- Twitter summary card with large image must be at least 280x150px -->
 <meta name="twitter:image" content="<?php echo $og_image ?>">
-<meta name="twitter:image:alt" content="Anime Scene Search Engine. Search over 500 million images to lookup what anime, which episode, which moment the screenshot is taken from.">
+<meta name="twitter:image:alt" content="Anime Scene Search Engine. Search over 600 million images to lookup what anime, which episode, which moment the screenshot is taken from.">
 
 <!-- Open Graph markup (Facebook, Pinterest) -->
 <meta property="og:title" content="WAIT: What Anime Is This?" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://whatanime.ga" />
 <meta property="og:image" content="<?php echo $og_image ?>" />
-<meta property="og:description" content="Anime Scene Search Engine. Search over 500 million images to lookup what anime, which episode, which moment the screenshot is taken from." />
+<meta property="og:description" content="Anime Scene Search Engine. Search over 600 million images to lookup what anime, which episode, which moment the screenshot is taken from." />
 <meta property="og:site_name" content="whatanime.ga" />
 
 <link rel="icon" type="image/png" href="/favicon.png">
