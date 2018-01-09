@@ -98,6 +98,7 @@ Browse a file <input type="file" id="file" name="files[]" />
 <option value="2015-*">2015</option>
 <option value="2016-*">2016</option>
 <option value="2017-*">2017</option>
+<option value="2018-*">2018</option>
 <option value="Movie/*">Movie</option>
 <option value="Others/*">Others</option>
 <option value="OVA/*">OVA</option>
@@ -176,6 +177,7 @@ Browse a file <input type="file" id="file" name="files[]" />
 <option value="2017-04/*">2017-04</option>
 <option value="2017-07/*">2017-07</option>
 <option value="2017-10/*">2017-10</option>
+<option value="2018-01/*">2018-01</option>
 </select>
 
 <button id="safeBtn" type="button" class="btn btn-default btn-sm">
