@@ -279,6 +279,9 @@ var displayInfo = function (src) {
         if (entry.actor[0].name_last) {
           name += " " + entry.actor[0].name_last;
         }
+        if (entry.actor[0].names_first_japanese) {
+          name = entry.actor[0].names_first_japanese;
+        }
         if (entry.actor[0].names_first_japanese && entry.actor[0].names_last_japanese) {
           name = entry.actor[0].names_first_japanese + entry.actor[0].names_last_japanese;
         }
