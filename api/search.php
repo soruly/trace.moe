@@ -346,6 +346,9 @@ if(isset($_POST['image'])){
     echo json_encode($final_result);
     //unlink($savePath.$filename);
 }
+else{
+  echo "\"No data received, please send a POST request with form-data\"";
+}
 
 function reRank($a, $b){
     return ($a->d < $b->d) ? -1 : 1;
