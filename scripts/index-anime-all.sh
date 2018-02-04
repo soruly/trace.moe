@@ -1,6 +1,8 @@
+#!/bin/bash
+
 tmp_path=/tmp/animehash/
-anime_path=/mnt/Data/Anime\ New/
-hash_path=/mnt/Data/Anime\ Hash/
+anime_path=/mnt/data/anime_new/
+hash_path=/mnt/data/anime_hash/
 
 cd /home/soruly
 input_path="$1"

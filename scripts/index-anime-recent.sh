@@ -1,26 +1,28 @@
-find "/mnt/Data/Anime New" \
+#!/bin/bash
+
+find -L "/mnt/data/anime_new" \
  -type f \
  -name "*.mp4" \
- -mmin -180 \
+ -mmin -1800 \
  -not \( \
- -path "/mnt/Data/Anime New/HKTVBJ2/*" \
+ -path "/mnt/data/anime_new/HKTVBJ2/*" \
  -prune \
  \) \
  -not \( \
- -path "/mnt/Data/Anime New/Others/*" \
+ -path "/mnt/data/anime_new/Others/*" \
  -prune \
  \) \
  -exec /home/soruly/index-anime.sh "{}" \;
 
-find "/mnt/Data/Anime New/Others/Naruto Shippuuden" \
+find -L "/mnt/data/anime_new/Others/Naruto Shippuuden" \
  -type f \
  -name "*.mp4" \
- -mmin -180 \
+ -mmin -1800 \
  -exec /home/soruly/index-anime.sh "{}" \;
 
-find "/mnt/Data/Anime New/Others/One Piece" \
+find -L "/mnt/data/anime_new/Others/One Piece" \
  -type f \
  -name "*.mp4" \
- -mmin -180 \
+ -mmin -1800 \
  -exec /home/soruly/index-anime.sh "{}" \;
 

@@ -1,6 +1,8 @@
+#!/bin/bash
+
 tmp_path=/tmp/animehashload/
-anime_path=/mnt/Data/Anime\ New/
-hash_path=/mnt/Data/Anime\ Hash/
+anime_path=/mnt/data/anime_new/
+hash_path=/mnt/data/anime_hash/
 
 cd /home/soruly
 #curl -s http://localhost:8983/solr/lireq/update?commit=true -d '<delete><query>*:*</query></delete>' > /dev/null

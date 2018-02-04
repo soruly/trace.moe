@@ -1,6 +1,8 @@
+#!/bin/bash
+
 tmp_path=/tmp/animehash/
-anime_path=/mnt/Data/Anime\ New/
-hash_path=/mnt/Data/Anime\ Hash/
+anime_path=/mnt/data/anime_new/
+hash_path=/mnt/data/anime_hash/
 
 cd /home/soruly
 #curl -s http://localhost:8983/solr/lireq/update?commit=true -d '<delete><query>*:*</query></delete>' > /dev/null
@@ -13,6 +15,7 @@ if [[ "$1" == "$anime_path"*.mp4 ]] ; then
 	relative_path="${1//$anime_path/}"
 	input_season=$(echo ${relative_path} | cut -d'/' -f1)
 	input_series=$(echo ${relative_path} | cut -d'/' -f2)
+  file_name=$(basename "$1")
 else
 	echo Invalid input file
 	exit
@@ -59,6 +62,7 @@ if [ ! -f "$xmlfile" ] ; then
 	rm -rf "${tmp_path}"
 
 	echo Completed
+
 fi
 
 rm index-anime.lock

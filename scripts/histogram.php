@@ -1,7 +1,7 @@
 <?php
 if(isset($_SERVER['REMOTE_ADDR'])) exit();
 //$histogram_file = '/var/solr/data/anime_cl/histogram.csv';
-$histogram_file = 'histogram.csv';
+$histogram_file = '/var/www/whatanime/scripts/histogram.csv';
 $csv_data = '';
 for($i=0;$i<4096;$i++){
 	$hash = str_pad(dechex($i),3,"0",STR_PAD_LEFT);
