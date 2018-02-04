@@ -8,7 +8,7 @@ $duration = 3;
 $season = rawurldecode($_GET['season']);
 $anime = rawurldecode($_GET['anime']);
 $file = rawurldecode($_GET['file']);
-$filepath = str_replace('`', '\`', '/mnt/Data/Anime New/'.$season.'/'.$anime.'/'.$file);
+$filepath = str_replace('`', '\`', '/mnt/data/anime_new/'.$season.'/'.$anime.'/'.$file);
 $thumbpath = $thumbdir.$uuid.'.mp4';
 
 if(file_exists($filepath)){
