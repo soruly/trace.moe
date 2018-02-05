@@ -173,11 +173,11 @@ if(isset($_POST['image'])){
                     $total_search_time = array_sum($final_result->RawDocsSearchTime) + array_sum($final_result->ReRankSearchTime);
                     foreach($final_result->docs as $doc){
                         if($max_trial <= 6){
-                            if($doc->d <= 10 && $trial == 4)
+                            if($doc->d <= 9 && $trial == 4)
                                 break 2; //break outer loop
-                            if($doc->d <= 11 && $trial == 5)
+                            if($doc->d <= 9 && $trial == 5)
                                 break 2; //break outer loop
-                            if($doc->d <= 12 && $trial == 6)
+                            if($doc->d <= 9 && $trial == 6)
                                 break 2; //break outer loop
                         }
                     }
