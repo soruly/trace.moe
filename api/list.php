@@ -31,7 +31,7 @@ if(isset($_GET['token'])) {
 
   header('Content-Type: application/json');
 
-  $folderList = explode("\n", trim(shell_exec('find /mnt/data/anime_new/ -maxdepth 2 -mindepth 2 -type d | sort | cut -sd / -f 5- | grep -v \'HKT\' | grep -v \'Others/\'')));
+  $folderList = explode("\n", trim(shell_exec('find /mnt/data/anime_new/ -maxdepth 2 -mindepth 2 -type l | sort | cut -sd / -f 5- | grep -v \'HKT\' | grep -v \'Others/\'')));
   $folderList[] = "Others/Naruto Shippuuden";
   $folderList[] = "Others/One Piece";
   echo json_encode($folderList);
