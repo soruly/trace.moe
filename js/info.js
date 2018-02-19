@@ -103,7 +103,7 @@ var displayInfo = function (src) {
 
   $("<td>", {"text": "Drop rate"}).appendTo(row);
   if (src.popularity > 0) {
-    $("<td>", {"text": (src.stats.statusDistribution.filter(e=>e.status==="DROPPED")[0].amount / src.popularity * 100).toFixed(1) + "%"}).appendTo(row);
+    $("<td>", {"text": (src.stats.statusDistribution.filter(function(e){return e.status==="DROPPED"})[0].amount / src.popularity * 100).toFixed(1) + "%"}).appendTo(row);
   } else {
     $("<td>", {"text": "-"}).appendTo(row);
   }
