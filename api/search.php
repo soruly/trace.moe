@@ -98,6 +98,7 @@ if(isset($_POST['image'])){
     $expire = $redis->ttl($uid);
     $redis->set($uid, $quota);
     $redis->expire($uid, $expire);
+
     $savePath = '/usr/share/nginx/html/pic/';
     $filename = microtime(true).'.jpg';
     $data = str_replace('data:image/jpeg;base64,', '', $_POST['image']);
@@ -225,7 +226,7 @@ if(isset($_POST['image'])){
         }
     }
     
-    foreach($docs as $key => $doc){
+    foreach($docs as $key => $doc) {
         #if($doc->d > 20){
         #    unset($docs[$key]);
         #    continue;
@@ -284,44 +285,70 @@ if(isset($_POST['image'])){
         unset($doc->id);
         unset($doc->d);
 
+        // use folder name as default title
         $doc->title = $anime;
-        //fill in japanese title
-        $regex = "/[\\+\\-\\=\\&\\|\\ \\!\\(\\)\\{\\}\\[\\]\\^\\\"\\~\\*\\<\\>\\?\\:\\\\\\/]/";
-        $season = preg_replace($regex, addslashes('\\$0'), $season);
-        $anime = preg_replace($regex, addslashes('\\$0'), $anime);
-        $request = array(
-        "size" => 1,
-        "query" => array(
-            "bool" => array(
-                "must" => array(
-                    array("query_string" => array("default_field" => "directory", "query" => $season)),
-                    array("query_string" => array("default_field" => "sub_directory", "query" => $anime))
-                )
-            )
-        )
-        );
-        $payload = json_encode($request);
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, "https://api.whatanime.ga/s/");
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $payload);
-        curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-        try{
-            $res = curl_exec($curl);
-            $result = json_decode($res);
-            $doc->anilist_id = $result->hits->hits[0]->_source->id ? $result->hits->hits[0]->_source->id : null;
-            $doc->title = $result->hits->hits[0]->_source->title_japanese ? $result->hits->hits[0]->_source->title_japanese : $doc->title;
-            $doc->title_chinese = $result->hits->hits[0]->_source->title_chinese ? $result->hits->hits[0]->_source->title_chinese : $doc->title;
-            $doc->synonyms_chinese = $result->hits->hits[0]->_source->synonyms_chinese ? $result->hits->hits[0]->_source->synonyms_chinese : [];
-            $doc->title_english = $result->hits->hits[0]->_source->title_english ? $result->hits->hits[0]->_source->title_english : $doc->title;
-            $doc->synonyms = $result->hits->hits[0]->_source->synonyms ? $result->hits->hits[0]->_source->synonyms : [];
-            $doc->title_romaji = $result->hits->hits[0]->_source->title_romaji ? $result->hits->hits[0]->_source->title_romaji : $doc->title;
-        }
-        catch(Exception $e){
+        $doc->title_native = null;
+        $doc->title_chinese = null;
+        $doc->title_english = null;
+        $doc->title_romaji = null;
+        $doc->anilist_id = null;
+        $doc->synonyms = [];
+        $doc->synonyms_chinese = [];
 
-        }
-        finally{
-            curl_close($curl);
+        // use folder path to get anilist ID
+        $sql2 = mysqli_connect($sql_anime_hostname, $sql_anime_username, $sql_anime_password, $sql_anime_database);
+        if (!mysqli_connect_errno()) {
+            mysqli_query($sql2, "SET NAMES 'utf8'");
+            if ($stmt = mysqli_prepare($sql2, "SELECT `anilist_id` FROM `anime` WHERE `season`=? AND `title`=? LIMIT 0,1")){
+                mysqli_stmt_bind_param($stmt, "ss", $season, $anime);
+                mysqli_stmt_execute($stmt);
+                mysqli_stmt_store_result($stmt);
+                mysqli_stmt_bind_result($stmt, $anilist_id);
+                mysqli_stmt_fetch($stmt);
+
+                if(mysqli_stmt_num_rows($stmt) > 0) {
+
+                    $doc->anilist_id = intval($anilist_id);
+
+                    // use anilist ID to get titles of different languages
+                    $request = array(
+                    "size" => 1,
+                    "_source" => array("title"),
+                    "query" => array(
+                        "ids" => array(
+                            "values" => array(intval($anilist_id))
+                        )
+                    )
+                    );
+                    $payload = json_encode($request);
+                    $curl = curl_init();
+                    curl_setopt($curl, CURLOPT_URL, "https://api.whatanime.ga/s2/");
+                    curl_setopt($curl, CURLOPT_POSTFIELDS, $payload);
+                    curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+                    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+                    try{
+                        $res = curl_exec($curl);
+                        $result = json_decode($res);
+                        if($result->hits && $result->hits->total > 0){
+                            $doc->title = $result->hits->hits[0]->_source->title->native ? $result->hits->hits[0]->_source->title->native : null;
+                            $doc->title_native = $result->hits->hits[0]->_source->title->native ? $result->hits->hits[0]->_source->title->native : null;
+                            $doc->title_chinese = $result->hits->hits[0]->_source->title->chinese ? $result->hits->hits[0]->_source->title->chinese : null;
+                            $doc->title_english = $result->hits->hits[0]->_source->title->english ? $result->hits->hits[0]->_source->title->english : null;
+                            $doc->title_romaji = $result->hits->hits[0]->_source->title->romaji ? $result->hits->hits[0]->_source->title->romaji : null;
+                            $doc->synonyms = $result->hits->hits[0]->_source->synonyms ? $result->hits->hits[0]->_source->synonyms : [];
+                            $doc->synonyms_chinese = $result->hits->hits[0]->_source->synonyms_chinese ? $result->hits->hits[0]->_source->synonyms_chinese : [];
+                        }
+                    }
+                    catch(Exception $e){
+
+                    }
+                    finally{
+                        curl_close($curl);
+                    }
+                }
+                mysqli_stmt_close($stmt);
+            }
+            mysqli_close($sql2);
         }
     }
     unset($final_result->docs);
