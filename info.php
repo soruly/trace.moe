@@ -11,26 +11,19 @@ else{
     header("HTTP/1.0 404 Not Found");
 }
 
-if(isset($_GET['season']) && isset($_GET['anime'])){
-$regex = "/[\\+\\-\\=\\&\\|\\ \\!\\(\\)\\{\\}\\[\\]\\^\\\"\\~\\*\\<\\>\\?\\:\\\\\\/]/";
-$season = preg_replace($regex, addslashes('\\$0'), rawurldecode($_GET['season']));
-$anime = preg_replace($regex, addslashes('\\$0'), rawurldecode($_GET['anime']));
-$anime = str_replace('\+','+',$anime);
+if(isset($_GET['anilist_id'])){
 
 $request = array(
 "size" => 1,
 "query" => array(
-    "bool" => array(
-        "must" => array(
-            array("query_string" => array("default_field" => "directory", "query" => $season)),
-            array("query_string" => array("default_field" => "sub_directory", "query" => $anime))
-        )
+    "ids" => array(
+        "values" => array(intval($_GET['anilist_id']))
     )
 )
 );
 $payload = json_encode($request);
 $curl = curl_init();
-curl_setopt($curl, CURLOPT_URL, "https://api.whatanime.ga/s/");
+curl_setopt($curl, CURLOPT_URL, "https://api.whatanime.ga/s2/");
 curl_setopt($curl, CURLOPT_POSTFIELDS, $payload);
 curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);

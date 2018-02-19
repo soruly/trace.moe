@@ -86,7 +86,7 @@ var formatTime = function (timeInSeconds) {
 };
 
 var zeroPad = function (n, width) {
-  if(n.length === undefined) return n.toString();
+  if (n.length === undefined) return n.toString();
   return n.length >= width ? n.toString() : new Array(width - n.toString().length + 1).join("0") + n;
 };
 
@@ -118,7 +118,7 @@ var search = function (trial, prev_result) {
     document.querySelector("#search2Btn span").classList.add("spinning");
   }
   resetInfo();
-  animeInfo = "";
+  animeInfo = null;
   document.querySelector("#player").pause();
   preview.removeEventListener("click", playPause);
   if (trial === 4) {
@@ -169,6 +169,8 @@ var search = function (trial, prev_result) {
             result.setAttribute("data-season", entry.season);
             result.setAttribute("data-anime", entry.anime);
             result.setAttribute("data-title", entry.title);
+            result.setAttribute("data-title-native", entry.title_native);
+            result.setAttribute("data-title-chinese", entry.title_chinese);
             result.setAttribute("data-title-english", entry.title_english);
             result.setAttribute("data-title-romaji", entry.title_romaji);
             result.setAttribute("data-file", entry.file);
@@ -181,6 +183,7 @@ var search = function (trial, prev_result) {
             result.setAttribute("data-from", entry.from);
             result.setAttribute("data-to", entry.to);
             result.setAttribute("data-t", entry.t);
+            result.setAttribute("data-anilist-id", entry.anilist_id);
 
             var thumbnailLink = "/thumbnail.php?season=" + encodeURIComponent(entry.season) + "&anime=" + encodeURIComponent(entry.anime) + "&file=" + encodeURIComponent(entry.file) + "&t=" + entry.t + "&token=" + entry.tokenthumb;
             var opacity = (Math.pow((100 - parseFloat(entry.diff)) / 100, 4) + 0.2).toFixed(3);
@@ -189,10 +192,10 @@ var search = function (trial, prev_result) {
             var title_display = entry.title_romaji;
 
             if (navigator.language.indexOf("ja") === 0) {
-              title_display = entry.title || entry.anime;
+              title_display = entry.title_native || entry.anime;
             }
             if (navigator.language.indexOf("zh") === 0) {
-              title_display = entry.anime || entry.anime;
+              title_display = entry.title_chinese || entry.anime;
             }
             if (formatTime(entry.from) === formatTime(entry.to)) {
               result.innerHTML = "<a href=\"#\"><span class=\"title\">" + title_display + "</span><br><span class=\"ep\">EP#" + zeroPad(entry.episode, 2) + "</span> <span class=\"time\">" + formatTime(entry.from) + "</span> <span class=\"similarity\">~" + similarity + "%</span><br><span class=\"file\">" + entry.file + "</span><img src=\"" + thumbnailLink + "\"></a>";
@@ -204,7 +207,9 @@ var search = function (trial, prev_result) {
         });
         var topResult = "/" + data.docs[0].season + "/" + data.docs[0].anime + "/" + data.docs[0].file + "?start=" + data.docs[0].start + "&end=" + data.docs[0].end + "&t=" + data.docs[0].t;
 
-        if(typeof ga === "function"){ga("send", "event", "search", "topResult", topResult, data.docs[0].diff);}
+        if (typeof ga === "function") {
+          ga("send", "event", "search", "topResult", topResult, data.docs[0].diff);
+        }
         $(".result").click(playfile);
 
         if (parseFloat(data.docs[0].diff) > 10) {
@@ -231,27 +236,27 @@ var search = function (trial, prev_result) {
         document.querySelector("#results").innerHTML = "<div id=\"status\">No result</div>";
       }
     }, "json").fail(function (e) {
-      if (e.status === 429) {
-        document.querySelector("#results").innerHTML = "<div id=\"status\">You have searched too much, try again in 10 minutes.</div>";
-      } else {
-        document.querySelector("#results").innerHTML = "<div id=\"status\">Connection to Search Server Failed</div>";
-      }
-      document.querySelector("#searchBtn").disabled = false;
-      if (document.querySelector("#search2Btn span")) {
-        document.querySelector("#search2Btn").disabled = false;
-      }
-      document.querySelector("#flipBtn").disabled = false;
-      document.querySelector("#imageURL").disabled = false;
-    }).always(function () {
-      document.querySelector("#searchBtn span").classList.remove("glyphicon-refresh");
-      document.querySelector("#searchBtn span").classList.remove("spinning");
-      document.querySelector("#searchBtn span").classList.add("glyphicon-search");
-      if (document.querySelector("#search2Btn span")) {
-        document.querySelector("#search2Btn span").classList.remove("glyphicon-refresh");
-        document.querySelector("#search2Btn span").classList.remove("spinning");
-        document.querySelector("#search2Btn span").classList.add("glyphicon-search");
-      }
-    });
+    if (e.status === 429) {
+      document.querySelector("#results").innerHTML = "<div id=\"status\">You have searched too much, try again in 10 minutes.</div>";
+    } else {
+      document.querySelector("#results").innerHTML = "<div id=\"status\">Connection to Search Server Failed</div>";
+    }
+    document.querySelector("#searchBtn").disabled = false;
+    if (document.querySelector("#search2Btn span")) {
+      document.querySelector("#search2Btn").disabled = false;
+    }
+    document.querySelector("#flipBtn").disabled = false;
+    document.querySelector("#imageURL").disabled = false;
+  }).always(function () {
+    document.querySelector("#searchBtn span").classList.remove("glyphicon-refresh");
+    document.querySelector("#searchBtn span").classList.remove("spinning");
+    document.querySelector("#searchBtn span").classList.add("glyphicon-search");
+    if (document.querySelector("#search2Btn span")) {
+      document.querySelector("#search2Btn span").classList.remove("glyphicon-refresh");
+      document.querySelector("#search2Btn span").classList.remove("spinning");
+      document.querySelector("#search2Btn span").classList.add("glyphicon-search");
+    }
+  });
 };
 
 document.querySelector("#searchBtn").addEventListener("click", function () {
@@ -301,7 +306,7 @@ preview.addEventListener("contextmenu", function (e) {
 
 var preview_heartbeat;
 var time;
-var animeInfo;
+var animeInfo = null;
 var playfile = function () {
   [].forEach.call(document.querySelectorAll(".result"), function (result) {
     result.classList.remove("active");
@@ -320,6 +325,7 @@ var playfile = function () {
   var token = this.getAttribute("data-token");
   var tfrom = this.getAttribute("data-from");
   var t = this.getAttribute("data-t");
+  var anilistID = this.getAttribute("data-anilist-id");
   var src = "/" + season + "/" + encodeURIComponent(anime) + "/" + encodeURIComponent(file) + "?start=" + start + "&end=" + end + "&token=" + token;
 
   document.querySelector("#loading").classList.remove("hidden");
@@ -335,12 +341,14 @@ var playfile = function () {
   if (time < 0) {
     time = 0;
   }
-  if(typeof ga === "function"){ga("send", "event", "playfile", "src", "/" + season + "/" + anime + "/" + file, t);}
+  if (typeof ga === "function") {
+    ga("send", "event", "playfile", "src", "/" + season + "/" + anime + "/" + file, t);
+  }
 
-  if (animeInfo !== season + anime) {
-    animeInfo = season + anime;
+  if (animeInfo !== anilistID) {
+    animeInfo = anilistID;
     resetInfo();
-    showAnilistInfo(season, anime);
+    showAnilistInfo(anilistID);
   }
 };
 

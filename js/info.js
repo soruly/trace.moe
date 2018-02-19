@@ -1,7 +1,7 @@
 "use strict";
 
-var showAnilistInfo = function (season, anime) {
-  $.get("/info?season=" + encodeURIComponent(season) + "&anime=" + encodeURIComponent(anime), function (data, textStatus) {
+var showAnilistInfo = function (anilistID) {
+  $.get("/info?anilist_id=" + anilistID, function (data, textStatus) {
     if (data.length > 0) {
       displayInfo(data[0]);
       document.querySelector("#info").style.visibility = "visible";
@@ -12,68 +12,71 @@ var showAnilistInfo = function (season, anime) {
 
 var displayInfo = function (src) {
   $("<h1>", {
-    "text": src.title_japanese,
+    "text": src.title.native,
     "style": "font-size:1.5em"
   }).appendTo("#info");
-  $("<h2>", {"text": src.title_romaji}).appendTo("#info");
-  $("<h2>", {"text": src.title_english}).appendTo("#info");
-  $("<h2>", {"text": src.title_chinese}).appendTo("#info");
+  $("<h2>", {"text": src.title.romaji}).appendTo("#info");
+  $("<h2>", {"text": src.title.english}).appendTo("#info");
+  $("<h2>", {"text": src.title.chinese}).appendTo("#info");
   $("<div>", {"style": "clear:both; border-bottom:1px solid #666; margin-bottom:13px"}).appendTo("#info");
 
-  if (src.image_url_lge) {
+  if (src.coverImage.large) {
     var div = $("<div>", {"id": "poster"}).appendTo("#info");
 
     $("<a>", {
       "href": "//anilist.co/anime/" + src.id,
       "target": "_blank"
     }).appendTo("#poster");
-    $("<img>", {"src": src.image_url_lge.replace("http:", "")}).appendTo("#poster a");
+    $("<img>", {"src": src.coverImage.large.replace("http:", "")}).appendTo("#poster a");
     div.appendTo("#info");
   }
 
   var naturalText = "";
 
   if (src.duration) {
-    if (src.total_episodes === 1) {
+    if (src.episodes === 1) {
       naturalText += src.duration + " minutes";
     }
   }
 
-  if (src.total_episodes) {
-    if (src.type !== "Movie") {
-      naturalText += src.total_episodes + " episode ";
+  if (src.episodes) {
+    if (src.format !== "MOVIE") {
+      naturalText += src.episodes + " episode ";
     }
   }
-  if (src.type) {
-    naturalText += src.type;
+  if (src.format) {
+    naturalText += src.format;
   }
   naturalText += " Anime";
 
   if (src.duration) {
-    if (src.total_episodes > 1) {
+    if (src.episodes > 1) {
       naturalText += " (" + src.duration + " minutes each)";
     }
   }
 
-  if (src.start_date && src.end_date) {
-    if (src.type === "Movie") {
-      if (src.start_date === src.end_date) {
-        naturalText += ". Released on " + src.start_date.replace(/(\d+)-(\d+)-(\d+)T.*/, "$1-$2-$3");
+  var strStartDate = src.startDate && src.startDate.year && src.startDate.month && src.startDate.day ? src.startDate.year + "-" + src.startDate.month + "-" + src.startDate.day : null;
+  var strEndDate = src.endDate && src.endDate.year && src.endDate.month && src.endDate.day ? src.endDate.year + "-" + src.endDate.month + "-" + src.endDate.day : null;
+
+  if (strStartDate && strEndDate) {
+    if (src.format === "MOVIE") {
+      if (strStartDate === strEndDate) {
+        naturalText += ". Released on " + strStartDate;
       } else {
-        naturalText += ". Released during " + src.start_date.replace(/(\d+)-(\d+)-(\d+)T.*/, "$1-$2-$3") + " to " + src.end_date.replace(/(\d+)-(\d+)-(\d+)T.*/, "$1-$2-$3");
+        naturalText += ". Released during " + strStartDate + " to " + strEndDate;
       }
-    } else if (src.start_date === src.end_date) {
-      naturalText += ". Released on " + src.start_date.replace(/(\d+)-(\d+)-(\d+)T.*/, "$1-$2-$3");
+    } else if (strStartDate === strEndDate) {
+      naturalText += ". Released on " + strStartDate;
     } else {
-      naturalText += ". Airing from " + src.start_date.replace(/(\d+)-(\d+)-(\d+)T.*/, "$1-$2-$3") + " to " + src.end_date.replace(/(\d+)-(\d+)-(\d+)T.*/, "$1-$2-$3");
+      naturalText += ". Airing from " + strStartDate + " to " + strEndDate;
     }
-  } else if (src.start_date.replace(/(\d+)-(\d+)-(\d+)T.*/, "$1") !== "1970") {
-    if (src.type === "TV" || src.type === "TV Short") {
-      naturalText += ". Airing since " + src.start_date.replace(/(\d+)-(\d+)-(\d+)T.*/, "$1-$2-$3");
+  } else if (strStartDate) {
+    if (src.format === "TV" || src.format === "TV_SHORT") {
+      naturalText += ". Airing since " + strStartDate;
     }
   }
 
-  naturalText += "。";
+  naturalText += ". ";
   $("<div>", {
     "id": "naturalText",
     "text": naturalText
@@ -83,8 +86,8 @@ var displayInfo = function (src) {
   var row = $("<tr>");
 
   $("<td>", {"text": "Score"}).appendTo(row);
-  if (src.average_score > 0) {
-    $("<td>", {"text": parseFloat(src.average_score).toFixed(1)}).appendTo(row);
+  if (src.averageScore > 0) {
+    $("<td>", {"text": parseFloat(src.averageScore).toFixed(1)}).appendTo(row);
   } else {
     $("<td>", {"text": "-"}).appendTo(row);
   }
@@ -100,7 +103,7 @@ var displayInfo = function (src) {
 
   $("<td>", {"text": "Drop rate"}).appendTo(row);
   if (src.popularity > 0) {
-    $("<td>", {"text": (src.list_stats.dropped / src.popularity * 100).toFixed(1) + "%"}).appendTo(row);
+    $("<td>", {"text": (src.stats.statusDistribution.filter(e=>e.status==="DROPPED")[0].amount / src.popularity * 100).toFixed(1) + "%"}).appendTo(row);
   } else {
     $("<td>", {"text": "-"}).appendTo(row);
   }
@@ -117,21 +120,21 @@ var displayInfo = function (src) {
     row.appendTo("#info #table");
   }
 
-  if (src.studio.length > 0) {
+  if (src.studios && src.studios && src.studios.edges.length > 0) {
     var row = $("<tr>");
 
     $("<td>", {"text": "Studio"}).appendTo(row);
     var td = $("<td>");
 
-    $.each(src.studio, function (key, entry) {
-      if (entry.studio_wiki) {
+    $.each(src.studios.edges, function(key, entry) {
+      if (entry.node.siteUrl) {
         $("<a>", {
-          "href": entry.studio_wiki,
+          "href": entry.node.siteUrl,
           "target": "_blank",
-          "text": entry.studio_name
+          "text": entry.node.name
         }).appendTo(td);
       } else {
-        $("<span>", {"text": entry.studio_name}).appendTo(td);
+        $("<span>", {"text": entry.node.name}).appendTo(td);
       }
       $("<br>").appendTo(td);
     });
@@ -154,21 +157,13 @@ var displayInfo = function (src) {
     row.appendTo("#info #table");
   }
 
-  if (src.classification) {
-    var row = $("<tr>");
-
-    $("<td>", {"text": "Rating"}).appendTo(row);
-    $("<td>", {"text": src.classification}).appendTo(row);
-    row.appendTo("#info #table");
-  }
-
-  if (src.external_links.length > 0) {
+  if (src.externalLinks && src.externalLinks.length > 0) {
     var row = $("<tr>");
 
     $("<td>", {"text": "External Links"}).appendTo(row);
     var td = $("<td>");
 
-    $.each(src.external_links, function (key, entry) {
+    $.each(src.externalLinks, function (key, entry) {
       $("<a>", {
         "href": entry.url,
         "target": "_blank",
@@ -180,34 +175,27 @@ var displayInfo = function (src) {
     row.appendTo("#info #table");
   }
 
-  if (src.staff.length > 0) {
+  if (src.staff && src.staff.edges && src.staff.edges.length > 0) {
     $("<br>", {"style": "clear:both"}).appendTo("#info");
     $("<h3>", {"text": "Staff"}).appendTo("#info");
     $("<div>", {"style": "clear:both; border-bottom:1px solid #666; margin-bottom:3px"}).appendTo("#info");
 
     var staffTable = $("<table>", {"id": "staff"});
 
-    $.each(src.staff, function (key, entry) {
+    $.each(src.staff.edges, function(key, entry) {
       var row = $("<tr>");
-      var name = entry.name_first;
+      var name = entry.node.name.native;
 
-      if (entry.name_last) {
-        name += " " + entry.name_last;
+      if (!name && entry.node.name.first && entry.node.name.last){
+        name = entry.node.name.last + " " + entry.node.name.first;
       }
-      if (entry.names_first_japanese && entry.names_last_japanese) {
-        name = entry.names_first_japanese + entry.names_last_japanese;
-      }
-      if (entry.role) {
-        $("<td>", {"text": entry.role}).appendTo(row);
-      } else {
-        $("<td>", {"text": entry.role.replace("Theme Song Performance", "Theme Song Performance")}).appendTo(row);
-      }
+      $("<td>", {"text": entry.role}).appendTo(row);
 
       var nameTD = $("<td>");
 
       $("<a>", {
-        "class": "staff_" + entry.id,
-        "href": "//anilist.co/staff/" + entry.id,
+        "class": "staff_" + entry.node.id,
+        "href": "//anilist.co/staff/" + entry.node.id,
         "target": "_blank",
         "text": name
       }).appendTo(nameTD);
@@ -217,11 +205,11 @@ var displayInfo = function (src) {
     staffTable.appendTo("#info");
   }
 
-  if (src.youtube_id) {
+  if (src.trailer && src.trailer && src.trailer.site === "youtube") {
     $("<br>", {"style": "clear:both"}).appendTo("#info");
     $("<h3>", {"text": "Youtube PV"}).appendTo("#info");
     $("<div>", {"style": "clear:both; border-bottom:1px solid #666; margin-bottom:3px"}).appendTo("#info");
-    $("<div>", {"html": "<iframe id=\"youtube\" width=\"100%\" height=\"360\" src=\"https://www.youtube.com/embed/" + src.youtube_id + "\" frameborder=\"0\" allowfullscreen></iframe>"}).appendTo("#info");
+    $("<div>", {"html": "<iframe id=\"youtube\" width=\"100%\" height=\"360\" src=\"https://www.youtube.com/embed/" + src.trailer.id + "\" frameborder=\"0\" allowfullscreen></iframe>"}).appendTo("#info");
   }
   $("<br>", {"style": "clear:both"}).appendTo("#info");
   $("<h3>", {"text": "Synopses"}).appendTo("#info");
@@ -231,64 +219,53 @@ var displayInfo = function (src) {
     "style": "text-align:justify"
   }).appendTo("#info");
 
-  if (src.characters.length > 0) {
+  if (src.characters && src.characters.edges && src.characters.edges.length > 0) {
     $("<br>", {"style": "clear:both"}).appendTo("#info");
     $("<h3>", {"text": "Characters"}).appendTo("#info");
     $("<div>", {"style": "clear:both; border-bottom:1px solid #666; margin-bottom:3px"}).appendTo("#info");
     var characterDIV = $("<div>", {"style": "display:inline-block"});
 
-    $.each(src.characters, function (key, entry) {
+    $.each(src.characters.edges, function(key, entry) {
       var charDIV = $("<div>", {"class": "character"});
       var charImgDiv = $("<div>");
 
-      if (entry.image_url_lge === "//anilist.co") {
-        entry.image_url_lge = "//anilist.co/img/dir/anime/reg/noimg.jpg";
+      if (entry.node.image.large === "//anilist.co") {
+        entry.node.image.large = "//anilist.co/img/dir/anime/reg/noimg.jpg";
       }
-      if (entry.image_url_med === "//anilist.co") {
-        entry.image_url_med = "//anilist.co/img/dir/anime/med/noimg.jpg";
+      if (entry.node.image.medium === "//anilist.co") {
+        entry.node.image.medium = "//anilist.co/img/dir/anime/med/noimg.jpg";
       }
       var charIMG = $("<a>", {
-        "href": entry.image_url_lge.replace("http:", ""),
+        "href": entry.node.image.large.replace("http:", ""),
         "target": "_blank"
       }).appendTo(charImgDiv);
 
-      $("<div>", {"style": "background-image:url(" + entry.image_url_med.replace("http:", "") + ")"}).appendTo(charIMG);
+      $("<div>", {"style": "background-image:url(" + entry.node.image.medium.replace("http:", "") + ")"}).appendTo(charIMG);
       charImgDiv.appendTo(charDIV);
       var charNameDiv = $("<div>");
       var charName = $("<div>");
-      var char_name = entry.name_first;
-
-      if (entry.name_last) {
-        char_name += " " + entry.name_last;
-      }
-      if (entry.name_japanese) {
-        char_name = entry.name_japanese;
+      var char_name = entry.node.name.native;
+      if (!char_name && entry.node.name.first && entry.node.name.last){
+        char_name = entry.node.name.last + " " + entry.node.name.first;
       }
       charName = $("<div>");
 
       $("<a>", {
-        "class": "character_" + entry.id,
-        "href": "//anilist.co/character/" + entry.id,
+        "class": "character_" + entry.node.id,
+        "href": "//anilist.co/character/" + entry.node.id,
         "target": "_blank",
         "text": char_name
       }).appendTo(charName);
-      if (entry.actor.length > 0) {
+      if (entry.voiceActors && entry.voiceActors.length > 0) {
         $("<br>").appendTo(charName);
-        var name = entry.actor[0].name_first;
-
-        if (entry.actor[0].name_last) {
-          name += " " + entry.actor[0].name_last;
-        }
-        if (entry.actor[0].names_first_japanese) {
-          name = entry.actor[0].names_first_japanese;
-        }
-        if (entry.actor[0].names_first_japanese && entry.actor[0].names_last_japanese) {
-          name = entry.actor[0].names_first_japanese + entry.actor[0].names_last_japanese;
+        var name = entry.voiceActors[0].name.native;
+        if (!name && entry.voiceActors[0].name.first && entry.voiceActors[0].name.last){
+          name = entry.voiceActors[0].name.last + " " + entry.voiceActors[0].name.first;
         }
         charName.append(document.createTextNode("(CV: "));
         $("<a>", {
-          "class": "staff_" + entry.actor[0].id,
-          "href": "//anilist.co/staff/" + entry.actor[0].id,
+          "class": "staff_" + entry.voiceActors[0].id,
+          "href": "//anilist.co/staff/" + entry.voiceActors[0].id,
           "target": "_blank",
           "text": name
         }).appendTo(charName);
