@@ -216,10 +216,10 @@ Example Response
 | episode          | The extracted episode number from filename | Number, "OVA/OAD", "Special", ""
 | similarity       | Similarity compared to the search image | Number (float between 0-1)
 | anilist_id       | The matching [AniList](https://anilist.co/) ID | Number or null
-| title            | Same as title_native | String or null
-| title_native     | Native (Japanese) title | String or null
-| title_chinese    | Chinese title | String or null
-| title_english    | English title | String or null
+| title            | Same as title_native | String or null (Can be empty string)
+| title_native     | Native (Japanese) title | String or null (Can be empty string)
+| title_chinese    | Chinese title | String or null (Can be empty string)
+| title_english    | English title | String or null (Can be empty string)
 | title_romaji     | Title in romaji | String
 | synonyms         | Alternate english titles | Array of String or []
 | synonyms_chinese | Alternate chinese titles | Array of String or []
