@@ -292,6 +292,7 @@ if(isset($_POST['image'])){
         $doc->title_english = null;
         $doc->title_romaji = null;
         $doc->anilist_id = null;
+        $doc->mal_id = null;
         $doc->synonyms = [];
         $doc->synonyms_chinese = [];
 
@@ -313,7 +314,7 @@ if(isset($_POST['image'])){
                     // use anilist ID to get titles of different languages
                     $request = array(
                     "size" => 1,
-                    "_source" => array("title", "synonyms", "synonyms_chinese"),
+                    "_source" => array("idMal", "title", "synonyms", "synonyms_chinese"),
                     "query" => array(
                         "ids" => array(
                             "values" => array(intval($anilist_id))
@@ -330,6 +331,7 @@ if(isset($_POST['image'])){
                         $res = curl_exec($curl);
                         $result = json_decode($res);
                         if($result->hits && $result->hits->total > 0){
+                            $doc->mal_id = intval($result->hits->hits[0]->_source->idMal);
                             $doc->title_romaji = $result->hits->hits[0]->_source->title->romaji ?? $anime;
                             $doc->title_native = $result->hits->hits[0]->_source->title->native ?? $doc->title_romaji;
                             $doc->title_english = $result->hits->hits[0]->_source->title->english ?? $doc->title_romaji;

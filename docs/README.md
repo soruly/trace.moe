@@ -151,6 +151,7 @@ Example Response
       "title_english":null,
       "title_romaji":"Aldnoah Zero",
       "anilist_id":20632,
+      "mal_id":22729,
       "synonyms":[],
       "synonyms_chinese":[]
     },
@@ -170,6 +171,7 @@ Example Response
       "title_english":"Welcome to the N.H.K.",
       "title_romaji":"NHK ni Youkoso!",
       "anilist_id":1210,
+      "mal_id":1210,
       "synonyms":[],
       "synonyms_chinese":[]
     },
@@ -189,6 +191,7 @@ Example Response
       "title_english":"Land of the Lustrous",
       "title_romaji":"Houseki no Kuni",
       "anilist_id":98707,
+      "mal_id":35557,
       "synonyms":[],
       "synonyms_chinese":[]
     }
@@ -216,6 +219,7 @@ Example Response
 | episode          | The extracted episode number from filename | Number, "OVA/OAD", "Special", ""
 | similarity       | Similarity compared to the search image | Number (float between 0-1)
 | anilist_id       | The matching [AniList](https://anilist.co/) ID | Number or null
+| mal_id           | The matching [MyAnimeList](https://myanimelist.net/) ID | Number or null
 | title            | Same as title_native | String or null (Can be empty string)
 | title_native     | Native (Japanese) title | String or null (Can be empty string)
 | title_chinese    | Chinese title | String or null (Can be empty string)
