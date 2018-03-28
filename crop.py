@@ -8,7 +8,7 @@ imgray = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
 # Set threshold
 #th1 = cv2.adaptiveThreshold(imgray,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,cv2.THRESH_BINARY,1023,0)
 _,th2 = cv2.threshold(imgray,8,255,cv2.THRESH_BINARY)
-contours, hierarchy = cv2.findContours(th2,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
+im2, contours, hierarchy = cv2.findContours(th2,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
 
 # Find with the largest rectangle
 areas = [cv2.contourArea(contour) for contour in contours]
