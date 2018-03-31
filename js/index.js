@@ -197,10 +197,12 @@ var search = function (trial, prev_result) {
             if (navigator.language.indexOf("zh") === 0) {
               title_display = entry.title_chinese || entry.anime;
             }
+            var thumbnailImage = similarity > 80 ? "<img src=\"" + thumbnailLink + "\">" : "";
+
             if (formatTime(entry.from) === formatTime(entry.to)) {
-              result.innerHTML = "<a href=\"#\"><span class=\"title\">" + title_display + "</span><br><span class=\"ep\">EP#" + zeroPad(entry.episode, 2) + "</span> <span class=\"time\">" + formatTime(entry.from) + "</span> <span class=\"similarity\">~" + similarity + "%</span><br><span class=\"file\">" + entry.file + "</span><img src=\"" + thumbnailLink + "\"></a>";
+              result.innerHTML = "<a href=\"#\"><span class=\"title\">" + title_display + "</span><br><span class=\"ep\">EP#" + zeroPad(entry.episode, 2) + "</span> <span class=\"time\">" + formatTime(entry.from) + "</span> <span class=\"similarity\">~" + similarity + "%</span><br><span class=\"file\">" + entry.file + "</span>" + thumbnailImage + "</a>";
             } else {
-              result.innerHTML = "<a href=\"#\"><span class=\"title\">" + title_display + "</span><br><span class=\"ep\">EP#" + zeroPad(entry.episode, 2) + "</span> <span class=\"time\">" + formatTime(entry.from) + "-" + formatTime(entry.to) + "</span> <span class=\"similarity\">~" + similarity + "%</span><br><span class=\"file\">" + entry.file + "</span><img src=\"" + thumbnailLink + "\"></a>";
+              result.innerHTML = "<a href=\"#\"><span class=\"title\">" + title_display + "</span><br><span class=\"ep\">EP#" + zeroPad(entry.episode, 2) + "</span> <span class=\"time\">" + formatTime(entry.from) + "-" + formatTime(entry.to) + "</span> <span class=\"similarity\">~" + similarity + "%</span><br><span class=\"file\">" + entry.file + "</span>" + thumbnailImage + "</a>";
             }
             document.querySelector("#results").appendChild(result);
           }
