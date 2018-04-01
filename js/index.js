@@ -152,7 +152,7 @@ var search = function (trial, prev_result) {
         data.ReRankSearchTime += prev_result.ReRankSearchTime;
       }
 
-      document.querySelector("#results").innerHTML += "<div id=\"status\">" + data.RawDocsCount + " images searched.</div>";
+      document.querySelector("#results").innerHTML += "<div id=\"status\">" + data.RawDocsCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " images searched.</div>";
       if (prev_result) {
         data.docs = data.docs.concat(prev_result.docs);
       }
