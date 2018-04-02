@@ -3,6 +3,11 @@ import numpy as np
 import sys
 
 image = cv2.imread(sys.argv[1])
+height, width, channels = image.shape
+if width / height > 16 / 9:
+  cv2.imwrite(sys.argv[2],image)
+  exit()
+
 imgray = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
 
 # Set threshold
