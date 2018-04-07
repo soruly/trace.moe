@@ -133,8 +133,8 @@ Source: <a href="https://github.com/JanYoStudio/WhatAnime">https://github.com/Ja
 <p>This database automatically index most airing anime in a few hours after broadcast.<br>You may subscribe to the updates on Telegram <a href="https://t.me/whatanimeupdates">@whatanimeupdates</a></p>
 <p><?php if($recentFile) echo "Recently indexed files: (last 3 hours) <pre>".$recentFile."</pre>"; ?></p>
 <p></p>
-<a href="https://nyaa.si/download/977285.torrent">Full Database Dump 2017-10 (27.9GB)</a><br>
-<a href="magnet:?xt=urn:btih:4WBF3SDZW3TASQQ4D6GOHWPQPKSGZ4XD&dn=whatanime.ga+database+dump+2017-10&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce">magnet:?xt=urn:btih:4WBF3SDZW3TASQQ4D6GOHWPQPKSGZ4XD</a>
+<a href="https://nyaa.si/download/1023979.torrent">Full Database Dump 2018-04 (16.5GB)</a><br>
+<a href="magnet:?xt=urn:btih:VUOXSGHJ5CSBP6C3KK4IZCFS7NCVXPKX&dn=whatanime.ga+database+dump+2018-04&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce">magnet:?xt=urn:btih:VUOXSGHJ5CSBP6C3KK4IZCFS7NCVXPKX</a>
 </p>
 <div class="page-header">
 <h3>Contact</h3>
