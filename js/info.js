@@ -153,7 +153,7 @@ var displayInfo = function (src) {
     var row = $("<tr>");
 
     $("<td>", {"text": "Alias"}).appendTo(row);
-    $("<td>", {"html": src.synonyms_chinese.join("<br>")}).appendTo(row);
+    $("<td>", {"html": Array.isArray(src.synonyms_chinese) ? src.synonyms_chinese.join("<br>") : "<br>"}).appendTo(row);
     row.appendTo("#info #table");
   }
 
