@@ -50,37 +50,6 @@ Returns HTTP 403 if API token is invalid.
 
 Returns HTTP 401 if API token is missing.
 
-## List
-
-Get a list of all indexed anime (for search filtering)
-
-URL
-
-```
-GET /api/list?token={your_api_token} HTTP/1.1
-Host: whatanime.ga
-```
-
-Example Response
-
-```
-[
-  "1970-1989/City Hunter",
-  "1970-1989/City Hunter 2",
-  "1970-1989/City Hunter 3",
-  "1970-1989/Gundam 0079",
-  "1970-1989/Gundam Z"
-]
-```
-
-The first part of the path is the year/season when the anime starts airing.
-
-The second part of the path is anime name the server use internally. Ignore this if you can't read Chinese.
-
-<p class="tip">
-  Remember to always append wildcard * at the end of path.
-</p>
-
 ## Search
 
 Seach request should be POST as HTTP Form, not JSON
@@ -96,7 +65,7 @@ image={Base64 Encoded Image}&filter=*
 | Fields        | Value         | Notes  |
 | ------------- |---------------| -------|
 | image         | String (Required) | Base64 Encoded Image |
-| filter        | String (Optional, defaults to \*) | Limit search in specific year / season, which works like searching in folders. You must add a wildcard at the end (e.g. 2017-\* , 2017-04/\*).  A complete list of paths can be obtained from the /list endpoint. |
+| filter        | Number (Optional) | Limit search to specific anilist ID. |
 
 <p class="warning">
   Note that there is a hard limit of 1MB post size. You should ensure your Base64 encoded image is < 1MB. Otherwise the server responds with HTTP 413 (Request Entity Too Large).
@@ -118,82 +87,37 @@ $.post('/search',
 Example Response
 ```
 {
-  "RawDocsCount":[
-    3663,
-    4158
-  ],
-  "RawDocsSearchTime":[
-    162,
-    238
-  ],
-  "ReRankSearchTime":[
-    11,
-    9
-  ],
-  "CacheHit":false,
-  "trial":2,
-  "quota":9,
-  "expire":60,
-  "docs":[
+  "RawDocsCount": 3555648,
+  "RawDocsSearchTime": 14056,
+  "ReRankSearchTime": 1182,
+  "CacheHit": false,
+  "trial": 1,
+  "quota": 8,
+  "expire": 53,
+  "docs": [
     {
-      "from":706.833,
-      "to":708.667,
-      "at":708.667,
-      "season":"2014-07",
-      "anime":"ALDNOAH.ZERO",
-      "filename":"[KTXP][Aldnoah.Zero][03][BIG5][720p].mp4",
-      "episode":3,
-      "tokenthumb":"KXOniyuSe7Aa0mBslMA9ng",
-      "similarity":0.97171573,
-      "title":"アルドノア・ゼロ",
-      "title_native":"アルドノア・ゼロ",
-      "title_chinese":"ALDNOAH.ZERO",
-      "title_english":null,
-      "title_romaji":"Aldnoah Zero",
-      "anilist_id":20632,
-      "mal_id":22729,
-      "synonyms":[],
-      "synonyms_chinese":[]
-    },
-    {
-      "from":285.917,
-      "to":286,
-      "at":286,
-      "season":"2006-07",
-      "anime":"歡迎加入NHK！",
-      "filename":"[HKG][Welcome_to_NHK][DVDrip][19][864x480][x264_AAC].mp4",
-      "episode":19,
-      "tokenthumb":"-MeztzleYYS8bqogvFplJg",
-      "similarity":0.86263712,
-      "title":"N・H・Kにようこそ！",
-      "title_native":"N・H・Kにようこそ！",
-      "title_chinese":"歡迎加入NHK！",
-      "title_english":"Welcome to the N.H.K.",
-      "title_romaji":"NHK ni Youkoso!",
-      "anilist_id":1210,
-      "mal_id":1210,
-      "synonyms":[],
-      "synonyms_chinese":[]
-    },
-    {
-      "from":952,
-      "to":952,
-      "at":952,
-      "season":"2017-10",
-      "anime":"寶石之國",
-      "filename":"[Ohys-Raws] Houseki no Kuni - 10 (AT-X 1280x720 x264 AAC).mp4",
-      "episode":10,
-      "tokenthumb":"EjjXhlhOXrh1k0ZJwri84A",
-      "similarity":0.85641735,
-      "title":"宝石の国",
-      "title_native":"宝石の国",
-      "title_chinese":"寶石之國",
-      "title_english":"Land of the Lustrous",
-      "title_romaji":"Houseki no Kuni",
-      "anilist_id":98707,
-      "mal_id":35557,
-      "synonyms":[],
-      "synonyms_chinese":[]
+      "from": 663.17,
+      "to": 665.42,
+      "anilist_id": 98444,
+      "at": 665.08,
+      "season": "2018-01",
+      "anime": "搖曳露營",
+      "filename": "[Ohys-Raws] Yuru Camp - 05 (AT-X 1280x720 x264 AAC).mp4",
+      "episode": 5,
+      "tokenthumb": "bB-8KQuoc6u-1SfzuVnDMw",
+      "similarity": 1,
+      "title": "ゆるキャン△",
+      "title_native": "ゆるキャン△",
+      "title_chinese": "搖曳露營",
+      "title_english": "Laid-Back Camp",
+      "title_romaji": "Yuru Camp△",
+      "mal_id": 34798,
+      "synonyms": [
+        "Yurucamp",
+        "Yurukyan△"
+      ],
+      "synonyms_chinese": [],
+      "is_adult": false
     }
   ]
 }
@@ -201,9 +125,9 @@ Example Response
 
 | Fields        | Meaning       | Value  |
 | ------------- |---------------| -------|
-| RawDocsCount       | Number of frames compared for each trial | Array of Numbers |
-| RawDocsSearchTime  | Time taken to retrieve the frames for each trial | Array of Numbers |
-| ReRankSearchTime   | Time taken to compare the frames for each trial | Array of Numbers |
+| RawDocsCount       | Total number of frames searched | Number |
+| RawDocsSearchTime  | Time taken to retrieve the frames from database (sum of all cores) | Number |
+| ReRankSearchTime   | Time taken to compare the frames (sum of all cores) | Number |
 | CacheHit  | Whether the search result is cached. (Results are cached by extraced image feature) | Boolean |
 | trial | Number of times searched | Number |
 | quota | Number of search quota remaining | Number |
@@ -220,6 +144,7 @@ Example Response
 | similarity       | Similarity compared to the search image | Number (float between 0-1)
 | anilist_id       | The matching [AniList](https://anilist.co/) ID | Number or null
 | mal_id           | The matching [MyAnimeList](https://myanimelist.net/) ID | Number or null
+| is_adult         | Whether the anime is hentai | Boolean
 | title            | Same as title_native | String or null (Can be empty string)
 | title_native     | Native (Japanese) title | String or null (Can be empty string)
 | title_chinese    | Chinese title | String or null (Can be empty string)
@@ -264,12 +189,12 @@ Search quota exceeded. Please wait 87 seconds.
   It is recommended to handle any exception cases properly in your application, such as rate limit, timeouts and network errors.
 </p>
 
-### Previews (experimental, sometimes not working)
+### Previews
 
 With `tokenthumb`, you can access image preview of the matched scene. (not quite accurate due to timecode and seeking method)
 
-`https://whatanime.ga/thumbnail.php?season=${season}&anime=${encodeURIComponent(anime)}&file=${encodeURIComponent(filename)}&t=${at}&token=${tokenthumb}`
+`https://whatanime.ga/thumbnail.php?anilist_id=${anilist_id}&file=${encodeURIComponent(filename)}&t=${at}&token=${tokenthumb}`
 
 There is a 3 second video preview of the matched scene. (1 seconds before and 2 seconds ahead)
 
-`https://whatanime.ga/preview.php?season=${season}&anime=${encodeURIComponent(anime)}&file=${encodeURIComponent(filename)}&t=${at}&token=${tokenthumb}`
+`https://whatanime.ga/preview.php?anilist_id=${anilist_id}&file=${encodeURIComponent(filename)}&t=${at}&token=${tokenthumb}`
