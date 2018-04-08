@@ -1,18 +1,12 @@
 <?php
 ini_set("display_errors", 0);
 
-if(isset($_GET["cpu_load"])){
-  header("content-type: application/javascript");
-  exit("document.querySelector(\"#cpu_load\").innerText = \"".trim(shell_exec('mpstat 1 1 | tail -n 1 | awk \'$12 ~ /[0-9.]+/ { print 100 - $12"%" }\''))."\"");
-}
-
 $curl = curl_init();
-curl_setopt($curl, CURLOPT_URL, "http://192.168.2.11:8983/solr/anime_cl/admin/luke?wt=json");
+curl_setopt($curl, CURLOPT_URL, "http://192.168.2.12:8983/solr/admin/cores?wt=json");
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 $res = curl_exec($curl);
 $result = json_decode($res);
 curl_close($curl);
-$lastModified = date_timestamp_get(date_create($result->index->lastModified));
 
 function humanTiming($time){
     $time = time() - $time; // to get the time since that moment
@@ -32,15 +26,18 @@ function humanTiming($time){
         return $numberOfUnits.' '.$text.(($numberOfUnits>1)?'s':'');
     }
 }
-$numDocs = $result->index->numDocs;
+$numDocs = 0;
+$sizeInBytes = 0;
+$lastModified = 0;
+foreach ($result->status as $core) {
+  $numDocs += $core->index->numDocs;
+  $sizeInBytes += $core->index->sizeInBytes;
+  if(strtotime($core->index->lastModified) > $lastModified){
+    $lastModified = strtotime($core->index->lastModified);
+  }
+}
 $numDocsMillion = floor($numDocs / 1000000);
-
-$to_percent = function($load_average){
-  return round(floatval($load_average) / 8 * 100, 1) ."%";
-};
-$loadAverage = implode(", ",array_map($to_percent, explode(", ",explode("load average: ",exec("uptime"))[1])));
-
-$recentFile = str_replace('.xml','',shell_exec('find /mnt/data/anime_hash/ -type f -mmin -180 -name "*.xml" -exec basename "{}" \;'));
+$sizeInGB = floor($sizeInBytes / 1073741824);
 
 ?><!DOCTYPE html>
 <html>
@@ -54,7 +51,6 @@ $recentFile = str_replace('.xml','',shell_exec('find /mnt/data/anime_hash/ -type
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
     <script src="/js/analytics.js" defer></script>
-    <script src="/about?cpu_load" async defer></script>
   </head>
   <body>
 <nav class="navbar header">
@@ -127,11 +123,8 @@ Source: <a href="https://github.com/JanYoStudio/WhatAnime">https://github.com/Ja
 <h3>System Status</h3>
 </div>
 <p>System status page: <a href="https://status.whatanime.ga">https://status.whatanime.ga</a> (Powered by UptimeRobot)</p>
-<p><?php if($loadAverage) echo "System load average in 1, 5, 15 minutes: ".$loadAverage ?></p>
-<p>Current CPU load: <span id="cpu_load"></span></p>
-<p><?php echo 'Last Database Index update: '.humanTiming($lastModified).' ago with '.$numDocsMillion.' Million analyzed frames.<br>'; ?></p>
+<p><?php echo 'Last Database Index update: '.humanTiming($lastModified).' ago with '.$numDocsMillion.' Million analyzed frames. ('.$sizeInGB.' GB)<br>'; ?></p>
 <p>This database automatically index most airing anime in a few hours after broadcast.<br>You may subscribe to the updates on Telegram <a href="https://t.me/whatanimeupdates">@whatanimeupdates</a></p>
-<p><?php if($recentFile) echo "Recently indexed files: (last 3 hours) <pre>".$recentFile."</pre>"; ?></p>
 <p></p>
 <a href="https://nyaa.si/download/1023979.torrent">Full Database Dump 2018-04 (16.5GB)</a><br>
 <a href="magnet:?xt=urn:btih:VUOXSGHJ5CSBP6C3KK4IZCFS7NCVXPKX&dn=whatanime.ga+database+dump+2018-04&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce">magnet:?xt=urn:btih:VUOXSGHJ5CSBP6C3KK4IZCFS7NCVXPKX</a>

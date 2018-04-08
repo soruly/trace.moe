@@ -6,16 +6,26 @@ header('Content-type: image/jpeg');
 $thumbdir = 'thumbnail/';
 $uuid = uniqid();
 $t = floatval($_GET['t']);
-$season = rawurldecode($_GET['season']);
-$anime = rawurldecode($_GET['anime']);
+$anilistID = rawurldecode($_GET['anilist_id']);
+$season = rawurldecode($_GET['season']); // deprecated
+$anime = rawurldecode($_GET['anime']); // deprecated
 $file = rawurldecode($_GET['file']);
-$filepath = '/mnt/data/anime_new/'.$season.'/'.$anime.'/'.$file;
+$filepath = '/mnt/data/anilist/'.$anilistID.'/'.$file;
+if ($season && $anime) {  // deprecated
+  $filepath = '/mnt/data/anime_new/'.$season.'/'.$anime.'/'.$file;
+}
 $thumbpath = $thumbdir.$uuid.'.jpg';
 $new_width = 320;
 $new_height = 180;
 
 try {
-  $ffmpeg = FFMpeg\FFMpeg::create();
+
+  $ffmpeg = FFMpeg\FFMpeg::create([
+     'ffmpeg.binaries' => '/usr/bin/avconv',
+     'ffmpeg.binaries' => '/usr/bin/ffmpeg',
+     'ffprobe.binaries' => '/usr/bin/avprobe',
+     'ffprobe.binaries' => '/usr/bin/ffprobe'
+  ]);
   $video = $ffmpeg->open($filepath);
   $video
     ->frame(FFMpeg\Coordinate\TimeCode::fromSeconds($t))

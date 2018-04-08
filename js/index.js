@@ -100,7 +100,7 @@ var imgDataURL;
 var searchRequest;
 var search = function (trial, prev_result) {
   if (!trial) {
-    trial = 4;
+    trial = 0;
   }
   if (searchRequest && searchRequest.readyState !== 4) {
     searchRequest.abort();
@@ -121,7 +121,7 @@ var search = function (trial, prev_result) {
   animeInfo = null;
   document.querySelector("#player").pause();
   preview.removeEventListener("click", playPause);
-  if (trial === 4) {
+  if (trial === 0) {
     document.querySelector("#results").innerHTML = "<div id=\"status\">Submitting image for searching...</div>";
   }
   document.querySelector("#searchBtn").disabled = true;
@@ -160,8 +160,8 @@ var search = function (trial, prev_result) {
         return a.diff - b.diff;
       });
       if (data.docs.length > 0) {
-        data.docs.forEach(function (entry) {
-          if (document.querySelector("#safeBtn .glyphicon").classList.contains("glyphicon-check") === false || entry.season !== "Sukebei") {
+        data.docs.forEach(function (entry, index) {
+          if (document.querySelector("#safeBtn .glyphicon").classList.contains("glyphicon-check") === false || entry.is_adult === false) {
             var similarity = (100 - parseFloat(entry.diff)).toFixed(1);
             var result = document.createElement("li");
 
@@ -185,11 +185,11 @@ var search = function (trial, prev_result) {
             result.setAttribute("data-t", entry.t);
             result.setAttribute("data-anilist-id", entry.anilist_id);
 
-            var thumbnailLink = "/thumbnail.php?season=" + encodeURIComponent(entry.season) + "&anime=" + encodeURIComponent(entry.anime) + "&file=" + encodeURIComponent(entry.file) + "&t=" + entry.t + "&token=" + entry.tokenthumb;
+            var thumbnailLink = "/thumbnail.php?anilist_id=" + entry.anilist_id + "&file=" + encodeURIComponent(entry.file) + "&t=" + entry.t + "&token=" + entry.tokenthumb;
             var opacity = (Math.pow((100 - parseFloat(entry.diff)) / 100, 4) + 0.2).toFixed(3);
 
             result.style.opacity = opacity > 1 ? 1 : opacity;
-            var title_display = entry.title_romaji;
+            var title_display = entry.title_native || entry.title_romaji;
 
             if (navigator.language.indexOf("ja") === 0) {
               title_display = entry.title_native || entry.anime;
@@ -197,7 +197,7 @@ var search = function (trial, prev_result) {
             if (navigator.language.indexOf("zh") === 0) {
               title_display = entry.title_chinese || entry.anime;
             }
-            var thumbnailImage = similarity > 80 ? "<img src=\"" + thumbnailLink + "\">" : "";
+            var thumbnailImage = index < 5 ? "<div style=\"height:166px\"><img src=\"" + thumbnailLink + "\"></div>" : "";
 
             if (formatTime(entry.from) === formatTime(entry.to)) {
               result.innerHTML = "<a href=\"#\"><span class=\"title\">" + title_display + "</span><br><span class=\"ep\">EP#" + zeroPad(entry.episode, 2) + "</span> <span class=\"time\">" + formatTime(entry.from) + "</span> <span class=\"similarity\">~" + similarity + "%</span><br><span class=\"file\">" + entry.file + "</span>" + thumbnailImage + "</a>";
@@ -215,16 +215,16 @@ var search = function (trial, prev_result) {
         $(".result").click(playfile);
 
         if (parseFloat(data.docs[0].diff) > 10) {
-          if (trial < 6) {
+          if (trial < 2) {
             search(trial + 1, data);
-          } else if (trial < 12) {
+          } else if (trial < 5) {
             $("#results").prepend("<div style=\"text-align:center\"><button id=\"search2Btn\" type=\"button\" class=\"btn btn-default btn-sm btn-primary\"><span class=\"glyphicon glyphicon-search\"></span> Keep Searching</button></div>");
             $("#search2Btn").click(function () {
               search(trial + 1, data);
             });
           }
         } else {
-          if (trial < 12) {
+          if (trial < 5) {
             $("#results").prepend("<div style=\"text-align:center\"><button id=\"search2Btn\" type=\"button\" class=\"btn btn-default btn-sm btn-primary\"><span class=\"glyphicon glyphicon-search\"></span> Keep Searching</button></div>");
             $("#search2Btn").click(function () {
               search(trial + 1, data);
@@ -328,12 +328,9 @@ var playfile = function () {
   var tfrom = this.getAttribute("data-from");
   var t = this.getAttribute("data-t");
   var anilistID = this.getAttribute("data-anilist-id");
-  var src = "/" + season + "/" + encodeURIComponent(anime) + "/" + encodeURIComponent(file) + "?start=" + start + "&end=" + end + "&token=" + token;
+  var src = "/" + anilistID + "/" + encodeURIComponent(file) + "?start=" + start + "&end=" + end + "&token=" + token;
 
   document.querySelector("#loading").classList.remove("hidden");
-  if (navigator.userAgent.indexOf("Chrome") || !navigator.userAgent.indexOf("Safari")) {
-    document.querySelector("#loader").classList.add("ripple");
-  }
   document.querySelector("#player").src = src;
   if (document.querySelector("#autoplay").checked) {
     time = parseFloat(tfrom) - parseFloat(start);
