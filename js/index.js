@@ -167,7 +167,6 @@ var search = function (trial, prev_result) {
 
             result.setAttribute("class", "result");
             result.setAttribute("data-season", entry.season);
-            result.setAttribute("data-anime", entry.anime);
             result.setAttribute("data-title", entry.title);
             result.setAttribute("data-title-native", entry.title_native);
             result.setAttribute("data-title-chinese", entry.title_chinese);
@@ -189,13 +188,13 @@ var search = function (trial, prev_result) {
             var opacity = (Math.pow((100 - parseFloat(entry.diff)) / 100, 4) + 0.2).toFixed(3);
 
             result.style.opacity = opacity > 1 ? 1 : opacity;
-            var title_display = entry.title_native || entry.title_romaji;
+            var title_display = entry.title_romaji;
 
             if (navigator.language.indexOf("ja") === 0) {
-              title_display = entry.title_native || entry.anime;
+              title_display = entry.title_native || entry.title_romaji;
             }
             if (navigator.language.indexOf("zh") === 0) {
-              title_display = entry.title_chinese || entry.anime;
+              title_display = entry.title_chinese || entry.title_romaji;
             }
             var thumbnailImage = index < 5 ? "<div style=\"height:166px\"><img src=\"" + thumbnailLink + "\"></div>" : "";
 
@@ -320,7 +319,6 @@ var playfile = function () {
 
   preview_heartbeat = window.requestAnimationFrame(drawVideoPreview);
   var season = this.getAttribute("data-season");
-  var anime = this.getAttribute("data-anime");
   var file = this.getAttribute("data-file");
   var start = this.getAttribute("data-start");
   var end = this.getAttribute("data-end");
