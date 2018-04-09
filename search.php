@@ -252,10 +252,10 @@ if(isset($_POST['data'])){
           $res = curl_exec($curl);
           $result = json_decode($res);
           if($result->hits && $result->hits->total > 0){
-            $doc->title_romaji = $result->hits->hits[0]->_source->title->romaji ?? $anime;
+            $doc->title_romaji = $result->hits->hits[0]->_source->title->romaji ?? "";
             $doc->title_native = $result->hits->hits[0]->_source->title->native ?? $doc->title_romaji;
             $doc->title_english = $result->hits->hits[0]->_source->title->english ?? $doc->title_romaji;
-            $doc->title_chinese = $result->hits->hits[0]->_source->title->chinese ?? $anime;
+            $doc->title_chinese = $result->hits->hits[0]->_source->title->chinese ?? $doc->title_romaji;
             $doc->is_adult = $result->hits->hits[0]->_source->isAdult;
           }
         }

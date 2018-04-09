@@ -300,7 +300,6 @@ if(isset($_POST['image'])){
         unset($doc->id);
         unset($doc->d);
 
-        // use folder name as default title
         $doc->title = null;
         $doc->title_native = null;
         $doc->title_chinese = null;
@@ -348,10 +347,10 @@ if(isset($_POST['image'])){
                         $result = json_decode($res);
                         if($result->hits && $result->hits->total > 0){
                             $doc->mal_id = intval($result->hits->hits[0]->_source->idMal);
-                            $doc->title_romaji = $result->hits->hits[0]->_source->title->romaji ?? $anime;
+                            $doc->title_romaji = $result->hits->hits[0]->_source->title->romaji ?? "";
                             $doc->title_native = $result->hits->hits[0]->_source->title->native ?? $doc->title_romaji;
                             $doc->title_english = $result->hits->hits[0]->_source->title->english ?? $doc->title_romaji;
-                            $doc->title_chinese = $result->hits->hits[0]->_source->title->chinese ?? $anime;
+                            $doc->title_chinese = $result->hits->hits[0]->_source->title->chinese ?? $doc->title_romaji;
                             $doc->title = $doc->title_native;
                             $doc->synonyms = $result->hits->hits[0]->_source->synonyms;
                             $doc->synonyms_chinese = $result->hits->hits[0]->_source->synonyms_chinese;
