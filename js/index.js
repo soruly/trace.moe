@@ -206,11 +206,6 @@ var search = function (trial, prev_result) {
             document.querySelector("#results").appendChild(result);
           }
         });
-        var topResult = "/" + data.docs[0].season + "/" + data.docs[0].anime + "/" + data.docs[0].file + "?start=" + data.docs[0].start + "&end=" + data.docs[0].end + "&t=" + data.docs[0].t;
-
-        if (typeof ga === "function") {
-          ga("send", "event", "search", "topResult", topResult, data.docs[0].diff);
-        }
         $(".result").click(playfile);
 
         if (parseFloat(data.docs[0].diff) > 10) {
@@ -339,7 +334,7 @@ var playfile = function () {
     time = 0;
   }
   if (typeof ga === "function") {
-    ga("send", "event", "playfile", "src", "/" + season + "/" + anime + "/" + file, t);
+    ga("send", "event", "playfile", "src", "/" + anilistID + "/" + file, t);
   }
 
   if (animeInfo !== anilistID) {
