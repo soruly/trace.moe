@@ -105,7 +105,7 @@ Example Response
       "filename": "[Ohys-Raws] Yuru Camp - 05 (AT-X 1280x720 x264 AAC).mp4",
       "episode": 5,
       "tokenthumb": "bB-8KQuoc6u-1SfzuVnDMw",
-      "similarity": 1,
+      "similarity": 0.9563952960290518,
       "title": "ゆるキャン△",
       "title_native": "ゆるキャン△",
       "title_chinese": "搖曳露營",
@@ -137,12 +137,12 @@ Example Response
 
 | Fields           | Meaning       | Value  |
 | ---------------- |---------------| -------|
-| from             | Starting time of the matching scene | Number (seconds, in 3 decimal places)
-| to               | Ending time of the matching scene | Number (seconds, in 3 decimal places)
-| at               | Exact time of the matching scene | Number (seconds, in 3 decimal places)
+| from             | Starting time of the matching scene | Number (seconds, in 2 decimal places)
+| to               | Ending time of the matching scene | Number (seconds, in 2 decimal places)
+| at               | Exact time of the matching scene | Number (seconds, in 2 decimal places)
 | episode          | The extracted episode number from filename | Number, "OVA/OAD", "Special", ""
 | similarity       | Similarity compared to the search image | Number (float between 0-1)
-| anilist_id       | The matching [AniList](https://anilist.co/) ID | Number or null
+| anilist_id       | The matching [AniList](https://anilist.co/) ID | Number
 | mal_id           | The matching [MyAnimeList](https://myanimelist.net/) ID | Number or null
 | is_adult         | Whether the anime is hentai | Boolean
 | ~~title~~        | (deprecated, do not use this) | |
