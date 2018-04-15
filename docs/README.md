@@ -105,7 +105,7 @@ Example Response
       "filename": "[Ohys-Raws] Yuru Camp - 05 (AT-X 1280x720 x264 AAC).mp4",
       "episode": 5,
       "tokenthumb": "bB-8KQuoc6u-1SfzuVnDMw",
-      "similarity": 1,
+      "similarity": 0.9563952960290518,
       "title": "ゆるキャン△",
       "title_native": "ゆるキャン△",
       "title_chinese": "搖曳露營",
@@ -137,23 +137,23 @@ Example Response
 
 | Fields           | Meaning       | Value  |
 | ---------------- |---------------| -------|
-| from             | Starting time of the matching scene | Number (seconds, in 3 decimal places)
-| to               | Ending time of the matching scene | Number (seconds, in 3 decimal places)
-| at               | Exact time of the matching scene | Number (seconds, in 3 decimal places)
+| from             | Starting time of the matching scene | Number (seconds, in 2 decimal places)
+| to               | Ending time of the matching scene | Number (seconds, in 2 decimal places)
+| at               | Exact time of the matching scene | Number (seconds, in 2 decimal places)
 | episode          | The extracted episode number from filename | Number, "OVA/OAD", "Special", ""
 | similarity       | Similarity compared to the search image | Number (float between 0-1)
-| anilist_id       | The matching [AniList](https://anilist.co/) ID | Number or null
+| anilist_id       | The matching [AniList](https://anilist.co/) ID | Number
 | mal_id           | The matching [MyAnimeList](https://myanimelist.net/) ID | Number or null
 | is_adult         | Whether the anime is hentai | Boolean
-| title            | Same as title_native | String or null (Can be empty string)
+| ~~title~~        | (deprecated, do not use this) | |
 | title_native     | Native (Japanese) title | String or null (Can be empty string)
 | title_chinese    | Chinese title | String or null (Can be empty string)
 | title_english    | English title | String or null (Can be empty string)
 | title_romaji     | Title in romaji | String
 | synonyms         | Alternate english titles | Array of String or []
 | synonyms_chinese | Alternate chinese titles | Array of String or []
-| season           | The parent folder where the file is located | String (Movie, OVA, Others, Sukebei, 1970-1989, 1990-1999, 2000-01, 2017-01, etc)
-| anime            | The folder where the file is located (This may act as a fallback when title is not found) | String
+| ~~season~~       | (deprecated, do not use this) | |
+| ~~anime~~        | (deprecated, do not use this) | |
 | filename         | The filename of file where the match is found | String
 | tokenthumb       | A token for generating preview | String
 
