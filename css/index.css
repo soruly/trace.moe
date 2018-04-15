@@ -199,6 +199,17 @@ td:nth-child(3) {
     user-select: none;
 }
 
+#progressBarControl {
+    top: -5px;
+    visibility: hidden;
+}
+#timeCodeDisplay {
+    position: absolute;
+    right: 16px;
+    font-size: 10px;
+    margin-top: 10px;
+}
+
 #main {
     width: 642px;
     margin-bottom: 1em;

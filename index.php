@@ -61,6 +61,10 @@ Support whatanime.ga on Patreon! <a href="https://www.patreon.com/soruly" target
 <div id="loader" class="ripple"></div>
 </div>
 <canvas id="preview" width="640" height="360"></canvas>
+<div style="height: 10px">
+  <span id="progressBarControl" class="glyphicon glyphicon-triangle-top"></span>
+  <span id="timeCodeDisplay"></span>
+</div>
 <video id="player" style="display:none" volume="0.5" autoplay></video>
 </div>
 <div id="form">

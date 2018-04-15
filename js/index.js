@@ -106,6 +106,8 @@ var search = function (trial, prev_result) {
     searchRequest.abort();
   }
   document.querySelector("#loading").classList.remove("hidden");
+  document.querySelector("#progressBarControl").style.visibility = "hidden";
+  document.querySelector("#timeCodeDisplay").innerText = "";
   if (navigator.userAgent.indexOf("Chrome") || !navigator.userAgent.indexOf("Safari")) {
     document.querySelector("#loader").classList.add("ripple");
   }
@@ -323,6 +325,13 @@ var playfile = function () {
   var anilistID = this.getAttribute("data-anilist-id");
   var src = "/" + anilistID + "/" + encodeURIComponent(file) + "?start=" + start + "&end=" + end + "&token=" + token;
 
+  $.get("/duration.php?anilist_id=" + anilistID + "&file=" + encodeURIComponent(file) + "&token=" + token, function (duration) {
+    document.querySelector("#timeCodeDisplay").innerText = formatTime(t) + "/" + formatTime(duration);
+    var left = (parseFloat(t) / parseFloat(duration) * 640) - 6;
+    document.querySelector("#progressBarControl").style.visibility = "visible";
+    document.querySelector("#progressBarControl").style.left = left + "px";
+  });
+
   document.querySelector("#loading").classList.remove("hidden");
   document.querySelector("#player").src = src;
   if (document.querySelector("#autoplay").checked) {
@@ -396,6 +405,8 @@ var searchImage = document.createElement("canvas");
 var resetAll = function () {
   preview.width = 640;
   preview.height = 360;
+  document.querySelector("#progressBarControl").style.visibility = "hidden";
+  document.querySelector("#timeCodeDisplay").innerText = "";
   document.querySelector("#loading").style.height = preview.height + "px";
   document.querySelector("#loader").style.top = (preview.height - 800) / 2 + "px";
   preview.getContext("2d").fillStyle = "#FFFFFF";
