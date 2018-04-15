@@ -107,6 +107,7 @@ var search = function (trial, prev_result) {
   }
   document.querySelector("#loading").classList.remove("hidden");
   document.querySelector("#progressBarControl").style.visibility = "hidden";
+  document.querySelector("#fileNameDisplay").innerText = "";
   document.querySelector("#timeCodeDisplay").innerText = "";
   if (navigator.userAgent.indexOf("Chrome") || !navigator.userAgent.indexOf("Safari")) {
     document.querySelector("#loader").classList.add("ripple");
@@ -326,6 +327,7 @@ var playfile = function () {
   var src = "/" + anilistID + "/" + encodeURIComponent(file) + "?start=" + start + "&end=" + end + "&token=" + token;
 
   $.get("/duration.php?anilist_id=" + anilistID + "&file=" + encodeURIComponent(file) + "&token=" + token, function (duration) {
+    document.querySelector("#fileNameDisplay").innerText = file;
     document.querySelector("#timeCodeDisplay").innerText = formatTime(t) + "/" + formatTime(duration);
     var left = (parseFloat(t) / parseFloat(duration) * 640) - 6;
     document.querySelector("#progressBarControl").style.visibility = "visible";
@@ -406,6 +408,7 @@ var resetAll = function () {
   preview.width = 640;
   preview.height = 360;
   document.querySelector("#progressBarControl").style.visibility = "hidden";
+  document.querySelector("#fileNameDisplay").innerText = "";
   document.querySelector("#timeCodeDisplay").innerText = "";
   document.querySelector("#loading").style.height = preview.height + "px";
   document.querySelector("#loader").style.top = (preview.height - 800) / 2 + "px";

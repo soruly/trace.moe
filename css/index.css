@@ -203,6 +203,11 @@ td:nth-child(3) {
     top: -5px;
     visibility: hidden;
 }
+#fileNameDisplay {
+    position: absolute;
+    font-size: 10px;
+    margin-top: 10px;
+}
 #timeCodeDisplay {
     position: absolute;
     right: 16px;
