@@ -48,7 +48,7 @@ if(isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL))
 <div class="alert alert-warning" style="position: relative; top: 10px; left: 10px; box-shadow: 0 0 20px 0px; width: 975px">
   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 New: <b>greatly improved search speed!!</b><br>
-Please clear cache (Ctrl+F5) if you are having issue with search.<br>
+New: whatanime.ga <a href="https://discord.gg/K9jn6Kj">Discord Channel</a><br>
 Support whatanime.ga on Patreon! <a href="https://www.patreon.com/soruly" target="_blank">https://www.patreon.com/soruly</a>
 </div>
 <input id="autoSearch" type="checkbox" style="display: none;">
@@ -63,7 +63,7 @@ Support whatanime.ga on Patreon! <a href="https://www.patreon.com/soruly" target
 <canvas id="preview" width="640" height="360"></canvas>
 <video id="player" style="display:none" volume="0.5" autoplay></video>
 </div>
-<div style="height: 10px">
+<div style="height: 15px">
   <span id="progressBarControl" class="glyphicon glyphicon-triangle-top"></span>
   <span id="fileNameDisplay"></span>
   <span id="timeCodeDisplay"></span>
