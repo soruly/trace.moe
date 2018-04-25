@@ -190,9 +190,9 @@ if(isset($_POST['data'])){
         $t = floatval(explode('/',$doc->id)[2]);
         //$from = floatval(explode('?t=',$doc->id)[1]);
         //$to = floatval(explode('?t=',$doc->id)[1]);
-        $start = $doc->from - 16;
+        $start = round($doc->from - 16, 2);
         if($start < 0) $start = 0;
-        $end = $doc->to + 4;
+        $end = round($doc->to + 4);
 
         $dir = explode('/',$path)[0];
         $subdir = explode('/',$path)[1];
