@@ -272,9 +272,9 @@ if(isset($_POST['image'])){
         $t = floatval(explode('/',$doc->id)[2]);
         //$from = floatval(explode('?t=',$doc->id)[1]);
         //$to = floatval(explode('?t=',$doc->id)[1]);
-        $start = $doc->from - 16;
+        $start = round($doc->from - 16, 2);
         if($start < 0) $start = 0;
-        $end = $doc->to + 4;
+        $end = round($doc->to + 4, 2);
         
         $anilist_id = intval(explode('/',$path)[0]);
         $doc->anilist_id = $anilist_id;
