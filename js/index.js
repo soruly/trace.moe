@@ -3,13 +3,8 @@
 $(document).ready(function () {
   var ua = navigator.userAgent;
 
-  if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile/i.test(ua)) {
-    document.querySelector("#mute").checked = true;
-    document.querySelector("#player").muted = true;
-  } else {
-    document.querySelector("#mute").checked = false;
-    document.querySelector("#player").muted = false;
-  }
+  document.querySelector("#mute").checked = true;
+  document.querySelector("#player").muted = true;
 
   document.querySelector("#autoplay").checked = true;
   document.querySelector("#loop").checked = false;
