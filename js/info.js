@@ -223,7 +223,7 @@ var displayInfo = function (src) {
     $("<br>", {"style": "clear:both"}).appendTo("#info");
     $("<h3>", {"text": "Characters"}).appendTo("#info");
     $("<div>", {"style": "clear:both; border-bottom:1px solid #666; margin-bottom:3px"}).appendTo("#info");
-    var characterDIV = $("<div>", {"style": "display:inline-block"});
+    var characterDIV = $("<div>");
 
     $.each(src.characters.edges, function(key, entry) {
       var charDIV = $("<div>", {"class": "character"});
