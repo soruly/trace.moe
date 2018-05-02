@@ -24,7 +24,7 @@ Search result tells you which moment it appears.
 
 ## How does it work
 
-This repo for studying purpose only. Some settings and config are not included, it won't work out of the box after you clone this repo. Plase understand what you are doing before you fork this repo.
+whatanime.ga uses [sola](https://github.com/soruly/sola) to index video and work with liresolr. This repo only include the webapp for whatanime.ga, which demonstrate how to integrate anilist info, and how thumbnail/video previews are generated. If you want to make your own video scene search engine, please refer to sola instead.
 
 You may read a brief [Presentation slides](https://go-talks.appspot.com/github.com/soruly/slides/whatanime.ga.slide) given in May 2016
 
@@ -34,28 +34,18 @@ System Overview
 
 ![](https://pbs.twimg.com/media/CstZmrxUIAAi8La.jpg)
 
-You may find some other component here
+You may find some other related repo here
 
+- [sola](https://github.com/soruly/sola)
 - [LireSolr](https://github.com/soruly/liresolr)
-
-- [Shell Script and Python script for analyzing video for LireSolr](https://gist.github.com/soruly/032613e350cdbbe7b0dbe4a7f60bbefd)
-
-- [Modified LireSolr search handler](https://gist.github.com/soruly/6d162ac7cc807e3ceb98)
-
-- [Shell Script for checking video format](https://gist.github.com/soruly/1f8ec6f0a8772dfb59e49389bdde991f)
-
 - [anilist-crawler](https://github.com/soruly/anilist-crawler)
+- [whatanime.ga-WebExtension](https://github.com/soruly/whatanime.ga-WebExtension)
+- [whatanime.ga-telegram-bot](https://github.com/soruly/whatanime.ga-telegram-bot)
 
-## Official WebExtension
-https://github.com/soruly/whatanime.ga-WebExtension
-
-## Official Bot
-https://github.com/soruly/whatanime.ga-telegram-bot
-
-## Official API (Beta)
+## Official API Docs (Beta)
 https://soruly.github.io/whatanime.ga/
 
-## Mobile Apps
+## Mobile Apps (3rd party)
 WhatAnime by Andrée Torres
 https://play.google.com/store/apps/details?id=com.maddog05.whatanime
 Source: https://github.com/maddog05/whatanime-android
