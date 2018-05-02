@@ -207,16 +207,16 @@ var search = function (trial, prev_result) {
         $(".result").click(playfile);
 
         if (parseFloat(data.docs[0].diff) > 10) {
-          if (trial < 2) {
+          if (trial < 3) {
             search(trial + 1, data);
-          } else if (trial < 5) {
+          } else if (trial < 6) {
             $("#results").prepend("<div style=\"text-align:center\"><button id=\"search2Btn\" type=\"button\" class=\"btn btn-default btn-sm btn-primary\"><span class=\"glyphicon glyphicon-search\"></span> Keep Searching</button></div>");
             $("#search2Btn").click(function () {
               search(trial + 1, data);
             });
           }
         } else {
-          if (trial < 5) {
+          if (trial < 6) {
             $("#results").prepend("<div style=\"text-align:center\"><button id=\"search2Btn\" type=\"button\" class=\"btn btn-default btn-sm btn-primary\"><span class=\"glyphicon glyphicon-search\"></span> Keep Searching</button></div>");
             $("#search2Btn").click(function () {
               search(trial + 1, data);

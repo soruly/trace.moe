@@ -81,39 +81,46 @@ if(isset($_POST['data'])){
         $trial = intval($_POST['trial']) > 5 ? 5 : intval($_POST['trial']);
     }
 
+    $candidates = $trial === 0 ? 100000 : 1000000;
+    $accuracy = $trial === 0 ? 0 : $trial - 1;
+    // 0th trial --> accuracy = 0, candidates = 100k
+    // 1th trial --> accuracy = 0, candidates = 1M
+    // 2th trial --> accuracy = 1, candidates = 1M
+    // 3th trial --> accuracy = 2, candidates = 1M
+
     $nodes = array(
-        "http://192.168.2.12:8983/solr/lire_0/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$trial."&candidates=1000000&rows=10",
-        "http://192.168.2.12:8983/solr/lire_1/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$trial."&candidates=1000000&rows=10",
-        "http://192.168.2.12:8983/solr/lire_2/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$trial."&candidates=1000000&rows=10",
-        "http://192.168.2.12:8983/solr/lire_3/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$trial."&candidates=1000000&rows=10",
-        "http://192.168.2.12:8983/solr/lire_4/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$trial."&candidates=1000000&rows=10",
-        "http://192.168.2.12:8983/solr/lire_5/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$trial."&candidates=1000000&rows=10",
-        "http://192.168.2.12:8983/solr/lire_6/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$trial."&candidates=1000000&rows=10",
-        "http://192.168.2.12:8983/solr/lire_7/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$trial."&candidates=1000000&rows=10",
-        "http://192.168.2.12:8983/solr/lire_8/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$trial."&candidates=1000000&rows=10",
-        "http://192.168.2.12:8983/solr/lire_9/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$trial."&candidates=1000000&rows=10",
-        "http://192.168.2.12:8983/solr/lire_10/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$trial."&candidates=1000000&rows=10",
-        "http://192.168.2.12:8983/solr/lire_11/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$trial."&candidates=1000000&rows=10",
-        "http://192.168.2.12:8983/solr/lire_12/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$trial."&candidates=1000000&rows=10",
-        "http://192.168.2.12:8983/solr/lire_13/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$trial."&candidates=1000000&rows=10",
-        "http://192.168.2.12:8983/solr/lire_14/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$trial."&candidates=1000000&rows=10",
-        "http://192.168.2.12:8983/solr/lire_15/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$trial."&candidates=1000000&rows=10",
-        "http://192.168.2.12:8983/solr/lire_16/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$trial."&candidates=1000000&rows=10",
-        "http://192.168.2.12:8983/solr/lire_17/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$trial."&candidates=1000000&rows=10",
-        "http://192.168.2.12:8983/solr/lire_18/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$trial."&candidates=1000000&rows=10",
-        "http://192.168.2.12:8983/solr/lire_19/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$trial."&candidates=1000000&rows=10",
-        "http://192.168.2.12:8983/solr/lire_20/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$trial."&candidates=1000000&rows=10",
-        "http://192.168.2.12:8983/solr/lire_21/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$trial."&candidates=1000000&rows=10",
-        "http://192.168.2.12:8983/solr/lire_22/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$trial."&candidates=1000000&rows=10",
-        "http://192.168.2.12:8983/solr/lire_23/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$trial."&candidates=1000000&rows=10",
-        "http://192.168.2.12:8983/solr/lire_24/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$trial."&candidates=1000000&rows=10",
-        "http://192.168.2.12:8983/solr/lire_25/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$trial."&candidates=1000000&rows=10",
-        "http://192.168.2.12:8983/solr/lire_26/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$trial."&candidates=1000000&rows=10",
-        "http://192.168.2.12:8983/solr/lire_27/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$trial."&candidates=1000000&rows=10",
-        "http://192.168.2.12:8983/solr/lire_28/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$trial."&candidates=1000000&rows=10",
-        "http://192.168.2.12:8983/solr/lire_29/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$trial."&candidates=1000000&rows=10",
-        "http://192.168.2.12:8983/solr/lire_30/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$trial."&candidates=1000000&rows=10",
-        "http://192.168.2.12:8983/solr/lire_31/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$trial."&candidates=1000000&rows=10",
+         "http://192.168.2.12:8983/solr/lire_0/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$accuracy."&candidates=".$candidates."&rows=10",
+         "http://192.168.2.12:8983/solr/lire_1/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$accuracy."&candidates=".$candidates."&rows=10",
+         "http://192.168.2.12:8983/solr/lire_2/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$accuracy."&candidates=".$candidates."&rows=10",
+         "http://192.168.2.12:8983/solr/lire_3/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$accuracy."&candidates=".$candidates."&rows=10",
+         "http://192.168.2.12:8983/solr/lire_4/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$accuracy."&candidates=".$candidates."&rows=10",
+         "http://192.168.2.12:8983/solr/lire_5/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$accuracy."&candidates=".$candidates."&rows=10",
+         "http://192.168.2.12:8983/solr/lire_6/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$accuracy."&candidates=".$candidates."&rows=10",
+         "http://192.168.2.12:8983/solr/lire_7/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$accuracy."&candidates=".$candidates."&rows=10",
+         "http://192.168.2.12:8983/solr/lire_8/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$accuracy."&candidates=".$candidates."&rows=10",
+         "http://192.168.2.12:8983/solr/lire_9/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$accuracy."&candidates=".$candidates."&rows=10",
+        "http://192.168.2.12:8983/solr/lire_10/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$accuracy."&candidates=".$candidates."&rows=10",
+        "http://192.168.2.12:8983/solr/lire_11/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$accuracy."&candidates=".$candidates."&rows=10",
+        "http://192.168.2.12:8983/solr/lire_12/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$accuracy."&candidates=".$candidates."&rows=10",
+        "http://192.168.2.12:8983/solr/lire_13/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$accuracy."&candidates=".$candidates."&rows=10",
+        "http://192.168.2.12:8983/solr/lire_14/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$accuracy."&candidates=".$candidates."&rows=10",
+        "http://192.168.2.12:8983/solr/lire_15/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$accuracy."&candidates=".$candidates."&rows=10",
+        "http://192.168.2.12:8983/solr/lire_16/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$accuracy."&candidates=".$candidates."&rows=10",
+        "http://192.168.2.12:8983/solr/lire_17/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$accuracy."&candidates=".$candidates."&rows=10",
+        "http://192.168.2.12:8983/solr/lire_18/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$accuracy."&candidates=".$candidates."&rows=10",
+        "http://192.168.2.12:8983/solr/lire_19/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$accuracy."&candidates=".$candidates."&rows=10",
+        "http://192.168.2.12:8983/solr/lire_20/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$accuracy."&candidates=".$candidates."&rows=10",
+        "http://192.168.2.12:8983/solr/lire_21/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$accuracy."&candidates=".$candidates."&rows=10",
+        "http://192.168.2.12:8983/solr/lire_22/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$accuracy."&candidates=".$candidates."&rows=10",
+        "http://192.168.2.12:8983/solr/lire_23/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$accuracy."&candidates=".$candidates."&rows=10",
+        "http://192.168.2.12:8983/solr/lire_24/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$accuracy."&candidates=".$candidates."&rows=10",
+        "http://192.168.2.12:8983/solr/lire_25/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$accuracy."&candidates=".$candidates."&rows=10",
+        "http://192.168.2.12:8983/solr/lire_26/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$accuracy."&candidates=".$candidates."&rows=10",
+        "http://192.168.2.12:8983/solr/lire_27/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$accuracy."&candidates=".$candidates."&rows=10",
+        "http://192.168.2.12:8983/solr/lire_28/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$accuracy."&candidates=".$candidates."&rows=10",
+        "http://192.168.2.12:8983/solr/lire_29/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$accuracy."&candidates=".$candidates."&rows=10",
+        "http://192.168.2.12:8983/solr/lire_30/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$accuracy."&candidates=".$candidates."&rows=10",
+        "http://192.168.2.12:8983/solr/lire_31/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$accuracy."&candidates=".$candidates."&rows=10",
     );
     $node_count = count($nodes);
 
