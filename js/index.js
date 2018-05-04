@@ -194,7 +194,7 @@ var search = function (trial, prev_result) {
             if (navigator.language.indexOf("zh") === 0) {
               title_display = entry.title_chinese || entry.title_romaji;
             }
-            var thumbnailImage = index < 5 ? "<div style=\"height:166px\"><img src=\"" + thumbnailLink + "\" onload=\"this.parentElement.style.height = null;\"></div>" : "";
+            var thumbnailImage = (trial >= 2 || parseFloat(data.docs[0].diff) < 10) && index < 5 ? "<div style=\"height:166px\"><img src=\"" + thumbnailLink + "\" onload=\"this.parentElement.style.height = null;\"></div>" : "";
 
             if (formatTime(entry.from) === formatTime(entry.to)) {
               result.innerHTML = "<a href=\"#\"><span class=\"title\">" + title_display + "</span><br><span class=\"ep\">EP#" + zeroPad(entry.episode, 2) + "</span> <span class=\"time\">" + formatTime(entry.from) + "</span> <span class=\"similarity\">~" + similarity + "%</span><br><span class=\"file\">" + entry.file + "</span>" + thumbnailImage + "</a>";
@@ -207,16 +207,16 @@ var search = function (trial, prev_result) {
         $(".result").click(playfile);
 
         if (parseFloat(data.docs[0].diff) > 10) {
-          if (trial < 3) {
+          if (trial < 2) {
             search(trial + 1, data);
-          } else if (trial < 6) {
+          } else if (trial < 5) {
             $("#results").prepend("<div style=\"text-align:center\"><button id=\"search2Btn\" type=\"button\" class=\"btn btn-default btn-sm btn-primary\"><span class=\"glyphicon glyphicon-search\"></span> Keep Searching</button></div>");
             $("#search2Btn").click(function () {
               search(trial + 1, data);
             });
           }
         } else {
-          if (trial < 6) {
+          if (trial < 5) {
             $("#results").prepend("<div style=\"text-align:center\"><button id=\"search2Btn\" type=\"button\" class=\"btn btn-default btn-sm btn-primary\"><span class=\"glyphicon glyphicon-search\"></span> Keep Searching</button></div>");
             $("#search2Btn").click(function () {
               search(trial + 1, data);

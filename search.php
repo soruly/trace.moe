@@ -81,12 +81,8 @@ if(isset($_POST['data'])){
         $trial = intval($_POST['trial']) > 5 ? 5 : intval($_POST['trial']);
     }
 
-    $candidates = $trial === 0 ? 100000 : 1000000;
-    $accuracy = $trial === 0 ? 0 : $trial - 1;
-    // 0th trial --> accuracy = 0, candidates = 100k
-    // 1th trial --> accuracy = 0, candidates = 1M
-    // 2th trial --> accuracy = 1, candidates = 1M
-    // 3th trial --> accuracy = 2, candidates = 1M
+    $candidates = 1000000;
+    $accuracy = $trial;
 
     $nodes = array(
          "http://192.168.2.12:8983/solr/lire_0/lireq?".$filter."&field=cl_ha&ms=false&url=http://192.168.2.11/pic/".$filename."&accuracy=".$accuracy."&candidates=".$candidates."&rows=10",
