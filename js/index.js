@@ -539,7 +539,7 @@ function CLIPBOARD_CLASS (canvas_id) {
   }());
   // default paste action
   this.paste_auto = function (e) {
-    if (e.target !== document.querySelector("#imageURL")) {
+    if (e.target !== document.querySelector("#imageURL") && e.target !== document.querySelector("#seasonSelector")) {
       paste_mode = "";
       pasteCatcher.innerHTML = "";
 
