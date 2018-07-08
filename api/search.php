@@ -224,7 +224,7 @@ if(isset($_POST['image'])){
                 }
             }
             foreach($final_result->docs as $doc){
-              if($doc->d <= 9) break 2; //break outer loop
+              if($doc->d <= 10) break 2; //break outer loop
             }
         }
         usort($final_result->docs, "reRank");

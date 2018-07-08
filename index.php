@@ -47,7 +47,6 @@ if(isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL))
 <body>
 <div class="alert alert-warning" style="position: relative; top: 10px; left: 10px; box-shadow: 0 0 20px 0px; width: 975px">
   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-New: <b>greatly improved search speed!!</b><br>
 New: whatanime.ga <a href="https://discord.gg/K9jn6Kj">Discord Channel</a><br>
 Support whatanime.ga on Patreon! <a href="https://www.patreon.com/soruly" target="_blank">https://www.patreon.com/soruly</a>
 </div>
