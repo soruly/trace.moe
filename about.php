@@ -119,6 +119,7 @@ Source: <a href="https://github.com/JanYoStudio/WhatAnime">https://github.com/Ja
 </div>
 <p><a href="https://go-talks.appspot.com/github.com/soruly/slides/whatanime.ga.slide">Go-talk presentation on 27 May 2016</a></p>
 <p><a href="https://go-talks.appspot.com/github.com/soruly/slides/whatanime.ga-2017.slide">Go-talk presentation on 4 Jun 2017</a></p>
+<p><a href="https://go-talks.appspot.com/github.com/soruly/slides/whatanime.ga-2018.slide">Go-talk presentation on 17 Jun 2018</a></p>
 <div class="page-header">
 <h3>System Status</h3>
 </div>
