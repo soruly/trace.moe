@@ -162,6 +162,7 @@ Example Response
 </p>
 
 Notes:
+- Results are always sorted by similarity, from most similar to least similar
 - If multiple results are found in the same file, near the same timecode and has similarity > 98%, results are grouped as one, using `from` and `to` to indicate the starting time and ending time of that scene.
 - `episode` is only an estimated number extraction from `filename`, it may fail and return empty string
 - With `anilist_id`, you may get more anime info from `https://anilist.co/anime/{anilist_id}` . Read [AniList API](https://github.com/joshstar/AniList-API-Docs) for more information.
