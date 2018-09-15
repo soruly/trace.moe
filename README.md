@@ -26,9 +26,13 @@ Search result tells you which moment it appears.
 
 whatanime.ga uses [sola](https://github.com/soruly/sola) to index video and work with liresolr. This repo only include the webapp for whatanime.ga, which demonstrate how to integrate anilist info, and how thumbnail/video previews are generated. If you want to make your own video scene search engine, please refer to sola instead.
 
-You may read a brief [Presentation slides](https://go-talks.appspot.com/github.com/soruly/slides/whatanime.ga.slide) given in May 2016
+To learn more, read the presentation slides below
 
-And [Presentation slides](https://go-talks.appspot.com/github.com/soruly/slides/whatanime.ga-2017.slide) given in Jun 2017
+[Presentation slides](https://go-talks.appspot.com/github.com/soruly/slides/whatanime.ga.slide) given in May 2016
+
+[Presentation slides](https://go-talks.appspot.com/github.com/soruly/slides/whatanime.ga-2017.slide) given in Jun 2017
+
+[Presentation slides](https://go-talks.appspot.com/github.com/soruly/slides/whatanime.ga-2018.slide) given in Jun 2018
 
 System Overview
 
