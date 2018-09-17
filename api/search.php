@@ -82,6 +82,8 @@ if($redis->exists($uid)){
   $expire = $redis->ttl($uid);
     if($uid > 1000 && $quota < 1){
       header("HTTP/1.1 429 Too Many Requests");
+      header("X-whatanime-quota: ${quota}");
+      header("X-whatanime-expire: ${expire}");
       exit("Search quota exceeded. Please wait ".$expire." seconds.");
     }
 }
@@ -98,6 +100,9 @@ if(isset($_POST['image'])){
     $expire = $redis->ttl($uid);
     $redis->set($uid, $quota);
     $redis->expire($uid, $expire);
+
+    header("X-whatanime-quota: ${quota}");
+    header("X-whatanime-expire: ${expire}");
 
     $savePath = '/usr/share/nginx/html/pic/';
     $filename = microtime(true).'.jpg';
