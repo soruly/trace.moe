@@ -80,7 +80,7 @@ $lang = 'en';
 if($redis->exists($uid)){
   $quota = intval($redis->get($uid));
   $expire = $redis->ttl($uid);
-    if($uid > 1000 && $quota < 1){
+    if($quota < 1){
       header("HTTP/1.1 429 Too Many Requests");
       header("X-whatanime-quota: ${quota}");
       header("X-whatanime-expire: ${expire}");
