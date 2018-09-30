@@ -1,20 +1,32 @@
-<!DOCTYPE>
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>whatanime.ga API Docs</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docute@4/dist/docute.css">
-  </head>
-  <body>
-    <div id="docute"></div>
-    <script src="https://cdn.jsdelivr.net/npm/docute@4/dist/docute.js"></script>
-    <script>
-      new Docute({
-        target: '#docute',
-		sourcePath: '/docs/',
-		highlight: ['javascript', 'json']
-      })
-    </script>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+  <title>whatanime.ga API Docs</title>
+  <!-- the docute client styles -->
+  <link rel="stylesheet" href="https://unpkg.com/docute/dist/docute.css">
+</head>
+<body>
+  <div id="app"></div>
+  <!-- load the docute client library -->
+  <script src="https://unpkg.com/docute/dist/docute.js"></script>
+  <!-- bootstrap your docute app! -->
+  <script>
+    docute.init({
+      landing: false,
+      debug: false,
+      repo: 'soruly/whatanime.ga',
+      twitter: 'soruly',
+      sidebar: true,
+      disableSidebarToggle: false,
+      nav: {
+        default: []
+      },
+      icons: [],
+      plugins: []
+    });
+  </script>
+</body>
 </html>
