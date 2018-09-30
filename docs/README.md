@@ -12,17 +12,17 @@ This API is still under development. Make sure you stay up-to-date with me and t
 
 Once you've got your API token, check your identity first.
 
-`curl https://whatanime.ga/api/me?token=${your_token}`
+`curl https://whatanime.ga/api/me?token=your_api_token`
 
 Now base64 encode an image file and POST to /search.
 
-`curl -X POST https://whatanime.ga/api/search?token=${your_token} -d "image=data:image/jpeg;base64,$(base64 -w 0 search_image.jpg)"`
+`curl -X POST https://whatanime.ga/api/search?token=your_api_token -d "image=data:image/jpeg;base64,$(base64 -w 0 search_image.jpg)"`
 
 Or if you prefer using [HTTPie](https://httpie.org/) :
 
-`http --body https://whatanime.ga/api/me?token=${your_token}`
+`http --body https://whatanime.ga/api/me?token=your_api_token`
 
-`http --body --form POST https://whatanime.ga/api/search?token=${your_token} image="data:image/jpeg;base64,$(base64 -w 0 search_image.jpg)"`
+`http --body --form POST https://whatanime.ga/api/search?token=your_api_token image="data:image/jpeg;base64,$(base64 -w 0 search_image.jpg)"`
 
 ## Me
 
@@ -31,7 +31,7 @@ Let you verify that you have a valid user account. And see your search quota lim
 URL
 
 ```
-GET /api/me?token={your_api_token} HTTP/1.1
+GET /api/me?token=your_api_token HTTP/1.1
 Host: whatanime.ga
 ```
 
@@ -55,11 +55,11 @@ Returns HTTP 401 if API token is missing.
 Seach request should be POST as HTTP Form, not JSON
 
 ```
-POST /api/search?token={your_api_token} HTTP/1.1
+POST /api/search?token=your_api_token HTTP/1.1
 Content-Type: application/x-www-form-urlencoded; charset=UTF-8
 Host: whatanime.ga
 
-image={Base64 Encoded Image}&filter=*
+image=data:image/jpeg;base64,/9j/4AAQSkZJ......
 ```
 
 | Fields        | Value         | Notes  |
@@ -174,6 +174,14 @@ Notes:
 The `/api/search` endpoint has a request limit.
 
 Each API token is limited to 10 search per minute.
+
+You can get the current limit from HTTP response header.
+
+Example
+```
+x-whatanime-expire: 60
+x-whatanime-quota: 9
+```
 
 Once the limit is reached. Server would respond HTTP 429 Too Many Requests, with a text message showing when the quota will reset.
 
