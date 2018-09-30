@@ -37,7 +37,7 @@ Host: whatanime.ga
 
 Example Response
 
-```
+```json
 {
   "user_id": 1001,
   "email": "soruly@gmail.com",
@@ -72,7 +72,7 @@ image={Base64 Encoded Image}&filter=*
 </p>
 
 jQuery Example
-```
+```javascript
 $.post('/search',
   {
     'image': searchImage.toDataURL('image/jpeg', 0.8)
@@ -85,7 +85,7 @@ $.post('/search',
 ```
 
 Example Response
-```
+```json
 {
   "RawDocsCount": 3555648,
   "RawDocsSearchTime": 14056,
