@@ -150,6 +150,7 @@ Source: <a href="https://github.com/JanYoStudio/WhatAnime">https://github.com/Ja
 <h3>Patreons</h3>
 </div>
 <p>
+<a href="https://chenxublog.com">chenxuuu</a><br>
 <a href="http://desmonding.me/">Desmond</a><br>
 <a href="http://imvery.moe/">FangzhouL</a><br>
 Snadzies<br>
