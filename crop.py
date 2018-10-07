@@ -4,10 +4,7 @@ import sys
 
 image = cv2.imread(sys.argv[1])
 height, width, channels = image.shape
-if width / height > 16 / 9:
-  cv2.imwrite(sys.argv[2],image)
-  exit()
-
+# Convert image to grayscale
 imgray = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
 
 # Set threshold
@@ -22,19 +19,20 @@ cnt = contours[max_index]
 x,y,w,h = cv2.boundingRect(cnt)
 
 # Ensure bounding rect should be at least 16:9 or taller
-if w / h > 16 / 9:
+# For images that is not ~16:9
+# And its detected bounding rect wider than 16:9
+if abs(width / height - 16 / 9) < 0.03 and (w / h - 16 / 9) > 0.03:
   # increase top and bottom margin
   newHeight = w / 16 * 9
   y = y - (newHeight - h ) / 2
   h = newHeight
-
 
 # Crop with the largest rectangle
 crop = image[y:y+h,x:x+w]
 cv2.imwrite(sys.argv[2],crop)
 
 exit()
-# Draw preview image
+# Draw preview image for debug
 imagePreview = cv2.imread(sys.argv[1])
 for contour in contours:
     #epsilon = 0.001 * cv2.arcLength(contour,True)
