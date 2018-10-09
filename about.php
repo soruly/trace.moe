@@ -135,7 +135,7 @@ Source: <a href="https://github.com/JanYoStudio/WhatAnime">https://github.com/Ja
 </div>
 <p>If you have any feedback, suggestions or anything else, please email to <a href="mailto:help@whatanime.ga">help@whatanime.ga</a>.</p>
 <p>You may also reach the author on Telegram <a href="https://t.me/soruly">@soruly</a> or <a href="https://discord.gg/K9jn6Kj">Discord</a>.</p>
-<p>Follow the development of whatanime.ga and learn more about the underlying technologies at the <a href="https://plus.google.com/communities/115025102250573417080">Google+ Community</a> , <a href="https://www.facebook.com/whatanime.ga/">Facebook Page</a> or <a href="https://www.patreon.com/soruly">Patreon page</a>.</p>
+<p>Follow the development of whatanime.ga and learn more about the underlying technologies on <a href="https://github.com/soruly/slides">GitHub</a>, <a href="https://www.facebook.com/whatanime.ga/">Facebook Page</a> or <a href="https://www.patreon.com/soruly">Patreon page</a>.</p>
 
 <div class="page-header">
 <h3>Credit</h3>
