@@ -19,33 +19,44 @@ require 'vendor/autoload.php';
 use Predis\Collection\Iterator;
 Predis\Autoloader::register();
 $redis = new Predis\Client('tcp://127.0.0.1:6379');
-$redis_alive = true;
-try {
-    $redis->connect();
-}
-catch (Predis\Connection\ConnectionException $exception) {
-    $redis_alive = false;
-}
+$redis->connect();
 
-$lang = 'en';
-
-if($redis->exists($_SERVER['HTTP_X_FORWARDED_FOR'])){
-    $quota = intval($redis->get($_SERVER['HTTP_X_FORWARDED_FOR']));
-}
-else{
-    $quota = 10;
-    $redis->set($_SERVER['HTTP_X_FORWARDED_FOR'], $quota);
-    $redis->expire($_SERVER['HTTP_X_FORWARDED_FOR'], 60);
-}
 
 if(isset($_POST['data'])){
-    if($quota < 1){
-        exit(header("HTTP/1.0 429 Too Many Requests"));
+
+    $client_id = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    $limit_id = $client_id."_limit"; // reqeust per minute
+    $quota_id = $client_id."_quota"; // quota per day
+
+    // rate limit per minute
+    if(!$redis->exists($limit_id)){
+        $redis->set($limit_id, 10);
+        $redis->expire($limit_id, 60);
     }
+    $limit = intval($redis->get($limit_id));
+    $limit--;
+    $limit_ttl = $redis->ttl($limit_id);
+    $redis->set($limit_id, $limit);
+    $redis->expire($limit_id, $limit_ttl);
+    if($limit < 0) {
+        header("HTTP/1.0 429 Too Many Requests");
+        exit("You have searched too much, try again in ".$limit_ttl." seconds.");
+    }
+
+    // quota limit per day
+    if(!$redis->exists($quota_id)){
+        $redis->set($quota_id, 150);
+        $redis->expire($quota_id, 86400);
+    }
+    $quota = intval($redis->get($quota_id));
     $quota--;
-    $expire = $redis->ttl($_SERVER['HTTP_X_FORWARDED_FOR']);
-    $redis->set($_SERVER['HTTP_X_FORWARDED_FOR'], $quota);
-    $redis->expire($_SERVER['HTTP_X_FORWARDED_FOR'], $expire);
+    $quota_ttl = $redis->ttl($quota_id);
+    $redis->set($quota_id, $quota);
+    $redis->expire($quota_id, $quota_ttl);
+    if($quota < 0) {
+        header("HTTP/1.0 429 Too Many Requests");
+        exit("You have searched too much, try again in ".$quota_ttl." seconds.");
+    }
 
     $savePath = '/usr/share/nginx/html/pic/';
     $filename = microtime(true).'.jpg';
@@ -123,9 +134,6 @@ if(isset($_POST['data'])){
         }
     }
     $final_result->docs = array_slice($final_result->docs, 0, 20);
-
-    $final_result->quota = $quota;
-    $final_result->expire = $expire;
     
     $ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
     
@@ -248,6 +256,10 @@ if(isset($_POST['data'])){
     //unset($final_result->ReRankSearchTime);
     unset($final_result->responseHeader);
     //$final_result->accuracy = $accuracy;
+    $final_result->limit = $limit;
+    $final_result->limit_ttl = $limit_ttl;
+    $final_result->quota = $quota;
+    $final_result->quota_ttl = $quota_ttl;
     echo json_encode($final_result);
     //unlink($savePath.$filename);
 }
