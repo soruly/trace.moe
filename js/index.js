@@ -231,7 +231,7 @@ var search = function (trial, prev_result) {
       }
     }, "json").fail(function (e) {
     if (e.status === 429) {
-      document.querySelector("#results").innerHTML = "<div id=\"status\">You have searched too much, try again in 10 minutes.</div>";
+      document.querySelector("#results").innerHTML = "<div id=\"status\">You have searched too much, try again in a minute.</div>";
     } else {
       document.querySelector("#results").innerHTML = "<div id=\"status\">Connection to Search Server Failed</div>";
     }
