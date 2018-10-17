@@ -8,8 +8,17 @@ Predis\Autoloader::register();
 $redis = new Predis\Client('tcp://127.0.0.1:6379');
 $redis->connect();
 
-if(isset($_POST['image'])){
+$image = $_POST['image'] ?? null;
+$filter = $_POST['filter'] ?? null;
 
+$input = file_get_contents('php://input');
+if($input) {
+    $data = json_decode($input, true);
+    $image = $data["image"] ?? $image;
+    $filter = $data["filter"] ?? $filter;
+}
+
+if ($image) {
     if(isset($_GET['token']) && $_GET['token'] !== "") {
       $sql = mysqli_connect($sql_hostname, $sql_username, $sql_password, $sql_database);
       if (mysqli_connect_errno()) {
@@ -98,7 +107,7 @@ if(isset($_POST['image'])){
 
     $savePath = '/usr/share/nginx/html/pic/';
     $filename = microtime(true).'.jpg';
-    $data = str_replace('data:image/jpeg;base64,', '', $_POST['image']);
+    $data = str_replace('data:image/jpeg;base64,', '', $image);
     $data = str_replace(' ', '+', $data);
     
     // file_put_contents($savePath.$filename, base64_decode($data));
@@ -138,10 +147,7 @@ if(isset($_POST['image'])){
     $final_result->trial = 0;
     $final_result->docs = [];
     
-    $filter = "";
-    if(isset($_POST['filter'])){
-        $filter = $_POST['filter'] ? "fq=id:".intval($_POST['filter'])."/*" : "";
-    }
+    $filter_str = $filter ? "fq=id:".intval($filter)."/*" : "";
     $trial = 0;
     while($trial < 3){
         $trial++;
@@ -149,7 +155,7 @@ if(isset($_POST['image'])){
 
         unset($nodes);
         for($i = 0; $i <= 31; $i++){
-            $nodes[]= "http://192.168.2.12:8983/solr/lire_{$i}/lireq?{$filter}&field=cl_ha&ms=false&url=http://192.168.2.11/pic/{$filename}&accuracy={$trial}&candidates=1000000&rows=10";
+            $nodes[]= "http://192.168.2.12:8983/solr/lire_{$i}/lireq?{$filter_str}&field=cl_ha&ms=false&url=http://192.168.2.11/pic/{$filename}&accuracy={$trial}&candidates=1000000&rows=10";
         }
 
         $node_count = count($nodes);
