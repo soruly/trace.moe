@@ -2,38 +2,40 @@
 
 This API is still under development. Make sure you stay up-to-date with me and this project. 
 
-## Getting Started
-1. Request API token. Contact me via email(soruly@gmail.com) or [Twitter](https://twitter.com/soruly)(@soruly) or [Telegram](https://t.me/soruly)(@soruly).
-2. Let me know what you are going to do with it. (Playing, experimenting and testing is fine)
-3. Read the docs and try the API
-4. Give feedbacks and suggestions
-
 ## Quick Start
 
-Once you've got your API token, check your identity first.
+POST a base64 encoded image to /search.
 
-`curl https://whatanime.ga/api/me?token=your_api_token`
+`curl -X POST https://whatanime.ga/api/search -d "image=data:image/jpeg;base64,$(base64 -w 0 search_image.jpg)"`
 
-Now base64 encode an image file and POST to /search.
+## Rate limit and Search Quota
 
-`curl -X POST https://whatanime.ga/api/search?token=your_api_token -d "image=data:image/jpeg;base64,$(base64 -w 0 search_image.jpg)"`
+You can use the API with / without an API token. The difference is the limit when you access the `/api/search` endpoint.
 
-Or if you prefer using [HTTPie](https://httpie.org/) :
+When no API token is given, the system limit search by IP address, and count both search via API and webpage together.
 
-`http --body https://whatanime.ga/api/me?token=your_api_token`
+|              | via Webpage        | via API without token | Registered Developers | Patreons      |
+|--------------|--------------------|-----------------------|-----------------------|---------------|
+| Rate Limit   | 10/minute (shared) | 10/minute (shared)    | 10/minute             | 10-30/minute  |
+| Search quota | 150/day (shared)   | 150/day (shared)      | 1000/day              | 1000-3000/day |
 
-`http --body --form POST https://whatanime.ga/api/search?token=your_api_token image="data:image/jpeg;base64,$(base64 -w 0 search_image.jpg)"`
+If you need more search quota, send me email (soruly@gmail.com) to become registered devlopers.
+
+<p class="warning">
+  Rate limits are subjected to change, as this API is still beta.
+</p>
 
 ## Me
 
-Let you verify that you have a valid user account. And see your search quota limit for your account.
-
-URL
+Let you check the search quota and limit for your account.
 
 ```
-GET /api/me?token=your_api_token HTTP/1.1
-Host: whatanime.ga
+GET https://whatanime.ga/api/me?token=your_api_token
 ```
+
+| Fields        | Value             | Notes          |
+| ------------- |-------------------| ---------------|
+| token         | String (Optional) | Your API token |
 
 Example Response
 
@@ -41,23 +43,37 @@ Example Response
 {
   "user_id": 1001,
   "email": "soruly@gmail.com",
-  "quota": 10,
-  "quota_ttl": 60
+  "limit": 9,
+  "limit_ttl": 45,
+  "quota": 999,
+  "quota_ttl": 86385,
+  "user_limit": 10,
+  "user_limit_ttl": 60,
+  "user_quota": 1000,
+  "user_quota_ttl": 86400
 }
 ```
 
-Returns HTTP 403 if API token is invalid.
-
-Returns HTTP 401 if API token is missing.
+| Fields         | Meaning                                      | Value                               |
+|----------------|----------------------------------------------|-------------------------------------|
+| user_id        | Your Account ID                              | Number (null if no API token)       |
+| email          | Your Account Email                           | String (IP address if no API token) |
+| limit          | Current remaining limit for your account now | Number                              |
+| limit_ttl      | Time until limit reset                       | Number (seconds)                    |
+| quota          | Current remaining limit for your account now | Number                              |
+| quota_ttl      | Time until quota reset                       | Number (seconds)                    |
+| user_limit     | Rate limit associated with your account      | Number                              |
+| user_limit_ttl | Usually set to 60 (1 minute)                 | Number (seconds)                    |
+| user_quota     | Quota associated with your account           | Number                              |
+| user_quota_ttl | Usually set to 86400 (1 day)                 | Number (seconds)                    |
 
 ## Search
 
 Seach request should be POST as HTTP Form, not JSON
 
 ```
-POST /api/search?token=your_api_token HTTP/1.1
+POST https://whatanime.ga/api/search?token=your_api_token HTTP/1.1
 Content-Type: application/x-www-form-urlencoded; charset=UTF-8
-Host: whatanime.ga
 
 image=data:image/jpeg;base64,/9j/4AAQSkZJ......
 ```
@@ -92,8 +108,10 @@ Example Response
   "ReRankSearchTime": 1182,
   "CacheHit": false,
   "trial": 1,
-  "quota": 8,
-  "expire": 53,
+  "limit": 9,
+  "limit_ttl": 60,
+  "quota": 148,
+  "quota_ttl": 85899
   "docs": [
     {
       "from": 663.17,
@@ -130,8 +148,10 @@ Example Response
 | ReRankSearchTime   | Time taken to compare the frames (sum of all cores) | Number |
 | CacheHit  | Whether the search result is cached. (Results are cached by extraced image feature) | Boolean |
 | trial | Number of times searched | Number |
+| limit | Number of search limit remaining | Number |
+| limit_ttl | Time until limit resets (seconds) | Number |
 | quota | Number of search quota remaining | Number |
-| expire | Time until quota resets (seconds) | Number |
+| quota_ttl | Time until quota resets (seconds) | Number |
 | docs | Search results (see table below) | Array of Objects |
 
 
@@ -145,15 +165,12 @@ Example Response
 | anilist_id       | The matching [AniList](https://anilist.co/) ID | Number
 | mal_id           | The matching [MyAnimeList](https://myanimelist.net/) ID | Number or null
 | is_adult         | Whether the anime is hentai | Boolean
-| ~~title~~        | (deprecated, do not use this) | |
 | title_native     | Native (Japanese) title | String or null (Can be empty string)
 | title_chinese    | Chinese title | String or null (Can be empty string)
 | title_english    | English title | String or null (Can be empty string)
 | title_romaji     | Title in romaji | String
 | synonyms         | Alternate english titles | Array of String or []
 | synonyms_chinese | Alternate chinese titles | Array of String or []
-| ~~season~~       | (deprecated, do not use this) | |
-| ~~anime~~        | (deprecated, do not use this) | |
 | filename         | The filename of file where the match is found | String
 | tokenthumb       | A token for generating preview | String
 
@@ -169,34 +186,28 @@ Notes:
 - The list of chinese translation can be obtained from [anilist-chinese](https://github.com/soruly/anilist-chinese)
 - Search results would be cached for 5-60 minutes. Higher accuracy cache longer.
 
-### Search Quota
 
-The `/api/search` endpoint has a request limit.
-
-Each API token is limited to 10 search per minute.
-
-You can get the current limit from HTTP response header.
+Aside from the JSON response or the `/me` endpoint, you can also get the current limit from HTTP response header.
 
 Example
 ```
-x-whatanime-expire: 60
-x-whatanime-quota: 9
+x-whatanime-limit: 9
+x-whatanime-limit-ttl: 60
+x-whatanime-quota: 148
+x-whatanime-quota-ttl: 85899
 ```
 
 Once the limit is reached. Server would respond HTTP 429 Too Many Requests, with a text message showing when the quota will reset.
 
 Example
 ```
-Search quota exceeded. Please wait 87 seconds.
+Search limit exceeded. Please wait 87 seconds.
 ```
-
-<p class="warning">
-  Note that the server is served via cloudflare, their servers may have some rate limit control and anti-flood mechanism.
-</p>
 
 <p class="tip">
   It is recommended to handle any exception cases properly in your application, such as rate limit, timeouts and network errors.
 </p>
+
 
 ### Previews
 
