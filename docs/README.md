@@ -14,15 +14,15 @@ You can use the API with / without an API token. The difference is the limit whe
 
 When no API token is given, the system limit search by IP address, and count both search via API and webpage together.
 
-|              | via Webpage        | via API without token | Registered Developers | Patreons      |
-|--------------|--------------------|-----------------------|-----------------------|---------------|
-| Rate Limit   | 10/minute (shared) | 10/minute (shared)    | 10/minute             | 10-30/minute  |
-| Search quota | 150/day (shared)   | 150/day (shared)      | 1000/day              | 1000-3000/day |
+|              | via Webpage / via API without token | Registered Developers | Patreons      |
+|--------------|-------------------------------------|-----------------------|---------------|
+| Rate Limit   | 10/minute                           | 10/minute             | 10-30/minute  |
+| Search quota | 150/day                             | 1000/day              | 1000-3000/day |
 
 If you need more search quota, send me email (soruly@gmail.com) to become registered devlopers.
 
 <p class="warning">
-  Rate limits are subjected to change, as this API is still beta.
+  Since this API is still beta, rate limits are subjected to change.
 </p>
 
 ## Me
@@ -111,7 +111,7 @@ Example Response
   "limit": 9,
   "limit_ttl": 60,
   "quota": 148,
-  "quota_ttl": 85899
+  "quota_ttl": 85899,
   "docs": [
     {
       "from": 663.17,
