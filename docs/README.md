@@ -72,10 +72,12 @@ Example Response
 Seach request should be POST as HTTP Form, not JSON
 
 ```
-POST https://whatanime.ga/api/search?token=your_api_token HTTP/1.1
-Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+POST https://whatanime.ga/api/search?token=your_api_token
+Content-Type: application/json
 
-image=data:image/jpeg;base64,/9j/4AAQSkZJ......
+{
+  "image" : "data:image/jpeg;base64,/9j/4AAQSkZJ......"
+}
 ```
 
 | Fields        | Value         | Notes  |
@@ -87,17 +89,13 @@ image=data:image/jpeg;base64,/9j/4AAQSkZJ......
   Note that there is a hard limit of 1MB post size. You should ensure your Base64 encoded image is < 1MB. Otherwise the server responds with HTTP 413 (Request Entity Too Large).
 </p>
 
-jQuery Example
+Example
 ```javascript
-$.post('/search',
-  {
-    'image': searchImage.toDataURL('image/jpeg', 0.8)
-  },
-  function (data, textStatus) {
-
-  }
-);
-
+fetch('/api/search', { 
+  method: 'POST',
+  body: JSON.stringify({image: searchImage.toDataURL('image/jpeg', 0.8)}),
+  headers: { 'Content-Type': 'application/json' }
+}).then(res=>res.json()).then(result=>{console.log(result)});
 ```
 
 Example Response
