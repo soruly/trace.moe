@@ -1,108 +1,100 @@
 <?php
 ini_set("display_errors", 0);
 require '../config.php';
-
-if(isset($_GET['token'])) {
-
-  $sql = mysqli_connect($sql_hostname, $sql_username, $sql_password, $sql_database);
-  if (mysqli_connect_errno()) {
-      header('HTTP/1.1 503 Service Unavailable');
-      exit("Failed to connect to database");
-}
-else{
-  mysqli_query($sql, "SET NAMES 'utf8'");
-
-  if ($stmt = mysqli_prepare($sql, "SELECT `user_id`,`email`,`quota`,`quota_ttl` FROM `users` WHERE `api_key`=? LIMIT 0,1")){
-
-    mysqli_stmt_bind_param($stmt, "s", $_GET['token']);
-    mysqli_stmt_execute($stmt);
-    mysqli_stmt_store_result($stmt);
-    mysqli_stmt_bind_result($stmt, $user_id, $user_email, $quota, $quota_ttl);
-    if( mysqli_stmt_num_rows($stmt) == 0) {
-      header('HTTP/1.1 403 Forbidden');
-      exit("Invalid API token");
-    }
-    else{
-
-    }
-    mysqli_stmt_fetch($stmt);
-    mysqli_stmt_close($stmt);
-  }
-  if($user_id) {
-    mysqli_query($sql, "UPDATE `users` SET `search_count`=`search_count`+1 WHERE `user_id`=".intval($user_id));
-  }
-}
-
-mysqli_close($sql);
-}
-else{
-  header("HTTP/1.1 401 Unauthorized");
-  exit("Missing API token");
-}
-
-$uid = $user_id;
-
-$url = 'https://www.google-analytics.com/collect';
-$data = array(
-  'v' => '1',
-  't' => 'event',
-  'tid' => 'UA-70950149-1',
-  'cid' => $uid,
-  'ec' => 'api',
-  'ea' => 'search'
-);
-
-$options = array(
-  'http' => array(
-    'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-    'method'  => 'POST',
-    'content' => http_build_query($data)
-  )
-);
-$context  = stream_context_create($options);
-$result = file_get_contents($url, false, $context);
-
 require '../vendor/autoload.php';
 
 use Predis\Collection\Iterator;
 Predis\Autoloader::register();
 $redis = new Predis\Client('tcp://127.0.0.1:6379');
-$redis_alive = true;
-try {
-    $redis->connect();
-}
-catch (Predis\Connection\ConnectionException $exception) {
-    $redis_alive = false;
-}
-
-$lang = 'en';
-
-if($redis->exists($uid)){
-  $quota = intval($redis->get($uid));
-  $expire = $redis->ttl($uid);
-    if($quota < 1){
-      header("HTTP/1.1 429 Too Many Requests");
-      header("X-whatanime-quota: ${quota}");
-      header("X-whatanime-expire: ${expire}");
-      exit("Search quota exceeded. Please wait ".$expire." seconds.");
-    }
-}
-else{
-  $redis->set($uid, $quota);
-  $redis->expire($uid, $quota_ttl);
-}
-
-
-header('Content-Type: application/json');
+$redis->connect();
 
 if(isset($_POST['image'])){
-    $quota--;
-    $expire = $redis->ttl($uid);
-    $redis->set($uid, $quota);
-    $redis->expire($uid, $expire);
 
+    if(isset($_GET['token']) && $_GET['token'] !== "") {
+      $sql = mysqli_connect($sql_hostname, $sql_username, $sql_password, $sql_database);
+      if (mysqli_connect_errno()) {
+          header('HTTP/1.1 503 Service Unavailable');
+          exit("Failed to connect to database");
+      }
+      else {
+        mysqli_query($sql, "SET NAMES 'utf8'");
+
+        if ($stmt = mysqli_prepare($sql, "SELECT `user_id`,`email`,`user_limit`,`user_limit_ttl`,`user_quota`,`user_quota_ttl` FROM `users` WHERE `api_key`=? LIMIT 0,1")) {
+      
+          mysqli_stmt_bind_param($stmt, "s", $_GET['token']);
+          mysqli_stmt_execute($stmt);
+          mysqli_stmt_store_result($stmt);
+          mysqli_stmt_bind_result($stmt, $user_id, $user_email, $user_limit, $user_limit_ttl, $user_quota, $user_quota_ttl);
+          if( mysqli_stmt_num_rows($stmt) == 0) {
+            header('HTTP/1.1 403 Forbidden');
+            exit("Invalid API token");
+          }
+          else{
+      
+          }
+
+          mysqli_stmt_fetch($stmt);
+          mysqli_stmt_close($stmt);
+        }
+        if($user_id) {
+          mysqli_query($sql, "UPDATE `users` SET `search_count`=`search_count`+1 WHERE `user_id`=".intval($user_id));
+        }
+      }
+      mysqli_close($sql);
+    }
+    else{
+      $user_id = null;
+      $user_limit = 10;
+      $user_limit_ttl = 60;
+      $user_quota = 150;
+      $user_quota_ttl = 86400;
+    }
+
+    $client_id = $user_id ?? $_SERVER['HTTP_X_FORWARDED_FOR'];
+    $limit_id = $client_id."_limit"; // reqeust per minute
+    $quota_id = $client_id."_quota"; // quota per day
+
+    // rate limit per minute
+    if(!$redis->exists($limit_id)){
+        $redis->set($limit_id, $user_limit);
+        $redis->expire($limit_id, $user_limit_ttl);
+    }
+    $limit = intval($redis->get($limit_id));
+    $limit--;
+    $limit_ttl = $redis->ttl($limit_id);
+    $redis->set($limit_id, $limit);
+    $redis->expire($limit_id, $limit_ttl);
+    if($limit < 0) {
+      header("HTTP/1.1 429 Too Many Requests");
+      header("X-whatanime-limit: ${limit}");
+      header("X-whatanime-limit-ttl: ${limit_ttl}");
+      exit("Search limit exceeded. Please wait ".$limit_ttl." seconds.");
+    }
+
+    // quota limit per day
+    if(!$redis->exists($quota_id)){
+        $redis->set($quota_id, $user_quota);
+        $redis->expire($quota_id, $user_quota_ttl);
+    }
+    $quota = intval($redis->get($quota_id));
+    $quota--;
+    $quota_ttl = $redis->ttl($quota_id);
+    $redis->set($quota_id, $quota);
+    $redis->expire($quota_id, $quota_ttl);
+    if($quota < 0) {
+      header("HTTP/1.1 429 Too Many Requests");
+      header("X-whatanime-quota: ${quota}");
+      header("X-whatanime-quota-ttl: ${quota_ttl}");
+      exit("Search quota exceeded. Please wait ".$quota_ttl." seconds.");
+    }
+
+    header("X-whatanime-limit: ${limit}");
+    header("X-whatanime-limit-ttl: ${limit_ttl}");
     header("X-whatanime-quota: ${quota}");
-    header("X-whatanime-expire: ${expire}");
+    header("X-whatanime-quota-ttl: ${quota_ttl}");
+
+
+    header('Content-Type: application/json');
 
     $savePath = '/usr/share/nginx/html/pic/';
     $filename = microtime(true).'.jpg';
@@ -130,7 +122,6 @@ if(isset($_POST['image'])){
         $extract_result = json_decode($res);
         $cl_hi = $extract_result->histogram;
         $cl_ha = $extract_result->hashes;
-        $cl_hi_key = "cl_hi:".$cl_hi;
     }
     catch(Exception $e){
 
@@ -147,67 +138,64 @@ if(isset($_POST['image'])){
     $final_result->trial = 0;
     $final_result->docs = [];
     
-    if(false && $redis->exists($cl_hi_key)){ //toggle caching here
-        $final_result = json_decode($redis->get($cl_hi_key));
-        $final_result->CacheHit = true;
+    $filter = "";
+    if(isset($_POST['filter'])){
+        $filter = $_POST['filter'] ? "fq=id:".intval($_POST['filter'])."/*" : "";
     }
-    else{
-        $filter = "";
-        if(isset($_POST['filter'])){
-            $filter = $_POST['filter'] ? "fq=id:".intval($_POST['filter'])."/*" : "";
+    $trial = 0;
+    while($trial < 3){
+        $trial++;
+        $final_result->trial = $trial;
+
+        unset($nodes);
+        for($i = 0; $i <= 31; $i++){
+            $nodes[]= "http://192.168.2.12:8983/solr/lire_{$i}/lireq?{$filter}&field=cl_ha&ms=false&url=http://192.168.2.11/pic/{$filename}&accuracy={$trial}&candidates=1000000&rows=10";
         }
-        $trial = 0;
-        while($trial < 3){
-            $trial++;
-            $final_result->trial = $trial;
 
-            unset($nodes);
-            for($i = 0; $i <= 31; $i++){
-                $nodes[]= "http://192.168.2.12:8983/solr/lire_{$i}/lireq?{$filter}&field=cl_ha&ms=false&url=http://192.168.2.11/pic/{$filename}&accuracy={$trial}&candidates=1000000&rows=10";
-            }
+        $node_count = count($nodes);
 
-            $node_count = count($nodes);
+        $curl_arr = array();
+        $master = curl_multi_init();
 
-            $curl_arr = array();
-            $master = curl_multi_init();
+        for($i = 0; $i < $node_count; $i++)
+        {
+            $url = $nodes[$i];
+            $curl_arr[$i] = curl_init($url);
+            curl_setopt($curl_arr[$i], CURLOPT_RETURNTRANSFER, true);
+            curl_multi_add_handle($master, $curl_arr[$i]);
+        }
 
-            for($i = 0; $i < $node_count; $i++)
-            {
-                $url = $nodes[$i];
-                $curl_arr[$i] = curl_init($url);
-                curl_setopt($curl_arr[$i], CURLOPT_RETURNTRANSFER, true);
-                curl_multi_add_handle($master, $curl_arr[$i]);
-            }
-
-            do {
-                curl_multi_exec($master,$running);
-            } while($running > 0);
+        do {
+            curl_multi_exec($master,$running);
+        } while($running > 0);
 
 
-            for($i = 0; $i < $node_count; $i++)
-            {
-                $results[] = curl_multi_getcontent($curl_arr[$i]);
-            }
+        for($i = 0; $i < $node_count; $i++)
+        {
+            $results[] = curl_multi_getcontent($curl_arr[$i]);
+        }
 
-            foreach ($results as $res) {
-                $result = json_decode($res);
-                $final_result->RawDocsCount += intval($result->RawDocsCount);
-                $final_result->RawDocsSearchTime += intval($result->RawDocsSearchTime);
-                $final_result->ReRankSearchTime += intval($result->ReRankSearchTime);
-                if(intval($result->RawDocsCount) > 0){
-                  $final_result->docs = array_merge($final_result->docs,$result->response->docs);
-                  usort($final_result->docs, "reRank");
-                }
-            }
-            foreach($final_result->docs as $doc){
-              if($doc->d <= 10) break 2; //break outer loop
+        foreach ($results as $res) {
+            $result = json_decode($res);
+            $final_result->RawDocsCount += intval($result->RawDocsCount);
+            $final_result->RawDocsSearchTime += intval($result->RawDocsSearchTime);
+            $final_result->ReRankSearchTime += intval($result->ReRankSearchTime);
+            if(intval($result->RawDocsCount) > 0){
+              $final_result->docs = array_merge($final_result->docs,$result->response->docs);
+              usort($final_result->docs, "reRank");
             }
         }
-        usort($final_result->docs, "reRank");
+        foreach($final_result->docs as $doc){
+          if($doc->d <= 10) break 2; //break outer loop
+        }
     }
+    usort($final_result->docs, "reRank");
+    
     $final_result->docs = array_slice($final_result->docs, 0, 20);
+    $final_result->limit = $limit;
+    $final_result->limit_ttl = $limit_ttl;
     $final_result->quota = $quota;
-    $final_result->expire = $expire;
+    $final_result->quota_ttl = $quota_ttl;
     
     //combine adjacent time frames
     $docs = [];

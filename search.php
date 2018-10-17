@@ -2,8 +2,6 @@
 ini_set("display_errors", 0);
 require 'config.php';
 
-header('Content-Type: application/json');
-
 if( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && ( $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' ) ){
     //request from AJAX, continue
 }
@@ -57,6 +55,8 @@ if(isset($_POST['data'])){
         header("HTTP/1.0 429 Too Many Requests");
         exit("You have searched too much, try again in ".$quota_ttl." seconds.");
     }
+
+    header('Content-Type: application/json');
 
     $savePath = '/usr/share/nginx/html/pic/';
     $filename = microtime(true).'.jpg';
