@@ -1,6 +1,6 @@
 # trace.moe
 
-[![License](https://img.shields.io/github/license/soruly/whatanime.ga.svg)](https://github.com/soruly/whatanime.ga/blob/master/LICENSE)
+[![License](https://img.shields.io/github/license/soruly/trace.moe.svg)](https://github.com/soruly/trace.moe/blob/master/LICENSE)
 [![Discord](https://img.shields.io/discord/437578425767559188.svg)](https://discord.gg/K9jn6Kj)
 [![Donate](https://img.shields.io/badge/donate-patreon-orange.svg)](https://www.patreon.com/soruly)
 
@@ -43,11 +43,11 @@ You may find some other related repo here
 - [sola](https://github.com/soruly/sola)
 - [LireSolr](https://github.com/soruly/liresolr)
 - [anilist-crawler](https://github.com/soruly/anilist-crawler)
-- [whatanime.ga-WebExtension](https://github.com/soruly/whatanime.ga-WebExtension)
-- [whatanime.ga-telegram-bot](https://github.com/soruly/whatanime.ga-telegram-bot)
+- [trace.moe-WebExtension](https://github.com/soruly/trace.moe-WebExtension)
+- [trace.moe-telegram-bot](https://github.com/soruly/trace.moe-telegram-bot)
 
 ## Official API Docs (Beta)
-https://soruly.github.io/whatanime.ga/
+https://soruly.github.io/trace.moe/
 
 ## Mobile Apps (3rd party)
 WhatAnime by Andrée Torres

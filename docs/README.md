@@ -1,4 +1,4 @@
-# whatanime.ga API Docs
+# trace.moe API Docs
 
 This API is still under development. Make sure you stay up-to-date with me and this project. 
 

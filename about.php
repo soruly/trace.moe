@@ -92,16 +92,16 @@ If you wish to search artwork / wallpapers, try to use <a href="https://saucenao
 <h3>WebExtension</h3>
 </div>
 <p>WebExtension available for <a href="https://chrome.google.com/webstore/detail/search-anime-by-screensho/gkamnldpllcbiidlfacaccdoadedncfp">Chrome</a>, <a href="https://addons.mozilla.org/en-US/firefox/addon/search-anime-by-screenshot/">Firefox</a>, or <a href="https://addons.opera.com/en/extensions/details/search-anime-by-screenshot/">Opera</a> to search.</p>
-<p>Source code and user guide on Github:<br><a href="https://github.com/soruly/whatanime.ga-WebExtension">https://github.com/soruly/whatanime.ga-WebExtension</a></p>
+<p>Source code and user guide on Github:<br><a href="https://github.com/soruly/trace.moe-WebExtension">https://github.com/soruly/trace.moe-WebExtension</a></p>
 <div class="page-header">
 <h3>Telegram Bot</h3>
 </div>
 <p>Telegram Bot available <a href="https://telegram.me/WhatAnimeBot">@WhatAnimeBot</a></p>
-<p>Source code and user guide on Github:<br><a href="https://github.com/soruly/whatanime.ga-telegram-bot">https://github.com/soruly/whatanime.ga-telegram-bot</a>
+<p>Source code and user guide on Github:<br><a href="https://github.com/soruly/trace.moe-telegram-bot">https://github.com/soruly/trace.moe-telegram-bot</a>
 <div class="page-header">
 <h3>Official API (Beta)</h3>
 </div>
-<p>Official API Docs available at <a href="https://soruly.github.io/whatanime.ga/#/">GitHub</a></p>
+<p>Official API Docs available at <a href="https://soruly.github.io/trace.moe/#/">GitHub</a></p>
 <div class="page-header">
 <h3>Mobile Apps</h3>
 </div>
@@ -123,7 +123,7 @@ Source: <a href="https://github.com/JanYoStudio/WhatAnime">https://github.com/Ja
 <div class="page-header">
 <h3>System Status</h3>
 </div>
-<p>System status page: <a href="https://status.whatanime.ga">https://status.whatanime.ga</a> (Powered by UptimeRobot)</p>
+<p>System status page: <a href="https://status.trace.moe">https://status.trace.moe</a> (Powered by UptimeRobot)</p>
 <p><?php echo 'Last Database Index update: '.humanTiming($lastModified).' ago with '.$numDocsMillion.' Million analyzed frames. ('.$sizeInGB.' GB)<br>'; ?></p>
 <p>This database automatically index most airing anime in a few hours after broadcast.<br>You may subscribe to the updates on Telegram <a href="https://t.me/whatanimeupdates">@whatanimeupdates</a></p>
 <p></p>
@@ -133,9 +133,9 @@ Source: <a href="https://github.com/JanYoStudio/WhatAnime">https://github.com/Ja
 <div class="page-header">
 <h3>Contact</h3>
 </div>
-<p>If you have any feedback, suggestions or anything else, please email to <a href="mailto:help@whatanime.ga">help@whatanime.ga</a>.</p>
+<p>If you have any feedback, suggestions or anything else, please email to <a href="mailto:help@trace.moe">help@trace.moe</a>.</p>
 <p>You may also reach the author on Telegram <a href="https://t.me/soruly">@soruly</a> or <a href="https://discord.gg/K9jn6Kj">Discord</a>.</p>
-<p>Follow the development of whatanime.ga and learn more about the underlying technologies on <a href="https://github.com/soruly/slides">GitHub</a>, <a href="https://www.facebook.com/whatanime.ga/">Facebook Page</a> or <a href="https://www.patreon.com/soruly">Patreon page</a>.</p>
+<p>Follow the development of trace.moe and learn more about the underlying technologies on <a href="https://github.com/soruly/slides">GitHub</a>, <a href="https://www.facebook.com/whatanime.ga/">Facebook Page</a> or <a href="https://www.patreon.com/soruly">Patreon page</a>.</p>
 
 <div class="page-header">
 <h3>Credit</h3>

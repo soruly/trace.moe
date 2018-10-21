@@ -274,7 +274,7 @@ document.querySelector("#imageURL").addEventListener("input", function () {
     if (document.querySelector("form").checkValidity()) {
       fetchImageDelay = setTimeout(function () {
         document.querySelector("#messageText").innerHTML = "<span class=\"glyphicon glyphicon-repeat spinning\"></span>";
-        originalImage.src = "https://image.whatanime.ga/imgproxy?url=" + document.querySelector("#imageURL").value.replace(/ /g, "%20");
+        originalImage.src = "https://image.trace.moe/imgproxy?url=" + document.querySelector("#imageURL").value.replace(/ /g, "%20");
         history.replaceState(null, null, "/?url=" + encodeURI(document.querySelector("#imageURL").value.replace(/ /g, "%20")));
       }, 500);
     } else {

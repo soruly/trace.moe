@@ -131,12 +131,12 @@ This website is not intended for watching anime.<br>
 If you wish to watch the anime, you may check which TV channel is broadcasting the anime in you country. For those which has finished airing, consider buying or renting the original Blu-ray/DVDs.
 </p>
 <h3>How can I share the search result?</h3>
-<p>For now, you have to upload the image somewhere else, then search by image URL, and share the result URL. If you have any feedback or suggestions, feel free to contact <a href="mailto:help@whatanime.ga">help@whatanime.ga</a>.</p>
-<h3>How to add whatanime.ga to Image Search Options</h3>
+<p>For now, you have to upload the image somewhere else, then search by image URL, and share the result URL. If you have any feedback or suggestions, feel free to contact <a href="mailto:help@trace.moe">help@trace.moe</a>.</p>
+<h3>How to add trace.moe to Image Search Options</h3>
 <p>
-If you prefer to use whatanime.ga with <a href="https://chrome.google.com/webstore/detail/image-search-options/kljmejbpilkadikecejccebmccagifhl">Image Search Options</a>, go to settings and add this: <pre>https://whatanime.ga/?url=</pre>
+If you prefer to use trace.moe with <a href="https://chrome.google.com/webstore/detail/image-search-options/kljmejbpilkadikecejccebmccagifhl">Image Search Options</a>, go to settings and add this: <pre>https://trace.moe/?url=</pre>
 You can also configure playback options via URL params:
-<pre>https://whatanime.ga/?autoplay=0&loop&mute=1&url=</pre>
+<pre>https://trace.moe/?autoplay=0&loop&mute=1&url=</pre>
 </p>
 </div>
 
