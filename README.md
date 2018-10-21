@@ -20,7 +20,7 @@ Demo image
 
 Search result tells you which moment it appears.
 
-![](https://images.plurk.com/Q4Fg23pngZ2KparzGfqw.jpg)
+![](https://addons.cdn.mozilla.net/user-media/previews/full/209/209947.png)
 
 ## How does it work
 
