@@ -47,7 +47,7 @@ if(isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL))
 <body>
 <div class="alert alert-warning" style="position: relative; top: 10px; left: 10px; box-shadow: 0 0 20px 0px; width: 975px">
   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-Support whatanime.ga on Patreon! <a href="https://www.patreon.com/soruly" target="_blank">https://www.patreon.com/soruly</a>
+New Domain: <a href="https://trace.moe">https://trace.moe</a>
 </div>
 <input id="autoSearch" type="checkbox" style="display: none;">
 <img id="originalImage" src="" crossorigin="anonymous" style="display: none;">
