@@ -6,7 +6,7 @@ This API is still under development. Make sure you stay up-to-date with me and t
 
 POST a base64 encoded image to /search.
 
-`curl -X POST https://whatanime.ga/api/search -d "image=data:image/jpeg;base64,$(base64 -w 0 search_image.jpg)"`
+`curl -X POST https://trace.moe/api/search -d "image=data:image/jpeg;base64,$(base64 -w 0 search_image.jpg)"`
 
 ## Rate limit and Search Quota
 
@@ -30,7 +30,7 @@ If you need more search quota, send me email (soruly@gmail.com) to become regist
 Let you check the search quota and limit for your account.
 
 ```
-GET https://whatanime.ga/api/me?token=your_api_token
+GET https://trace.moe/api/me?token=your_api_token
 ```
 
 | Fields        | Value             | Notes          |
@@ -72,7 +72,7 @@ Example Response
 Seach request should be POST as HTTP Form, not JSON
 
 ```
-POST https://whatanime.ga/api/search?token=your_api_token
+POST https://trace.moe/api/search?token=your_api_token
 Content-Type: application/json
 
 {
@@ -211,8 +211,8 @@ Search limit exceeded. Please wait 87 seconds.
 
 With `tokenthumb`, you can access image preview of the matched scene. (not quite accurate due to timecode and seeking method)
 
-`https://whatanime.ga/thumbnail.php?anilist_id=${anilist_id}&file=${encodeURIComponent(filename)}&t=${at}&token=${tokenthumb}`
+`https://trace.moe/thumbnail.php?anilist_id=${anilist_id}&file=${encodeURIComponent(filename)}&t=${at}&token=${tokenthumb}`
 
 There is a 3 second video preview of the matched scene. (1 seconds before and 2 seconds ahead)
 
-`https://whatanime.ga/preview.php?anilist_id=${anilist_id}&file=${encodeURIComponent(filename)}&t=${at}&token=${tokenthumb}`
+`https://trace.moe/preview.php?anilist_id=${anilist_id}&file=${encodeURIComponent(filename)}&t=${at}&token=${tokenthumb}`

@@ -71,13 +71,13 @@ $sizeInGB = floor($sizeInBytes / 1073741824);
       <img src="/favicon128.png" alt="" style="display:none" />
 <p>Life is too short to answer all the "What is the anime?" questions. Let computers do that for you.</p>
 <p>
-whatanime.ga is a test-of-concept prototype search engine that helps users trace back the original anime by screenshot. 
+trace.moe is a test-of-concept prototype search engine that helps users trace back the original anime by screenshot. 
 It searches over 22300 hours of anime and find the best matching scene. 
 It tells you what anime it is, from which episode and the time that scene appears. 
 Since the search result may not be accurate, it provides a few seconds of preview for verification. 
 </p>
 <p>
-There has been a lot of anime screencaps and GIFs spreading around the internet, but very few of them mention the source. While those online platforms are gaining popularity, whatanime.ga respects the original producers and staffs by showing interested anime fans what the original source is. This search engine encourages users to give credits to the original creater / owner before they share stuff online.
+There has been a lot of anime screencaps and GIFs spreading around the internet, but very few of them mention the source. While those online platforms are gaining popularity, trace.moe respects the original producers and staffs by showing interested anime fans what the original source is. This search engine encourages users to give credits to the original creater / owner before they share stuff online.
 </p>
 <p>
 This website is non-profit making. There is no pro/premium features at all.

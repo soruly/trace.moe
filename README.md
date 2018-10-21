@@ -1,10 +1,10 @@
-# whatanime.ga
+# trace.moe
 
 [![License](https://img.shields.io/github/license/soruly/whatanime.ga.svg)](https://github.com/soruly/whatanime.ga/blob/master/LICENSE)
 [![Discord](https://img.shields.io/discord/437578425767559188.svg)](https://discord.gg/K9jn6Kj)
 [![Donate](https://img.shields.io/badge/donate-patreon-orange.svg)](https://www.patreon.com/soruly)
 
-The website of whatanime.ga
+The website of trace.moe (whatanime.ga)
 
 Image Reverse Search for Anime Scenes
 
@@ -24,7 +24,7 @@ Search result tells you which moment it appears.
 
 ## How does it work
 
-whatanime.ga uses [sola](https://github.com/soruly/sola) to index video and work with liresolr. This repo only include the webapp for whatanime.ga, which demonstrate how to integrate anilist info, and how thumbnail/video previews are generated. If you want to make your own video scene search engine, please refer to sola instead.
+trace.moe uses [sola](https://github.com/soruly/sola) to index video and work with liresolr. This repo only include the webapp for trace.moe, which demonstrate how to integrate anilist info, and how thumbnail/video previews are generated. If you want to make your own video scene search engine, please refer to sola instead.
 
 To learn more, read the presentation slides below
 
@@ -58,15 +58,15 @@ WhatAnime - 以图搜番 by Mystery0 (Simplified Chinese)
 https://play.google.com/store/apps/details?id=pw.janyo.whatanime
 Source: https://github.com/JanYoStudio/WhatAnime
 
-## Integrating search with whatanime.ga
-To add whatanime.ga as a search option for your site, pass the image URL via query string like this
+## Integrating search with trace.moe
+To add trace.moe as a search option for your site, pass the image URL via query string like this
 ```
-https://whatanime.ga/?url=http://searchimageurl
+https://trace.moe/?url=http://searchimageurl
 ```
 
 You can also specify playback options like this
 ```
-https://whatanime.ga/?autoplay=0&loop&mute=1&url=http://searchimageurl
+https://trace.moe/?autoplay=0&loop&mute=1&url=http://searchimageurl
 ```
 
 Playback URL params:

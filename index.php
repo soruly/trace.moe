@@ -9,9 +9,9 @@
 <title>WAIT: What Anime Is This? - Anime Scene Search Engine</title>
 
 <?php
-$og_image = 'https://whatanime.ga/favicon128.png';
+$og_image = 'https://trace.moe/favicon128.png';
 if(isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL))
-  $og_image = 'https://image.whatanime.ga/imgproxy?url='.$_GET["url"];
+  $og_image = 'https://image.trace.moe/imgproxy?url='.$_GET["url"];
 ?>
 <!-- Schema.org markup (Google) -->
 <meta itemprop="name" content="WAIT: What Anime Is This?">
@@ -31,17 +31,17 @@ if(isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL))
 <!-- Open Graph markup (Facebook, Pinterest) -->
 <meta property="og:title" content="WAIT: What Anime Is This?" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://whatanime.ga" />
+<meta property="og:url" content="https://trace.moe" />
 <meta property="og:image" content="<?php echo $og_image ?>" />
 <meta property="og:description" content="Anime Scene Search Engine. Lookup the exact moment and the episode." />
-<meta property="og:site_name" content="whatanime.ga" />
+<meta property="og:site_name" content="trace.moe" />
 
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="icon" type="image/png" href="/favicon128.png" sizes="128x128">
 <link href="/css/bootstrap.min.css" rel="stylesheet">
 <link href="/css/style.css" rel="stylesheet">
 <link href="/css/index.css" rel="stylesheet">
-<link rel="dns-prefetch" href="https://image.whatanime.ga/">
+<link rel="dns-prefetch" href="https://image.trace.moe/">
 <script src="/js/analytics.js" async defer></script>
 </head>
 <body>
@@ -139,7 +139,7 @@ document.querySelector("#autoSearch").checked = true;
 document.querySelector("#messageText").classList.remove("error");
 document.querySelector("#messageText").classList.remove("success");
 document.querySelector("#messageText").innerHTML = \'<span class="glyphicon glyphicon-repeat spinning"></span>\';
-originalImage.src = "https://image.whatanime.ga/imgproxy?url='.str_replace(' ','%20',rawurldecode($_GET["url"])).'";
+originalImage.src = "https://image.trace.moe/imgproxy?url='.str_replace(' ','%20',rawurldecode($_GET["url"])).'";
 document.querySelector("#imageURL").value = "'.str_replace(' ','%20',rawurldecode($_GET["url"])).'";
 </script>';
 }

@@ -112,7 +112,7 @@ This is achieved by openCV using a simple python script
 
 <h3>Added URL params for playback options</h3>
 <h6>29 Oct 2016</h6>
-<p>You can now use URL params to control playback options, for example:<pre>https://whatanime.ga/?autoplay=0&loop&mute=1&url=</pre></p>
+<p>You can now use URL params to control playback options, for example:<pre>https://trace.moe/?autoplay=0&loop&mute=1&url=</pre></p>
 
 <h3>Improved performance</h3>
 <h6>23 Oct 2016</h6>
