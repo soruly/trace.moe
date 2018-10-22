@@ -17,13 +17,12 @@ When no API token is given, the system limit search by IP address, and count bot
 |              | via Webpage / via API without token | Registered Developers | Patreons      |
 |--------------|-------------------------------------|-----------------------|---------------|
 | Rate Limit   | 10/minute                           | 10/minute             | 10-30/minute  |
-| Search quota | 150/day                             | 1000/day              | 1000-3000/day |
+| Search quota | 150/day**                           | 1000/day***           | 1000-3000/day |
 
 If you need more search quota, send me email (soruly@gmail.com) to become registered devlopers.
 
-<p class="warning">
-  Since this API is still beta, rate limits are subjected to change.
-</p>
+** This quota is propotional to the Successful Pledges on [patreon](https://www.patreon.com/soruly)
+*** This quota is propotional to API limit without token
 
 ## Me
 
