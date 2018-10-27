@@ -68,7 +68,7 @@ Example Response
 
 ## Search
 
-Seach request should be POST as HTTP Form, not JSON
+Seach request should be POST as JSON or FORM
 
 ```
 POST https://trace.moe/api/search?token=your_api_token
@@ -90,11 +90,20 @@ Content-Type: application/json
 
 Example
 ```javascript
-fetch('/api/search', { 
+var img = document.querySelector("img"); // select image from DOM
+var canvas = document.createElement("canvas");
+canvas.width = img.naturalWidth;
+canvas.height = img.naturalHeight;
+var ctx = canvas.getContext("2d");
+ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+fetch('https://trace.moe/api/search', {
   method: 'POST',
-  body: JSON.stringify({image: searchImage.toDataURL('image/jpeg', 0.8)}),
+  body: JSON.stringify({image: canvas.toDataURL('image/jpeg', 0.8)}),
   headers: { 'Content-Type': 'application/json' }
-}).then(res=>res.json()).then(result=>{console.log(result)});
+})
+.then(res=>res.json())
+.then(result=>{console.log(result)});
 ```
 
 Example Response
