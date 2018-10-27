@@ -22,8 +22,6 @@ if (!$image) {
   echo "\"No data received\"";
 } elseif($image === 'data:image/jpeg;base64,' || $image === 'data:,') {
   echo "\"Image is empty\"";
-} elseif(strpos($image, 'data:image/jpeg;base64,') !== 0) {
-  echo "\"Wrong image data format\"";
 } else {
     if(isset($_GET['token']) && $_GET['token'] !== "") {
       $sql = mysqli_connect($sql_hostname, $sql_username, $sql_password, $sql_database);
