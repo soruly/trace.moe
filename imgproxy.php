@@ -27,8 +27,8 @@ if(isset($_GET["url"])){
       $image = imagecreatetruecolor(640, 360);
       $text_color = imagecolorallocate($image, 255, 255, 255);
       imagestring($image, 3, 5, 5,  'Failed to load image URL', $text_color);
-      imagestring($image, 3, 5, 25,  'The image maybe a private URL that is not publicly accessible.', $text_color)
-        imagejpeg($image, null, 80);
+      imagestring($image, 3, 5, 25,  'The image maybe a private URL that is not publicly accessible.', $text_color);
+      imagejpeg($image, null, 80);
       imagedestroy($image);
     }
   }
