@@ -6,8 +6,6 @@ defined('INCLUDE_PATH') or define('INCLUDE_PATH', './');
 
 // Define the language using language code based
 $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
-$acceptLang = ['es', 'en'];
-$lang = in_array($lang, $acceptLang) ? $lang : 'en';
 defined('LANGUAGE') or define('LANGUAGE', $lang);
 
 /**
