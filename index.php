@@ -1,3 +1,4 @@
+<?php include 'lang/translate.php'; ?>
 <!DOCTYPE html>
 <html itemscope itemtype="http://schema.org/Webpage">
 <head>
@@ -6,7 +7,7 @@
 <meta name="keywords" content="Anime Scene Search, Search by image, Anime Image Search, アニメのキャプ画像">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=995, initial-scale=1">
-<title>WAIT: What Anime Is This? - Anime Scene Search Engine</title>
+<title>WAIT: What Anime Is This? - <?=lang('Anime Scene Search Engine')?></title>
 
 <?php
 $og_image = 'https://trace.moe/favicon128.png';
@@ -68,11 +69,11 @@ New Domain: <a href="https://trace.moe">https://trace.moe</a>
 </div>
 <div id="form">
 <span class="btn btn-default btn-file btn-sm">
-Browse a file <input type="file" id="file" name="files[]" />
+<?=lang('Browse a file')?> <input type="file" id="file" name="files[]" />
 </span>
-<span id="instruction"> / Drag &amp; Drop Anime ScreenShot / Ctrl+V / Enter Image URL</span>
+<span id="instruction"> / <?=lang('Drag &amp; Drop Anime ScreenShot / Ctrl+V / Enter Image URL')?></span>
 <button id="flipBtn" type="button" class="btn btn-default btn-sm" disabled>
-<span class="glyphicon glyphicon-unchecked"></span> Flip Image
+<span class="glyphicon glyphicon-unchecked"></span> <?=lang('Flip Image')?>
 </button>
 <br>
 <form method="post">
@@ -85,10 +86,10 @@ Browse a file <input type="file" id="file" name="files[]" />
 <input type="text" id="seasonSelector" class="form-control input-sm" style="display:inline-block; width:100px">
 
 <button id="safeBtn" type="button" class="btn btn-default btn-sm">
-<span class="glyphicon glyphicon-unchecked"></span> Safe Search
+<span class="glyphicon glyphicon-unchecked"></span> <?=lang('Safe Search')?>
 </button>
 <button id="searchBtn" type="button" class="btn btn-default btn-sm btn-primary" disabled>
-<span class="glyphicon glyphicon-search"></span> Search
+<span class="glyphicon glyphicon-search"></span> <?=lang('Search')?>
 </button>
 </div>
 Please read <a href="/faq">FAQ</a> to understand what can / cannot be searched.<br>
