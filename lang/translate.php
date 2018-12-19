@@ -6,6 +6,7 @@ defined('INCLUDE_PATH') or define('INCLUDE_PATH', './');
 
 // Define the language using language code based
 $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+$lang = (isset($_GET['lang'])) ? $_GET['lang'] : $lang;
 defined('LANGUAGE') or define('LANGUAGE', $lang);
 
 /**
