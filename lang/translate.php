@@ -4,8 +4,9 @@
 // Define the url path for the resources
 defined('INCLUDE_PATH') or define('INCLUDE_PATH', './');
 
-// Define the language using language code based
+// Define the language using language client preffered, and override it by GET directive (?lang=en)
 $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+$lang = (isset($_GET['lang'])) ? $_GET['lang'] : $lang; // To future integrations with client
 defined('LANGUAGE') or define('LANGUAGE', $lang);
 
 /**
