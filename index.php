@@ -77,12 +77,12 @@ New Domain: <a href="https://trace.moe">https://trace.moe</a>
 </button>
 <br>
 <form method="post">
-<input type="url" pattern="https?://.+" name="imageURL" class="form-control" id="imageURL" placeholder="Image URL" style="margin:5px 0 5px 0">
+<input type="url" pattern="https?://.+" name="imageURL" class="form-control" id="imageURL" placeholder="<?=lang('Image URL')?>" style="margin:5px 0 5px 0">
 <input type="submit" id="submit" style="display:none">
 </form>
 <div style="text-align: right">
 <span id="messageText" style="float:left;line-height:30px"></span>
-<label for="seasonSelector" style="font-weight: inherit">Search in (anilist ID):</label>
+<label for="seasonSelector" style="font-weight: inherit"><?=lang('Search in')?> (anilist ID):</label>
 <input type="text" id="seasonSelector" class="form-control input-sm" style="display:inline-block; width:100px">
 
 <button id="safeBtn" type="button" class="btn btn-default btn-sm">
@@ -92,10 +92,10 @@ New Domain: <a href="https://trace.moe">https://trace.moe</a>
 <span class="glyphicon glyphicon-search"></span> <?=lang('Search')?>
 </button>
 </div>
-Please read <a href="/faq">FAQ</a> to understand what can / cannot be searched.<br>
-<span style="color:#FF6D6D">Caution: some results may be NSFW (Not Safe for Work).</span><br>
+<?=lang('Please read <a href="/faq">FAQ</a> to understand what can / cannot be searched')?>.<br>
+<span style="color:#FF6D6D"><?=lang('Caution: some results may be NSFW (Not Safe for Work)')?>.</span><br>
 Official WebExtension available on <a href="https://chrome.google.com/webstore/detail/search-anime-by-screensho/gkamnldpllcbiidlfacaccdoadedncfp" target="_blank">Chrome</a>, <a href="https://addons.mozilla.org/en-US/firefox/addon/search-anime-by-screenshot/" target="_blank">Firefox</a>, and <a href="https://addons.opera.com/en/extensions/details/search-anime-by-screenshot/" target="_blank">Opera</a>.<br>
-Official Telegram Bot available <a href="https://telegram.me/WhatAnimeBot">@WhatAnimeBot</a><br>
+<?=lang('Official Telegram Bot available')?> <a href="https://telegram.me/WhatAnimeBot">@WhatAnimeBot</a><br>
 </div>
 </div>
 <div id="info"></div>
@@ -105,9 +105,9 @@ Official Telegram Bot available <a href="https://telegram.me/WhatAnimeBot">@What
 <div class="col-xs-4">
   <div id="results-list">
     <div id="controls" class="checkbox">
-      <label><input type="checkbox" id="autoplay" name="autoplay" checked />AutoPlay</label>
-      <label><input type="checkbox" id="loop" name="loop" />Loop</label>
-      <label><input type="checkbox" id="mute" name="mute" />Mute</label>
+      <label><input type="checkbox" id="autoplay" name="autoplay" checked /><?=lang('AutoPlay')?></label>
+      <label><input type="checkbox" id="loop" name="loop" /><?=lang('Loop')?></label>
+      <label><input type="checkbox" id="mute" name="mute" /><?=lang('Mute')?></label>
     </div>
     <ul id="results" class="nav nav-pills nav-stacked"></ul>
   </div>
@@ -121,11 +121,11 @@ Official Telegram Bot available <a href="https://telegram.me/WhatAnimeBot">@What
 <footer class="footer">
 <div class="container">
 <ol class="breadcrumb">
-<li><a href="/">Home</a></li>
-<li><a href="/about">About</a></li>
-<li><a href="/changelog">Changelog</a></li>
-<li><a href="/faq">FAQ</a></li>
-<li><a href="/terms" class="active">Terms</a></li>
+<li><a href="/"><?=lang('Home')?></a></li>
+<li><a href="/about"><?=lang('About')?></a></li>
+<li><a href="/changelog"><?=lang('Changelog')?></a></li>
+<li><a href="/faq"><?=lang('FAQ')?></a></li>
+<li><a href="/terms" class="active"><?=lang('Terms')?></a></li>
 </ol>
 </div>
 </footer>

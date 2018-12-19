@@ -1,8 +1,22 @@
 {
-   "lang":"es-mx",
-   "Anime Scene Search Engine" : "Buscador de Escenas de Anime",
+   "lang": "es-mx",
+   "Anime Scene Search Engine": "Buscador de Escenas de Anime",
    "Browse a file": "Cargar un archivo",
-   "Drag &amp; Drop Anime ScreenShot / Ctrl+V / Enter Image URL" : "Arrastrar y soltar captura/ Ctrl+V / URL de imagen",
+   "Drag &amp; Drop Anime ScreenShot / Ctrl+V / Enter Image URL": "Arrastrar y soltar captura/ Ctrl+V / URL de imagen",
+   "Please read <a href=\"/faq\">FAQ</a> to understand what can / cannot be searched": "Por favor lee las <a href=\"/faq\">FAQ</a> para entender que puede y no puede ser buscado",
+   "Caution: some results may be NSFW (Not Safe for Work)": "Precaución: Algunos resultados pueden ser explícitos",
+   "Official Telegram Bot available": "Bot de Telegram oficial",
+   "Image URL": "URL de Imagen",
    "Flip Image": "Volt. imagen",
-   "Search": "Buscar"
+   "Search": "Buscar",
+   "Search in": "Buscar en",
+   "Safe Search": "Búsq. segura",
+   "AutoPlay": "Reprod. auto.",
+   "Loop": "Repetir",
+   "Mute": "Mute",
+   "Home": "Inicio",
+   "About": "Acerca de",
+   "Changelog": "Changelog",
+   "FAQ": "FAQ",
+   "Terms": "Términos de uso (inglés)"
 }
