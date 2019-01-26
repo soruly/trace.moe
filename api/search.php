@@ -188,6 +188,9 @@ if (!$image) {
 
         foreach ($results as $res) {
             $result = json_decode($res);
+            if(isset($result->Error)){
+              exit($result->Error);
+            }
             $final_result->RawDocsCount += intval($result->RawDocsCount);
             $final_result->RawDocsSearchTime += intval($result->RawDocsSearchTime);
             $final_result->ReRankSearchTime += intval($result->ReRankSearchTime);
