@@ -20,6 +20,8 @@ if($input) {
 
 if (!$image) {
   echo "\"No data received\"";
+} elseif(strpos($image, 'data:image/jpeg;base64,') !== 0 && strpos($image, 'data:,') !== 0) {
+  echo "\"Invalid image format\"";
 } elseif($image === 'data:image/jpeg;base64,' || $image === 'data:,') {
   echo "\"Image is empty\"";
 } else {
@@ -107,7 +109,6 @@ if (!$image) {
     header("X-whatanime-quota-ttl: ${quota_ttl}");
 
 
-    header('Content-Type: application/json');
 
     $savePath = '/usr/share/nginx/html/pic/';
     $filename = microtime(true).'.jpg';
@@ -351,6 +352,7 @@ if (!$image) {
     unset($final_result->responseHeader);
     //$final_result->trial = $trial;
     //$final_result->accuracy = $accuracy;
+    header('Content-Type: application/json');
     echo json_encode($final_result);
     //unlink($savePath.$filename);
 }
