@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b82f142802bd691e3c1a028c5fc40eb0",
+    "content-hash": "8c97fbc51284295cfff6adf655230d51",
     "packages": [
         {
             "name": "alchemy/binary-driver",
@@ -344,27 +344,27 @@
         },
         {
             "name": "php-ffmpeg/php-ffmpeg",
-            "version": "0.6.1",
+            "version": "v0.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHP-FFMpeg/PHP-FFMpeg.git",
-                "reference": "7687be530c0bb22ee92ee8924cb0ff0e5edd5e5d"
+                "reference": "c11b79ab5b0174aa1a56c54c67491169e78a4c17"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHP-FFMpeg/PHP-FFMpeg/zipball/7687be530c0bb22ee92ee8924cb0ff0e5edd5e5d",
-                "reference": "7687be530c0bb22ee92ee8924cb0ff0e5edd5e5d",
+                "url": "https://api.github.com/repos/PHP-FFMpeg/PHP-FFMpeg/zipball/c11b79ab5b0174aa1a56c54c67491169e78a4c17",
+                "reference": "c11b79ab5b0174aa1a56c54c67491169e78a4c17",
                 "shasum": ""
             },
             "require": {
-                "alchemy/binary-driver": "^1.5",
+                "alchemy/binary-driver": "^1.5 || ~2.0.0",
                 "doctrine/cache": "^1.0",
                 "evenement/evenement": "^2.0 || ^1.0",
                 "neutron/temporary-filesystem": "^2.1.1",
                 "php": "^5.3.9 || ^7.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.8",
+                "phpunit/phpunit": "^4.8.36",
                 "sami/sami": "~1.0",
                 "silex/silex": "~1.0"
             },
@@ -374,7 +374,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.6-dev"
+                    "dev-master": "0.7-dev"
                 }
             },
             "autoload": {
@@ -401,6 +401,16 @@
                     "name": "Patrik Karisch",
                     "email": "patrik@karisch.guru",
                     "homepage": "http://www.karisch.guru"
+                },
+                {
+                    "name": "Romain Biard",
+                    "email": "romain.biard@gmail.com",
+                    "homepage": "https://www.strime.io/"
+                },
+                {
+                    "name": "Jens Hausdorf",
+                    "email": "hello@jens-hausdorf.de",
+                    "homepage": "https://jens-hausdorf.de"
                 }
             ],
             "description": "FFMpeg PHP, an Object Oriented library to communicate with AVconv / ffmpeg",
@@ -414,7 +424,7 @@
                 "video",
                 "video processing"
             ],
-            "time": "2016-03-08T00:47:06+00:00"
+            "time": "2018-08-06T20:02:43+00:00"
         },
         {
             "name": "predis/predis",
