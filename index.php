@@ -39,8 +39,8 @@
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="icon" type="image/png" href="/favicon128.png" sizes="128x128">
   <link href="/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/css/style2.css" rel="stylesheet">
-  <link href="/css/index2.css" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
+  <link href="/css/index.css" rel="stylesheet">
   <link rel="dns-prefetch" href="https://image.trace.moe/">
   <script src="/js/analytics.js" async defer></script>
 </head>
@@ -126,7 +126,7 @@
 
   <script src="/js/jquery-3.2.1.min.js"></script>
   <script src="/js/bootstrap.min.js"></script>
-  <script src="/js/index2.js"></script>
+  <script src="/js/index.js"></script>
   <script src="/js/info.js"></script>
   <?php
   if(isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)){
