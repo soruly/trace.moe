@@ -19,11 +19,11 @@ if($input) {
 }
 
 if (!$image) {
-  echo "\"No data received\"";
-} elseif(strpos($image, 'data:image/jpeg;base64,') !== 0 && strpos($image, 'data:,') !== 0) {
-  echo "\"Invalid image format\"";
-} elseif($image === 'data:image/jpeg;base64,' || $image === 'data:,') {
-  echo "\"Image is empty\"";
+  header('HTTP/1.1 400 Bad Request');
+  exit("No image received");
+} elseif(substr($image, strpos($image, ",") + 1) == "") {
+  header('HTTP/1.1 400 Bad Request');
+  exit("Image is empty");
 } else {
     if(isset($_GET['token']) && $_GET['token'] !== "") {
       $sql = mysqli_connect($sql_hostname, $sql_username, $sql_password, $sql_database);
@@ -112,8 +112,7 @@ if (!$image) {
 
     $savePath = '/usr/share/nginx/html/pic/';
     $filename = microtime(true).'.jpg';
-    $data = str_replace('data:image/jpeg;base64,', '', $image);
-    $data = str_replace(' ', '+', $data);
+    $data = substr($image, strpos($image, ",") + 1);
     
     // file_put_contents($savePath.$filename, base64_decode($data));
     $crop = true;
