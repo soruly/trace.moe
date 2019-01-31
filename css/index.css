@@ -1,5 +1,4 @@
 body {
-    width: 995px;
     overflow-y: scroll;
 }
 
@@ -22,58 +21,6 @@ h6 {
     margin-bottom: 5px;
 }
 
-.col-lg-1,
-.col-lg-10,
-.col-lg-11,
-.col-lg-12,
-.col-lg-2,
-.col-lg-3,
-.col-lg-4,
-.col-lg-5,
-.col-lg-6,
-.col-lg-7,
-.col-lg-8,
-.col-lg-9,
-.col-md-1,
-.col-md-10,
-.col-md-11,
-.col-md-12,
-.col-md-2,
-.col-md-3,
-.col-md-4,
-.col-md-5,
-.col-md-6,
-.col-md-7,
-.col-md-8,
-.col-md-9,
-.col-sm-1,
-.col-sm-10,
-.col-sm-11,
-.col-sm-12,
-.col-sm-2,
-.col-sm-3,
-.col-sm-4,
-.col-sm-5,
-.col-sm-6,
-.col-sm-7,
-.col-sm-8,
-.col-sm-9,
-.col-xs-1,
-.col-xs-10,
-.col-xs-11,
-.col-xs-12,
-.col-xs-2,
-.col-xs-3,
-.col-xs-4,
-.col-xs-5,
-.col-xs-6,
-.col-xs-7,
-.col-xs-8,
-.col-xs-9 {
-    padding-right: 10px;
-    padding-left: 10px;
-}
-
 .btn-file {
     position: relative;
     overflow: hidden;
@@ -93,12 +40,6 @@ h6 {
     background: white;
     cursor: inherit;
     display: block;
-}
-
-.row {
-    margin-right: 0;
-    margin-left: 0;
-    margin-top: 10px;
 }
 
 td {
@@ -156,14 +97,28 @@ td:nth-child(3) {
     transition: all 0.1s ease-out;
 }
 
-.nav>li>a {
+.result .text, .result .thumb {
+    display: inline-block;
+}
+
+.result .thumb {
+    float: right;
+}
+.result a>div::after {
+   content: " ";
+   display: block; 
+   height: 0; 
+   clear: both;
+}
+
+#results-list .nav>li>a {
     padding: 8px;
     border-radius: 0;
 }
 
-.nav-pills>li.active>a,
-.nav-pills>li.active>a:focus,
-.nav-pills>li.active>a:hover {
+#results-list .nav-pills>li.active>a,
+#results-list .nav-pills>li.active>a:focus,
+#results-list .nav-pills>li.active>a:hover {
     background-color: #EEE;
     color: #333;
 }
@@ -215,7 +170,14 @@ td:nth-child(3) {
     margin-top: 10px;
 }
 
+
+#main, #results-list, #info {
+    margin: 10px;
+    margin: 10px;
+}
 #main {
+    position: relative;
+    float: left;
     width: 642px;
     margin-bottom: 1em;
     background-color: rgba(255, 255, 255, 1);
@@ -236,12 +198,28 @@ td:nth-child(3) {
 }
 
 #results-list {
+    float: left;
+    width: 642px;
     background-color: rgba(255, 255, 255, 1);
     color: #333;
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
     font-family: Helvetica, Arial, Meiryo, "Microsoft JhengHei", "Microsoft YaHei", sans-serif;
 }
 
+@media (min-width: 1020px) {
+/*    #main {
+        position: fixed;
+        top: 0;
+        left: 0;
+    }*/
+    #results-list {
+        float: right;
+        width: 320px;
+    }
+    .result .thumb {
+        float: none;
+    }
+}
 #results-list #controls {
     padding: 10px;
     text-align: center;
@@ -256,6 +234,7 @@ td:nth-child(3) {
 }
 
 #info {
+    float: left;
     width: 642px;
     z-index: 6;
     background-color: rgba(255, 255, 255, 1);
