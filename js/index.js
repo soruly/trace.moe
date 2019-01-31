@@ -578,6 +578,7 @@ function CLIPBOARD_CLASS (canvas_id) {
 
 var resetInfo = function () {
   document.querySelector("#info").innerHTML = "";
+  document.querySelector("#info").style.display = "none";
   document.querySelector("#info").style.visibility = "hidden";
   document.querySelector("#info").style.opacity = 0;
 };

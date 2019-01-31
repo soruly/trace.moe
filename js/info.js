@@ -4,6 +4,7 @@ var showAnilistInfo = function (anilistID) {
   $.get("/info?anilist_id=" + anilistID, function (data, textStatus) {
     if (data.length > 0) {
       displayInfo(data[0]);
+      document.querySelector("#info").style.display = "inline-block";
       document.querySelector("#info").style.visibility = "visible";
       document.querySelector("#info").style.opacity = 1;
     }

@@ -21,6 +21,18 @@ h6 {
     margin-bottom: 5px;
 }
 
+.navbar-nav>li {
+    float: left;
+}
+.navbar-nav>li>a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.navbar-nav {
+    float: left;
+    margin: 0;
+}
+
 .btn-file {
     position: relative;
     overflow: hidden;
@@ -172,12 +184,12 @@ td:nth-child(3) {
 
 
 #main, #results-list, #info {
+    display: inline-block;
     margin: 10px;
     margin: 10px;
 }
 #main {
     position: relative;
-    float: left;
     width: 642px;
     margin-bottom: 1em;
     background-color: rgba(255, 255, 255, 1);
@@ -207,19 +219,14 @@ td:nth-child(3) {
 }
 
 @media (min-width: 1020px) {
-/*    #main {
-        position: fixed;
-        top: 0;
-        left: 0;
-    }*/
     #results-list {
-        float: right;
         width: 320px;
     }
     .result .thumb {
         float: none;
     }
 }
+
 #results-list #controls {
     padding: 10px;
     text-align: center;
@@ -240,6 +247,7 @@ td:nth-child(3) {
     background-color: rgba(255, 255, 255, 1);
     color: #333;
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+    display: none;
     visibility: hidden;
     opacity: 0;
     transition: visibility 100ms ease-out, opacity 100ms ease-out !important;
