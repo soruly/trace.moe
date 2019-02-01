@@ -4,9 +4,12 @@ html {
 }
 body {
   margin-bottom: 60px;
-  background-color: #e9eaef;
+  background-color: #f9f9fb;
   text-shadow: 1px 1px 3px #ccc;
   font-family: Helvetica, Arial, Meiryo, "Microsoft JhengHei", "Microsoft YaHei", sans-serif;
+}
+a {
+  color: #006cca;
 }
 .page-header{
   border-bottom: 1px solid #9E9E9E;

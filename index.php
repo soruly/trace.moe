@@ -45,6 +45,7 @@
   <script src="/js/analytics.js" async defer></script>
 </head>
 <body>
+<main>
   <input id="autoSearch" type="checkbox" style="display: none;">
   <img id="originalImage" src="" crossorigin="anonymous" style="display: none;">
   <nav class="navbar header">
@@ -101,7 +102,7 @@
           <span class="glyphicon glyphicon-search"></span> Search
         </button>
       </div>
-      <span style="color:#FF6D6D">Caution: some results may be NSFW (Not Safe for Work).</span><br>
+      <span style="color:#EA0000">Caution: some results may be NSFW (Not Safe for Work).</span><br>
       <a href="https://telegram.me/WhatAnimeBot">Official Telegram Bot</a> | Official WebExtension for <a href="https://chrome.google.com/webstore/detail/search-anime-by-screensho/gkamnldpllcbiidlfacaccdoadedncfp">Chrome</a>, <a href="https://addons.mozilla.org/en-US/firefox/addon/search-anime-by-screenshot/">Firefox</a>, and <a href="https://addons.opera.com/en/extensions/details/search-anime-by-screenshot/">Opera</a><br>
     </div>
   </div>
@@ -139,6 +140,7 @@
     document.querySelector("#imageURL").value = "'.str_replace(' ','%20',rawurldecode($_GET["url"])).'";
     </script>';
   }
-  ?>
+?>
+</main>
 </body>
 </html>

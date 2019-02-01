@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="description" content="Search Anime by ScreenShot. Lookup the exact moment and the episode.">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>WAIT: What Anime Is This? - FAQ</title>
@@ -49,70 +50,70 @@ Searching with a real photo (of an anime) definitely won't work.<br>
 <h3>Examples of bad screenshots</h3>
 <br>
 <h4>Extra border added</h4>
-<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/border-bad.jpg" style="max-width:320px;max-height:180px"><br>Bad Screenshot</div>
-<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/border-good.jpg" style="float:left;max-width:320px;max-height:180px"><br>Original Screenshot</div>
+<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img alt="" src="/img/border-bad.jpg" style="max-width:320px;max-height:180px"><br>Bad Screenshot</div>
+<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img alt="" src="/img/border-good.jpg" style="float:left;max-width:320px;max-height:180px"><br>Original Screenshot</div>
 <p style="clear:both">In case your screenshot has extra borders, please trim off the extra borders before you search.</p>
 <br>
 <h4>Cropped Image</h4>
-<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/cropped-bad.jpg" style="max-width:320px;max-height:180px"><br>Bad Screenshot</div>
-<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/cropped-good.jpg" style="float:left;max-width:320px;max-height:180px"><br>Original Screenshot</div>
+<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img alt="" src="/img/cropped-bad.jpg" style="max-width:320px;max-height:180px"><br>Bad Screenshot</div>
+<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img alt="" src="/img/cropped-good.jpg" style="float:left;max-width:320px;max-height:180px"><br>Original Screenshot</div>
 <p style="clear:both">Cropping the image would result a huge loss of information content. </p>
 <br>
 <h4>Flipped image</h4>
-<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/flipped-bad.jpg" style="max-width:320px;max-height:180px"><br>Bad Screenshot</div>
-<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/flipped-good.jpg" style="float:left;max-width:320px;max-height:180px"><br>Original Screenshot</div>
+<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img alt="" src="/img/flipped-bad.jpg" style="max-width:320px;max-height:180px"><br>Bad Screenshot</div>
+<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img alt="" src="/img/flipped-good.jpg" style="float:left;max-width:320px;max-height:180px"><br>Original Screenshot</div>
 <p style="clear:both">This screenshot from <a href="https://www.youtube.com/watch?v=TUoWYoTWcnA&feature=youtu.be&t=2m59s">AMV - Animegraphy 2015</a> flipped the original scene in the anime. Try to search with the flip button if you guess the image has been flipped.</p>
 <br>
 <h4>Tinted images</h4>
-<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/tinted-bad.jpg" style="max-width:320px;max-height:180px"><br>Not a good Screenshot</div>
-<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/tinted-good.jpg" style="float:left;max-width:320px;max-height:180px"><br>Original Screenshot</div>
+<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img alt="" src="/img/tinted-bad.jpg" style="max-width:320px;max-height:180px"><br>Not a good Screenshot</div>
+<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img alt="" src="/img/tinted-good.jpg" style="float:left;max-width:320px;max-height:180px"><br>Original Screenshot</div>
 <p style="clear:both">Tinted images are hard to search. Because the applied filter effects heavily distorted the information in the original screenshot. The color layout image descriptor can no longer find such images.</p>
 <br>
 <h4>Old Japanese Anime</h4>
-<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/old-bad.jpg" style="max-width:320px;max-height:180px"><br>Sample Screenshot</div>
+<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img alt="" src="/img/old-bad.jpg" style="max-width:320px;max-height:180px"><br>Sample Screenshot</div>
 <p style="clear:both">Anime of this age are not indexed.</p>
 <br>
 <h4>Not from Anime Screenshot</h4>
-<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/notanime-bad.jpg" style="max-width:320px;max-height:180px"><br>Sample Screenshot</div>
+<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img alt="" src="/img/notanime-bad.jpg" style="max-width:320px;max-height:180px"><br>Sample Screenshot</div>
 <p style="clear:both">You should try <a href="https://saucenao.com/">SauceNAO</a> and <a href="https://iqdb.org/">https://iqdb.org/</a> to search anime / doujin artwork.</p>
 <br>
 <h4>Not Japanese Anime</h4>
-<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/nonjapanese-bad.jpg" style="max-width:320px;max-height:180px"><br>Sample Screenshot</div>
+<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img alt="" src="/img/nonjapanese-bad.jpg" style="max-width:320px;max-height:180px"><br>Sample Screenshot</div>
 <p style="clear:both">Tom and Jerry is obviously not a Japanese Anime.</p>
 <br>
 <h4>Dark image</h4>
-<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/dark-bad.jpg" style="max-width:320px;max-height:180px"><br>Sample Screenshot</div>
+<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img alt="" src="/img/dark-bad.jpg" style="max-width:320px;max-height:180px"><br>Sample Screenshot</div>
 <p style="clear:both">Dark images are hard to distinguish using the colorlayout descriptor.</p>
 <br>
 <h4>Low resolution image</h4>
-<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/lowres-bad.jpg" style="max-width:320px;max-height:180px"><br>Sample Screenshot</div>
+<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img alt="" src="/img/lowres-bad.jpg" style="max-width:320px;max-height:180px"><br>Sample Screenshot</div>
 <p style="clear:both">Your image should be at least 320x180px to search effectively.</p>
 <br>
 <h3>Examples of acceptable screenshots</h3>
 <h4>Slightly distorted size</h4>
-<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/distorted-bad.jpg" style="max-width:320px;max-height:180px"><br>Acceptable Screenshot</div>
-<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/distorted-good.jpg" style="float:left;max-width:320px;max-height:180px"><br>Original Screenshot</div>
+<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img alt="" src="/img/distorted-bad.jpg" style="max-width:320px;max-height:180px"><br>Acceptable Screenshot</div>
+<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img alt="" src="/img/distorted-good.jpg" style="float:left;max-width:320px;max-height:180px"><br>Original Screenshot</div>
 <p style="clear:both"></p>
 <br>
 <h4>Reasonably sized subtitles</h4>
-<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/subtitles-bad.jpg" style="max-width:320px;max-height:180px"><br>Acceptable Screenshot</div>
-<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/subtitles-good.jpg" style="float:left;max-width:320px;max-height:180px"><br>Original Screenshot</div>
+<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img alt="" src="/img/subtitles-bad.jpg" style="max-width:320px;max-height:180px"><br>Acceptable Screenshot</div>
+<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img alt="" src="/img/subtitles-good.jpg" style="float:left;max-width:320px;max-height:180px"><br>Original Screenshot</div>
 <p style="clear:both"></p>
 <br>
 <h4>A frame of GIF</h4>
-<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/gif-bad.jpg" style="max-width:320px;max-height:180px"><br>Acceptable Screenshot</div>
-<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/gif-good.jpg" style="float:left;max-width:320px;max-height:180px"><br>Original Screenshot</div>
+<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img alt="" src="/img/gif-bad.jpg" style="max-width:320px;max-height:180px"><br>Acceptable Screenshot</div>
+<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img alt="" src="/img/gif-good.jpg" style="float:left;max-width:320px;max-height:180px"><br>Original Screenshot</div>
 <p style="clear:both">If the color distortion is acceptable, GIF is also OK. </p>
 <br>
 <h4>Drawings of the anime scene</h4>
-<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/draw-bad.jpg" style="max-width:320px;max-height:180px"><br>Acceptable Screenshot</div>
-<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/draw-good.jpg" style="float:left;max-width:320px;max-height:180px"><br>Original Screenshot</div>
-<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/draw2-bad.jpg" style="max-width:320px;max-height:180px"><br>Acceptable Screenshot</div>
-<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/draw2-good.jpg" style="float:left;max-width:320px;max-height:180px"><br>Original Screenshot</div>
-<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/draw3-bad.jpg" style="max-width:320px;max-height:180px"><br>Acceptable Screenshot</div>
-<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/draw3-good.jpg" style="float:left;max-width:320px;max-height:180px"><br>Original Screenshot</div>
-<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/draw4-bad.jpg" style="max-width:320px;max-height:180px"><br>Acceptable Screenshot</div>
-<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img src="/img/draw4-good.jpg" style="float:left;max-width:320px;max-height:180px"><br>Original Screenshot</div>
+<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img alt="" src="/img/draw-bad.jpg" style="max-width:320px;max-height:180px"><br>Acceptable Screenshot</div>
+<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img alt="" src="/img/draw-good.jpg" style="float:left;max-width:320px;max-height:180px"><br>Original Screenshot</div>
+<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img alt="" src="/img/draw2-bad.jpg" style="max-width:320px;max-height:180px"><br>Acceptable Screenshot</div>
+<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img alt="" src="/img/draw2-good.jpg" style="float:left;max-width:320px;max-height:180px"><br>Original Screenshot</div>
+<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img alt="" src="/img/draw3-bad.jpg" style="max-width:320px;max-height:180px"><br>Acceptable Screenshot</div>
+<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img alt="" src="/img/draw3-good.jpg" style="float:left;max-width:320px;max-height:180px"><br>Original Screenshot</div>
+<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img alt="" src="/img/draw4-bad.jpg" style="max-width:320px;max-height:180px"><br>Acceptable Screenshot</div>
+<div style="float:left;text-align:center;border:1px #666 solid;width:320px"><img alt="" src="/img/draw4-good.jpg" style="float:left;max-width:320px;max-height:180px"><br>Original Screenshot</div>
 <p style="clear:both">The search image does not has to be taken from anime screencap directly. You can use drawings of some scenes as long as it is similar to the original one.</p>
 <br>
 <h3>How does it work?</h3>
