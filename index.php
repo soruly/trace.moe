@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html itemscope itemtype="http://schema.org/Webpage">
+<html lang="en" itemscope itemtype="http://schema.org/Webpage">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="description" content="Search Anime by ScreenShot. Lookup the exact moment and the episode.">
