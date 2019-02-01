@@ -20,13 +20,13 @@ if($input) {
 
 if (!$image) {
   header('HTTP/1.1 400 Bad Request');
-  exit("No image received");
+  exit('"No image received"');
 } else {
     if(isset($_GET['token']) && $_GET['token'] !== "") {
       $sql = mysqli_connect($sql_hostname, $sql_username, $sql_password, $sql_database);
       if (mysqli_connect_errno()) {
           header('HTTP/1.1 503 Service Unavailable');
-          exit("Failed to connect to database");
+          exit('"Failed to connect to database"');
       }
       else {
         mysqli_query($sql, "SET NAMES 'utf8'");
@@ -39,7 +39,7 @@ if (!$image) {
           mysqli_stmt_bind_result($stmt, $user_id, $user_email, $user_limit, $user_limit_ttl, $user_quota, $user_quota_ttl);
           if( mysqli_stmt_num_rows($stmt) == 0) {
             header('HTTP/1.1 403 Forbidden');
-            exit("Invalid API token");
+            exit('"Invalid API token"');
           }
           else{
       
@@ -80,7 +80,7 @@ if (!$image) {
       header("HTTP/1.1 429 Too Many Requests");
       header("X-whatanime-limit: ${limit}");
       header("X-whatanime-limit-ttl: ${limit_ttl}");
-      exit("Search limit exceeded. Please wait ".$limit_ttl." seconds.");
+      exit('"Search limit exceeded. Please wait ".$limit_ttl." seconds."');
     }
 
     // quota limit per day
@@ -97,7 +97,7 @@ if (!$image) {
       header("HTTP/1.1 429 Too Many Requests");
       header("X-whatanime-quota: ${quota}");
       header("X-whatanime-quota-ttl: ${quota_ttl}");
-      exit("Search quota exceeded. Please wait ".$quota_ttl." seconds.");
+      exit('"Search quota exceeded. Please wait ".$quota_ttl." seconds."');
     }
 
     header("X-whatanime-limit: ${limit}");
@@ -114,7 +114,7 @@ if (!$image) {
     
     if($data == "") {
       header('HTTP/1.1 400 Bad Request');
-      exit("Image is empty");
+      exit('"Image is empty"');
     }
 
     // file_put_contents($savePath.$filename, base64_decode($data));
@@ -191,7 +191,7 @@ if (!$image) {
         foreach ($results as $res) {
             $result = json_decode($res);
             if(isset($result->Error)){
-              exit($result->Error);
+              exit('"'.$result->Error.'"');
             }
             $final_result->RawDocsCount += intval($result->RawDocsCount);
             $final_result->RawDocsSearchTime += intval($result->RawDocsSearchTime);
