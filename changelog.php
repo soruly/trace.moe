@@ -56,7 +56,7 @@ This is achieved by openCV using a simple python script
 
 <h3>Added demo for the upcoming search engine update</h3>
 <h6>14 Jun 2017</h6>
-<p>Take a look at a demo on <a href="https://demo.whatanime.ga" target="_blank">https://demo.whatanime.ga</a></p>
+<p>Take a look at a demo on <a href="https://demo.whatanime.ga">https://demo.whatanime.ga</a></p>
 
 <h3>New Icon</h3>
 <h6>5 Jun 2017</h6>
@@ -64,7 +64,7 @@ This is achieved by openCV using a simple python script
 
 <h3>2017 Presentation slides updates</h3>
 <h6>4 Jun 2017</h6>
-<p>Want to know more about whatanime.ga? Read the <a href="https://go-talks.appspot.com/github.com/soruly/slides/whatanime.ga-2017.slide" target="_blank">Presentation slides on June 2017</a>.</p>
+<p>Want to know more about whatanime.ga? Read the <a href="https://go-talks.appspot.com/github.com/soruly/slides/whatanime.ga-2017.slide">Presentation slides on June 2017</a>.</p>
 
 <h3>Search changes</h3>
 <h6>30 Apr 2017</h6>

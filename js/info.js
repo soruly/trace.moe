@@ -25,8 +25,7 @@ var displayInfo = function (src) {
     var div = $("<div>", {"id": "poster"}).appendTo("#info");
 
     $("<a>", {
-      "href": "//anilist.co/anime/" + src.id,
-      "target": "_blank"
+      "href": "//anilist.co/anime/" + src.id
     }).appendTo("#poster");
     $("<img>", {"src": src.coverImage.large.replace("http:", "")}).appendTo("#poster a");
     div.appendTo("#info");
@@ -131,7 +130,6 @@ var displayInfo = function (src) {
       if (entry.node.siteUrl) {
         $("<a>", {
           "href": entry.node.siteUrl,
-          "target": "_blank",
           "text": entry.node.name
         }).appendTo(td);
       } else {
@@ -167,7 +165,6 @@ var displayInfo = function (src) {
     $.each(src.externalLinks, function (key, entry) {
       $("<a>", {
         "href": entry.url,
-        "target": "_blank",
         "text": entry.site + " "
       }).appendTo(td);
       $("<br>").appendTo(td);
@@ -197,7 +194,6 @@ var displayInfo = function (src) {
       $("<a>", {
         "class": "staff_" + entry.node.id,
         "href": "//anilist.co/staff/" + entry.node.id,
-        "target": "_blank",
         "text": name
       }).appendTo(nameTD);
       nameTD.appendTo(row);
@@ -237,8 +233,7 @@ var displayInfo = function (src) {
         entry.node.image.medium = "//anilist.co/img/dir/anime/med/noimg.jpg";
       }
       var charIMG = $("<a>", {
-        "href": entry.node.image.large.replace("http:", ""),
-        "target": "_blank"
+        "href": entry.node.image.large.replace("http:", "")
       }).appendTo(charImgDiv);
 
       $("<div>", {"style": "background-image:url(" + entry.node.image.medium.replace("http:", "") + ")"}).appendTo(charIMG);
@@ -254,7 +249,6 @@ var displayInfo = function (src) {
       $("<a>", {
         "class": "character_" + entry.node.id,
         "href": "//anilist.co/character/" + entry.node.id,
-        "target": "_blank",
         "text": char_name
       }).appendTo(charName);
       if (entry.voiceActors && entry.voiceActors.length > 0) {
@@ -267,7 +261,6 @@ var displayInfo = function (src) {
         $("<a>", {
           "class": "staff_" + entry.voiceActors[0].id,
           "href": "//anilist.co/staff/" + entry.voiceActors[0].id,
-          "target": "_blank",
           "text": name
         }).appendTo(charName);
         charName.append(document.createTextNode(")"));
@@ -281,7 +274,7 @@ var displayInfo = function (src) {
 
   $("<div>", {"style": "clear:both; border-bottom:1px solid #666; margin-bottom:3px"}).appendTo("#info");
   $("<div>", {
-    "html": "Information provided by <a href=\"https://anilist.co\" target=\"_blank\">anilist.co</a>",
+    "html": "Information provided by <a href=\"https://anilist.co\">anilist.co</a>",
     "style": "float:right;font-size:12px"
   }).appendTo("#info");
   $("<div>", {"style": "clear:both"}).appendTo("#info");
