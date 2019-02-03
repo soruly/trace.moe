@@ -59,12 +59,12 @@
       </ul>
     </div>
   </nav>
-  <!-- <div class="alert alert-warning" style="margin: auto; box-shadow: 0 0 20px 0px; width: 80%">
-    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    New Domain: <a href="https://trace.moe">https://trace.moe</a>
-  </div> -->
 
   <div id="main">
+    <div class="alert alert-info" style="margin: auto; box-shadow: 0 0 20px 0px;">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <a href="https://www.patreon.com/posts/24430008">Read Recent updates to trace.moe on Patreon!</a>
+    </div> 
     <div class="noselect">
       <div id="loading" class="hidden">
         <div id="loader" class="ripple"></div>
