@@ -191,6 +191,7 @@ if (!$image) {
         foreach ($results as $res) {
             $result = json_decode($res);
             if(isset($result->Error)){
+              header('HTTP/1.1 500 Internal Server Error');
               exit('"'.$result->Error.'"');
             }
             $final_result->RawDocsCount += intval($result->RawDocsCount);
