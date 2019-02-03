@@ -1,6 +1,6 @@
 # trace.moe API Docs
 
-This API is still under development. Make sure you stay up-to-date with me and this project. 
+This API is always under development. Please stay up-to-date with this project via Discord or Patreon, and <a href="https://www.patreon.com/soruly">donate</a> <ExternalLinkIcon /> to support this project!
 
 ## Search
 
@@ -146,7 +146,7 @@ If your image is malformed, you may got an error message (HTTP 500) like this:
 ```
 These image URLs are for debugging use, and is not accessible from internet. You may send this to admin to inspect what went wrong. All images send to server are deleted after 24 hours.
 
-Aside from the JSON response or the [/me](#me) endpoint, you can also get the current limit from HTTP response header.
+Aside from the JSON response or the [/me](#Me) endpoint, you can also get the current limit from HTTP response header.
 
 ```
 x-whatanime-limit: 9
@@ -171,7 +171,7 @@ All error messages are double quoted string in order to ensure they are always v
 
 ## Previews
 
-With `tokenthumb` you obtained from [/search](#search), you can get previews of the matched scene. (not 100% accurate due to timecode and seeking method)
+With `tokenthumb` you obtained from [/search](#Search), you can get previews of the matched scene. (not 100% accurate due to timecode and seeking method)
 
 ### Image Preview
 ```
