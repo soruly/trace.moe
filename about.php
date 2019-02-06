@@ -148,22 +148,26 @@ Source: <a href="https://github.com/JanYoStudio/WhatAnime">https://github.com/Ja
 <h4>Josh (<a href="https://anilist.co/">Anilist</a>) and Anilist team</h4>
 </p>
 <div class="page-header">
-<h3>Patreons</h3>
+<h3 id="donate">Donate</h3>
 </div>
 <p>
-<a href="https://chenxublog.com">chenxuuu</a><br>
-<a href="http://desmonding.me/">Desmond</a><br>
-<a href="http://imvery.moe/">FangzhouL</a><br>
-Snadzies<br>
-WelkinWill<br>
-<a href="https://twitter.com/yuriks">yuriks</a><br>
-...and dozons of anonymous patreons<br>
+<div>
+  <a href="https://www.paypal.me/soruly"><img src="img/donate-with-paypal.png" alt="Donate with PayPal" style="display:inline-block;max-height:50px;"></a> or 
+  <a href="https://www.patreon.com/soruly"><img src="img/become_a_patron_button.png" alt="Become a Patron!" style="display:inline-block;max-height:50px"></a>
+</div>
+<br>
+Former and Current Supporters:<br>
+<ul>
+  <li><a href="https://chenxublog.com">chenxuuu</a></li>
+  <li><a href="http://desmonding.me/">Desmond</a></li>
+  <li><a href="http://imvery.moe/">FangzhouL</a></li>
+  <li>Snadzies</li>
+  <li>WelkinWill</li>
+  <li><a href="https://twitter.com/yuriks">yuriks</a></li>
+  <li>...and dozons of anonymous donators</li>
+</ul>
 <br>
 <h4>And of cause, contributions and support from all anime lovers!</h4>
-<br>
-<a href="https://www.patreon.com/soruly"><img src="img/become_a_patron_button.png" alt="Become a Patron!"></a>
-<br>
-<br>
 <br>
 <br>
 </p>
