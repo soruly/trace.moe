@@ -8,6 +8,12 @@ Predis\Autoloader::register();
 $redis = new Predis\Client('tcp://127.0.0.1:6379');
 $redis->connect();
 
+
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+  header('HTTP/1.1 200 OK');
+  exit('');
+}
+
 if(isset($_GET['token']) && $_GET['token'] !== "") {
 
   $sql = mysqli_connect($sql_hostname, $sql_username, $sql_password, $sql_database);

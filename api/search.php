@@ -18,6 +18,11 @@ if($input) {
     $filter = $data["filter"] ?? $filter;
 }
 
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+  header('HTTP/1.1 200 OK');
+  exit('');
+}
+
 if (!$image) {
   header('HTTP/1.1 400 Bad Request');
   exit('"No image received"');
