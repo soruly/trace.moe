@@ -1,4 +1,8 @@
 <?php
+header("Link: </css/style.css>; rel=preload; as=style", false);
+header("Link: </css/bootstrap.min.css>; rel=preload; as=style", false);
+header("Link: </js/analytics.js>; rel=preload; as=script", false);
+
 ini_set("display_errors", 0);
 
 $curl = curl_init();
@@ -163,6 +167,7 @@ Former and Current Supporters:<br>
   <li><a href="http://imvery.moe/">FangzhouL</a></li>
   <li><a href="https://fym.moe/">FiveYellowMice</a></li>
   <li>Snadzies</li>
+  <li><a href="https://taw.moe">thatanimeweirdo</a></li>
   <li>WelkinWill</li>
   <li><a href="https://twitter.com/yuriks">yuriks</a></li>
   <li>...and dozons of anonymous donators</li>

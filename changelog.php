@@ -1,3 +1,8 @@
+<?php
+header("Link: </css/style.css>; rel=preload; as=style", false);
+header("Link: </css/bootstrap.min.css>; rel=preload; as=style", false);
+header("Link: </js/analytics.js>; rel=preload; as=script", false);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

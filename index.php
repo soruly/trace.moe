@@ -1,3 +1,13 @@
+<?php
+header("Link: </css/style.css>; rel=preload; as=style", false);
+header("Link: </css/index.css>; rel=preload; as=style", false);
+header("Link: </css/bootstrap.min.css>; rel=preload; as=style", false);
+header("Link: </js/analytics.js>; rel=preload; as=script", false);
+header("Link: </js/jquery-3.2.1.min.js>; rel=preload; as=script", false);
+header("Link: </js/bootstrap.min.js>; rel=preload; as=script", false);
+header("Link: </js/index.js>; rel=preload; as=script", false);
+header("Link: </js/info.js>; rel=preload; as=script", false);
+?>
 <!DOCTYPE html>
 <html lang="en" itemscope itemtype="http://schema.org/Webpage">
 <head>
@@ -6,6 +16,7 @@
   <meta name="keywords" content="Anime Scene Search, Search by image, Anime Image Search, アニメのキャプ画像">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=660, initial-scale=1">
+  <meta name="theme-color" content="#f9f9fb"/>
   <title>WAIT: What Anime Is This? - Anime Scene Search Engine</title>
 
   <?php
