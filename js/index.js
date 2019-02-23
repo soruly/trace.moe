@@ -1,8 +1,6 @@
 "use strict";
 
-$(document).ready(function () {
-  var ua = navigator.userAgent;
-
+document.addEventListener("DOMContentLoaded", function () {
   document.querySelector("#mute").checked = true;
   document.querySelector("#player").muted = true;
 
@@ -81,7 +79,9 @@ var formatTime = function (timeInSeconds) {
 };
 
 var zeroPad = function (n, width) {
-  if (n.length === undefined) return n.toString();
+  if (n.length === undefined) {
+    return n.toString();
+  }
   return n.length >= width ? n.toString() : new Array(width - n.toString().length + 1).join("0") + n;
 };
 
@@ -129,12 +129,23 @@ var search = function (trial, prev_result) {
   document.querySelector("#flipBtn").disabled = true;
   document.querySelector("#imageURL").disabled = true;
 
-  searchRequest = $.post("/search",
-    {
-      "data": imgDataURL,
-      "filter": document.querySelector("#seasonSelector").value,
-      "trial": trial
-    }, function (data) {
+  var xhr = new XMLHttpRequest();
+
+  xhr.open("POST", "/search", true);
+  xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+  xhr.onreadystatechange = function () {
+    document.querySelector("#searchBtn span").classList.remove("glyphicon-refresh");
+    document.querySelector("#searchBtn span").classList.remove("spinning");
+    document.querySelector("#searchBtn span").classList.add("glyphicon-search");
+    if (document.querySelector("#search2Btn span")) {
+      document.querySelector("#search2Btn span").classList.remove("glyphicon-refresh");
+      document.querySelector("#search2Btn span").classList.remove("spinning");
+      document.querySelector("#search2Btn span").classList.add("glyphicon-search");
+    }
+
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      var data = JSON.parse(xhr.responseText);
+
       document.querySelector("#loading").classList.add("hidden");
       document.querySelector("#loader").classList.remove("ripple");
       document.querySelector("#searchBtn").disabled = false;
@@ -204,34 +215,40 @@ var search = function (trial, prev_result) {
             document.querySelector("#results").appendChild(result);
           }
         });
-        $(".result").click(playfile);
+        document.querySelectorAll(".result").forEach(function (result) {
+          result.addEventListener("click", playfile);
+        });
+
+        var keepSearchDiv = document.createElement("div");
+
+        keepSearchDiv.style.textAlign = "center";
+        keepSearchDiv.innerHTML = "<button id=\"search2Btn\" type=\"button\" class=\"btn btn-default btn-sm btn-primary\"><span class=\"glyphicon glyphicon-search\"></span> Keep Searching</button>";
 
         if (parseFloat(data.docs[0].diff) > 10) {
           if (trial < 2) {
             search(trial + 1, data);
           } else if (trial < 5) {
-            $("#results").prepend("<div style=\"text-align:center\"><button id=\"search2Btn\" type=\"button\" class=\"btn btn-default btn-sm btn-primary\"><span class=\"glyphicon glyphicon-search\"></span> Keep Searching</button></div>");
-            $("#search2Btn").click(function () {
+            document.querySelector("#results").insertBefore(keepSearchDiv, document.querySelector("#results").firstChild);
+            document.querySelector("#search2Btn").addEventListener("click", function () {
               search(trial + 1, data);
             });
           }
         } else {
           if (trial < 5) {
-            $("#results").prepend("<div style=\"text-align:center\"><button id=\"search2Btn\" type=\"button\" class=\"btn btn-default btn-sm btn-primary\"><span class=\"glyphicon glyphicon-search\"></span> Keep Searching</button></div>");
-            $("#search2Btn").click(function () {
+            document.querySelector("#results").insertBefore(keepSearchDiv, document.querySelector("#results").firstChild);
+            document.querySelector("#search2Btn").addEventListener("click", function () {
               search(trial + 1, data);
             });
           }
           if (document.querySelector("#safeBtn .glyphicon").classList.contains("glyphicon-check") === false) {
-            $(".result")[0].click();
+            document.querySelectorAll(".result")[0].click();
           }
         }
       } else {
         document.querySelector("#results").innerHTML = "<div id=\"status\">No result</div>";
       }
-    }, "json").fail(function (e) {
-    if (e.status === 429) {
-      document.querySelector("#results").innerHTML = "<div id=\"status\">"+e.responseText+"</div>";
+    } else if (xhr.status === 429) {
+      document.querySelector("#results").innerHTML = "<div id=\"status\">" + xhr.responseText + "</div>";
     } else {
       document.querySelector("#results").innerHTML = "<div id=\"status\">Connection to Search Server Failed</div>";
     }
@@ -241,16 +258,13 @@ var search = function (trial, prev_result) {
     }
     document.querySelector("#flipBtn").disabled = false;
     document.querySelector("#imageURL").disabled = false;
-  }).always(function () {
-    document.querySelector("#searchBtn span").classList.remove("glyphicon-refresh");
-    document.querySelector("#searchBtn span").classList.remove("spinning");
-    document.querySelector("#searchBtn span").classList.add("glyphicon-search");
-    if (document.querySelector("#search2Btn span")) {
-      document.querySelector("#search2Btn span").classList.remove("glyphicon-refresh");
-      document.querySelector("#search2Btn span").classList.remove("spinning");
-      document.querySelector("#search2Btn span").classList.add("glyphicon-search");
-    }
-  });
+  };
+  var formData = new FormData();
+
+  formData.append("data", imgDataURL);
+  formData.append("filter", document.querySelector("#seasonSelector").value);
+  formData.append("trial", trial);
+  xhr.send(formData);
 };
 
 document.querySelector("#searchBtn").addEventListener("click", function () {
@@ -321,13 +335,19 @@ var playfile = function () {
   var anilistID = this.getAttribute("data-anilist-id");
   var src = "/" + anilistID + "/" + encodeURIComponent(file) + "?start=" + start + "&end=" + end + "&token=" + token;
 
-  $.get("/duration.php?anilist_id=" + anilistID + "&file=" + encodeURIComponent(file) + "&token=" + token, function (duration) {
+  var xhr = new XMLHttpRequest();
+
+  xhr.open("GET", "/duration.php?anilist_id=" + anilistID + "&file=" + encodeURIComponent(file) + "&token=" + token, true);
+  xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+  xhr.onreadystatechange = function () {
     document.querySelector("#fileNameDisplay").innerText = file;
-    document.querySelector("#timeCodeDisplay").innerText = formatTime(t) + "/" + formatTime(duration);
-    var left = (parseFloat(t) / parseFloat(duration) * 640) - 6;
+    document.querySelector("#timeCodeDisplay").innerText = formatTime(t) + "/" + formatTime(xhr.responseText);
+    var left = parseFloat(t) / parseFloat(xhr.responseText) * 640 - 6;
+
     document.querySelector("#progressBarControl").style.visibility = "visible";
     document.querySelector("#progressBarControl").style.left = left + "px";
-  });
+  };
+  xhr.send();
 
   document.querySelector("#loading").classList.remove("hidden");
   document.querySelector("#player").src = src;
@@ -517,7 +537,6 @@ function CLIPBOARD_CLASS (canvas_id) {
   }, false);
 
   this.init = (function () {
-
     pasteCatcher = document.createElement("div");
     pasteCatcher.setAttribute("contenteditable", "");
     pasteCatcher.style.cssText = "opacity:0;position:fixed;top:0px;left:0px;";
