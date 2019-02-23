@@ -5,6 +5,7 @@ header("Link: </css/bootstrap.min.css>; rel=preload; as=style", false);
 header("Link: </js/analytics.js>; rel=preload; as=script", false);
 header("Link: </js/index_v2.js>; rel=preload; as=script", false);
 header("Link: </js/info_v2.js>; rel=preload; as=script", false);
+header("Link: </fonts/glyphicons-halflings-regular.woff>; rel=preload; as=font; crossorigin", false);
 ?>
 <!DOCTYPE html>
 <html lang="en" itemscope itemtype="http://schema.org/Webpage">
