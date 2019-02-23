@@ -23,16 +23,16 @@ a {
 }
 .header a{
   color:#FFF;
-  transition: all 0.2s ease-out;
+  transition: background-color 0.2s ease-out;
 }
 .header .active{
   color: #CCC;
   background-color: #485667;
-  transition: all 0.2s ease-out;
+  transition: background-color 0.2s ease-out;
 }
 .header li>a:hover{
   background-color: #485667;
-  transition: all 0.2s ease-out;
+  transition: background-color 0.2s ease-out;
 }
 .footer {
   position: absolute;
