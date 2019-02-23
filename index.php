@@ -3,9 +3,18 @@ header("Link: </css/style.css>; rel=preload; as=style", false);
 header("Link: </css/index.css>; rel=preload; as=style", false);
 header("Link: </css/bootstrap.min.css>; rel=preload; as=style", false);
 header("Link: </js/analytics.js>; rel=preload; as=script", false);
-header("Link: </js/index_v2.js>; rel=preload; as=script", false);
-header("Link: </js/info_v2.js>; rel=preload; as=script", false);
+header("Link: </js/index_v3.js>; rel=preload; as=script", false);
+header("Link: </js/info_v3.js>; rel=preload; as=script", false);
 header("Link: </fonts/glyphicons-halflings-regular.woff>; rel=preload; as=font; crossorigin", false);
+
+$autosearch = false;
+$imageURL = "";
+$originalImage = "";
+if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
+  $autosearch = true;
+  $imageURL = str_replace(' ','%20',rawurldecode($_GET["url"]));
+  $originalImage = "//image.trace.moe/imgproxy?url=".str_replace(' ','%20',rawurldecode($_GET["url"]));
+}
 ?>
 <!DOCTYPE html>
 <html lang="en" itemscope itemtype="http://schema.org/Webpage">
@@ -56,8 +65,8 @@ header("Link: </fonts/glyphicons-halflings-regular.woff>; rel=preload; as=font; 
 </head>
 <body>
 <main>
-  <input id="autoSearch" type="checkbox" style="display: none;">
-  <img id="originalImage" src="" crossorigin="anonymous" style="display: none;">
+  <input id="autoSearch" type="checkbox" style="display: none;" <?php echo $autosearch ? "checked" : ""; ?>>
+  <img id="originalImage" src="<?php echo $originalImage; ?>" crossorigin="anonymous" style="display: none;">
   <nav class="navbar header">
     <div class="container">
       <ul class="nav navbar-nav">
@@ -72,7 +81,7 @@ header("Link: </fonts/glyphicons-halflings-regular.woff>; rel=preload; as=font; 
 
   <div id="main">
     <div class="alert alert-info" style="margin: auto; box-shadow: 0 0 20px 0px;">
-    <a href="#" class="close" data-dismiss="alert" aria-label="close" onClick="document.querySelector('#main > .alert').style.display = 'none';">&times;</a>
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
       <a href="https://www.patreon.com/posts/24430008">Read Recent updates to trace.moe on Patreon!</a>
     </div> 
     <div class="noselect">
@@ -97,7 +106,7 @@ header("Link: </fonts/glyphicons-halflings-regular.woff>; rel=preload; as=font; 
       </button>
       <br>
       <form method="post">
-        <input type="url" pattern="https?://.+" name="imageURL" class="form-control" id="imageURL" placeholder="Image URL" style="margin:5px 0 5px 0">
+        <input type="url" pattern="https?://.+" name="imageURL" class="form-control" id="imageURL" placeholder="Image URL" value="<?php echo $imageURL; ?>" style="margin:5px 0 5px 0">
         <input type="submit" id="submit" style="display:none">
       </form>
       <div style="text-align: right">
@@ -135,20 +144,8 @@ header("Link: </fonts/glyphicons-halflings-regular.woff>; rel=preload; as=font; 
   </a>
   <style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
 
-  <script src="/js/index_v2.js"></script>
-  <script src="/js/info_v2.js"></script>
-  <?php
-  if(isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)){
-    echo '<script>
-    document.querySelector("#autoSearch").checked = true;
-    document.querySelector("#messageText").classList.remove("error");
-    document.querySelector("#messageText").classList.remove("success");
-    document.querySelector("#messageText").innerHTML = \'<span class="glyphicon glyphicon-repeat spinning"></span>\';
-    originalImage.src = "https://image.trace.moe/imgproxy?url='.str_replace(' ','%20',rawurldecode($_GET["url"])).'";
-    document.querySelector("#imageURL").value = "'.str_replace(' ','%20',rawurldecode($_GET["url"])).'";
-    </script>';
-  }
-?>
+  <script src="/js/index_v3.js"></script>
+  <script src="/js/info_v3.js"></script>
 </main>
 </body>
 </html>

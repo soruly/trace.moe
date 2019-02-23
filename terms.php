@@ -69,7 +69,8 @@ It is our policy, in appropriate circumstances and at its discretion, to disable
 <p>Upon receipt of notice as described above, we will seek to confirm the existence of the Mark on the Services, notify the registered user who posted the content including the Mark, and take whatever action, in our sole discretion, we deem appropriate, including temporary or permanent removal of the Mark from the Services.</p>
 </p>
 <p>&nbsp;</p>
-<a href="//www.iubenda.com/privacy-policy/7764846" class="iubenda-white iubenda-embed" title="Privacy Policy">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src = "//cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+<a href="//www.iubenda.com/privacy-policy/7764846" class="iubenda-white iubenda-embed" title="Privacy Policy">Privacy Policy</a>
+<p>&nbsp;</p>
 <p>All images uploaded to search engine will be deleted within 24 hours.</p>
 <p>&nbsp;</p>
 </div>
