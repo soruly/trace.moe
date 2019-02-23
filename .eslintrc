@@ -110,7 +110,7 @@
     "wrap-iife": 2,
     "yoda": 2,
 
-    "strict": [2, "global"],
+    "strict": 0,
 
     "init-declarations": 0,
     "no-catch-shadow": 2,

@@ -1,4 +1,3 @@
-"use strict";
 
 var showAnilistInfo = function (anilistID) {
   var xhr = new XMLHttpRequest();
@@ -329,7 +328,7 @@ var displayInfo = function (src) {
         if (!name && entry.voiceActors[0].name.first && entry.voiceActors[0].name.last) {
           name = entry.voiceActors[0].name.last + " " + entry.voiceActors[0].name.first;
         }
-        charName.append(document.createTextNode("(CV: "));
+        charName.appendChild(document.createTextNode("(CV: "));
         var a6 = document.createElement("a");
         a6.className = "staff_" + entry.voiceActors[0].id;
         a6.href = "//anilist.co/staff/" + entry.voiceActors[0].id;

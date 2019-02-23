@@ -1,4 +1,8 @@
-"use strict";
+
+if (typeof NodeList !== "undefined" && NodeList.prototype && !NodeList.prototype.forEach) {
+  // Yes, there's really no need for `Object.defineProperty` here
+  NodeList.prototype.forEach = Array.prototype.forEach;
+}
 
 document.addEventListener("DOMContentLoaded", function () {
   document.querySelector("#mute").checked = true;
@@ -93,7 +97,8 @@ player.volume = 0.5;
 
 var imgDataURL;
 var searchRequest;
-var search = function (trial, prev_result) {
+var search = function (t, prev_result) {
+  var trial = t;
   if (!trial) {
     trial = 0;
   }
