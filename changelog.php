@@ -42,7 +42,7 @@ header("Link: </js/analytics.js>; rel=preload; as=script", false);
                     <div>
                         <p>Content</p>
                         <p><img/></p>
-                        <p><ol>...</ol></p>
+                        <ol>...</ol>
                     </div>
                 </li>
 
