@@ -4,9 +4,10 @@ html {
 }
 body {
   margin-bottom: 60px;
-  background-color: #f9f9fb;
+  /* background-color: #f9f9fb; */
+  background: #fff;
   text-shadow: 1px 1px 3px #ccc;
-  font-family: Helvetica, Arial, Meiryo, "Microsoft JhengHei", "Microsoft YaHei", sans-serif;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, Meiryo, "Microsoft JhengHei", "Microsoft YaHei", sans-serif;
 }
 a {
   color: #006cca;
@@ -16,37 +17,63 @@ a {
 }
 .navbar{
   margin-bottom: 0;
+  border: 0;
+  height: 75px;
 }
 .header{
-  background-color: #60738B;
+  background: rgba(34,35,40,0.9);
+  background-image: linear-gradient(to bottom, rgba(34,35,40,0) 0%, rgba(34,35,40,0.4) 100%),linear-gradient(to right, rgba(34,35,40,0.4) 0%, rgba(34,35,40,0) 50%, rgba(34,35,40,0.4) 100%);
   border-radius: 0;
 }
+.header .nav:hover a:not(.active):not(:hover){
+  opacity: 0.6;
+}
 .header a{
-  color:#FFF;
-  transition: background-color 0.2s ease-out;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 75px !important;
+  padding: 0 !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  color:#fff;
+  text-transform: uppercase;
+  text-shadow: none;
+  transition: opacity 0.2s linear;
 }
 .header .active{
-  color: #CCC;
-  background-color: #485667;
-  transition: background-color 0.2s ease-out;
+  opacity: 1;
+  background-color: rgba(255,255,255,0.05);
+  transition: opacity 0.2s linear;
 }
-.header li>a:hover{
-  background-color: #485667;
-  transition: background-color 0.2s ease-out;
+.header li>a:hover,.header li>a:focus{
+  opacity: 1;
+  background-color: rgba(255,255,255,0.05);
+  transition: opacity 0.2s linear;
 }
 .footer {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 60px;
-  background-color: #60738B;
+  height: auto;
+  border-top: 1px solid rgba(139,156,174,0.3);
 }
 .footer .breadcrumb{
   background-color: inherit;
   text-align: center;
+  margin: 0;
+}
+.footer .breadcrumb li:before{
+  display: none;
 }
 .footer .breadcrumb a{
-  color:#FFF;
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  text-shadow: none !important;
+  color:rgb(139, 156, 174);
+  line-height: 38px;
+  padding: 0 5px;
+  margin: 0 4px;
 }
 
 .container {
