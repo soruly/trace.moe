@@ -265,7 +265,7 @@ var displayInfo = function (src) {
   br4.style = "clear:both";
   document.querySelector("#info").appendChild(br4);
   var h33 = document.createElement("h3");
-  h33.innerText = "Synopses";
+  h33.innerText = "Synopsis";
   document.querySelector("#info").appendChild(h33);
   var div5 = document.createElement("div");
   div5.style = "clear:both; border-bottom:1px solid #666; margin-bottom:3px";
