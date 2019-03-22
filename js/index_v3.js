@@ -354,7 +354,7 @@ var playfile = function () {
   xhr.onreadystatechange = function () {
     document.querySelector("#fileNameDisplay").innerText = file;
     document.querySelector("#timeCodeDisplay").innerText = formatTime(t) + "/" + formatTime(xhr.responseText);
-    var left = parseFloat(t) / parseFloat(xhr.responseText) * 642 - 6;
+    var left = parseFloat(t) / parseFloat(xhr.responseText) * 640 - 6;
 
     document.querySelector("#progressBarControl").style.visibility = "visible";
     document.querySelector("#progressBarControl").style.left = left + "px";
@@ -405,8 +405,8 @@ var loadedmetadata = function () {
     aspectRatio = player.width / player.height;
   }
 
-  preview.width = 642;
-  preview.height = 642 / aspectRatio;
+  preview.width = 640;
+  preview.height = 640 / aspectRatio;
   document.querySelector("#loading").style.height = preview.height + "px";
   document.querySelector("#loader").style.top = (preview.height - 800) / 2 + "px";
   preview.addEventListener("click", playPause);
@@ -432,7 +432,7 @@ document.querySelector("#player").addEventListener("ended", ended, false);
 var searchImage = document.createElement("canvas");
 
 var resetAll = function () {
-  preview.width = 642;
+  preview.width = 640;
   preview.height = 360;
   document.querySelector("#progressBarControl").style.visibility = "hidden";
   document.querySelector("#fileNameDisplay").innerText = "";
@@ -459,8 +459,8 @@ originalImage.onerror = function () {
 var prepareSearchImage = function () {
   var imageAspectRatio = originalImage.width / originalImage.height;
 
-  searchImage.width = 642;
-  searchImage.height = 642 / imageAspectRatio;
+  searchImage.width = 640;
+  searchImage.height = 640 / imageAspectRatio;
 
   searchImage.getContext("2d").drawImage(originalImage, 0, 0, originalImage.width, originalImage.height, 0, 0, searchImage.width, searchImage.height);
 
