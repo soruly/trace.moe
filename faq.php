@@ -11,6 +11,7 @@ header("Link: </js/analytics.js>; rel=preload; as=script", false);
     <meta name="description" content="Search Anime by ScreenShot. Lookup the exact moment and the episode.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#60738b" />
     <title>WAIT: What Anime Is This? - Frequently Asked Questions</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="icon" type="image/png" href="/favicon128.png" sizes="128x128">
@@ -102,67 +103,67 @@ header("Link: </js/analytics.js>; rel=preload; as=script", false);
                 <h3>Examples of bad screenshots</h3>
                 <h4>Extra border added</h4>
                 <div class="wait-screenshot__compare">
-                    <div><img alt="" src="/img/border-bad.jpg"><span>Bad Screenshot</span></div>
-                    <div><img alt="" src="/img/border-good.jpg"><span>Good Screenshot</span></div>
+                    <div><span style="background-image: url(/img/border-bad.jpg)"></span><span>Bad Screenshot</span></div>
+                    <div><span style="background-image: url(/img/border-good.jpg)"></span><span>Good Screenshot</span></div>
                 </div>
                 <div>
                     <p>In case your screenshot has extra borders, please trim off the extra borders before you search.</p>
                 </div><br>
                 <h4>Cropped Image</h4>
                 <div class="wait-screenshot__compare">
-                    <div><img alt="" src="/img/cropped-bad.jpg"><span>Bad Screenshot</span></div>
-                    <div><img alt="" src="/img/cropped-good.jpg"><span>Good Screenshot</span></div>
+                    <div><span style="background-image: url(/img/cropped-bad.jpg)"></span><span>Bad Screenshot</span></div>
+                    <div><span style="background-image: url(/img/cropped-good.jpg)"></span><span>Good Screenshot</span></div>
                 </div>
                 <div>
                     <p>Cropping the image would result a huge loss of information content.</p>
                 </div><br>
                 <h4>Flipped image</h4>
                 <div class="wait-screenshot__compare">
-                    <div><img alt="" src="/img/flipped-bad.jpg"><span>Bad Screenshot</span></div>
-                    <div><img alt="" src="/img/flipped-good.jpg"><span>Good Screenshot</span></div>
+                    <div><span style="background-image: url(/img/flipped-bad.jpg)"></span><span>Bad Screenshot</span></div>
+                    <div><span style="background-image: url(/img/flipped-good.jpg)"></span><span>Good Screenshot</span></div>
                 </div>
                 <div>
                     <p>This screenshot from <a href="https://www.youtube.com/watch?v=TUoWYoTWcnA&feature=youtu.be&t=2m59s">AMV - Animegraphy 2015</a> flipped the original scene in the anime. Try to search with the flip button if you guess the image has been flipped.</p>
                 </div><br>
                 <h4>Tinted image</h4>
                 <div class="wait-screenshot__compare">
-                    <div><img alt="" src="/img/tinted-bad.jpg"><span>Bad Screenshot</span></div>
-                    <div><img alt="" src="/img/tinted-good.jpg"><span>Good Screenshot</span></div>
+                    <div><span style="background-image: url(/img/tinted-bad.jpg)"></span><span>Bad Screenshot</span></div>
+                    <div><span style="background-image: url(/img/tinted-good.jpg)"></span><span>Good Screenshot</span></div>
                 </div>
                 <div>
                     <p>Tinted images are hard to search. Because the applied filter effects heavily distorted the information in the original screenshot. The color layout image descriptor can no longer find such images.</p>
                 </div><br>
                 <h4>Old Japanese Anime</h4>
                 <div class="wait-screenshot__compare">
-                    <div><img alt="" src="/img/old-bad.jpg"><span>Sample Screenshot</span></div>
+                    <div><span style="background-image: url(/img/old-bad.jpg)"></span><span>Sample Screenshot</span></div>
                 </div>
                 <div>
                     <p>Anime of this age are not indexed.</p>
                 </div><br>
                 <h4>Not from Anime Screenshot</h4>
                 <div class="wait-screenshot__compare">
-                    <div><img alt="" src="/img/notanime-bad.jpg"><span>Sample Screenshot</span></div>
+                    <div><span style="background-image: url(/img/notanime-bad.jpg)"></span><span>Sample Screenshot</span></div>
                 </div>
                 <div>
                     <p>You should try <a href="https://saucenao.com/">SauceNAO</a> and <a href="https://iqdb.org/">https://iqdb.org/</a> to search anime / doujin artwork.</p>
                 </div><br>
                 <h4>Not Japanese Anime</h4>
                 <div class="wait-screenshot__compare">
-                    <div><img alt="" src="/img/nonjapanese-bad.jpg"><span>Sample Screenshot</span></div>
+                    <div><span style="background-image: url(/img/nonjapanese-bad.jpg)"></span><span>Sample Screenshot</span></div>
                 </div>
                 <div>
                     <p>Tom and Jerry is obviously not a Japanese Anime.</p>
                 </div><br>
                 <h4>Dark image</h4>
                 <div class="wait-screenshot__compare">
-                    <div><img alt="" src="/img/dark-bad.jpg"><span>Sample Screenshot</span></div>
+                    <div><span style="background-image: url(/img/dark-bad.jpg)"></span><span>Sample Screenshot</span></div>
                 </div>
                 <div>
                     <p>Dark images are hard to distinguish using the color layout descriptor.</p>
                 </div><br>
                 <h4>Low resolution image</h4>
                 <div class="wait-screenshot__compare">
-                    <div><img alt="" src="/img/lowres-bad.jpg"><span>Sample Screenshot</span></div>
+                    <div><span style="background-image: url(/img/lowres-bad.jpg)"></span><span>Sample Screenshot</span></div>
                 </div>
                 <div>
                     <p>Your image should be at least 320 x 180 pixels to search effectively.</p>
@@ -172,35 +173,41 @@ header("Link: </js/analytics.js>; rel=preload; as=script", false);
                 <h3>Examples of acceptable screenshots</h3>
                 <h4>Slightly distorted size</h4>
                 <div class="wait-screenshot__compare">
-                    <div><img alt="" src="/img/distorted-bad.jpg"><span>Acceptable Screenshot</span></div>
-                    <div><img alt="" src="/img/distorted-good.jpg"><span>Original Screenshot</span></div>
+                    <div><span style="background-image: url(/img/distorted-bad.jpg)"></span><span>Acceptable Screenshot</span></div>
+                    <div><span style="background-image: url(/img/distorted-good.jpg)"></span><span>Original Screenshot</span></div>
                 </div>
                 <div>
                     <p>In case your screenshot has extra borders, please trim off the extra borders before you search.</p>
                 </div><br>
                 <h4>Reasonably sized subtitles</h4>
                 <div class="wait-screenshot__compare">
-                    <div><img alt="" src="/img/subtitles-bad.jpg"><span>Acceptable Screenshot</span></div>
-                    <div><img alt="" src="/img/subtitles-good.jpg"><span>Original Screenshot</span></div>
+                    <div><span style="background-image: url(/img/subtitles-bad.jpg)"></span><span>Acceptable Screenshot</span></div>
+                    <div><span style="background-image: url(/img/subtitles-good.jpg)"></span><span>Original Screenshot</span></div>
                 </div><div><p></p></div><br>
                 <h4>A frame of GIF</h4>
                 <div class="wait-screenshot__compare">
-                    <div><img alt="" src="/img/gif-bad.jpg"><span>Acceptable Screenshot</span></div>
-                    <div><img alt="" src="/img/gif-good.jpg"><span>Original Screenshot</span></div>
+                    <div><span style="background-image: url(/img/gif-bad.jpg)"></span><span>Acceptable Screenshot</span></div>
+                    <div><span style="background-image: url(/img/gif-good.jpg)"></span><span>Original Screenshot</span></div>
                 </div>
                 <div>
                     <p>If the color distortion is acceptable, GIF is also OK.</p>
                 </div><br>
                 <h4>Drawings of the anime scene</h4>
                 <div class="wait-screenshot__compare">
-                    <div><img alt="" src="/img/draw-bad.jpg"><span>Acceptable Screenshot</span></div>
-                    <div><img alt="" src="/img/draw-good.jpg"><span>Original Screenshot</span></div>
-                    <div><img alt="" src="/img/draw2-bad.jpg"><span>Acceptable Screenshot</span></div>
-                    <div><img alt="" src="/img/draw2-good.jpg"><span>Original Screenshot</span></div>
-                    <div><img alt="" src="/img/draw3-bad.jpg"><span>Acceptable Screenshot</span></div>
-                    <div><img alt="" src="/img/draw3-good.jpg"><span>Original Screenshot</span></div>
-                    <div><img alt="" src="/img/draw4-bad.jpg"><span>Acceptable Screenshot</span></div>
-                    <div><img alt="" src="/img/draw4-good.jpg"><span>Original Screenshot</span></div>
+                    <div><span style="background-image: url(/img/draw-bad.jpg)"></span><span>Acceptable Screenshot</span></div>
+                    <div><span style="background-image: url(/img/draw-good.jpg)"></span><span>Original Screenshot</span></div>
+                </div>
+                <div class="wait-screenshot__compare">
+                    <div><span style="background-image: url(/img/draw2-bad.jpg)"></span><span>Acceptable Screenshot</span></div>
+                    <div><span style="background-image: url(/img/draw2-good.jpg)"></span><span>Original Screenshot</span></div>
+                </div>
+                <div class="wait-screenshot__compare">
+                    <div><span style="background-image: url(/img/draw3-bad.jpg)"></span><span>Acceptable Screenshot</span></div>
+                    <div><span style="background-image: url(/img/draw3-good.jpg)"></span><span>Original Screenshot</span></div>
+                </div>
+                <div class="wait-screenshot__compare">
+                    <div><span style="background-image: url(/img/draw4-bad.jpg)"></span><span>Acceptable Screenshot</span></div>
+                    <div><span style="background-image: url(/img/draw4-good.jpg)"></span><span>Original Screenshot</span></div>
                 </div>
                 <div>
                     <p>The search image does not has to be taken from anime screencap directly. You can use drawings of some scenes as long as it is similar to the original one.</p>

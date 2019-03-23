@@ -11,6 +11,7 @@ header("Link: </js/analytics.js>; rel=preload; as=script", false);
     <meta name="description" content="Search Anime by ScreenShot. Lookup the exact moment and the episode.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#60738b" />
     <title>WAIT: What Anime Is This? - Changelog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="icon" type="image/png" href="/favicon128.png" sizes="128x128">
@@ -49,7 +50,7 @@ header("Link: </js/analytics.js>; rel=preload; as=script", false);
                 if you have any questions or clarifications you can message me anytime
             */ ?>
             <li>
-                <h3><span class="date new">13 Nov 2017</span>Added auto black border crop</h3>
+                <h3><span class="date">13 Nov 2017</span>Added auto black border crop</h3>
                 <div>
                     <p>This will automatically detect and crop black borders on search image, significantly increase the accuracy on bad screenshots.</p>
                     <p>This is applied to both web, telegram bot and all API clients.</p>

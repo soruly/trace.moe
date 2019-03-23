@@ -53,6 +53,7 @@ $sizeInGB = floor($sizeInBytes / 1073741824);
     <meta name="description" content="Search Anime by ScreenShot. Lookup the exact moment and the episode.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#60738b" />
     <title>WAIT: What Anime Is This? - About</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="icon" type="image/png" href="/favicon128.png" sizes="128x128">
@@ -140,12 +141,12 @@ $sizeInGB = floor($sizeInBytes / 1073741824);
             <li>
                 <h4>WhatAnime by Andrée Torres</h4>
                 <div>
-                    <p><a href="https://play.google.com/store/apps/details?id=com.maddog05.whatanime">https://play.google.com/store/apps/details?id=com.maddog05.whatanime</a></p>
+                    <p>Download: <a href="https://play.google.com/store/apps/details?id=com.maddog05.whatanime">https://play.google.com/store/apps/details?id=com.maddog05.whatanime</a></p>
                     <p>Source: <a href="https://github.com/maddog05/whatanime-android">https://github.com/maddog05/whatanime-android</a></p>
                 </div><br>
                 <h4>WhatAnime - 以图搜番 by Mystery0 (Simplified Chinese)</h4>
                 <div>
-                    <p><a href="https://play.google.com/store/apps/details?id=pw.janyo.whatanime">https://play.google.com/store/apps/details?id=pw.janyo.whatanime</a></p>
+                    <p>Download: <a href="https://play.google.com/store/apps/details?id=pw.janyo.whatanime">https://play.google.com/store/apps/details?id=pw.janyo.whatanime</a></p>
                     <p>Source: <a href="https://github.com/JanYoStudio/WhatAnime">https://github.com/JanYoStudio/WhatAnime</a></p>
                 </div>
             </li>
@@ -207,8 +208,8 @@ $sizeInGB = floor($sizeInBytes / 1073741824);
             <li>
                 <div>
                     <p>
-                        <a href="https://www.paypal.me/soruly"><img src="img/donate-with-paypal.png" alt="Donate with PayPal" style="display:inline-block;max-height:50px;"></a>
-                        <a href="https://www.patreon.com/soruly"><img src="img/become_a_patron_button.png" alt="Become a Patron!" style="display:inline-block;max-height:50px"></a>
+                        <a href="https://www.paypal.me/soruly"><img class="wait-donate__btn" src="img/donate-with-paypal.png" alt="Donate with PayPal"></a>
+                        <a href="https://www.patreon.com/soruly"><img class="wait-donate__btn" src="img/become_a_patron_button.png" alt="Become a Patron!"></a>
                     </p>
                     <p>Former and Current Supporters:</p>
                     <ul>

@@ -24,8 +24,8 @@ if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
     <meta name="description" content="Search Anime by ScreenShot. Lookup the exact moment and the episode.">
     <meta name="keywords" content="Anime Scene Search, Search by image, Anime Image Search, アニメのキャプ画像">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=660, initial-scale=1">
-    <meta name="theme-color" content="#f9f9fb" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#60738b" />
     <title>WAIT: What Anime Is This? - Anime Scene Search Engine</title>
 
     <?php
@@ -91,7 +91,7 @@ if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
                 <div id="loading" class="hidden">
                     <div id="loader" class="ripple"></div>
                 </div>
-                <canvas id="preview" width="642" height="360"></canvas>
+                <canvas id="preview" width="640" height="360"></canvas>
                 <video id="player" style="display:none" volume="0.5" autoplay></video>
             </div>
             <div class="main-filesource">
@@ -127,7 +127,7 @@ if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
             </div>
             <div class="main-footer">
                 <span class="main-footer__warning">Caution: Some results may be NSFW (Not Safe for Work)</span><br>
-                <span class="main-footer__extension"><a href="https://telegram.me/WhatAnimeBot">Official Telegram Bot</a> | Official WebExtension for <a href="https://chrome.google.com/webstore/detail/search-anime-by-screensho/gkamnldpllcbiidlfacaccdoadedncfp">Chrome</a>, <a href="https://addons.mozilla.org/en-US/firefox/addon/search-anime-by-screenshot/">Firefox</a>, and <a href="https://addons.opera.com/en/extensions/details/search-anime-by-screenshot/">Opera</a><br></span>
+                <span><a href="https://telegram.me/WhatAnimeBot">Official Telegram Bot</a> | Official WebExtension for <a href="https://chrome.google.com/webstore/detail/search-anime-by-screensho/gkamnldpllcbiidlfacaccdoadedncfp">Chrome</a>, <a href="https://addons.mozilla.org/en-US/firefox/addon/search-anime-by-screenshot/">Firefox</a>, and <a href="https://addons.opera.com/en/extensions/details/search-anime-by-screenshot/">Opera</a><br></span>
             </div>
         </div>
 
