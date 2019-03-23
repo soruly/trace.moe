@@ -2,6 +2,7 @@
 header("Link: </css/style.css>; rel=preload; as=style", false);
 header("Link: </css/bootstrap.min.css>; rel=preload; as=style", false);
 header("Link: </js/analytics.js>; rel=preload; as=script", false);
+header("Link: </js/nav_v1.js>; rel=preload; as=script", false);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,17 +24,21 @@ header("Link: </js/analytics.js>; rel=preload; as=script", false);
 </head>
 
 <body>
-    <nav class="navbar header">
+    <nav class="wait-navbar">
         <div class="container">
-            <ul class="nav navbar-nav">
-                <li><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/changelog">Changelog</a></li>
-                <li><a href="/faq">FAQ's</a></li>
-                <li><a href="/terms" class="active">Terms</a></li>
-            </ul>
+            <a class="wait-navbar__hamburger" href="javascript:void(0);" onclick="waitNav()">
+                <span class="glyphicon glyphicon-menu-hamburger"></span>
+            </a>
+            <div id="wait-nav" class="wait-navbar__links">
+                <a href="/">Home</a>
+                <a href="/about">About</a>
+                <a href="/changelog">Changelog</a>
+                <a href="/faq">FAQ</a>
+                <a href="/terms" class="active">Terms</a>
+            </div>
         </div>
     </nav>
+
     
     <div class="container">
         <ul class="wait-info__group">
@@ -129,11 +134,13 @@ header("Link: </js/analytics.js>; rel=preload; as=script", false);
                 <li><a href="/">Home</a></li>
                 <li><a href="/about">About</a></li>
                 <li><a href="/changelog">Changelog</a></li>
-                <li><a href="/faq">FAQ's</a></li>
+                <li><a href="/faq">FAQ</a></li>
                 <li><a href="/terms">Terms</a></li>
             </ol>
         </div>
     </footer>
+
+    <script src="/js/nav_v1.js"></script>
 </body>
 
 </html> 

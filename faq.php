@@ -2,6 +2,7 @@
 header("Link: </css/style.css>; rel=preload; as=style", false);
 header("Link: </css/bootstrap.min.css>; rel=preload; as=style", false);
 header("Link: </js/analytics.js>; rel=preload; as=script", false);
+header("Link: </js/nav_v1.js>; rel=preload; as=script", false);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,15 +22,18 @@ header("Link: </js/analytics.js>; rel=preload; as=script", false);
 </head>
 
 <body>
-    <nav class="navbar header">
+    <nav class="wait-navbar">
         <div class="container">
-            <ul class="nav navbar-nav">
-                <li><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/changelog">Changelog</a></li>
-                <li><a href="/faq" class="active">FAQ's</a></li>
-                <li><a href="/terms">Terms</a></li>
-            </ul>
+            <a class="wait-navbar__hamburger" href="javascript:void(0);" onclick="waitNav()">
+                <span class="glyphicon glyphicon-menu-hamburger"></span>
+            </a>
+            <div id="wait-nav" class="wait-navbar__links">
+                <a href="/">Home</a>
+                <a href="/about">About</a>
+                <a href="/changelog">Changelog</a>
+                <a href="/faq" class="active">FAQ</a>
+                <a href="/terms">Terms</a>
+            </div>
         </div>
     </nav>
 
@@ -38,7 +42,7 @@ header("Link: </js/analytics.js>; rel=preload; as=script", false);
             <li>
                 <h2>Frequently Asked Questions</h2>
             </li>
-            <?php /* Notes 
+            <?php  /* Notes 
                 <li>
                     <h3>Heading</h3>
                     <h4>Sub Heading</h4>
@@ -183,7 +187,10 @@ header("Link: </js/analytics.js>; rel=preload; as=script", false);
                 <div class="wait-screenshot__compare">
                     <div><span style="background-image: url(/img/subtitles-bad.jpg)"></span><span>Acceptable Screenshot</span></div>
                     <div><span style="background-image: url(/img/subtitles-good.jpg)"></span><span>Original Screenshot</span></div>
-                </div><div><p></p></div><br>
+                </div>
+                <div>
+                    <p></p>
+                </div><br>
                 <h4>A frame of GIF</h4>
                 <div class="wait-screenshot__compare">
                     <div><span style="background-image: url(/img/gif-bad.jpg)"></span><span>Acceptable Screenshot</span></div>
@@ -274,11 +281,13 @@ header("Link: </js/analytics.js>; rel=preload; as=script", false);
                 <li><a href="/">Home</a></li>
                 <li><a href="/about">About</a></li>
                 <li><a href="/changelog">Changelog</a></li>
-                <li><a href="/faq">FAQ's</a></li>
+                <li><a href="/faq">FAQ</a></li>
                 <li><a href="/terms">Terms</a></li>
             </ol>
         </div>
     </footer>
+
+    <script src="/js/nav_v1.js"></script>
 </body>
 
 </html> 

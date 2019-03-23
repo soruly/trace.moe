@@ -5,6 +5,7 @@ header("Link: </css/bootstrap.min.css>; rel=preload; as=style", false);
 header("Link: </js/analytics.js>; rel=preload; as=script", false);
 header("Link: </js/index_v3.js>; rel=preload; as=script", false);
 header("Link: </js/info_v3.js>; rel=preload; as=script", false);
+header("Link: </js/nav_v1.js>; rel=preload; as=script", false);
 header("Link: </fonts/glyphicons-halflings-regular.woff>; rel=preload; as=font; crossorigin", false);
 
 $autosearch = false;
@@ -69,15 +70,18 @@ if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
     <main>
         <input id="autoSearch" type="checkbox" style="display: none;" <?php echo $autosearch ? "checked" : ""; ?>>
         <img id="originalImage" src="<?php echo $originalImage; ?>" crossorigin="anonymous" style="display: none;">
-        <nav class="navbar header">
+        <nav class="wait-navbar">
             <div class="container">
-                <ul class="nav navbar-nav">
-                    <li><a href="/" class="active">Home</a></li>
-                    <li><a href="/about">About</a></li>
-                    <li><a href="/changelog">Changelog</a></li>
-                    <li><a href="/faq">FAQ's</a></li>
-                    <li><a href="/terms">Terms</a></li>
-                </ul>
+                <a class="wait-navbar__hamburger" href="javascript:void(0);" onclick="waitNav()">
+                    <span class="glyphicon glyphicon-menu-hamburger"></span>
+                </a>
+                <div id="wait-nav" class="wait-navbar__links">
+                    <a href="/" class="active">Home</a>
+                    <a href="/about">About</a>
+                    <a href="/changelog">Changelog</a>
+                    <a href="/faq">FAQ</a>
+                    <a href="/terms">Terms</a>
+                </div>
             </div>
         </nav>
         <div class="alert alert-info wait-alert wait-alert__updates">
@@ -101,7 +105,7 @@ if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
             </div>
             <div id="form">
                 <span class="btn btn-default btn-file btn-sm">
-                <span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Browse a file <input type="file" id="file" name="files[]" />
+                    <span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Browse a file <input type="file" id="file" name="files[]" />
                 </span>
                 <button id="flipBtn" type="button" class="btn btn-default btn-sm" disabled>
                     <span class="glyphicon glyphicon-unchecked"></span> Flip Image
@@ -150,43 +154,10 @@ if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
                 <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
             </svg>
         </a>
-        <style>
-            .github-corner:hover .octo-arm {
-                animation: octocat-wave 560ms ease-in-out
-            }
-
-            @keyframes octocat-wave {
-
-                0%,
-                100% {
-                    transform: rotate(0)
-                }
-
-                20%,
-                60% {
-                    transform: rotate(-25deg)
-                }
-
-                40%,
-                80% {
-                    transform: rotate(10deg)
-                }
-            }
-
-            @media (max-width:500px) {
-                .github-corner:hover .octo-arm {
-                    animation: none
-                }
-
-                .github-corner .octo-arm {
-                    animation: octocat-wave 560ms ease-in-out
-                }
-            }
-        </style>
-
-        <script src="/js/index_v3.js"></script>
-        <script src="/js/info_v3.js"></script>
     </main>
+    <script src="/js/index_v3.js"></script>
+    <script src="/js/info_v3.js"></script>
+    <script src="/js/nav_v1.js"></script>
 </body>
 
 </html> 
