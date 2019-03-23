@@ -2,17 +2,6 @@ body {
     overflow-y: scroll;
 }
 
-a {
-    /* color: #3366FF; */
-    color: #2d3640;
-    text-decoration: underline;
-    transition: color 0.2s linear;
-}
-
-a:hover {
-    color: #000;
-}
-
 canvas {
     background-color: #FFF;
 }
@@ -25,20 +14,6 @@ h5,
 h6 {
     margin-top: 5px;
     margin-bottom: 5px;
-}
-
-.navbar-nav>li {
-    float: left;
-}
-
-.navbar-nav>li>a {
-    padding-top: 15px;
-    padding-bottom: 15px;
-}
-
-.navbar-nav {
-    float: left;
-    margin: 0;
 }
 
 .btn-file {
@@ -83,7 +58,8 @@ td:nth-child(3) {
 #preview {
     display: block;
     cursor: default;
-    width: 642px;
+    /* Perfectly fit to remove white space */
+    /* width: 642px; */
 }
 
 #image_url_lge {
@@ -111,11 +87,11 @@ td:nth-child(3) {
 }
 
 .result {
-    transition: all 0.1s ease-out;
+    transition: all var(--transition);
 }
 
 .result a {
-    transition: all 0.1s ease-out;
+    transition: all var(--transition);
 }
 
 .result .text,
@@ -207,10 +183,11 @@ td:nth-child(3) {
     position: relative;
     width: 642px;
     margin-bottom: 1em;
-    background-color: rgba(255, 255, 255, 1);
+    background-color: #fff;
     color: #333;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 3px 0px;
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, Meiryo, "Microsoft JhengHei", "Microsoft YaHei", sans-serif;
+    font-family: var(--font);
+    box-shadow: var(--box-shadow);
+    -webkit-box-shadow: var(--box-shadow);
 }
 
 #form {
@@ -222,20 +199,22 @@ td:nth-child(3) {
 #main .btn,
 #search2Btn {
     text-shadow: none;
-    box-shadow: 0;
+    box-shadow: none;
     border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 4px;
-    transition: all 0.15s ease-in-out;
     padding: 4px 10px !important;
     line-height: 20px;
     transform: translateY(-2px);
+    -webkit-transform: translateY(-2px);
+    transition: background-color var(--transition);
+    -webkit-transition: background-color var(--transition);
 }
 
 #searchBtn,
 #search2Btn {
     font-weight: 700;
-    background: #2f3647;
-    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
+    background: var(--default-color);
+    /* twiistrz edit background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0)); */
 }
 
 #main .btn:hover:not([disabled]),
@@ -243,9 +222,10 @@ td:nth-child(3) {
 #searchBtn:hover:not([disabled]),
 #search2Btn:hover:not([disabled]) {
     color: #fff;
-    background: #3f4960;
-    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 3px 0px;
+    background-color: var(--default-color);
+    /* twiistrz edit background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0)); */
+    box-shadow: var(--box-shadow);
+    -webkit-box-shadow: var(--box-shadow);
 }
 
 #main .btn.disabled,
@@ -270,7 +250,8 @@ td:nth-child(3) {
 }
 
 #main input:focus {
-    box-shadow: 0 7px 14px rgba(0, 0, 0, 0.07), 0 3px 6px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--box-shadow);
+    -webkit-box-shadow: var(--box-shadow);
 }
 
 #main .main-footer {
@@ -286,20 +267,9 @@ td:nth-child(3) {
     color: #EA0000;
 }
 
-#main .main-footer__extension a {
-    text-decoration: underline;
-    color: #2d3640;
-    transition: color 0.2s linear;
-}
-
-#main .main-footer__extension a:hover {
-    color: #000;
-}
-
 #main .main-filesource {
     height: 15px;
     border-top: 1px solid rgba(139, 156, 174, 0.3);
-    box-shadow: rgba(139, 156, 174, 0.1) 0px -40px 40px;
 }
 
 #results-list {
@@ -307,8 +277,9 @@ td:nth-child(3) {
     width: 642px;
     background-color: rgba(255, 255, 255, 1);
     color: #333;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 3px 0px;
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, Meiryo, "Microsoft JhengHei", "Microsoft YaHei", sans-serif;
+    font-family: var(--font);
+    box-shadow: var(--box-shadow);
+    -webkit-box-shadow: var(--box-shadow);
 }
 
 @media (min-width: 1020px) {
@@ -348,7 +319,7 @@ td:nth-child(3) {
     line-height: 1.5em;
     padding: 1em;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 3px 0px;
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, Meiryo, "Microsoft JhengHei", "Microsoft YaHei", sans-serif;
+    font-family: var(--font);
 }
 
 #info #naturalText,
@@ -379,7 +350,7 @@ td:nth-child(3) {
 }
 
 #info h2 {
-    font-family: Helvetica, Arial, Meiryo, "Microsoft JhengHei", "Microsoft YaHei", sans-serif;
+    font-family: var(--font);
     font-size: 12px;
 }
 
