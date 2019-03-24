@@ -1,6 +1,6 @@
-body {
+/* body {
     overflow-y: scroll;
-}
+} */
 
 canvas {
     background-color: #FFF;
@@ -213,8 +213,6 @@ td:nth-child(3) {
     border-radius: 4px;
     padding: 4px 10px !important;
     line-height: 20px;
-    transform: translateY(-2px);
-    -webkit-transform: translateY(-2px);
     transition: background-color 135ms cubic-bezier(.4,0,.2,1);
     -webkit-transition: background-color 135ms cubic-bezier(.4,0,.2,1);
     transition: background-color var(--transition);

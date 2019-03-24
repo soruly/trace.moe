@@ -87,6 +87,7 @@ html {
 }
 
 body {
+    overflow-y: auto;
     background-color: #fff;
     font-family: "Roboto", Helvetica, Arial, "Meiryo", "Microsoft JhengHei", "Microsoft YaHei", sans-serif;
     font-family: var(--font);
@@ -118,7 +119,7 @@ a:focus {
 .navbar {
     background-color: #3f51b5;
     background-color: var(--primary-color);
-    min-height: 58px;
+    min-height: 38px;
     border: 0;
     margin: 0;
     border-radius: 0;
@@ -127,7 +128,7 @@ a:focus {
 
 .w-alert {
     display: block;
-    padding: 12px 0;
+    padding: 4px 0;
     text-align: center;
     background-color: #303f9f;
     background-color: var(--primary-dark-color);
@@ -208,14 +209,17 @@ a:focus {
     -webkit-flex-direction: row;
 }
 
-.navbar__item {
-    color: #fff;
+a[class^="navbar__item"] {
     font-size: 14px;
     font-weight: 500;
     line-height: 1;
     margin: 0;
-    padding: 22px 20px;
+    padding: 12px 20px;
     text-decoration: none;
+}
+
+.navbar__item {
+    color: #fff;
     transition: all 135ms cubic-bezier(.4,0,.2,1);
     -webkit-transition: all 135ms cubic-bezier(.4,0,.2,1);
     transition: all var(--transition);
@@ -234,7 +238,7 @@ a:focus {
     color: #fff;
     font-size: 14px;
     font-weight: 700;
-    line-height: 1.2;
+    line-height: 1.5;
 }
 
 .w-alert__text:last-of-type {
@@ -483,19 +487,12 @@ a:focus {
 
 .navbar__item--active {
     background-color: #fff;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 1;
-    margin: 0;
-    padding: 22px 20px;
-    text-decoration: none;
     color: #3f51b5;
     color: var(--primary-color);
 }
 
 .navbar__item--active:hover,
 .navbar__item--active:focus {
-    text-decoration: none;
     color: #3f51b5;
     color: var(--primary-color);
 }
