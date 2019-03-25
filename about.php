@@ -1,4 +1,5 @@
 <?php
+header("Link: </css/app_fallback.css>; rel=preload; as=style", false);
 header("Link: </css/app.css>; rel=preload; as=style", false);
 header("Link: </css/bootstrap.min.css>; rel=preload; as=style", false);
 header("Link: </js/analytics.js>; rel=preload; as=script", false);
@@ -54,11 +55,12 @@ $sizeInGB = floor($sizeInBytes / 1073741824);
     <meta name="description" content="Search Anime by ScreenShot. Lookup the exact moment and the episode.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#60738b" />
+    <meta name="theme-color" content="#3f51b5" />
     <title>WAIT: What Anime Is This? - About</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="icon" type="image/png" href="/favicon128.png" sizes="128x128">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/app_fallback.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
     <script src="/js/analytics.js" defer></script>
 </head>
@@ -71,7 +73,7 @@ $sizeInGB = floor($sizeInBytes / 1073741824);
             </a>
             <div class="navbar__menu">
                 <a class="navbar__item" href="/" >Home</a>
-                <a class="navbar__item--active" href="/about">About</a>
+                <a class="navbar__item navbar__item--active" href="/about">About</a>
                 <a class="navbar__item" href="/changelog">Changelog</a>
                 <a class="navbar__item" href="/faq">FAQ</a>
                 <a class="navbar__item" href="/terms">Terms</a>
@@ -111,9 +113,9 @@ $sizeInGB = floor($sizeInBytes / 1073741824);
                     This website is not intended for watching anime. The server has effective measures to forbid users to access the original video beyond the preview limit. I would like to redirect users to somewhere they can watch that anime legally, if possible.
                 </p>
                 <p class="info__content">
-                    Most Anime since 2000 are indexed, but some are excluded (see <a href="/faq" class="info__content-link" title="FAQ">FAQ</a>).
+                    Most Anime since 2000 are indexed, but some are excluded (see <a href="/faq">FAQ</a>).
                     No Doujin work, no derived art work are indexed. The system only analyzes officially published anime.
-                    If you wish to search artwork / wallpapers, try to use <a href="https://saucenao.com/" class="info__content-link" title="SauceNAO">SauceNAO</a> and <a href="https://iqdb.org/" class="info__content-link" title="iqdb.org">iqdb.org</a>
+                    If you wish to search artwork / wallpapers, try to use <a href="https://saucenao.com/">SauceNAO</a> and <a href="https://iqdb.org/">iqdb.org</a>
                 </p>
             </li>
         </ul><!-- /.info -->
@@ -124,11 +126,11 @@ $sizeInGB = floor($sizeInBytes / 1073741824);
             <li class="info__list">
                 <p class="info__content">
                     WebExtension available for 
-                    <a href="https://chrome.google.com/webstore/detail/search-anime-by-screensho/gkamnldpllcbiidlfacaccdoadedncfp" class="info__content-link" title="Chrome">Chrome</a>,
-                    <a href="https://addons.mozilla.org/en-US/firefox/addon/search-anime-by-screenshot/" class="info__content-link" title="Firefox">Firefox</a>, or
-                    <a href="https://addons.opera.com/en/extensions/details/search-anime-by-screenshot/" class="info__content-link" title="Opera">Opera</a> to search.
+                    <a href="https://chrome.google.com/webstore/detail/search-anime-by-screensho/gkamnldpllcbiidlfacaccdoadedncfp">Chrome</a>,
+                    <a href="https://addons.mozilla.org/en-US/firefox/addon/search-anime-by-screenshot/">Firefox</a>, or
+                    <a href="https://addons.opera.com/en/extensions/details/search-anime-by-screenshot/">Opera</a> to search.
                 </p>
-                <p class="info__content">Source code and user guide on Github: <a href="https://github.com/soruly/trace.moe-WebExtension" class="info__content-link" title="trace.moe WebExtension Source">trace.moe WebExtension Source</a></p>
+                <p class="info__content">Source code and user guide on Github: <a href="https://github.com/soruly/trace.moe-WebExtension">trace.moe WebExtension Source</a></p>
             </li>
         </ul><!-- /.info -->
         <ul class="info">
@@ -137,8 +139,8 @@ $sizeInGB = floor($sizeInBytes / 1073741824);
             </li>
             <li class="info__list">
                 <div>
-                    <p class="info__content">Telegram Bot available <a href="https://telegram.me/WhatAnimeBot" class="info__content-link" title="@WhatAnimeBot">@WhatAnimeBot</a></p>
-                    <p class="info__content">Source code and user guide on Github: <a href="https://github.com/soruly/trace.moe-telegram-bot" class="info__content-link" title="trace.moe Telegram Bot Source">trace.moe Telegram Bot Source</a></p>
+                    <p class="info__content">Telegram Bot available <a href="https://telegram.me/WhatAnimeBot">@WhatAnimeBot</a></p>
+                    <p class="info__content">Source code and user guide on Github: <a href="https://github.com/soruly/trace.moe-telegram-bot">trace.moe Telegram Bot Source</a></p>
                 </div>
             </li>
         </ul><!-- /.info -->
@@ -147,7 +149,7 @@ $sizeInGB = floor($sizeInBytes / 1073741824);
                 <h2 class="info__title">Official API (Beta)</h2>
             </li>
             <li class="info__list">
-                <p class="info__content">Official API Docs available at <a href="https://soruly.github.io/trace.moe/#/" class="info__content-link" title="trace.moe GitHub">trace.moe GitHub</a></p>
+                <p class="info__content">Official API Docs available at <a href="https://soruly.github.io/trace.moe/#/">trace.moe GitHub</a></p>
             </li>
         </ul><!-- /.info -->
         <ul class="info">
@@ -157,12 +159,12 @@ $sizeInGB = floor($sizeInBytes / 1073741824);
             <li class="info__list">
                 <!-- WhatAnime by Andrée Torres -->
                 <h4 class="info__subheading">WhatAnime by Andrée Torres</h4>
-                <p class="info__content">Download: <a href="https://play.google.com/store/apps/details?id=com.maddog05.whatanime" class="info__content-link" title="https://play.google.com/store/apps/details?id=com.maddog05.whatanime">https://play.google.com/store/apps/details?id=com.maddog05.whatanime</a></p>
-                <p class="info__content">Source: <a href="https://github.com/maddog05/whatanime-android" class="info__content-link" title="https://github.com/maddog05/whatanime-android">https://github.com/maddog05/whatanime-android</a></p>
+                <p class="info__content">Download: <a href="https://play.google.com/store/apps/details?id=com.maddog05.whatanime">https://play.google.com/store/apps/details?id=com.maddog05.whatanime</a></p>
+                <p class="info__content">Source: <a href="https://github.com/maddog05/whatanime-android">https://github.com/maddog05/whatanime-android</a></p>
                 <!-- WhatAnime - 以图搜番 by Mystery0 (Simplified Chinese) -->
                 <h4 class="info__subheading">WhatAnime - 以图搜番 by Mystery0 (Simplified Chinese)</h4>
-                <p class="info__content">Download: <a href="https://play.google.com/store/apps/details?id=pw.janyo.whatanime" class="info__content-link" title="https://play.google.com/store/apps/details?id=pw.janyo.whatanime">https://play.google.com/store/apps/details?id=pw.janyo.whatanime</a></p>
-                <p class="info__content">Source: <a href="https://github.com/JanYoStudio/WhatAnime" class="info__content-link" title="https://github.com/JanYoStudio/WhatAnime">https://github.com/JanYoStudio/WhatAnime</a></p>
+                <p class="info__content">Download: <a href="https://play.google.com/store/apps/details?id=pw.janyo.whatanime">https://play.google.com/store/apps/details?id=pw.janyo.whatanime</a></p>
+                <p class="info__content">Source: <a href="https://github.com/JanYoStudio/WhatAnime">https://github.com/JanYoStudio/WhatAnime</a></p>
             </li>
         </ul><!-- /.info -->
         <ul class="info">
@@ -170,9 +172,9 @@ $sizeInGB = floor($sizeInBytes / 1073741824);
                 <h2 class="info__title">Presentation slides</h2>
             </li>
             <li class="info__list">
-                <p class="info__content"><a href="https://go-talks.appspot.com/github.com/soruly/slides/whatanime.ga.slide" class="info__content-link" title="Go-talk presentation on 27 May 2016">Go-talk presentation on 27 May 2016</a></p>
-                <p class="info__content"><a href="https://go-talks.appspot.com/github.com/soruly/slides/whatanime.ga-2017.slide" class="info__content-link" title="Go-talk presentation on 4 Jun 2016">Go-talk presentation on 4 Jun 2017</a></p>
-                <p class="info__content"><a href="https://go-talks.appspot.com/github.com/soruly/slides/whatanime.ga-2018.slide" class="info__content-link" title="Go-talk presentation on 17 Jun 2016">Go-talk presentation on 17 Jun 2018</a></p>
+                <p class="info__content"><a href="https://go-talks.appspot.com/github.com/soruly/slides/whatanime.ga.slide">Go-talk presentation on 27 May 2016</a></p>
+                <p class="info__content"><a href="https://go-talks.appspot.com/github.com/soruly/slides/whatanime.ga-2017.slide">Go-talk presentation on 4 Jun 2017</a></p>
+                <p class="info__content"><a href="https://go-talks.appspot.com/github.com/soruly/slides/whatanime.ga-2018.slide">Go-talk presentation on 17 Jun 2018</a></p>
             </li>
         </ul><!-- /.info -->
         <ul class="info">
@@ -180,12 +182,12 @@ $sizeInGB = floor($sizeInBytes / 1073741824);
                 <h2 class="info__title">System Status</h2>
             </li>
             <li class="info__list">
-                <p class="info__content">System status page: <a href="https://status.trace.moe" class="info__content-link" title="https://status.trace.moe">https://status.trace.moe</a> (Powered by UptimeRobot)</p>
+                <p class="info__content">System status page: <a href="https://status.trace.moe">https://status.trace.moe</a> (Powered by UptimeRobot)</p>
                 <p class="info__content"><?php echo 'Last Database Index update: ' . humanTiming($lastModified) . ' ago with ' . $numDocsMillion . ' Million analyzed frames. (' . $sizeInGB . ' GB)'; ?></p>
                 <p class="info__content">This database automatically index most airing anime in a few hours after broadcast.</p>
-                <p class="info__content">You may subscribe to the updates on Telegram <a href="https://t.me/whatanimeupdates" class="info__content-link" title="@whatanimeupdates">@whatanimeupdates</a></p>
-                <p class="info__content"><a href="https://nyaa.si/download/1023979.torrent" class="info__content-link" title="Full Database Dump 2018-04 (16.5GB)">Full Database Dump 2018-04 (16.5GB)</a></p>
-                <p class="info__content"><a href="magnet:?xt=urn:btih:VUOXSGHJ5CSBP6C3KK4IZCFS7NCVXPKX&dn=whatanime.ga+database+dump+2018-04&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce" class="info__content-link" title="magnet:?xt=urn:btih:VUOXSGHJ5CSBP6C3KK4IZCFS7NCVXPKX">magnet:?xt=urn:btih:VUOXSGHJ5CSBP6C3KK4IZCFS7NCVXPKX</a></p>
+                <p class="info__content">You may subscribe to the updates on Telegram <a href="https://t.me/whatanimeupdates">@whatanimeupdates</a></p>
+                <p class="info__content"><a href="https://nyaa.si/download/1023979.torrent">Full Database Dump 2018-04 (16.5GB)</a></p>
+                <p class="info__content"><a href="magnet:?xt=urn:btih:VUOXSGHJ5CSBP6C3KK4IZCFS7NCVXPKX&dn=whatanime.ga+database+dump+2018-04&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce">magnet:?xt=urn:btih:VUOXSGHJ5CSBP6C3KK4IZCFS7NCVXPKX</a></p>
             </li>
         </ul><!-- /.info -->
         <ul class="info">
@@ -193,13 +195,13 @@ $sizeInGB = floor($sizeInBytes / 1073741824);
                 <h2 class="info__title">Contact</h2>
             </li>
             <li class="info__list">
-                <p class="info__content">If you have any feedback, suggestions or anything else, please email to <a href="mailto:help@trace.moe" class="info__content-link" title="help@trace.moe">help@trace.moe</a>.</p>
-                <p class="info__content">You may also reach the author on Telegram <a href="https://t.me/soruly" class="info__content-link" title="@soruly">@soruly</a> or <a href="https://discord.gg/K9jn6Kj" class="info__content-link" title="Discord">Discord</a>.</p>
+                <p class="info__content">If you have any feedback, suggestions or anything else, please email to <a href="mailto:help@trace.moe">help@trace.moe</a>.</p>
+                <p class="info__content">You may also reach the author on Telegram <a href="https://t.me/soruly">@soruly</a> or <a href="https://discord.gg/K9jn6Kj">Discord</a>.</p>
                 <p class="info__content">
                     Follow the development of trace.moe and learn more about the underlying technologies on 
-                    <a href="https://github.com/soruly/slides" class="info__content-link" title="GitHub">GitHub</a>, 
-                    <a href="https://www.facebook.com/whatanime.ga/" class="info__content-link" title="Facebook Page">Facebook Page</a> or 
-                    <a href="https://www.patreon.com/soruly" class="info__content-link" title="Patreon Page">Patreon page</a>.
+                    <a href="https://github.com/soruly/slides">GitHub</a>, 
+                    <a href="https://www.facebook.com/whatanime.ga/">Facebook Page</a> or 
+                    <a href="https://www.patreon.com/soruly">Patreon page</a>.
                 </p>
             </li>
         </ul><!-- /.info -->
@@ -208,13 +210,13 @@ $sizeInGB = floor($sizeInBytes / 1073741824);
                 <h2 class="info__title">Credits</h2>
             </li>
             <li class="info__list">
-                <h4 class="info__subheading">Dr. Mathias Lux (<a href="http://www.lire-project.net/" class="info__content-link" title="LIRE Project">LIRE Project</a>)</h4>
+                <h4 class="info__subheading">Dr. Mathias Lux (<a href="http://www.lire-project.net/">LIRE Project</a>)</h4>
                 <p class="info__content">
                     Lux Mathias, Savvas A. Chatzichristofis. Lire: Lucene Image Retrieval – An Extensible Java CBIR Library. 
                     In proceedings of the 16th ACM International Conference on Multimedia, pp. 1085-1088, Vancouver, Canada, 2008
-                    <a href="http://www.morganclaypool.com/doi/abs/10.2200/S00468ED1V01Y201301ICR025" class="info__content-link" title="Visual Information Retrieval with Java and LIRE">Visual Information Retrieval with Java and LIRE</a>
+                    <a href="http://www.morganclaypool.com/doi/abs/10.2200/S00468ED1V01Y201301ICR025">Visual Information Retrieval with Java and LIRE</a>
                 </p>
-                <h4 class="info__subheading">Josh (<a href="https://anilist.co/" class="info__content-link" title="Anilist">Anilist</a>) and Anilist team</h4>
+                <h4 class="info__subheading">Josh (<a href="https://anilist.co/">Anilist</a>) and Anilist team</h4>
             </li>
         </ul><!-- /.info -->
         <ul class="info">
@@ -224,23 +226,23 @@ $sizeInGB = floor($sizeInBytes / 1073741824);
             <li class="info__list">
                 <div>
                     <p class="info__content">
-                        <a href="https://www.paypal.me/soruly" class="info__donate-link" title="soruly PayPal">
+                        <a href="https://www.paypal.me/soruly" class="info__donate-link">
                             <img class="info__donate-image" src="img/donate-with-paypal.png" alt="Donate with PayPal" />
                         </a>
-                        <a href="https://www.patreon.com/soruly" class="info__donate-link" title="soruly Patreon">
+                        <a href="https://www.patreon.com/soruly" class="info__donate-link">
                             <img class="info__donate-image" src="img/become_a_patron_button.png" alt="Become a Patron!" />
                         </a>
                     </p>
                     <p class="info__content">Former and Current Supporters:</p>
                     <ul class="info__unordered-list">
-                        <li><p class="info__content"><a href="https://chenxublog.com" class="info__content-link" title="chenxuuu">chenxuuu</a></p></li>
-                        <li><p class="info__content"><a href="http://desmonding.me/" class="info__content-link" title="Desmond">Desmond</a></p></li>
-                        <li><p class="info__content"><a href="http://imvery.moe/" class="info__content-link" title="FangzhouL">FangzhouL</a></p></li>
-                        <li><p class="info__content"><a href="https://fym.moe/" class="info__content-link" title="FiveYellowMice">FiveYellowMice</a></p></li>
+                        <li><p class="info__content"><a href="https://chenxublog.com">chenxuuu</a></p></li>
+                        <li><p class="info__content"><a href="http://desmonding.me/">Desmond</a></p></li>
+                        <li><p class="info__content"><a href="http://imvery.moe/">FangzhouL</a></p></li>
+                        <li><p class="info__content"><a href="https://fym.moe/">FiveYellowMice</a></p></li>
                         <li><p class="info__content">Snadzies</p></li>
-                        <li><p class="info__content"><a href="https://taw.moe" class="info__content-link" title="thatanimeweirdo">thatanimeweirdo</a></p></li>
+                        <li><p class="info__content"><a href="https://taw.moe">thatanimeweirdo</a></p></li>
                         <li><p class="info__content">WelkinWill</p></li>
-                        <li><p class="info__content"><a href="https://twitter.com/yuriks" class="info__content-link" title="yuriks">yuriks</a></p></li>
+                        <li><p class="info__content"><a href="https://twitter.com/yuriks">yuriks</a></p></li>
                         <li><p class="info__content">...and dozens of anonymous donators</p></li>
                     </ul>
                     <p class="info__content">And of course, contributions and support from all anime fans!</p>

@@ -1,4 +1,5 @@
 <?php
+header("Link: </css/app_fallback.css>; rel=preload; as=style", false);
 header("Link: </css/app.css>; rel=preload; as=style", false);
 header("Link: </css/index.css>; rel=preload; as=style", false);
 header("Link: </css/bootstrap.min.css>; rel=preload; as=style", false);
@@ -26,7 +27,7 @@ if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
     <meta name="keywords" content="Anime Scene Search, Search by image, Anime Image Search, アニメのキャプ画像">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#60738b" />
+    <meta name="theme-color" content="#3f51b5" />
     <title>WAIT: What Anime Is This? - Anime Scene Search Engine</title>
 
     <?php
@@ -60,6 +61,7 @@ if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="icon" type="image/png" href="/favicon128.png" sizes="128x128">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/app_fallback.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
     <link href="/css/index.css" rel="stylesheet">
     <link rel="dns-prefetch" href="https://image.trace.moe/">
@@ -73,7 +75,7 @@ if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
                 <span class="glyphicon glyphicon-menu-hamburger"></span>
             </a>
             <div class="navbar__menu">
-                <a class="navbar__item--active" href="/" >Home</a>
+                <a class="navbar__item navbar__item--active" href="/" >Home</a>
                 <a class="navbar__item" href="/about">About</a>
                 <a class="navbar__item" href="/changelog">Changelog</a>
                 <a class="navbar__item" href="/faq">FAQ</a>
@@ -115,7 +117,7 @@ if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
                 <span id="instruction"> / Drag &amp; Drop Anime ScreenShot / Ctrl+V / Enter Image URL</span>
                 <br>
                 <form method="post">
-                    <input type="url" pattern="https?://.+" name="imageURL" class="form-control" id="imageURL" placeholder="Image URL" value="<?php echo $imageURL; ?>" style="margin:5px 0 5px 0">
+                    <input type="url" pattern="https?://.+" name="imageURL" class="form-control input-sm" id="imageURL" placeholder="Image URL" value="<?php echo $imageURL; ?>" style="margin:5px 0 5px 0">
                     <input type="submit" id="submit" style="display:none">
                 </form>
                 <div style="text-align: right">

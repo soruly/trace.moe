@@ -1,4 +1,5 @@
 <?php
+header("Link: </css/app_fallback.css>; rel=preload; as=style", false);
 header("Link: </css/app.css>; rel=preload; as=style", false);
 header("Link: </css/bootstrap.min.css>; rel=preload; as=style", false);
 header("Link: </js/analytics.js>; rel=preload; as=script", false);
@@ -12,11 +13,12 @@ header("Link: </js/analytics.js>; rel=preload; as=script", false);
     <meta name="description" content="Search Anime by ScreenShot. Lookup the exact moment and the episode.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#60738b" />
+    <meta name="theme-color" content="#3f51b5" />
     <title>WAIT: What Anime Is This? - Frequently Asked Questions</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="icon" type="image/png" href="/favicon128.png" sizes="128x128">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/app_fallback.css" rel="stylesheet">    
     <link href="/css/app.css" rel="stylesheet">
     <script src="/js/analytics.js" defer></script>
 </head>
@@ -31,7 +33,7 @@ header("Link: </js/analytics.js>; rel=preload; as=script", false);
                 <a class="navbar__item" href="/" >Home</a>
                 <a class="navbar__item" href="/about">About</a>
                 <a class="navbar__item" href="/changelog">Changelog</a>
-                <a class="navbar__item--active" href="/faq">FAQ</a>
+                <a class="navbar__item navbar__item--active" href="/faq">FAQ</a>
                 <a class="navbar__item" href="/terms">Terms</a>
             </div>
         </div><!-- /.width -->
@@ -66,13 +68,13 @@ header("Link: </js/analytics.js>; rel=preload; as=script", false);
                     <li>
                         <p class="info__content">
                             <strong>Your image is not an original anime screenshot.</strong>
-                            You may try to use <a href="https://saucenao.com/" class="info__content-link" title="SauceNAO">SauceNAO</a> and <a href="https://iqdb.org/" class="info__content-link" title="iqdb.org">iqdb.org</a> which is best for searching anime artwork.
+                            You may try to use <a href="https://saucenao.com/">SauceNAO</a> and <a href="https://iqdb.org/">iqdb.org</a> which is best for searching anime artwork.
                         </p>
                     </li>
                     <li>
                         <p class="info__content">
                             <strong>The anime has not been analyzed yet.</strong>
-                            New animes currently airing would be analyzed around 24 hours after TV broadcast. Long-running animes / cartoons are excluded at this stage. See "<a href="#waarbi?" class="info__content-link" title="What animes are being indexed?">What animes are being indexed?</a>" at the bottom of this page.
+                            New animes currently airing would be analyzed around 24 hours after TV broadcast. Long-running animes / cartoons are excluded at this stage. See "<a href="#waarbi?">What animes are being indexed?</a>" at the bottom of this page.
                         </p>
                     </li>
                     <li>
@@ -135,7 +137,7 @@ header("Link: </js/analytics.js>; rel=preload; as=script", false);
                         <span class="screenshot__title">Good Screenshot</span>
                     </div>
                 </div>
-                <p class="info__content">This screenshot from <a href="https://www.youtube.com/watch?v=TUoWYoTWcnA&feature=youtu.be&t=2m59s" class="info__content-link" title="AMV - Animegraphy 2015">AMV - Animegraphy 2015</a> flipped the original scene in the anime. Try to search with the flip button if you guess the image has been flipped.</p>
+                <p class="info__content">This screenshot from <a href="https://www.youtube.com/watch?v=TUoWYoTWcnA&feature=youtu.be&t=2m59s">AMV - Animegraphy 2015</a> flipped the original scene in the anime. Try to search with the flip button if you guess the image has been flipped.</p>
                 <!-- Tinted image -->
                 <h4 class="info__subheading">Tinted image</h4>
                 <div class="screenshot">
@@ -166,7 +168,7 @@ header("Link: </js/analytics.js>; rel=preload; as=script", false);
                         <span class="screenshot__title">Sample Screenshot</span>
                     </div>
                 </div>
-                <p class="info__content">You should try <a href="https://saucenao.com/" class="info__content-link" title="SauceNAO">SauceNAO</a> and <a href="https://iqdb.org/" class="info__content-link" title="iqdb.org">https://iqdb.org/</a> to search anime / doujin artwork.</p>
+                <p class="info__content">You should try <a href="https://saucenao.com/">SauceNAO</a> and <a href="https://iqdb.org/">https://iqdb.org/</a> to search anime / doujin artwork.</p>
                 <!-- Not Japanese Anime -->
                 <h4 class="info__subheading">Not Japanese Anime</h4>
                 <div class="screenshot">
@@ -283,7 +285,7 @@ header("Link: </js/analytics.js>; rel=preload; as=script", false);
             <li class="info__list">
                 <!-- How does it work? -->
                 <h3 class="info__heading">How does it work?</h3>
-                <p class="info__content">It uses the MPEG 7 Color Layout Descriptor for comparing images. Wikipedia has a good illustration about it. This would also explain why you can't find your image. <a href="https://en.wikipedia.org/wiki/Color_layout_descriptor" class="info__content-link" title="Color layout descriptor">Color layout descriptor</a></p>
+                <p class="info__content">It uses the MPEG 7 Color Layout Descriptor for comparing images. Wikipedia has a good illustration about it. This would also explain why you can't find your image. <a href="https://en.wikipedia.org/wiki/Color_layout_descriptor">Color layout descriptor</a></p>
             </li>
             <li class="info__list">
                 <!-- How to make search for a more accurate result? -->
@@ -314,12 +316,12 @@ header("Link: </js/analytics.js>; rel=preload; as=script", false);
             <li class="info__list">
                 <!-- How can I share the search result? -->
                 <h3 class="info__heading">How can I share the search result?</h3>
-                <p class="info__content">For now, you have to upload the image somewhere else, then search by image URL, and share the result URL. If you have any feedback or suggestions, feel free to contact <a href="mailto:help@trace.moe" class="info__content-link" title="help@trace.moe">help@trace.moe</a>.</p>
+                <p class="info__content">For now, you have to upload the image somewhere else, then search by image URL, and share the result URL. If you have any feedback or suggestions, feel free to contact <a href="mailto:help@trace.moe">help@trace.moe</a>.</p>
             </li>
             <li class="info__list">
                 <!-- How to add trace.moe to Image Search Options -->
                 <h3 class="info__heading">How to add trace.moe to Image Search Options</h3>
-                <p class="info__content">If you prefer to use trace.moe with <a href="https://chrome.google.com/webstore/detail/image-search-options/kljmejbpilkadikecejccebmccagifhl" class="info__content-link" title="Image Search Options">Image Search Options</a>, go to settings and add this:</p>
+                <p class="info__content">If you prefer to use trace.moe with <a href="https://chrome.google.com/webstore/detail/image-search-options/kljmejbpilkadikecejccebmccagifhl">Image Search Options</a>, go to settings and add this:</p>
                 <pre class="info__pre">https://trace.moe/?url=</pre>
                 <p class="info__content">You can also configure playback options via URL params:</p>
                 <pre class="info__pre">https://trace.moe/?autoplay=0&loop&mute=1&url=</pre>

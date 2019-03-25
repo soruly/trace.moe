@@ -1,4 +1,5 @@
 <?php
+header("Link: </css/app_fallback.css>; rel=preload; as=style", false);
 header("Link: </css/app.css>; rel=preload; as=style", false);
 header("Link: </css/bootstrap.min.css>; rel=preload; as=style", false);
 header("Link: </js/analytics.js>; rel=preload; as=script", false);
@@ -12,11 +13,12 @@ header("Link: </js/analytics.js>; rel=preload; as=script", false);
     <meta name="description" content="Search Anime by ScreenShot. Lookup the exact moment and the episode.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#60738b" />
+    <meta name="theme-color" content="#3f51b5" />
     <title>WAIT: What Anime Is This? - Terms</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="icon" type="image/png" href="/favicon128.png" sizes="128x128">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/app_fallback.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
     <script src="/js/analytics.js" defer></script>
 </head>
@@ -32,7 +34,7 @@ header("Link: </js/analytics.js>; rel=preload; as=script", false);
                 <a class="navbar__item" href="/about">About</a>
                 <a class="navbar__item" href="/changelog">Changelog</a>
                 <a class="navbar__item" href="/faq">FAQ</a>
-                <a class="navbar__item--active" href="/terms">Terms</a>
+                <a class="navbar__item navbar__item--active" href="/terms">Terms</a>
             </div>
         </div><!-- /.width -->
     </nav><!-- /.navbar -->
@@ -53,7 +55,7 @@ header("Link: </js/analytics.js>; rel=preload; as=script", false);
                 <h3 class="info__heading">Copyright &amp; Intellectual Property Policy</h3>
                 <p class="info__content">trace.moe respects the intellectual property rights of others and expects its users to do the same.</p>
                 <p class="info__content">It is our policy, in appropriate circumstances and at its discretion, to disable and/or terminate the accounts of users who repeatedly infringe the copyrights or other intellectual property rights of others.</p>
-                <p class="info__content">In accordance with the Digital Millennium Copyright Act of 1998, the text of which may be found on the U.S. Copyright Office website at <a href="http://www.copyright.gov/legislation/dmca.pdf" class="info__content-link">http://www.copyright.gov/legislation/dmca.pdf</a>, we will respond expeditiously to claims of copyright infringement committed using the website, mobile device application and related services (collectively, the “Services”) that are reported to our Designated Copyright Agent, identified in the sample notice below.</p>
+                <p class="info__content">In accordance with the Digital Millennium Copyright Act of 1998, the text of which may be found on the U.S. Copyright Office website at <a href="http://www.copyright.gov/legislation/dmca.pdf">http://www.copyright.gov/legislation/dmca.pdf</a>, we will respond expeditiously to claims of copyright infringement committed using the website, mobile device application and related services (collectively, the “Services”) that are reported to our Designated Copyright Agent, identified in the sample notice below.</p>
                 <p class="info__content">If you are a copyright owner, or are authorized to act on behalf of one, or authorized to act under any exclusive right under copyright, please report alleged copyright infringements taking place on or through the Services by completing the following DMCA Notice of Alleged Infringement and delivering it to our Designated Copyright Agent. Upon receipt of the Notice as described below, we will take whatever action, in its sole discretion, it deems appropriate, including removal of the challenged material from the Services.</p>
             </li>
             <li class="info__list">
@@ -77,7 +79,7 @@ header("Link: </js/analytics.js>; rel=preload; as=script", false);
                         <p class="info__content">Provide your full legal name and your electronic or physical signature.</p>
                     </li>
                 </ol>
-                <p class="info__content">Deliver this notice, with all items completed, to our contact at <a href="mailto:help@trace.moe" class="info__content-link">help@trace.moe</a></p>
+                <p class="info__content">Deliver this notice, with all items completed, to our contact at <a href="mailto:help@trace.moe">help@trace.moe</a></p>
             </li>
             <li class="info__list">
                 <!-- Notification of Trademark Infringement -->
@@ -107,7 +109,7 @@ header("Link: </js/analytics.js>; rel=preload; as=script", false);
                 </div>
             </li>
             <li class="info__list">
-                <p class="info__content">All images uploaded to search engine will be deleted within 24 hours. Read our <a href="//www.iubenda.com/privacy-policy/7764846" class="info__content-link" title="Privacy Policy">Privacy Policy</a></p>
+                <p class="info__content">All images uploaded to search engine will be deleted within 24 hours. Read our <a href="//www.iubenda.com/privacy-policy/7764846">Privacy Policy</a></p>
             </li>
         </ul><!-- /.info -->
     </div><!-- /.width -->
