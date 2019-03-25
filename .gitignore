@@ -1,4 +1,5 @@
 /config.php
+/.htaccess
 /thumbnail/
 /*.log
 /vendor/
