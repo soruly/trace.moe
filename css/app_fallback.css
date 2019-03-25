@@ -1,0 +1,98 @@
+/* Fallback version for IE and below */
+/* I made this version for easy editing */
+::selection,
+.info__date,
+#searchBtn,
+#search2Btn,
+#main .btn:hover:not([disabled]),
+#main .btn:focus:not([disabled]),
+#searchBtn:hover:not([disabled]),
+#search2Btn:hover:not([disabled]) {
+    /* Primary background */
+    background-color: #3f51b5;
+}
+
+body,
+#main,
+#results-list,
+#info h2 {
+    /* Font */
+    font-family: 'Segoe UI', 'Helvetica Neue', Tahoma, Arial, 'Hiragino Kaku Gothic ProN', 'Meiryo', 'Microsoft YaHei', 'Apple SD Gothic Neo', sans-serif;
+}
+
+a,
+.info__content>a {
+    /* Primary light text*/
+    color: #7986cb;     
+}
+
+a:hover, 
+a:focus,
+.navbar__hamburger:hover,
+.navbar__hamburger:focus,
+.navbar__item:hover:not(.navbar__item--active),
+.navbar__item:focus:not(.navbar__item--active),
+.info__content>a:hover,
+.info__content>a:focus,
+.screenshot__title,
+.footer__item:hover,
+.footer__item:focus,
+.navbar__item--active,
+.navbar__item--active:hover,
+.navbar__item--active:focus {
+    /* Primary text */
+    color: #3f51b5;
+}
+
+/* Primary dark background*/
+.w-alert,
+.navbar__hamburger>.glyphicon { background-color: #303f9f; }
+
+/* Border radius */
+.navbar__hamburger,
+.info__pre,
+.info__content>img,
+.screenshot__compare {
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+}
+
+.navbar__hamburger,
+.info__content>img,
+.screenshot__compare,
+#main,
+#results-list {
+    /* Box shadow */
+    box-shadow: 0 1px 1px 0 rgba(60,64,67,.08),0 1px 3px 1px rgba(60,64,67,.16);
+    -webkit-box-shadow: 0 1px 1px 0 rgba(60,64,67,.08),0 1px 3px 1px rgba(60,64,67,.16);
+}
+
+.navbar__hamburger:hover,
+.navbar__hamburger:focus,
+.info__content>img:hover,
+#main input:focus,
+#main .btn:hover:not([disabled]),
+#main .btn:focus:not([disabled]),
+#searchBtn:hover:not([disabled]),
+#search2Btn:hover:not([disabled]) {
+    /* Box shadow hover */
+    box-shadow: 0 1px 3px 1px rgba(60,64,67,.2),0 2px 8px 4px rgba(60,64,67,.1);
+    -webkit-box-shadow: 0 1px 3px 1px rgba(60,64,67,.2),0 2px 8px 4px rgba(60,64,67,.1);
+}
+
+.navbar__hamburger,
+.navbar__item,
+.w-alert__link,
+.info__content>a,
+.info__content>image,
+.footer__item,
+.result,
+.result ,
+#main .btn,
+#search2Btn {
+    /* Transition */
+    transition: all 135ms cubic-bezier(.4,0,.2,1);
+    -webkit-transition: all 135ms cubic-bezier(.4,0,.2,1);
+}
+
+.info__list { border-top-color: #3f51b5; }
