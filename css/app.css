@@ -1,11 +1,9 @@
 /**
- *    This stylesheet is using BEM naming convention
+ *    This stylesheet is using BEM naming convention (๑・ω・๑) 
  *    TODO: Convert all class to BEM as much as possible for organized layout
  */
 
-/**************************************************************************/
 /** Variables *************************************************************/
-/**************************************************************************/
 :root {
     --font: 'Segoe UI', 'Helvetica Neue', Tahoma, Arial, 'Hiragino Kaku Gothic ProN', 'Meiryo', 'Microsoft YaHei', 'Apple SD Gothic Neo', sans-serif;
     
@@ -24,9 +22,7 @@
     --primary-darker: #1a237e; /* For experimental use */
 }
 
-/**************************************************************************/
 /** Default ***************************************************************/
-/**************************************************************************/
 ::selection {
     color: #fff;
     background-color: var(--primary);
@@ -53,18 +49,20 @@ body {
 }
 
 a {
-    text-decoration: underline;
     color: var(--primary-light);
 }
 
 a:hover,
 a:focus {
+    text-decoration: underline;
     color: var(--primary);
 }
 
-/**************************************************************************/
+[disabled] {
+    cursor: not-allowed;
+}
+
 /** Blocks ****************************************************************/
-/**************************************************************************/
 .width {
     position: relative;
     width: calc(100% - 40px);
@@ -87,6 +85,94 @@ a:focus {
     padding: 4px 0;
     text-align: center;
     background-color: var(--primary-dark);
+}
+
+.card {
+    display: inline-block;
+    margin: 14px;
+    border-radius: var(--border-radius);
+    -webkit-border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    -webkit-box-shadow: var(--box-shadow);
+}
+
+.card-search {
+    position: relative;
+    width: 640px;
+    background-color: #fff;
+    color: #333;
+    box-shadow: var(--box-shadow);
+    -webkit-box-shadow: var(--box-shadow);
+}
+
+.card-info {
+    float: left; 
+    width: 640px;
+    z-index: 6;
+    background-color: #fff;
+    color: #5f6368;
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+    /* font-size: 0.9em; */
+    line-height: 1.5em;
+    padding: 1em;
+    transition: var(--transition);
+    -webkit-transition: var(--transition);
+}
+
+.ripple {
+    position: relative;
+    left: -80px;
+    top: -220px;
+    box-sizing: content-box;
+    display: block;
+    border-style: double;
+    border-radius: 800px;
+    animation: ripple 1s cubic-bezier(.4,0,.2,1);
+    animation-iteration-count: infinite;
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.btn {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: 0;
+    box-shadow: var(--box-shadow);
+    -webkit-box-shadow: var(--box-shadow);
+    border-radius: var(--border-radius);
+    -webkit-border-radius: var(--border-radius);
+    transition: var(--transition);
+    -webkit-transition: var(--transition);
+}
+
+.btn[disabled],
+.btn[disabled]:hover,
+.btn[disabled]:focus {
+    color: #333;
+    background-color: #ddd;
+}
+
+.btn:hover:not([disabled]),
+.btn:focus:not([disabled]) {
+    color: #fff;
+    background-color: var(--primary-dark);
+    box-shadow: var(--box-shadow-hover);
+    -webkit-box-shadow: var(--box-shadow-hover);
+}
+
+.btn-primary:not([disabled]) {
+    color: #fff;
+    background-color: var(--primary);
 }
 
 .info {
@@ -116,9 +202,7 @@ a:focus {
     padding: 14px 0;
 }
 
-/**************************************************************************/
 /** Elements **************************************************************/
-/**************************************************************************/
 .navbar__hamburger {
     background-color: rgba(255,255,255,.5);
     line-height: 1;
@@ -196,6 +280,62 @@ a:focus {
 .w-alert__link:hover,
 .w-alert__link:focus {
     color: #fff;
+}
+
+.search__source {
+    height: 15px;
+    border-top: 1px solid rgba(0,0,0,.12);
+}
+
+.search__form {
+    width: 100%;
+    padding: 1em;
+}
+
+.search__instruction {
+    display: block;
+    text-align: center;
+    font-size: 14px;
+    color: #5f6368;
+    line-height: 1.25;
+}
+
+.search__input-group {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+    margin: 4px 0;
+}
+
+.search__button-group {
+    text-align: right;
+}
+
+.search__input {
+    border: 0;
+    border-radius: var(--border-radius);
+    -webkit-border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    -webkit-box-shadow: var(--box-shadow);
+    transition: var(--transition);
+    -webkit-transition: var(--transition);
+}
+
+.search__input:focus {
+    box-shadow: var(--box-shadow-hover);
+}
+
+.search__input:first-of-type {
+    margin-right: 4px;
+    width: 180px;
+}
+
+.search__footer {
+    border-top: 1px solid rgba(0,0,0,.12);
+    padding: 1em 0;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.25;
 }
 
 .info__list {
@@ -276,7 +416,6 @@ a:focus {
 
 .info__content>a {
     font-size: 16px;
-    text-decoration: underline;
     color: var(--primary-light);
     transition: all var(--transition);
     -webkit-transition: all var(--transition);
@@ -284,6 +423,7 @@ a:focus {
 
 .info__content>a:hover,
 .info__content>a:focus {
+    text-decoration: underline;
     color: var(--primary);
 }
 
@@ -375,6 +515,7 @@ a:focus {
 
 .footer__item:hover,
 .footer__item:focus {
+    text-decoration: underline;
     color: var(--primary);
 }
 
@@ -382,9 +523,7 @@ a:focus {
     margin-right: 0;
 }
 
-/**************************************************************************/
 /** Modifiers *************************************************************/
-/**************************************************************************/
 .navbar__item--active {
     background-color: #fff;
     color: var(--primary);
@@ -395,9 +534,7 @@ a:focus {
     text-decoration: none;
 }
 
-/**************************************************************************/
 /** RWD *******************************************************************/
-/**************************************************************************/
 @media only screen and (max-width: 700px) {
     .screenshot {
         flex-direction: column;
@@ -444,6 +581,11 @@ a:focus {
     .navbar__menu:hover {
         height: 100%;
     }
+
+    .github-corner svg {
+        width: 57.5px;
+        height: 57.5px;
+    }
 }
 
 @media only screen and (min-width:  480px) {
@@ -465,9 +607,7 @@ a:focus {
     }
 }
 
-/**************************************************************************/
 /** Octocat ***************************************************************/
-/**************************************************************************/
 .github-corner:hover .octo-arm {
     /* animation: octocat-wave 560ms ease-in-out */
     animation: octocat-wave 780ms ease-in-out
@@ -500,3 +640,27 @@ a:focus {
     }
 } */
 
+/** Keyframes *************************************************************/
+@keyframes ripple {
+    0% {
+        width: 0px;
+        height: 0px;
+        transform: translate(375px, 375px);
+        border-width: 25px;
+        /* border-color: #7986cb;
+        border-color: var(--primary-light); */
+        border-color: #fff;
+        opacity: .75;
+    }
+
+    100% {
+        width: 800px;
+        height: 800px;
+        transform: translate(0px, 0px);
+        border-width: 0;
+        /* border-color: #303f9f;
+        border-color: var(--primary-dark); */
+        border-color: #fff;
+        opacity: 0;
+    }
+}

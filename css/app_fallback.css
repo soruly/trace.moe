@@ -2,20 +2,12 @@
 /* I made this version for easy editing */
 ::selection,
 .info__date,
-#searchBtn,
-#search2Btn,
-#main .btn:hover:not([disabled]),
-#main .btn:focus:not([disabled]),
-#searchBtn:hover:not([disabled]),
-#search2Btn:hover:not([disabled]) {
+.btn-primary:not([disabled]) {
     /* Primary background */
     background-color: #3f51b5;
 }
 
-body,
-#main,
-#results-list,
-#info h2 {
+body {
     /* Font */
     font-family: 'Segoe UI', 'Helvetica Neue', Tahoma, Arial, 'Hiragino Kaku Gothic ProN', 'Meiryo', 'Microsoft YaHei', 'Apple SD Gothic Neo', sans-serif;
 }
@@ -23,11 +15,12 @@ body,
 a,
 .info__content>a {
     /* Primary light text*/
-    color: #7986cb;     
+    color: #7986cb;
 }
 
 a:hover, 
 a:focus,
+.navbar__hamburger>.glyphicon,
 .navbar__hamburger:hover,
 .navbar__hamburger:focus,
 .navbar__item:hover:not(.navbar__item--active),
@@ -39,20 +32,29 @@ a:focus,
 .footer__item:focus,
 .navbar__item--active,
 .navbar__item--active:hover,
-.navbar__item--active:focus {
+.navbar__item--active:focus,
+.result .title {
     /* Primary text */
     color: #3f51b5;
 }
 
 /* Primary dark background*/
 .w-alert,
-.navbar__hamburger>.glyphicon { background-color: #303f9f; }
+.btn:hover:not([disabled]),
+.btn:focus:not([disabled]) { 
+    background-color: #303f9f;
+}
 
 /* Border radius */
 .navbar__hamburger,
 .info__pre,
 .info__content>img,
-.screenshot__compare {
+.screenshot__compare,
+.card,
+.btn,
+.search__input,
+#info img,
+#info table {
     border-radius: 2px;
     -webkit-border-radius: 2px;
 }
@@ -60,8 +62,11 @@ a:focus,
 .navbar__hamburger,
 .info__content>img,
 .screenshot__compare,
-#main,
-#results-list {
+.card,
+.btn,
+.search__input,
+#info img,
+#info table {
     /* Box shadow */
     box-shadow: 0 1px 1px 0 rgba(60,64,67,.08),0 1px 3px 1px rgba(60,64,67,.16);
     -webkit-box-shadow: 0 1px 1px 0 rgba(60,64,67,.08),0 1px 3px 1px rgba(60,64,67,.16);
@@ -70,11 +75,10 @@ a:focus,
 .navbar__hamburger:hover,
 .navbar__hamburger:focus,
 .info__content>img:hover,
-#main input:focus,
-#main .btn:hover:not([disabled]),
-#main .btn:focus:not([disabled]),
-#searchBtn:hover:not([disabled]),
-#search2Btn:hover:not([disabled]) {
+.btn:hover:not([disabled]),
+.btn:focus:not([disabled]),
+.search__input:focus,
+#info img:hover {
     /* Box shadow hover */
     box-shadow: 0 1px 3px 1px rgba(60,64,67,.2),0 2px 8px 4px rgba(60,64,67,.1);
     -webkit-box-shadow: 0 1px 3px 1px rgba(60,64,67,.2),0 2px 8px 4px rgba(60,64,67,.1);
@@ -86,10 +90,11 @@ a:focus,
 .info__content>a,
 .info__content>image,
 .footer__item,
-.result,
-.result ,
-#main .btn,
-#search2Btn {
+.btn,
+.search__input,
+.result a,
+#info img,
+#info table tr {
     /* Transition */
     transition: all 135ms cubic-bezier(.4,0,.2,1);
     -webkit-transition: all 135ms cubic-bezier(.4,0,.2,1);
