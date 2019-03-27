@@ -1,0 +1,231 @@
+// main: app.less
+.card {
+    width: 640px;
+    margin: 12px;
+    margin-right: 0;
+    display: inline-block;
+    overflow: hidden;
+    background-color: #fff;
+    .vendor(border-radius, @border-radius);
+    .vendor(box-shadow, @shadow-elevation-z1);
+
+    &--search {
+        position: relative
+    }
+
+    &--results,
+    &--info {
+        float: left
+    }
+
+    &--results {
+        & .results {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            .vendor(flex-direction, column);
+        
+            & .result {
+                .vendor(border-radius, 0);
+
+                & a {
+                    display: block;
+                    padding: 12px;
+                    border-top: @border-divider;
+                }
+        
+                &.active,
+                &:hover {
+                    background: rgba(0, 0, 0, .12);
+                    text-decoration: none;
+                }
+            }
+        }
+
+        &>.checkbox {
+            display: flex;
+            padding: 12px;
+            justify-content: center;
+            .vendor(flex-direction, row);
+
+            &>label:not(:last-of-type) {
+                margin-right: 8px
+            }
+        }
+    }
+
+    &--info {
+        font: normal 400 14px/1.25 @font-default;
+        margin-top: 0;
+        display: none;
+        visibility: hidden;
+        opacity: 0;
+        line-height: 1.5;
+        .vendor(transition, @transition-default);
+
+        & h1 {
+            font: normal 700 24px/1 @font-default;
+            padding: 12px 12px 0;
+            margin: 0;
+            color: #333;
+        }
+
+        & h2 {
+            font: normal 400 14px/1 @font-default;
+            padding: 0 12px;
+            margin-top: 8px;
+        }
+
+        & h3 {
+            display: block;
+            font: normal 700 18px/1 @font-default;
+            margin: 0;
+            margin-top: 3em;
+            padding: 0 12px;
+            clear: both;
+        }
+
+        & table {
+            font: normal 400 12px/1.25 @font-default;
+            width: ~"calc(100% - 24px)";
+            max-width: ~"calc(100% - 24px)";
+            margin: 0 12px;
+            padding: 0;
+            overflow: hidden;
+            cursor: default;
+            border-spacing: 0;
+            border-collapse: separate;
+            .vendor(border-radius, @border-radius);
+            .vendor(box-shadow, @shadow-elevation-z2);
+
+            & tr {
+                .vendor(transition, @transition-default);
+
+                &:hover {
+                    background-color: rgba(0, 0, 0, .12);
+                }
+
+                &:not(:last-of-type) td {
+                    border-bottom: @border-divider;
+                }
+
+                & td {
+                    width: 50%;
+                    vertical-align: middle;
+                    padding: 4px 8px;
+                    border: 0;
+
+                    &:first-of-type {
+                        font-weight: 600
+                    }
+                }
+            }
+        }
+
+        & iframe {
+            width: ~"calc(100% - 24px)";
+            margin: 0 12px;
+            .vendor(border-radius, @border-radius);
+            .vendor(box-shadow, @shadow-elevation-z2);
+        }
+
+        & #poster {
+            float: right;
+            top: 12px;
+            right: 0;
+            display: block;
+            min-width: 225px;
+            max-width: 225px;
+            height: auto;
+            margin-right: 12px;
+
+            & img {
+                display: block;
+                width: 100%;
+                .vendor(border-radius, @border-radius);
+                .vendor(box-shadow, @shadow-elevation-z2);
+                .vendor(transition, @transition-default);
+
+                &:hover {
+                    .vendor(box-shadow, @shadow-elevation-z8);
+                }
+            }
+        }
+
+        & #naturalText,
+        & #table {
+            max-width: 320px;
+        }
+
+        & #naturalText {
+            margin-left: 12px;
+        }
+
+        & #table {
+            margin-top: 12px;
+        }
+
+        & .divider {
+            clear: both;
+            border-top: @border-divider;
+            margin: 12px 0;
+        }
+
+        & .description {
+            margin: 0 12px;
+            text-align: justify;
+        }
+
+        & .provided {
+            font: normal 400 12px/1 @font-default;
+            margin: 0 12px 12px;
+            text-align: right;
+        }
+
+        & .characters {
+            display: inline-flex;
+            width: 100%;
+            padding: 0 12px;
+            .vendor(justify-content, space-between);
+            .vendor(flex-direction, row);
+            .vendor(flex-wrap, wrap);
+
+            & .character {
+                display: flex;
+                width: ~"calc(50% - 6px)";
+                margin-bottom: 12px;
+                overflow: hidden;
+                .vendor(flex-direction, row);
+                .vendor(border-radius, @border-radius);
+                .vendor(box-shadow, @shadow-elevation-z2);
+
+                &>div {
+                    &:first-child {
+                        // border-right: @border-divider;
+                        z-index: 999;
+                        .vendor(box-shadow, @shadow-elevation-z8);
+
+                        & div {
+                            width: 60px;
+                            height: 80.65px;
+                            background-position: 50% 50%;
+                            background-size: cover;
+                            background-repeat: no-repeat;
+                        }
+                    }
+
+                    &:last-child {
+                        z-index: 1;
+                        display: flex;
+                        width: ~"calc(100% - 62px)";
+                        justify-content: space-around;
+                        padding: 12px;
+                        .vendor(flex-direction, column);
+                    }
+                }
+            }
+        }
+    }
+}

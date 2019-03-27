@@ -1,0 +1,94 @@
+// main: app.less
+@media (min-width: 1020px) {
+    .card--results { width: 320px }
+}
+
+@media (max-width: 1020px) {
+    .card {
+        display: block !important;
+        float: none !important;
+        width: 640px;
+        margin-left: auto;
+        margin-right: auto;
+
+        &--results {
+            margin-top: 0
+        }
+    }
+}
+
+@media (max-width: 700px) {
+    .screenshot {
+        .vendor(flex-direction, column);
+
+        &__compare {
+            margin-bottom: 10px;
+
+            &:first-of-type {
+                margin-right: 0
+            }
+
+            &::last-of-type {
+                margin: 0
+            }
+        }
+    }
+}
+
+@media (max-width: 664px) {
+    .card {
+        display: block;
+        .vendor(border-radius, 0);
+    }
+}
+
+@media (max-width: 540px) {
+    .navbar {
+        & .width {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            .vendor(transition, @transition-default);
+        }
+
+        &__hamburger:focus~&__menu,
+        &__menu:hover {
+            height: 100%
+        }
+
+        &__hamburger {
+            display: inline-block
+        }
+
+        &__menu {
+            display: flex;
+            height: 0;
+            overflow: hidden;
+            .vendor(flex-direction, column);
+        }
+
+        .github-corner svg {
+            width: 57.5px;
+            height: 57.5px;
+        }
+    }
+}
+
+@media (min-width: 480px) {
+    .info__donate-image {
+        max-height: 50px
+    }
+}
+
+@media (max-width: 480px) {
+    .screenshot__image {
+        width: 100%
+    }
+}
+
+@media (max-width: 479px) {
+    .info__donate-image {
+        width: 100%;
+        height: auto;
+    }
+}

@@ -1,0 +1,48 @@
+// main: app.less
+@keyframes octocat-wave {
+
+    0%,
+    100% {
+        .vendor(transform, rotate(0))
+    }
+
+    20%,
+    60% {
+        .vendor(transform, rotate(-25deg))
+    }
+
+    40%,
+    80% {
+        .vendor(transform, rotate(10deg))
+    }
+}
+
+@keyframes ripple {
+    0% {
+        width: 0;
+        height: 0;
+        border-width: 25px;
+        border-color: #fff;
+        opacity: .75;
+        .vendor(transform, translate(375px, 375px));
+    }
+
+    100% {
+        width: 800px;
+        height: 800px;
+        border-width: 0;
+        border-color: #fff;
+        opacity: 0;
+        .vendor(transform, translate(0, 0));
+    }
+}
+
+@keyframes spinning {
+    from {
+        .vendor(transform, rotate(0))
+    }
+
+    to {
+        .vendor(transform, rotate(360deg))
+    }
+}

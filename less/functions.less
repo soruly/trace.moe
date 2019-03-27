@@ -1,0 +1,12 @@
+// main: app.less
+.vendor(@property, @value) {
+    @{property}: @value;
+    -o-@{property}: @value;
+    -moz-@{property}: @value;
+    -khtml-@{property}: @value;
+    -webkit-@{property}: @value;
+}
+
+.text(@value) {
+    color: contrast(@value, #fff, #000)
+}
