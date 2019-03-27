@@ -1,7 +1,5 @@
 <?php
-header("Link: </css/app_fallback.css>; rel=preload; as=style", false);
-header("Link: </css/app.css>; rel=preload; as=style", false);
-header("Link: </css/bootstrap.min.css>; rel=preload; as=style", false);
+header("Link: </css/app.min.css>; rel=preload; as=style", false);
 header("Link: </js/analytics.js>; rel=preload; as=script", false);
 ?>
 <!DOCTYPE html>
@@ -17,9 +15,7 @@ header("Link: </js/analytics.js>; rel=preload; as=script", false);
     <title>WAIT: What Anime Is This? - Terms</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="icon" type="image/png" href="/favicon128.png" sizes="128x128">
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/app_fallback.css" rel="stylesheet">
-    <link href="/css/app.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/app.min.css" type="text/css">
     <script src="/js/analytics.js" defer></script>
 </head>
 
