@@ -1,8 +1,5 @@
 <?php
-header("Link: </css/app_fallback.css>; rel=preload; as=style", false);
-header("Link: </css/app.css>; rel=preload; as=style", false);
-header("Link: </css/index.css>; rel=preload; as=style", false);
-header("Link: </css/bootstrap.min.css>; rel=preload; as=style", false);
+header("Link: </css/app.min.css>; rel=preload; as=style", false);
 header("Link: </js/analytics.js>; rel=preload; as=script", false);
 header("Link: </js/index_v3.js>; rel=preload; as=script", false);
 header("Link: </js/info_v3.js>; rel=preload; as=script", false);
@@ -60,33 +57,31 @@ if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
 
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="icon" type="image/png" href="/favicon128.png" sizes="128x128">
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/app_fallback.css" rel="stylesheet">
-    <link href="/css/app.css" rel="stylesheet">
-    <link href="/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/app.min.css" type="text/css">
     <link rel="dns-prefetch" href="https://image.trace.moe/">
     <script src="/js/analytics.js" async defer></script>
 </head>
 
-<body class="home">
+<body>
     <nav class="navbar">
         <div class="width">
             <a href="javascript:void(0);" class="navbar__hamburger">
                 <span class="glyphicon glyphicon-menu-hamburger"></span>
-            </a>
+            </a><!-- /.navbar__hamburger -->
+
             <div class="navbar__menu">
                 <a class="navbar__item navbar__item--active" href="/">Home</a>
                 <a class="navbar__item" href="/about">About</a>
                 <a class="navbar__item" href="/changelog">Changelog</a>
                 <a class="navbar__item" href="/faq">FAQ</a>
                 <a class="navbar__item" href="/terms">Terms</a>
-            </div>
+            </div><!-- /.navbar__menu -->
         </div><!-- /.width -->
     </nav><!-- /.navbar -->
 
     <div class="w-alert">
         <div class="width">
-            <p class="w-alert__text">Read recent updates to trace.moe | soruly on <a href="https://www.patreon.com/posts/24430008" class="w-alert__link">Patreon!</a></p>
+            <p class="w-alert__text">Read recent updates to trace.moe | soruly on <a href="https://www.patreon.com/posts/24430008">Patreon!</a></p>
         </div><!-- /.width -->
     </div><!-- /.w-alert -->
 
@@ -94,24 +89,22 @@ if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
         <input id="autoSearch" type="checkbox" style="display: none;" <?php echo $autosearch ? "checked" : ""; ?>>
         <img id="originalImage" src="<?php echo $originalImage; ?>" crossorigin="anonymous" style="display: none;">
 
-        <div id="main" class="card card-search">
+        <div id="main" class="card card--search">
             <div class="noselect">
-                <div id="loading" class="hidden">
+                <div id="loading" class="loading-ripple hidden">
                     <div id="loader" class="ripple"></div>
                 </div>
-                <canvas id="preview" width="640" height="360"></canvas>
+                <canvas id="preview" class="preview-canvas"></canvas>
                 <video id="player" style="display:none" volume="0.5" autoplay></video>
-            </div>
+            </div><!-- /.noselect -->
 
             <div class="search__source">
-                <span id="progressBarControl" class="glyphicon glyphicon-triangle-top"></span>
-                <span id="fileNameDisplay"></span>
-                <span id="timeCodeDisplay"></span>
-            </div> <!-- /.search__source -->
+                <span id="progressBarControl" class="search__source-progress"></span>
+                <span id="fileNameDisplay" class="search__source-name">playback source</span>
+                <span id="timeCodeDisplay" class="search__source-time">--:--:--/--:--:--</span>
+            </div><!-- /.search__source -->
 
             <div id="form" class="search__form">
-                <span id="instruction" class="search__instruction">Drag &amp; Drop Anime ScreenShot / Ctrl+V / Enter Image URL</span>
-
                 <form method="post" class="search__input-group">
                     <!-- <label for="seasonSelector" style="font-weight: inherit">Search in (anilist ID):</label> -->
                     <input type="text" id="seasonSelector" class="form-control input-sm search__input" placeholder="anilist ID (Optional)">
@@ -119,39 +112,41 @@ if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
                     <input type="submit" id="submit" style="display:none">
                 </form><!-- /.search__input-group -->
 
+                <span id="messageText" class="loading-spin"></span>
+
                 <div class="search__button-group">
-                    <span id="messageText" style="float:left;line-height:30px"></span>
-                    <span class="btn btn-default btn-file btn-sm">
-                        Browse a file <input type="file" id="file" name="files[]" />
+                    <span class="btn btn--file">
+                        <span class="glyphicon glyphicon-folder-open"></span> Browse a file <input type="file" id="file" name="files[]" />
                     </span>
-                    <button id="safeBtn" type="button" class="btn btn-default btn-sm">
+                    <button id="safeBtn" type="button" class="btn">
                         <span class="glyphicon glyphicon-unchecked"></span> Safe Search
                     </button>
-                    <button id="flipBtn" type="button" class="btn btn-default btn-sm" disabled>
+                    <button id="flipBtn" type="button" class="btn" disabled>
                         <span class="glyphicon glyphicon-unchecked"></span> Flip Image
                     </button>
-                    <button id="searchBtn" type="button" class="btn btn-default btn-sm btn-primary" disabled>
+                    <button id="searchBtn" type="button" class="btn btn--search" disabled>
                         <span class="glyphicon glyphicon-search"></span> Search
                     </button>
                 </div><!-- /.search__button-group -->
             </div><!-- /.search__form -->
 
             <div class="search__footer">
-                <span class="main-footer__warning">Warning: Some results may be NSFW (Not Safe for Work)</span><br>
-                <span><a href="https://telegram.me/WhatAnimeBot">Official Telegram Bot</a> | Official WebExtension for <a href="https://chrome.google.com/webstore/detail/search-anime-by-screensho/gkamnldpllcbiidlfacaccdoadedncfp">Chrome</a>, <a href="https://addons.mozilla.org/en-US/firefox/addon/search-anime-by-screenshot/">Firefox</a>, and <a href="https://addons.opera.com/en/extensions/details/search-anime-by-screenshot/">Opera</a><br></span>
+                <span>Drag &amp; Drop Anime ScreenShot / Ctrl + V / Enter Image URL</span>
+                <span class="text--danger"><strong>WARNING</strong>: Some results may be NSFW (Not Safe for Work) contents</span>
+                <span><a href="https://telegram.me/WhatAnimeBot">Official Telegram Bot</a> | Official WebExtension for <a href="https://chrome.google.com/webstore/detail/search-anime-by-screensho/gkamnldpllcbiidlfacaccdoadedncfp">Chrome</a>, <a href="https://addons.mozilla.org/en-US/firefox/addon/search-anime-by-screenshot/">Firefox</a>, and <a href="https://addons.opera.com/en/extensions/details/search-anime-by-screenshot/">Opera</a></span>
             </div><!-- /.search__footer -->
         </div><!-- /.card .card-search -->
 
-        <div id="results-list" class="card">
+        <div id="results-list" class="card card--results">
             <div id="controls" class="checkbox">
                 <label><input type="checkbox" id="autoplay" name="autoplay" checked />AutoPlay</label>
                 <label><input type="checkbox" id="loop" name="loop" />Loop</label>
                 <label><input type="checkbox" id="mute" name="mute" />Mute</label>
             </div>
-            <ul id="results" class="nav nav-pills nav-stacked"></ul>
+            <ul id="results" class="results"></ul>
         </div><!--  /.card -->
 
-        <div id="info" class="card card-info"></div><!-- /.card .card-info -->
+        <div id="info" class="card card--info"></div><!-- /.card .card-info -->
     </main>
 
     <a href="https://github.com/soruly/trace.moe" class="github-corner" aria-label="View source on Github">
