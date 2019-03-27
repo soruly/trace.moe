@@ -1,4 +1,5 @@
 /config.php
+/.vscode/
 /.htaccess
 /thumbnail/
 /*.log
