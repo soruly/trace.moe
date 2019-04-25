@@ -27,6 +27,12 @@ if abs(width / height - 16 / 9) < 0.03 and (w / h - 16 / 9) > 0.03:
   y = y - (newHeight - h ) / 2
   h = newHeight
 
+# ensure the image has dimension
+y = 0 if y < 0 else y
+x = 0 if x < 0 else x
+w = 1 if w < 1 else w
+h = 1 if h < 1 else h
+
 # Crop with the largest rectangle
 crop = image[y:y+h,x:x+w]
 cv2.imwrite(sys.argv[2],crop)
