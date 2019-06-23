@@ -98,6 +98,12 @@ var zeroPad = function (n, width) {
 var player = document.querySelector("#player");
 var preview = document.querySelector("#preview");
 var originalImage = document.querySelector("#originalImage");
+
+originalImage.onload = function () {
+  resetAll();
+  prepareSearchImage();
+};
+
 var sourceImage = new Image();
 sourceImage.onload = function () {
   resetAll();
@@ -465,12 +471,13 @@ originalImage.onerror = function () {
 };
 
 var prepareSearchImage = function () {
-  var imageAspectRatio = sourceImage.width / sourceImage.height;
+  var img = originalImage.src === document.location.href ? sourceImage : originalImage;
+  var imageAspectRatio = img.width / img.height;
 
   searchImage.width = 640;
   searchImage.height = 640 / imageAspectRatio;
 
-  searchImage.getContext("2d").drawImage(sourceImage, 0, 0, sourceImage.width, sourceImage.height, 0, 0, searchImage.width, searchImage.height);
+  searchImage.getContext("2d").drawImage(img, 0, 0, img.width, img.height, 0, 0, searchImage.width, searchImage.height);
 
   if (document.querySelector("#flipBtn .glyphicon").classList.contains("glyphicon-check")) {
     searchImage.getContext("2d").save();
