@@ -3,8 +3,8 @@ header("Link: </css/style.css>; rel=preload; as=style", false);
 header("Link: </css/index.css>; rel=preload; as=style", false);
 header("Link: </css/bootstrap.min.css>; rel=preload; as=style", false);
 header("Link: </js/analytics.js>; rel=preload; as=script", false);
-header("Link: </js/index_v3.js>; rel=preload; as=script", false);
-header("Link: </js/info_v3.js>; rel=preload; as=script", false);
+header("Link: </js/index_v4.js>; rel=preload; as=script", false);
+header("Link: </js/info_v4.js>; rel=preload; as=script", false);
 header("Link: </fonts/glyphicons-halflings-regular.woff>; rel=preload; as=font; crossorigin", false);
 
 $autosearch = false;
@@ -144,8 +144,8 @@ if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
   </a>
   <style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
 
-  <script src="/js/index_v3.js"></script>
-  <script src="/js/info_v3.js"></script>
+  <script src="/js/index_v4.js"></script>
+  <script src="/js/info_v4.js"></script>
 </main>
 </body>
 </html>

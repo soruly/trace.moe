@@ -98,12 +98,12 @@ var zeroPad = function (n, width) {
 var player = document.querySelector("#player");
 var preview = document.querySelector("#preview");
 var originalImage = document.querySelector("#originalImage");
-var img = new Image();
-img.addEventListener("load", function () {
+var sourceImage = new Image();
+sourceImage.onload = function () {
   resetAll();
   prepareSearchImage();
-});
-img.src = originalImage.src;
+};
+sourceImage.src = originalImage.src;
 
 player.volume = 0.5;
 
@@ -305,8 +305,7 @@ document.querySelector("#imageURL").addEventListener("input", function () {
     if (document.querySelector("form").checkValidity()) {
       fetchImageDelay = setTimeout(function () {
         document.querySelector("#messageText").innerHTML = "<span class=\"glyphicon glyphicon-repeat spinning\"></span>";
-        originalImage.src = "/image-proxy?url=" + document.querySelector("#imageURL").value.replace(/ /g, "%20");
-        img.src = originalImage.src;
+        sourceImage.src = "/image-proxy?url=" + document.querySelector("#imageURL").value.replace(/ /g, "%20");
         history.replaceState(null, null, "/?url=" + encodeURI(document.querySelector("#imageURL").value.replace(/ /g, "%20")));
       }, 500);
     } else {
@@ -455,18 +454,23 @@ var resetAll = function () {
   window.cancelAnimationFrame(preview_heartbeat);
 };
 
+sourceImage.onerror = function () {
+  document.querySelector("#messageText").classList.add("error");
+  document.querySelector("#messageText").innerText = "";
+};
+
 originalImage.onerror = function () {
   document.querySelector("#messageText").classList.add("error");
   document.querySelector("#messageText").innerText = "";
 };
 
 var prepareSearchImage = function () {
-  var imageAspectRatio = originalImage.width / originalImage.height;
+  var imageAspectRatio = sourceImage.width / sourceImage.height;
 
   searchImage.width = 640;
   searchImage.height = 640 / imageAspectRatio;
 
-  searchImage.getContext("2d").drawImage(originalImage, 0, 0, originalImage.width, originalImage.height, 0, 0, searchImage.width, searchImage.height);
+  searchImage.getContext("2d").drawImage(sourceImage, 0, 0, sourceImage.width, sourceImage.height, 0, 0, searchImage.width, searchImage.height);
 
   if (document.querySelector("#flipBtn .glyphicon").classList.contains("glyphicon-check")) {
     searchImage.getContext("2d").save();
@@ -517,7 +521,7 @@ var handleFileSelect = function (evt) {
 
       reader.onload = (function () {
         return function (e) {
-          originalImage.src = e.target.result;
+          sourceImage.src = e.target.result;
         };
       }(file));
       reader.readAsDataURL(file);
@@ -610,7 +614,7 @@ function CLIPBOARD_CLASS (canvas_id) {
     pastedImage.onload = function () {
       ctx.drawImage(pastedImage, 0, 0);
     };
-    originalImage.src = source;
+    sourceImage.src = source;
   };
 }
 
