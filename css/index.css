@@ -392,3 +392,15 @@ td:nth-child(3) {
     opacity: 0;
   }
 }
+.spinning {
+    animation: spin 2s infinite linear;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(1turn);
+  }
+}

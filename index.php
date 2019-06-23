@@ -110,7 +110,7 @@ if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
         <input type="submit" id="submit" style="display:none">
       </form>
       <div style="text-align: right">
-        <span id="messageText" style="float:left;line-height:30px"></span>
+        <span id="messageText" style="float:left;line-height:30px"><?php if($originalImage) echo '<span class="glyphicon glyphicon-repeat spinning"></span>' ?></span>
         <label for="seasonSelector" style="font-weight: inherit">Search in (anilist ID):</label>
         <input type="text" id="seasonSelector" class="form-control input-sm" style="display:inline-block; width:100px">
 

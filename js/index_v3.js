@@ -489,7 +489,7 @@ var prepareSearchImage = function () {
   if (document.querySelector("#autoSearch").checked) {
     document.querySelector("#messageText").classList.remove("error");
     document.querySelector("#messageText").classList.remove("success");
-    document.querySelector("#messageText").innerHTML = "<span class=\"glyphicon glyphicon-repeat spinning\"></span>";
+    document.querySelector("#messageText").innerHTML = "";
     document.querySelector("#autoSearch").checked = false;
     search();
   }
@@ -619,7 +619,9 @@ var resetInfo = function () {
 };
 
 window.onerror = function (message, source, lineno, colno, error) {
-  if (error) {message = error.stack;}
+  if (error) {
+    message = error.stack;
+  }
   if (typeof ga === "function") {
     ga("send", "event", "error", message);
   }
