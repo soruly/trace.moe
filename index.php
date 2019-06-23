@@ -13,7 +13,7 @@ $originalImage = "";
 if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
   $autosearch = true;
   $imageURL = str_replace(' ','%20',rawurldecode($_GET["url"]));
-  $originalImage = "//image.trace.moe/imgproxy?url=".str_replace(' ','%20',rawurldecode($_GET["url"]));
+  $originalImage = "https://image-proxy.soruly.workers.dev/?url=".str_replace(' ','%20',rawurldecode($_GET["url"]));
 }
 ?>
 <!DOCTYPE html>
@@ -30,7 +30,7 @@ if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
   <?php
   $og_image = 'https://trace.moe/favicon128.png';
   if(isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL))
-    $og_image = 'https://image.trace.moe/imgproxy?url='.$_GET["url"];
+    $og_image = 'https://image-proxy.soruly.workers.dev/?url='.$_GET["url"];
   ?>
   <!-- Schema.org markup (Google) -->
   <meta itemprop="name" content="WAIT: What Anime Is This?">
@@ -82,7 +82,7 @@ if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
   <div id="main">
     <div class="alert alert-info" style="margin: auto; box-shadow: 0 0 20px 0px;">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-      <a href="https://www.patreon.com/posts/24430008">Read Recent updates to trace.moe on Patreon!</a>
+      <a href="https://www.patreon.com/posts/26504891">Optimizing website loading speed</a>
     </div> 
     <div class="noselect">
       <div id="loading" class="hidden">
