@@ -141,7 +141,6 @@ var search = function (t, prev_result) {
   document.querySelector("#imageURL").disabled = true;
 
   var xhr = new XMLHttpRequest();
-
   xhr.open("POST", "/search", true);
   xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
   xhr.onreadystatechange = function () {
@@ -317,7 +316,9 @@ document.querySelector("#safeBtn").addEventListener("click", function () {
 
 var drawVideoPreview = function () {
   preview_heartbeat = window.requestAnimationFrame(drawVideoPreview);
-  preview.getContext("2d").drawImage(player, 0, 0, preview.width, preview.height);
+  if (preview.getContext("2d")) {
+    preview.getContext("2d").drawImage(player, 0, 0, preview.width, preview.height);
+  }
 };
 
 preview.addEventListener("contextmenu", function (e) {
@@ -617,3 +618,9 @@ var resetInfo = function () {
   document.querySelector("#info").style.opacity = 0;
 };
 
+window.onerror = function(message, source, lineno, colno, error) {
+  if(error) message = error.stack;
+  if (typeof ga === "function") {
+    ga('send', 'event', 'error', message);
+  }
+}
