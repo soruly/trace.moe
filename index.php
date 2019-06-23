@@ -66,7 +66,7 @@ if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
 <body>
 <main>
   <input id="autoSearch" type="checkbox" style="display: none;" <?php echo $autosearch ? "checked" : ""; ?>>
-  <img id="originalImage" src="<?php echo $originalImage; ?>" crossorigin="anonymous" style="display: none;">
+  <img id="originalImage" src="<?php echo $originalImage; ?>" style="display: none;">
   <nav class="navbar header">
     <div class="container">
       <ul class="nav navbar-nav">

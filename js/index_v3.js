@@ -98,6 +98,12 @@ var zeroPad = function (n, width) {
 var player = document.querySelector("#player");
 var preview = document.querySelector("#preview");
 var originalImage = document.querySelector("#originalImage");
+var img = new Image();
+img.addEventListener("load", function () {
+  resetAll();
+  prepareSearchImage();
+});
+img.src = originalImage.src;
 
 player.volume = 0.5;
 
@@ -300,6 +306,7 @@ document.querySelector("#imageURL").addEventListener("input", function () {
       fetchImageDelay = setTimeout(function () {
         document.querySelector("#messageText").innerHTML = "<span class=\"glyphicon glyphicon-repeat spinning\"></span>";
         originalImage.src = "/image-proxy?url=" + document.querySelector("#imageURL").value.replace(/ /g, "%20");
+        img.src = originalImage.src;
         history.replaceState(null, null, "/?url=" + encodeURI(document.querySelector("#imageURL").value.replace(/ /g, "%20")));
       }, 500);
     } else {
@@ -448,10 +455,6 @@ var resetAll = function () {
   window.cancelAnimationFrame(preview_heartbeat);
 };
 
-originalImage.onload = function () {
-  resetAll();
-  prepareSearchImage();
-};
 originalImage.onerror = function () {
   document.querySelector("#messageText").classList.add("error");
   document.querySelector("#messageText").innerText = "";
