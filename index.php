@@ -13,7 +13,7 @@ $originalImage = "";
 if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
   $autosearch = true;
   $imageURL = str_replace(' ','%20',rawurldecode($_GET["url"]));
-  $originalImage = "https://image-proxy.soruly.workers.dev/?url=".str_replace(' ','%20',rawurldecode($_GET["url"]));
+  $originalImage = "/image-proxy?url=".str_replace(' ','%20',rawurldecode($_GET["url"]));
 }
 ?>
 <!DOCTYPE html>
@@ -30,7 +30,7 @@ if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
   <?php
   $og_image = 'https://trace.moe/favicon128.png';
   if(isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL))
-    $og_image = 'https://image-proxy.soruly.workers.dev/?url='.$_GET["url"];
+    $og_image = '/image-proxy?url='.$_GET["url"];
   ?>
   <!-- Schema.org markup (Google) -->
   <meta itemprop="name" content="WAIT: What Anime Is This?">

@@ -4,11 +4,7 @@ addEventListener("fetch", async (event) => {
 
 const errorResponse = (errorMessage) => new Response(errorMessage, {
   status: 400,
-  statusText: "Bad Request",
-  headers: {
-    "access-control-allow-origin": "https://trace.moe",
-    "access-control-allow-methods": "GET"
-  }
+  statusText: "Bad Request"
 });
 
 const handleRequest = async (originalRequest) => {
@@ -39,15 +35,12 @@ const handleRequest = async (originalRequest) => {
   });
 
   if (response.status >= 400) {
-    let headers = new Headers(response.headers);
-    headers.append("access-control-allow-origin", "https://trace.moe");
-    headers.append("access-control-allow-methods", "GET");
     return new Response(
       response.body,
       {
         status: response.status,
         statusText: response.statusText,
-        headers
+        headers: response.headers
       }
     )
   }
@@ -56,15 +49,12 @@ const handleRequest = async (originalRequest) => {
     return errorResponse("Error: Content-Type is not image");
   }
 
-  let headers = new Headers(response.headers);
-  headers.append("access-control-allow-origin", "https://trace.moe");
-  headers.append("access-control-allow-methods", "GET");
   return new Response(
     response.body,
     {
       status: response.status,
       statusText: response.statusText,
-      headers
+      headers: response.headers
     }
   )
 }
