@@ -59,7 +59,7 @@ var updateURLParam = function () {
     if (params.length > 0) {
       urlString += "&";
     }
-    urlString += "url=" + encodeURI(document.querySelector("#imageURL").value.replace(/ /g, "%20"));
+    urlString += "url=" + encodeURIComponent(document.querySelector("#imageURL").value.replace(/ /g, "%20"));
   }
   if (urlString.length > 0) {
     history.replaceState(null, null, "/?" + urlString);
@@ -311,8 +311,8 @@ document.querySelector("#imageURL").addEventListener("input", function () {
     if (document.querySelector("form").checkValidity()) {
       fetchImageDelay = setTimeout(function () {
         document.querySelector("#messageText").innerHTML = "<span class=\"glyphicon glyphicon-repeat spinning\"></span>";
-        sourceImage.src = "/image-proxy?url=" + document.querySelector("#imageURL").value.replace(/ /g, "%20");
-        history.replaceState(null, null, "/?url=" + encodeURI(document.querySelector("#imageURL").value.replace(/ /g, "%20")));
+        sourceImage.src = "/image-proxy?url=" + encodeURIComponent(document.querySelector("#imageURL").value.replace(/ /g, "%20"));
+        history.replaceState(null, null, "/?url=" + encodeURIComponent(document.querySelector("#imageURL").value.replace(/ /g, "%20")));
       }, 500);
     } else {
       document.querySelector("#submit").click();

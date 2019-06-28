@@ -13,7 +13,7 @@ $originalImage = "";
 if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
   $autosearch = true;
   $imageURL = str_replace(' ','%20',rawurldecode($_GET["url"]));
-  $originalImage = "/image-proxy?url=".str_replace(' ','%20',rawurldecode($_GET["url"]));
+  $originalImage = "/image-proxy?url=".str_replace(' ','%20',rawurlencode($imageURL));
 }
 ?>
 <!DOCTYPE html>
