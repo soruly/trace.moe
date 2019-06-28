@@ -29,8 +29,10 @@ if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
 
   <?php
   $og_image = 'https://trace.moe/favicon128.png';
-  if(isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL))
-    $og_image = '/image-proxy?url='.$_GET["url"];
+  if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
+    $imgURL = str_replace(' ','%20',rawurldecode($_GET["url"]));
+    $og_image = "/image-proxy?url=".str_replace(' ','%20',rawurlencode($imgURL));
+  }
   ?>
   <!-- Schema.org markup (Google) -->
   <meta itemprop="name" content="WAIT: What Anime Is This?">
