@@ -83,6 +83,7 @@ if (!$image) {
     $redis->expire($limit_id, $limit_ttl);
     if($limit < 0) {
       header("HTTP/1.1 429 Too Many Requests");
+      header("Retry-After: ".$limit_ttl);
       header("X-whatanime-limit: ${limit}");
       header("X-whatanime-limit-ttl: ${limit_ttl}");
       exit('"Search limit exceeded. Please wait ".$limit_ttl." seconds."');
@@ -100,6 +101,7 @@ if (!$image) {
     $redis->expire($quota_id, $quota_ttl);
     if($quota < 0) {
       header("HTTP/1.1 429 Too Many Requests");
+      header("Retry-After: ".$quota_ttl);
       header("X-whatanime-quota: ${quota}");
       header("X-whatanime-quota-ttl: ${quota_ttl}");
       exit('"Search quota exceeded. Please wait ".$quota_ttl." seconds."');

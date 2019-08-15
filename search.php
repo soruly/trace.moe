@@ -38,6 +38,7 @@ if(isset($_POST['data'])){
     $redis->expire($limit_id, $limit_ttl);
     if($limit < 0) {
         header("HTTP/1.0 429 Too Many Requests");
+        header("Retry-After: ".$limit_ttl);
         exit("You have searched too much, try again in ".$limit_ttl." seconds.");
     }
 
@@ -53,6 +54,7 @@ if(isset($_POST['data'])){
     $redis->expire($quota_id, $quota_ttl);
     if($quota < 0) {
         header("HTTP/1.0 429 Too Many Requests");
+        header("Retry-After: ".$quota_ttl);
         exit("You have searched too much, try again in ".$quota_ttl." seconds.");
     }
 
