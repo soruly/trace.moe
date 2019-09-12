@@ -82,10 +82,10 @@ if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
   </nav>
 
   <div id="main">
-    <div class="alert alert-info" style="margin: auto; box-shadow: 0 0 20px 0px;">
+    <!--<div class="alert alert-info" style="margin: auto; box-shadow: 0 0 20px 0px;">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
       Some users were having HTTP 522 issues from some locations, it should be resolved
-    </div> 
+    </div> -->
     <div class="noselect">
       <div id="loading" class="hidden">
         <div id="loader" class="ripple"></div>

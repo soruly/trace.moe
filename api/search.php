@@ -68,7 +68,7 @@ if (!$image) {
     }
 
     $client_id = $user_id ?? $_SERVER['HTTP_X_FORWARDED_FOR'];
-    $limit_id = $client_id."_limit"; // reqeust per minute
+    $limit_id = $client_id."_limit"; // request per minute
     $quota_id = $client_id."_quota"; // quota per day
 
     // rate limit per minute

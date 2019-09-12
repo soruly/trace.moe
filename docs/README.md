@@ -5,22 +5,25 @@ This API is always under development. Please stay up-to-date with this project v
 ## Search
 
 POST as FORM
+
 ```bash
 curl -X POST https://trace.moe/api/search -d "image=$(base64 -w 0 your_search_image.jpg)"
 ```
 
 POST as JSON
+
 ```bash
 curl -X POST https://trace.moe/api/search -H "Content-Type: application/json" -d '{ "image" : "'$(base64 -w 0 your_search_image.jpg)'" }'
 ```
 
-| Fields        | Value         | Notes  |
-| ------------- |---------------| -------|
-| image         | String (Required) | Base64 Encoded Image |
-| filter        | Number (Optional) | Limit search to specific anilist ID. |
+| Fields | Value             | Notes                                |
+| ------ | ----------------- | ------------------------------------ |
+| image  | String (Required) | Base64 Encoded Image                 |
+| filter | Number (Optional) | Limit search to specific anilist ID. |
 
 ### Search Image Format
-- Supportted image format is any format supported by `javax.imageio.ImageIO` (i.e. jpg, png, bmp, gif)
+
+- Supported image format is any format supported by `javax.imageio.ImageIO` (i.e. jpg, png, bmp, gif)
 - For Animated GIF, only first frame is used for searching
 - [Data URI](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs) prefix like `data:image/jpeg;base64,` is optional. Only data part after the comma is used. This is to maintain compatibility with [toDataURL()](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toDataURL) with HTML5 canvas.
 - Binary file upload is not yet supported
@@ -32,6 +35,7 @@ Note that there is a hard limit of 1MB post size. You should ensure your Base64 
 </Note>
 
 Javascript Example
+
 ```javascript
 var img = document.querySelector("img"); // select image from DOM
 var canvas = document.createElement("canvas");
@@ -40,16 +44,19 @@ canvas.height = img.naturalHeight;
 var ctx = canvas.getContext("2d");
 ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
-fetch('https://trace.moe/api/search', {
-  method: 'POST',
-  body: JSON.stringify({image: canvas.toDataURL('image/jpeg', 0.8)}),
-  headers: { 'Content-Type': 'application/json' }
+fetch("https://trace.moe/api/search", {
+  method: "POST",
+  body: JSON.stringify({ image: canvas.toDataURL("image/jpeg", 0.8) }),
+  headers: { "Content-Type": "application/json" }
 })
-.then(res=>res.json())
-.then(result=>{console.log(result)});
+  .then(res => res.json())
+  .then(result => {
+    console.log(result);
+  });
 ```
 
 Example Response
+
 ```json
 {
   "RawDocsCount": 3555648,
@@ -79,10 +86,7 @@ Example Response
       "title_english": "Laid-Back Camp",
       "title_romaji": "Yuru Camp△",
       "mal_id": 34798,
-      "synonyms": [
-        "Yurucamp",
-        "Yurukyan△"
-      ],
+      "synonyms": ["Yurucamp", "Yurukyan△"],
       "synonyms_chinese": [],
       "is_adult": false
     }
@@ -90,38 +94,37 @@ Example Response
 }
 ```
 
-| Fields        | Meaning       | Value  |
-| ------------- |---------------| -------|
-| RawDocsCount       | Total number of frames searched | Number |
-| RawDocsSearchTime  | Time taken to retrieve the frames from database (sum of all cores) | Number |
-| ReRankSearchTime   | Time taken to compare the frames (sum of all cores) | Number |
-| CacheHit  | Whether the search result is cached. (Results are cached by extraced image feature) | Boolean |
-| trial | Number of times searched | Number |
-| limit | Number of search limit remaining | Number |
-| limit_ttl | Time until limit resets (seconds) | Number |
-| quota | Number of search quota remaining | Number |
-| quota_ttl | Time until quota resets (seconds) | Number |
-| docs | Search results (see table below) | Array of Objects |
+| Fields            | Meaning                                                                              | Value            |
+| ----------------- | ------------------------------------------------------------------------------------ | ---------------- |
+| RawDocsCount      | Total number of frames searched                                                      | Number           |
+| RawDocsSearchTime | Time taken to retrieve the frames from database (sum of all cores)                   | Number           |
+| ReRankSearchTime  | Time taken to compare the frames (sum of all cores)                                  | Number           |
+| CacheHit          | Whether the search result is cached. (Results are cached by extracted image feature) | Boolean          |
+| trial             | Number of times searched                                                             | Number           |
+| limit             | Number of search limit remaining                                                     | Number           |
+| limit_ttl         | Time until limit resets (seconds)                                                    | Number           |
+| quota             | Number of search quota remaining                                                     | Number           |
+| quota_ttl         | Time until quota resets (seconds)                                                    | Number           |
+| docs              | Search results (see table below)                                                     | Array of Objects |
 
-
-| Fields           | Meaning       | Value  |
-| ---------------- |---------------| -------|
-| from             | Starting time of the matching scene | Number (seconds, in 2 decimal places)
-| to               | Ending time of the matching scene | Number (seconds, in 2 decimal places)
-| at               | Exact time of the matching scene | Number (seconds, in 2 decimal places)
-| episode          | The extracted episode number from filename | Number, "OVA/OAD", "Special", ""
-| similarity       | Similarity compared to the search image | Number (float between 0-1)
-| anilist_id       | The matching [AniList](https://anilist.co/) ID | Number
-| mal_id           | The matching [MyAnimeList](https://myanimelist.net/) ID | Number or null
-| is_adult         | Whether the anime is hentai | Boolean
-| title_native     | Native (Japanese) title | String or null (Can be empty string)
-| title_chinese    | Chinese title | String or null (Can be empty string)
-| title_english    | English title | String or null (Can be empty string)
-| title_romaji     | Title in romaji | String
-| synonyms         | Alternate english titles | Array of String or []
-| synonyms_chinese | Alternate chinese titles | Array of String or []
-| filename         | The filename of file where the match is found | String
-| tokenthumb       | A token for generating preview | String
+| Fields           | Meaning                                                 | Value                                 |
+| ---------------- | ------------------------------------------------------- | ------------------------------------- |
+| from             | Starting time of the matching scene                     | Number (seconds, in 2 decimal places) |
+| to               | Ending time of the matching scene                       | Number (seconds, in 2 decimal places) |
+| at               | Exact time of the matching scene                        | Number (seconds, in 2 decimal places) |
+| episode          | The extracted episode number from filename              | Number, "OVA/OAD", "Special", ""      |
+| similarity       | Similarity compared to the search image                 | Number (float between 0-1)            |
+| anilist_id       | The matching [AniList](https://anilist.co/) ID          | Number                                |
+| mal_id           | The matching [MyAnimeList](https://myanimelist.net/) ID | Number or null                        |
+| is_adult         | Whether the anime is hentai                             | Boolean                               |
+| title_native     | Native (Japanese) title                                 | String or null (Can be empty string)  |
+| title_chinese    | Chinese title                                           | String or null (Can be empty string)  |
+| title_english    | English title                                           | String or null (Can be empty string)  |
+| title_romaji     | Title in romaji                                         | String                                |
+| synonyms         | Alternate english titles                                | Array of String or []                 |
+| synonyms_chinese | Alternate chinese titles                                | Array of String or []                 |
+| filename         | The filename of file where the match is found           | String                                |
+| tokenthumb       | A token for generating preview                          | String                                |
 
 <Note type="tip">
 
@@ -130,6 +133,7 @@ Search results with similarity lower than 87% are probably incorrect result (jus
 </Note>
 
 ### Search Result Notes
+
 - Results are always sorted by similarity, from most similar to least similar
 - If multiple results are found in the same file, near the same timecode and has similarity > 98%, results are grouped as one, using `from` and `to` to indicate the starting time and ending time of that scene.
 - `episode` is only an estimated number extraction from `filename`, it may fail and return empty string
@@ -141,9 +145,11 @@ Search results with similarity lower than 87% are probably incorrect result (jus
 - API would return HTTP 500 or HTTP 503 if something went wrong in backend
 
 If your image is malformed, you may got an error message (HTTP 500) like this:
+
 ```
 "Error reading image from URL: http://192.168.2.11/pic/1549186015.8901.jpg: http://192.168.2.11/pic/1549186015.8901.jpg"
 ```
+
 These image URLs are for debugging use, and is not accessible from internet. You may send this to admin to inspect what went wrong. All images send to server are deleted after 24 hours.
 
 Aside from the JSON response or the [/me](#Me) endpoint, you can also get the current limit from HTTP response header.
@@ -158,6 +164,7 @@ x-whatanime-quota-ttl: 85899
 Once the limit is reached. Server would respond HTTP 429 Too Many Requests, with a double quoted string showing when the quota will reset.
 
 Example
+
 ```
 "Search limit exceeded. Please wait 87 seconds."
 ```
@@ -168,31 +175,34 @@ All error messages are double quoted string in order to ensure they are always v
 
 </Note>
 
-
 ## Previews
 
 With `tokenthumb` you obtained from [/search](#Search), you can get previews of the matched scene. (not 100% accurate due to timecode and seeking method)
 
 ### Image Preview
+
 ```
 https://trace.moe/thumbnail.php?anilist_id=${anilist_id}&file=${encodeURIComponent(filename)}&t=${at}&token=${tokenthumb}
 ```
 
 ### Video Preview
+
 There is a 3 second video preview of the matched scene. (1 seconds before and 2 seconds ahead)
+
 ```
 https://trace.moe/preview.php?anilist_id=${anilist_id}&file=${encodeURIComponent(filename)}&t=${at}&token=${tokenthumb}
 ```
 
 ### Video Preview with Natural Scene Cutting
 
-With [trace.moe-media](https://github.com/soruly/trace.moe-media), it can now detect timestamp boundaries of a scene naturally. 
+With [trace.moe-media](https://github.com/soruly/trace.moe-media), it can now detect timestamp boundaries of a scene naturally.
 
 ```
 https://media.trace.moe/video/${anilist_id}/${encodeURIComponent(filename)}?t=${at}&token=${tokenthumb}`
 ```
 
 Or, if you prefer getting a mute video:
+
 ```
 https://media.trace.moe/video/${anilist_id}/${encodeURIComponent(filename)}?t=${at}&token=${tokenthumb}&mute`
 ```
@@ -223,7 +233,7 @@ Example Response
 ```
 
 | Fields         | Meaning                                      | Value                               |
-|----------------|----------------------------------------------|-------------------------------------|
+| -------------- | -------------------------------------------- | ----------------------------------- |
 | user_id        | Your Account ID                              | Number (null if no API token)       |
 | email          | Your Account Email                           | String (IP address if no API token) |
 | limit          | Current remaining limit for your account now | Number                              |
@@ -242,14 +252,14 @@ You can use the API with / without an API token. The difference is the limit whe
 When no API token is given, the system limit search by IP address, and count both search via API and webpage together.
 
 |              | via Webpage / via API without token | Registered Developers | Patreons      |
-|--------------|-------------------------------------|-----------------------|---------------|
+| ------------ | ----------------------------------- | --------------------- | ------------- |
 | Rate Limit   | 10/minute                           | 10/minute             | 10-30/minute  |
-| Search quota | 150/day**                           | 1000/day***           | 1000-3000/day |
+| Search quota | 150/day[^1]                         | 1000/day[^2]          | 1000-3000/day |
 
-If you need more search quota, send me email (soruly@gmail.com) to become registered devlopers.
+If you need more search quota, send me email (soruly@gmail.com) to become registered developers.
 
-** This quota is propotional to the Successful Pledges on [patreon](https://www.patreon.com/soruly)  
-*** This quota is propotional to API limit without token
+- [^1]: This quota is proportional to the Successful Pledges on [patreon](https://www.patreon.com/soruly)
+- [^2]: This quota is proportional to API limit without token
 
 To request with token, just add `token=your_api_token` to the URL param.  
 e.g. `https://trace.moe/api/me?token=your_api_token`

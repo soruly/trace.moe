@@ -114,7 +114,7 @@ This is achieved by openCV using a simple python script
 
 <h3>Enabled autoplay on mobile</h3>
 <h6>11 Nov 2016</h6>
-<p>Now mobile devies will mute and autoplay the video preview.</p>
+<p>Now mobile devices will mute and autoplay the video preview.</p>
 
 <h3>Added URL params for playback options</h3>
 <h6>29 Oct 2016</h6>
