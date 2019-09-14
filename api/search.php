@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
   exit('');
 }
 
-if (!$image) {
+if (!$image && !$_GET['url']) {
   header('HTTP/1.1 400 Bad Request');
   exit('"No image received"');
 } else {
@@ -116,25 +116,41 @@ if (!$image) {
 
     $savePath = '/usr/share/nginx/html/pic/';
     $filename = microtime(true).'.jpg';
-    $data = strpos($image, ",") === false ? $image : substr($image, strpos($image, ",") + 1);
-    $data = str_replace(' ', '+', $data);
-    
-    if($data == "") {
-      header('HTTP/1.1 400 Bad Request');
-      exit('"Image is empty"');
-    }
 
-    // file_put_contents($savePath.$filename, base64_decode($data));
-    $crop = true;
-    if($crop){
-      file_put_contents("../thumbnail/".$filename, base64_decode($data));
-      exec("cd .. && python crop.py thumbnail/".$filename." ".$savePath.$filename);
-      // exec("cd .. && python crop.py thumbnail/".$filename." thumbnail/".$filename.".jpg");
-      unlink("../thumbnail/".$filename);
+    if ($_GET['url']) {
+        try {
+            $imageURL = str_replace(' ','%20',rawurldecode($_GET["url"]));
+            $proxyImageURL = "https://trace.moe/image-proxy?url=".str_replace(' ','%20',rawurlencode($imageURL));
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $proxyImageURL);
+            curl_setopt($curl, CURLOPT_VERBOSE, 1);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($curl, CURLOPT_AUTOREFERER, true);
+            curl_setopt($curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+            curl_setopt($curl, CURLOPT_HEADER, 0);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0); // <-- don't forget this
+            curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0); // <-- and this
+            $raw = curl_exec($curl);
+            file_put_contents("../thumbnail/".$filename, $raw);
+        } catch(Exception $e) {
+            header('HTTP/1.1 400 Bad Request');
+            exit('"Failed to fetch image '.$imageURL.'"');
+        } finally {
+            curl_close($curl);
+        }
+    } else {
+        $data = strpos($image, ",") === false ? $image : substr($image, strpos($image, ",") + 1);
+        $data = str_replace(' ', '+', $data);
+        if ($data == "") {
+            header('HTTP/1.1 400 Bad Request');
+            exit('"Image is empty"');
+        }
+
+        file_put_contents("../thumbnail/".$filename, base64_decode($data));
     }
-    else{
-      file_put_contents($savePath.$filename, base64_decode($data));
-    }
+    exec("cd .. && python crop.py thumbnail/".$filename." ".$savePath.$filename);
+    // exec("cd .. && python crop.py thumbnail/".$filename." thumbnail/".$filename.".jpg");
+    unlink("../thumbnail/".$filename);
     
     //extract image feature
     $curl = curl_init();
