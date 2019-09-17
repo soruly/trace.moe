@@ -4,13 +4,25 @@ This API is always under development. Please stay up-to-date with this project v
 
 ## Search
 
-POST as FORM
+You have 2 ways to use the API for searching: 
+
+Search by image URL
+
+```bash
+curl -s https://trace.moe/api/search?url=https://foobar/baz.jpg
+```
+
+This method is easiest but it only works for images that are publicly available.
+
+Otherwise, you must send the image data via POST:
+
+POST image by FORM
 
 ```bash
 curl -X POST https://trace.moe/api/search -d "image=$(base64 -w 0 your_search_image.jpg)"
 ```
 
-POST as JSON
+POST image by JSON
 
 ```bash
 curl -X POST https://trace.moe/api/search -H "Content-Type: application/json" -d '{ "image" : "'$(base64 -w 0 your_search_image.jpg)'" }'
@@ -30,7 +42,7 @@ curl -X POST https://trace.moe/api/search -H "Content-Type: application/json" -d
 
 <Note type="warning">
 
-Note that there is a hard limit of 1MB post size. You should ensure your Base64 encoded image is < 1MB. Otherwise the server responds with HTTP 413 (Request Entity Too Large).
+Note that there is a hard limit of 10MB post size. You should ensure your Base64 encoded image is < 10MB. Otherwise the server responds with HTTP 413 (Request Entity Too Large).
 
 </Note>
 
