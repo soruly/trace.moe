@@ -152,23 +152,6 @@ if (!$image && !$_GET['url']) {
     // exec("cd .. && python crop.py thumbnail/".$filename." thumbnail/".$filename.".jpg");
     unlink("../thumbnail/".$filename);
     
-    //extract image feature
-    $curl = curl_init();
-    curl_setopt($curl, CURLOPT_URL, "http://192.168.2.11:8983/solr/anime_cl/lireq?field=cl_ha&extract=http://192.168.2.11/pic/".$filename);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-    try{
-        $res = curl_exec($curl);
-        $extract_result = json_decode($res);
-        $cl_hi = $extract_result->histogram;
-        $cl_ha = $extract_result->hashes;
-    }
-    catch(Exception $e){
-
-    }
-    finally{
-        curl_close($curl);
-    }
-    
     $final_result = new stdClass;
     $final_result->RawDocsCount = 0;
     $final_result->RawDocsSearchTime = 0;
