@@ -114,7 +114,7 @@ if (!$image && !$_GET['url']) {
 
 
 
-    $savePath = '/usr/share/nginx/html/pic/';
+    $savePath = '../temp/';
     $filename = microtime(true).'.jpg';
 
     if ($_GET['url']) {
@@ -148,7 +148,7 @@ if (!$image && !$_GET['url']) {
 
         file_put_contents("../thumbnail/".$filename, base64_decode($data));
     }
-    exec("cd .. && python crop.py thumbnail/".$filename." ".$savePath.$filename);
+    exec("cd .. && python crop.py thumbnail/".$filename." ./temp/".$filename);
     // exec("cd .. && python crop.py thumbnail/".$filename." thumbnail/".$filename.".jpg");
     unlink("../thumbnail/".$filename);
     
@@ -168,7 +168,7 @@ if (!$image && !$_GET['url']) {
 
         unset($nodes);
         for($i = 0; $i <= 31; $i++){
-            $nodes[]= "http://192.168.2.12:8983/solr/lire_{$i}/lireq?{$filter_str}&field=cl_ha&ms=false&url=http://192.168.2.11/pic/{$filename}&accuracy={$trial}&candidates=1000000&rows=10";
+            $nodes[]= "http://192.168.2.12:8983/solr/lire_{$i}/lireq?{$filter_str}&field=cl_ha&ms=false&accuracy={$trial}&candidates=1000000&rows=10";
         }
 
         $node_count = count($nodes);
@@ -180,6 +180,9 @@ if (!$image && !$_GET['url']) {
         {
             $url = $nodes[$i];
             $curl_arr[$i] = curl_init($url);
+            curl_setopt($curl_arr[$i], CURLOPT_POST, true);
+            curl_setopt($curl_arr[$i], CURLOPT_HTTPHEADER, array("Content-Type: text/plain"));
+            curl_setopt($curl_arr[$i], CURLOPT_POSTFIELDS, file_get_contents($savePath.$filename));
             curl_setopt($curl_arr[$i], CURLOPT_RETURNTRANSFER, true);
             curl_multi_add_handle($master, $curl_arr[$i]);
         }
@@ -366,7 +369,7 @@ if (!$image && !$_GET['url']) {
     //$final_result->accuracy = $accuracy;
     header('Content-Type: application/json');
     echo json_encode($final_result);
-    //unlink($savePath.$filename);
+    unlink($savePath.$filename);
 }
 
 function reRank($a, $b){

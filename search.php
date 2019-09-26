@@ -60,7 +60,7 @@ if(isset($_POST['data'])){
 
     header('Content-Type: application/json');
 
-    $savePath = '/usr/share/nginx/html/pic/';
+    $savePath = './temp/';
     $filename = microtime(true).'.jpg';
     $data = str_replace('data:image/jpeg;base64,', '', $_POST['data']);
     $data = str_replace(' ', '+', $data);
@@ -99,7 +99,7 @@ if(isset($_POST['data'])){
 
     unset($nodes);
     for($i = 0; $i <= 31; $i++){
-        $nodes[]= sprintf("http://192.168.2.12:8983/solr/lire_%d/lireq?{$filter}&field=cl_ha&ms=false&url=http://192.168.2.11/pic/{$filename}&accuracy={$accuracy}&candidates={$candidates}&rows=10", $i);
+        $nodes[]= "http://192.168.2.12:8983/solr/lire_{$i}/lireq?{$filter}&field=cl_ha&ms=false&accuracy={$accuracy}&candidates={$candidates}&rows=10";
     }
 
     $node_count = count($nodes);
@@ -111,6 +111,9 @@ if(isset($_POST['data'])){
     {
         $url = $nodes[$i];
         $curl_arr[$i] = curl_init($url);
+        curl_setopt($curl_arr[$i], CURLOPT_POST, true);
+        curl_setopt($curl_arr[$i], CURLOPT_HTTPHEADER, array("Content-Type: text/plain"));
+        curl_setopt($curl_arr[$i], CURLOPT_POSTFIELDS, file_get_contents($savePath.$filename));
         curl_setopt($curl_arr[$i], CURLOPT_RETURNTRANSFER, true);
         curl_multi_add_handle($master, $curl_arr[$i]);
     }
@@ -263,7 +266,7 @@ if(isset($_POST['data'])){
     $final_result->quota = $quota;
     $final_result->quota_ttl = $quota_ttl;
     echo json_encode($final_result);
-    //unlink($savePath.$filename);
+    unlink($savePath.$filename);
 }
 
 function reRank($a, $b){
