@@ -113,7 +113,7 @@ sourceImage.src = originalImage.src;
 
 player.volume = 0.5;
 
-var imgDataURL;
+var imgData;
 var searchRequest;
 var search = function (t, prev_result) {
   var trial = t;
@@ -284,7 +284,7 @@ var search = function (t, prev_result) {
   };
   var formData = new FormData();
 
-  formData.append("data", imgDataURL);
+  formData.append("image", imgData);
   formData.append("filter", document.querySelector("#seasonSelector").value);
   formData.append("trial", trial);
   xhr.send(formData);
@@ -493,20 +493,26 @@ var prepareSearchImage = function () {
 
   preview.getContext("2d").drawImage(searchImage, 0, 0, searchImage.width, searchImage.height);
 
-  imgDataURL = searchImage.toDataURL("image/jpeg", 0.8);
+  searchImage.toBlob(
+    function(blob) {
+      imgData = blob;
 
-  document.querySelector("#searchBtn").disabled = false;
-  document.querySelector("#flipBtn").disabled = false;
-  document.querySelector("#messageText").classList.add("success");
-  document.querySelector("#messageText").innerHTML = "";
-  document.querySelector("#results").innerHTML = "<div id=\"status\">Press Search button to begin searching.</div>";
-  if (document.querySelector("#autoSearch").checked) {
-    document.querySelector("#messageText").classList.remove("error");
-    document.querySelector("#messageText").classList.remove("success");
-    document.querySelector("#messageText").innerHTML = "";
-    document.querySelector("#autoSearch").checked = false;
-    search();
-  }
+      document.querySelector("#searchBtn").disabled = false;
+      document.querySelector("#flipBtn").disabled = false;
+      document.querySelector("#messageText").classList.add("success");
+      document.querySelector("#messageText").innerHTML = "";
+      document.querySelector("#results").innerHTML = "<div id=\"status\">Press Search button to begin searching.</div>";
+      if (document.querySelector("#autoSearch").checked) {
+        document.querySelector("#messageText").classList.remove("error");
+        document.querySelector("#messageText").classList.remove("success");
+        document.querySelector("#messageText").innerHTML = "";
+        document.querySelector("#autoSearch").checked = false;
+        search();
+      }
+    },
+    "image/jpeg",
+    80
+  );
 };
 
 var handleFileSelect = function (evt) {

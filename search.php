@@ -19,8 +19,7 @@ Predis\Autoloader::register();
 $redis = new Predis\Client('tcp://127.0.0.1:6379');
 $redis->connect();
 
-
-if(isset($_POST['data'])){
+if (isset($_POST['data']) || isset($_FILES['image'])) {
 
     $client_id = $_SERVER['HTTP_X_FORWARDED_FOR'];
     $limit_id = $client_id."_limit"; // request per minute
@@ -62,19 +61,23 @@ if(isset($_POST['data'])){
 
     $savePath = './temp/';
     $filename = microtime(true).'.jpg';
-    $data = str_replace('data:image/jpeg;base64,', '', $_POST['data']);
-    $data = str_replace(' ', '+', $data);
 
-    // file_put_contents($savePath.$filename, base64_decode($data));
+    if (isset($_FILES['image'])) {
+        $data = file_get_contents($_FILES['image']['tmp_name']);
+    } else {
+        $data = str_replace('data:image/jpeg;base64,', '', $_POST['data']);
+        $data = str_replace(' ', '+', $data);
+        $data = base64_decode($data);
+    }
+    // file_put_contents($savePath.$filename, $data);
     $crop = true;
     if($crop){
-      file_put_contents("thumbnail/".$filename, base64_decode($data));
+      file_put_contents("thumbnail/".$filename, $data);
       exec("python crop.py thumbnail/".$filename." ".$savePath.$filename);
       // exec("python crop.py thumbnail/".$filename." thumbnail/".$filename.".jpg");
       unlink("thumbnail/".$filename);
-    }
-    else{
-      file_put_contents($savePath.$filename, base64_decode($data));
+    } else {
+      file_put_contents($savePath.$filename, $data);
     }
     
     $final_result = new stdClass;
