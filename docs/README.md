@@ -14,7 +14,13 @@ curl -s https://trace.moe/api/search?url=https://foobar/baz.jpg
 
 This method is easiest but it only works for images that are publicly available.
 
-Otherwise, you must send the image data via POST:
+Otherwise, you must send the image data:
+
+Upload image by FORM
+
+```
+curl -F "image=@your_search_image.jpg" https://trace.moe/api/search
+```
 
 POST image by FORM
 
