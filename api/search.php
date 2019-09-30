@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
   exit('');
 }
 
-if (!$image && !$_GET['url']) {
+if (!$image && !$_GET['url'] && !isset($_FILES['image'])) {
   header('HTTP/1.1 400 Bad Request');
   exit('"No image received"');
 } else {
@@ -138,7 +138,10 @@ if (!$image && !$_GET['url']) {
         } finally {
             curl_close($curl);
         }
-    } else {
+    } else if (isset($_FILES['image'])) {
+        $data = file_get_contents($_FILES['image']['tmp_name']);
+        file_put_contents("../thumbnail/".$filename, $data);
+     } else {
         $data = strpos($image, ",") === false ? $image : substr($image, strpos($image, ",") + 1);
         $data = str_replace(' ', '+', $data);
         if ($data == "") {
