@@ -28,6 +28,10 @@ if abs(width / height - 16 / 9) < 0.03 and (w / h - 16 / 9) > 0.03:
   h = newHeight
 
 # ensure the image has dimension
+x = round(x)
+y = round(y)
+w = round(w)
+h = round(h)
 y = 0 if y < 0 else y
 x = 0 if x < 0 else x
 w = 1 if w < 1 else w
