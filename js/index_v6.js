@@ -227,8 +227,7 @@ var search = function (t, prev_result) {
             if (navigator.language.indexOf("zh") === 0) {
               title_display = entry.title_chinese || entry.title_romaji;
             }
-            // var thumbnailImage = (trial >= 2 || parseFloat(data.docs[0].diff) < 10) && index < 5 ? "<div class=\"thumb\" style=\"height:166px\"><img src=\"" + thumbnailLink + "\" onload=\"this.parentElement.style.height = null;\"></div>" : "";
-            var thumbnailImage = (trial >= 2 || parseFloat(data.docs[0].diff) < 10) && index < 5 ? "<div class=\"thumb\" style=\"height:166px\"><img src=\"" + thumbnailLink + "\"></div>" : "";
+            var thumbnailImage = (trial >= 2 || parseFloat(data.docs[0].diff) < 10) && index < 5 ? "<div class=\"thumb\" style=\"min-height:166px\"><img src=\"" + thumbnailLink + "\"></div>" : "";
 
             if (formatTime(entry.from) === formatTime(entry.to)) {
               result.innerHTML = "<a href=\"#\"><div><div class=\"text\"><span class=\"title\">" + title_display + "</span><br><span class=\"ep\">EP#" + zeroPad(entry.episode, 2) + "</span> <span class=\"time\">" + formatTime(entry.from) + "</span> <span class=\"similarity\">~" + similarity + "%</span><br><span class=\"file\">" + entry.file + "</span></div>" + thumbnailImage + "</div></a>";
