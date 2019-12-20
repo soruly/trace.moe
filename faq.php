@@ -43,13 +43,13 @@ Possible reasons:<br>
 3. Your image is flipped. <br>
 4. Your image is of bad quality. <br>
 Regarding 1. You may try to use <a href="https://saucenao.com/">SauceNAO</a> and <a href="https://iqdb.org/">iqdb.org</a> which is best for searching anime artwork.<br>
-Regarding 2. New animes currently airing would be analyzed around 24 hours after TV broadcast. Long-running animes / cartoons are excluded at this stage. See "What animes are indexed" at the bottom of this page.<br>
-As for 3. If you image comes from AMV / Anime Compilations, it's likely its flipped horizontally. Use the flip button to search again.<br>
+Regarding 2. New animes currently airing would be analyzed around 24 hours after TV broadcast. Long-running animes / cartoons are excluded at this stage. See "What anime are indexed" at the bottom of this page.<br>
+As for 3. If your image comes from AMV / Anime Compilations, it's likely that it's flipped horizontally. Use the flip button to search again.<br>
 As for 4. The image search algorithm is designed for almost-exact match, not similar match. It analyze the color layout of the image. So, when your image is not a full un-cropped original 16:9 screenshot (i.e. cropped image), the search would likely fail. <br>
-Color is an important factor for the correct search, if heavy tints and filters are applied to the screenshot (i.e. grayscale, contrast, saturate, brightness, sepia), too much information are lost. In this case the search would also fail. The Edge Histogram can solve this issue by ignoring colors and only search edges. But I am running out of computing resource to support another image descriptor.<br>
+Color is an important factor for the correct search, if heavy tints and filters are applied to the screenshot (i.e. grayscale, contrast, saturation, brightness, sepia), too much information are lost. In this case the search would also fail. The Edge Histogram can solve this issue by ignoring colors and only search edges. But I am running out of computing resource to support another image descriptor.<br>
 Image transform is also an important factor. If the image is not scaled without maintaining original aspect ratios (i.e. elongated, flipped, rotated), the search would also fail.<br>
 Text occupied too much of the image. Large texts on the image would interfere the original image. The system is not smart enough to ignore the text.<br>
-If you image has too little distinguish features (e.g. dark images or images with large plain blocks of plain colors), the search would also fail.<br>
+If your image has too little distinguish features (e.g. dark images or images with large plain blocks of plain colors), the search would also fail.<br>
 Searching with a real photo (of an anime) definitely won't work.<br>
 </p>
 <h3>Examples of bad screenshots</h3>
@@ -123,18 +123,18 @@ Searching with a real photo (of an anime) definitely won't work.<br>
 <br>
 <h3>How does it work?</h3>
 <p>It uses the MPEG 7 Color Layout Descriptor for comparing images. Wikipedia has a good illustration about it. This would also explain why you can't find your image. <a href="https://en.wikipedia.org/wiki/Color_layout_descriptor">https://en.wikipedia.org/wiki/Color_layout_descriptor</a></p>
-<h3>How to make the search for a more accurate result?</h3>
+<h3>How do I search for a more accurate result?</h3>
 <p>Crop your screenshot to 16:9 or 4:3 before searching. Remove any extra borders in screencap (if any). By default, it crops the image to 16:9, if you upload a 16:10 screenshot, it should be cropped automatically. If the position is incorrect, you can drag the image and adjust the crop position.</p>
-<h3>What animes are being indexed?</h3>
-<p>Most japan anime since 2000 are indexed, plus some popular anime in 1990s, and little anime before 1990. A list of anime are incomplete in index at this stage, including Jewelpet, Yu-Gi-Oh!, Dragon Ball, Crayon Shin-chan, Doraemon, Pokemon, Detective Conan, Chibi Maruko-chan and old Hentai-anime.</p>
-<h3>Why I can't preview the search result?</h3>
-<p>There is no preview for mobile devices. Some animes are being removed or relocated, so some of the previews are offline now. The preview uses a considerable amount of network bandwidth, it would takes time to load if you have a slow connection.</p>
-<h3>Why the anime are chinese-subbed?</h3>
-<p>I am still collecting raw animes, and it would take a number of powerful servers several months to complete. It will switch to the new dataset once it is ready. The current dataset uses chinese-subbed anime because the current index is provided by some Asian users.</p>
+<h3>What anime are being indexed?</h3>
+<p>Most Japanese anime since 2000 are indexed, plus some popular anime in 1990s, and little anime before 1990. A list of anime are incomplete in index at this stage, including Jewelpet, Yu-Gi-Oh!, Dragon Ball, Crayon Shin-chan, Doraemon, Pokemon, Detective Conan, Chibi Maruko-chan and old Hentai-anime.</p>
+<h3>Why can't I preview the search result?</h3>
+<p>There is no preview for mobile devices. Some anime are being removed or relocated, so some of the previews are offline now. The preview uses a considerable amount of network bandwidth, it would take some time to load if you have a slow connection.</p>
+<h3>Why are the anime chinese-subbed?</h3>
+<p>I am still collecting raw anime, and it would take a number of powerful servers several months to complete. It will switch to the new dataset once it is ready. The current dataset uses Chinese-subbed anime because the current index is provided by some Asian users.</p>
 <h3>How can I watch the entire anime?</h3>
 <p>
 This website is not intended for watching anime.<br>
-If you wish to watch the anime, you may check which TV channel is broadcasting the anime in you country. For those which has finished airing, consider buying or renting the original Blu-ray/DVDs.
+If you wish to watch the anime, you may check which TV channel is broadcasting the anime in your country. For those which has finished airing, consider buying or renting the original Blu-ray/DVDs.
 </p>
 <h3>How can I share the search result?</h3>
 <p>For now, you have to upload the image somewhere else, then search by image URL, and share the result URL. If you have any feedback or suggestions, feel free to contact <a href="mailto:help@trace.moe">help@trace.moe</a>.</p>
