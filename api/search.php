@@ -331,7 +331,7 @@ if (!$image && !$_GET['url'] && !isset($_FILES['image'])) {
                     );
                     $payload = json_encode($request);
                     $curl = curl_init();
-                    curl_setopt($curl, CURLOPT_URL, "http://127.0.0.1:9200/anilist/anime/_search");
+                    curl_setopt($curl, CURLOPT_URL, "http://192.168.2.10:9200/anilist/anime/_search");
                     curl_setopt($curl, CURLOPT_POSTFIELDS, $payload);
                     curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
                     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
