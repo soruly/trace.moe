@@ -1,15 +1,6 @@
 <?php
 ini_set("display_errors", 0);
 header('Content-Type: application/json');
-if( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && ( $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' ) ){
-    //request from AJAX, continue
-//}
-//else if( isset( $_SERVER['HTTP_REFERER'] ) && ( $_SERVER['HTTP_REFERER'] == 'https://trace.moe/' ) ){
-    //request from original site, continue
-}
-else{
-    header("HTTP/1.0 404 Not Found");
-}
 
 if(isset($_GET['anilist_id'])){
 
