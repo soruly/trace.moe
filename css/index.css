@@ -108,10 +108,7 @@ td:nth-child(3) {
 
 .result {
   transition: all 0.1s ease-out;
-}
-
-.result a {
-  transition: all 0.1s ease-out;
+  cursor: pointer;
 }
 
 .result .text,
@@ -122,7 +119,7 @@ td:nth-child(3) {
 .result .thumb {
   float: right;
 }
-.result a > div::after {
+.result > div::after {
   content: " ";
   display: block;
   height: 0;
@@ -134,9 +131,7 @@ td:nth-child(3) {
   border-radius: 0;
 }
 
-#results-list .nav-pills > li.active > a,
-#results-list .nav-pills > li.active > a:focus,
-#results-list .nav-pills > li.active > a:hover {
+#results-list .nav-pills > li.active {
   background-color: #eee;
   color: #333;
 }
