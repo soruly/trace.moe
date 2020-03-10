@@ -102,7 +102,7 @@ var originalImage = document.querySelector("#originalImage");
 originalImage.onload = function() {
   resetAll();
   // clear the input if user upload/paste image
-  if (/^data:/.test(originalImage.src)) {
+  if (/^blob:/.test(originalImage.src)) {
     document.querySelector("#imageURL").value = "";
   }
   updateURLParam();
@@ -522,14 +522,8 @@ var handleFileSelect = function (evt) {
   if (file) {
     document.querySelector("#results").innerHTML = "<div id=\"status\">Reading File...</div>";
     if (file.type.match("image.*")) {
-      var reader = new FileReader();
-
-      reader.onload = (function () {
-        return function (e) {
-          originalImage.src = e.target.result;
-        };
-      }(file));
-      reader.readAsDataURL(file);
+      URL.revokeObjectURL(originalImage.src);
+      originalImage.src = URL.createObjectURL(file);
     } else {
       document.querySelector("#results").innerHTML = "<div id=\"status\">Error: File is not an image</div>";
       return false;
