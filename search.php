@@ -97,7 +97,7 @@ if (isset($_POST['data']) || isset($_FILES['image'])) {
         $trial = intval($_POST['trial']) > 5 ? 5 : intval($_POST['trial']);
     }
 
-    $candidates = 1000000;
+    $candidates = 600000;
     $accuracy = $trial;
 
     unset($nodes);

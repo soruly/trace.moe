@@ -6,13 +6,8 @@ $uuid = uniqid();
 $start = floatval($_GET['t']) - 0.9;
 $duration = 3;
 $anilistID = rawurldecode($_GET['anilist_id']);
-$season = rawurldecode($_GET['season']);  // deprecated
-$anime = rawurldecode($_GET['anime']);  // deprecated
 $file = rawurldecode($_GET['file']);
 $filepath = str_replace('`', '\`', '/mnt/data/anilist/'.$anilistID.'/'.$file);
-if ($season && $anime) {  // deprecated
-  $filepath = str_replace('`', '\`', '/mnt/data/anime_new/'.$season.'/'.$anime.'/'.$file);
-}
 $thumbpath = $thumbdir.$uuid.'.mp4';
 $mute = isset($_GET['mute']) ? "-an" : "";
 

@@ -7,13 +7,8 @@ $thumbdir = 'thumbnail/';
 $uuid = uniqid();
 $t = floatval($_GET['t']);
 $anilistID = rawurldecode($_GET['anilist_id']);
-$season = rawurldecode($_GET['season']); // deprecated
-$anime = rawurldecode($_GET['anime']); // deprecated
 $file = rawurldecode($_GET['file']);
 $filepath = '/mnt/data/anilist/'.$anilistID.'/'.$file;
-if ($season && $anime) {  // deprecated
-  $filepath = '/mnt/data/anime_new/'.$season.'/'.$anime.'/'.$file;
-}
 $thumbpath = $thumbdir.$uuid.'.jpg';
 $new_width = 320;
 $new_height = 180;
