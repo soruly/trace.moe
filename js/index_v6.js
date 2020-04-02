@@ -99,17 +99,15 @@ var player = document.querySelector("#player");
 var preview = document.querySelector("#preview");
 var originalImage = document.querySelector("#originalImage");
 
-originalImage.onload = function () {
+originalImage.onload = function() {
   resetAll();
+  // clear the input if user upload/paste image
+  if (/^blob:/.test(originalImage.src)) {
+    document.querySelector("#imageURL").value = "";
+  }
+  updateURLParam();
   prepareSearchImage();
 };
-
-var sourceImage = new Image();
-sourceImage.onload = function () {
-  resetAll();
-  prepareSearchImage();
-};
-sourceImage.src = originalImage.src;
 
 player.volume = 0.5;
 
@@ -310,7 +308,7 @@ document.querySelector("#imageURL").addEventListener("input", function () {
     if (document.querySelector("form").checkValidity()) {
       fetchImageDelay = setTimeout(function () {
         document.querySelector("#messageText").innerHTML = "<span class=\"glyphicon glyphicon-repeat spinning\"></span>";
-        sourceImage.src = "/image-proxy?url=" + encodeURIComponent(document.querySelector("#imageURL").value.replace(/ /g, "%20"));
+        originalImage.src = "/image-proxy?url=" + encodeURIComponent(document.querySelector("#imageURL").value.replace(/ /g, "%20"));
         history.replaceState(null, null, "/?url=" + encodeURIComponent(document.querySelector("#imageURL").value.replace(/ /g, "%20")));
       }, 500);
     } else {
@@ -459,18 +457,13 @@ var resetAll = function () {
   window.cancelAnimationFrame(preview_heartbeat);
 };
 
-sourceImage.onerror = function () {
-  document.querySelector("#messageText").classList.add("error");
-  document.querySelector("#messageText").innerText = "";
-};
-
 originalImage.onerror = function () {
   document.querySelector("#messageText").classList.add("error");
   document.querySelector("#messageText").innerText = "";
 };
 
 var prepareSearchImage = function () {
-  var img = originalImage.src === document.location.href ? sourceImage : originalImage;
+  var img = originalImage
   var imageAspectRatio = img.width / img.height;
 
   searchImage.width = 640;
@@ -529,14 +522,8 @@ var handleFileSelect = function (evt) {
   if (file) {
     document.querySelector("#results").innerHTML = "<div id=\"status\">Reading File...</div>";
     if (file.type.match("image.*")) {
-      var reader = new FileReader();
-
-      reader.onload = (function () {
-        return function (e) {
-          sourceImage.src = e.target.result;
-        };
-      }(file));
-      reader.readAsDataURL(file);
+      URL.revokeObjectURL(originalImage.src);
+      originalImage.src = URL.createObjectURL(file);
     } else {
       document.querySelector("#results").innerHTML = "<div id=\"status\">Error: File is not an image</div>";
       return false;
@@ -626,7 +613,7 @@ function CLIPBOARD_CLASS (canvas_id) {
     pastedImage.onload = function () {
       ctx.drawImage(pastedImage, 0, 0);
     };
-    sourceImage.src = source;
+    originalImage.src = source;
   };
 }
 
