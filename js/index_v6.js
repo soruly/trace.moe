@@ -149,9 +149,13 @@ var search = function (t, prev_result) {
   }
   document.querySelector("#flipBtn").disabled = true;
   document.querySelector("#imageURL").disabled = true;
+  var endpoint = "/search";
+  if (document.querySelector("#jcBtn .glyphicon").classList.contains("glyphicon-check")) {
+    endpoint = "/search?method=jc";
+  }
 
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "/search", true);
+  xhr.open("POST", endpoint, true);
   xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
   xhr.onreadystatechange = function () {
     document.querySelector("#searchBtn span").classList.remove("glyphicon-refresh");
@@ -321,6 +325,11 @@ document.querySelector("#imageURL").addEventListener("input", function () {
 document.querySelector("#safeBtn").addEventListener("click", function () {
   document.querySelector("#safeBtn .glyphicon").classList.toggle("glyphicon-unchecked");
   document.querySelector("#safeBtn .glyphicon").classList.toggle("glyphicon-check");
+});
+
+document.querySelector("#jcBtn").addEventListener("click", function () {
+  document.querySelector("#jcBtn .glyphicon").classList.toggle("glyphicon-unchecked");
+  document.querySelector("#jcBtn .glyphicon").classList.toggle("glyphicon-check");
 });
 
 var drawVideoPreview = function () {

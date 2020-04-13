@@ -116,6 +116,9 @@ if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
         <label for="seasonSelector" style="font-weight: inherit">Search in (anilist ID):</label>
         <input type="text" id="seasonSelector" class="form-control input-sm" style="display:inline-block; width:100px">
 
+        <button id="jcBtn" type="button" class="btn btn-default btn-sm">
+          <span class="glyphicon glyphicon-unchecked"></span> Use new algo
+        </button>
         <button id="safeBtn" type="button" class="btn btn-default btn-sm">
           <span class="glyphicon glyphicon-unchecked"></span> Safe Search
         </button>
