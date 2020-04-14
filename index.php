@@ -63,7 +63,6 @@ if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
   <link href="/css/style.css" rel="stylesheet">
   <link href="/css/index.css" rel="stylesheet">
   <link rel="dns-prefetch" href="https://image.trace.moe/">
-  <script src="/js/analytics.js" async defer></script>
 </head>
 <body>
 <main>
@@ -152,5 +151,6 @@ if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
   <script src="/js/index_v6.js"></script>
   <script src="/js/info_v6.js"></script>
 </main>
+<script defer src="/js/analytics.js"></script>
 </body>
 </html>
