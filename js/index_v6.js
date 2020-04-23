@@ -248,7 +248,7 @@ var search = function (t, prev_result) {
         keepSearchDiv.style.textAlign = "center";
         keepSearchDiv.innerHTML = "<button id=\"search2Btn\" type=\"button\" class=\"btn btn-default btn-sm btn-primary\"><span class=\"glyphicon glyphicon-search\"></span> Keep Searching</button>";
 
-        if (parseFloat(data.docs[0].diff) > 7) {
+        if (parseFloat(data.docs[0].diff) > 1) { // target 99%
           if (trial < 2) {
             search(trial + 1, data);
           } else if (trial < 5) {
@@ -256,6 +256,9 @@ var search = function (t, prev_result) {
             document.querySelector("#search2Btn").addEventListener("click", function () {
               search(trial + 1, data);
             });
+            if (document.querySelector("#safeBtn .glyphicon").classList.contains("glyphicon-check") === false) {
+              document.querySelectorAll(".result")[0].click();
+            }
           }
         } else {
           if (trial < 5) {
