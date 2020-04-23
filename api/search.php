@@ -217,7 +217,7 @@ if (!$image && !$_GET['url'] && !isset($_FILES['image'])) {
             }
         }
         foreach($final_result->docs as $doc){
-          if($doc->d <= 7) break 2; //break outer loop
+          if($doc->d <= 0) break 2; //break outer loop
         }
     }
     usort($final_result->docs, "reRank");
