@@ -173,7 +173,7 @@ if (!$image && !$_GET['url'] && !isset($_FILES['image'])) {
 
         unset($nodes);
         for($i = 0; $i <= 31; $i++){
-            $nodes[]= "http://192.168.2.12:${port}/solr/lire_{$i}/lireq?{$filter_str}&field=${method}_ha&ms=false&accuracy={$trial}&candidates=1000000&rows=10";
+            $nodes[]= "http://192.168.2.12:${port}/solr/lire_{$i}/lireq?{$filter_str}&field=${method}_ha&ms=false&accuracy={$trial}&candidates=800000&rows=10";
         }
 
         $node_count = count($nodes);
@@ -217,7 +217,7 @@ if (!$image && !$_GET['url'] && !isset($_FILES['image'])) {
             }
         }
         foreach($final_result->docs as $doc){
-          if($doc->d <= 0) break 2; //break outer loop
+          if($doc->d <= 2) break 2; //break outer loop
         }
     }
     usort($final_result->docs, "reRank");

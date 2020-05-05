@@ -248,7 +248,7 @@ var search = function (t, prev_result) {
         keepSearchDiv.style.textAlign = "center";
         keepSearchDiv.innerHTML = "<button id=\"search2Btn\" type=\"button\" class=\"btn btn-default btn-sm btn-primary\"><span class=\"glyphicon glyphicon-search\"></span> Keep Searching</button>";
 
-        if (parseFloat(data.docs[0].diff) > 1) { // target 99%
+        if (parseFloat(data.docs[0].diff) > 3) { // target 97%
           if (trial < 2) {
             search(trial + 1, data);
           } else if (trial < 5) {
