@@ -108,7 +108,7 @@ if (isset($_POST['data']) || isset($_FILES['image'])) {
 
     unset($nodes);
     for($i = 0; $i <= 31; $i++){
-        $nodes[]= "http://192.168.2.12:{$port}/solr/lire_{$i}/lireq?{$filter}&field={$method}_ha&ms=false&accuracy={$accuracy}&candidates={$candidates}&rows=10";
+        $nodes[]= "http://127.0.0.1:{$port}/solr/lire_{$i}/lireq?{$filter}&field={$method}_ha&ms=false&accuracy={$accuracy}&candidates={$candidates}&rows=10";
     }
 
     $node_count = count($nodes);

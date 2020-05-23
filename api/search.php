@@ -173,7 +173,7 @@ if (!$image && !$_GET['url'] && !isset($_FILES['image'])) {
 
         unset($nodes);
         for($i = 0; $i <= 31; $i++){
-            $nodes[]= "http://192.168.2.12:${port}/solr/lire_{$i}/lireq?{$filter_str}&field=${method}_ha&ms=false&accuracy={$trial}&candidates=800000&rows=10";
+            $nodes[]= "http://127.0.0.1:${port}/solr/lire_{$i}/lireq?{$filter_str}&field=${method}_ha&ms=false&accuracy={$trial}&candidates=800000&rows=10";
         }
 
         $node_count = count($nodes);
