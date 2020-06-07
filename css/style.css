@@ -19,6 +19,7 @@ a:hover {
   border-bottom: 1px solid #9e9e9e;
 }
 .navbar {
+  border: 0;
   margin-bottom: 0;
 }
 .header {
