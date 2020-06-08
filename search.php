@@ -97,10 +97,10 @@ if (isset($_POST['data']) || isset($_FILES['image'])) {
         $trial = intval($_POST['trial']) > 5 ? 5 : intval($_POST['trial']);
     }
     $method = 'cl';
-    $port = 8983;
+    $prefix = 'lire_cl';
     if(isset($_GET['method']) && $_GET['method'] === "jc"){
         $method = 'jc';
-        $port = 8988;
+        $prefix = 'lire';
     }
 
     $candidates = 800000;
@@ -108,7 +108,7 @@ if (isset($_POST['data']) || isset($_FILES['image'])) {
 
     unset($nodes);
     for($i = 0; $i <= 31; $i++){
-        $nodes[]= "http://127.0.0.1:{$port}/solr/lire_{$i}/lireq?{$filter}&field={$method}_ha&ms=false&accuracy={$accuracy}&candidates={$candidates}&rows=10";
+        $nodes[]= "http://127.0.0.1:8988/solr/{$prefix}_{$i}/lireq?{$filter}&field={$method}_ha&ms=false&accuracy={$accuracy}&candidates={$candidates}&rows=10";
     }
 
     $node_count = count($nodes);

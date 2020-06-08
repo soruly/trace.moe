@@ -4,7 +4,7 @@ ini_set("display_errors", 0);
 header('Content-Type: application/json');
 
 $curl = curl_init();
-curl_setopt($curl, CURLOPT_URL, "http://127.0.0.1:8983/solr/admin/cores?wt=json");
+curl_setopt($curl, CURLOPT_URL, "http://127.0.0.1:8988/solr/admin/cores?wt=json");
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 $res = curl_exec($curl);
 $result = json_decode($res);

@@ -165,7 +165,7 @@ if (!$image && !$_GET['url'] && !isset($_FILES['image'])) {
     
     $filter_str = $filter ? "fq=id:".intval($filter)."/*" : "";
     $method = isset($_GET['method']) && $_GET['method'] === 'jc' ? 'jc' : 'cl';
-    $port = isset($_GET['method']) && $_GET['method'] === 'jc' ? 8988 : 8983;
+    $prefix = isset($_GET['method']) && $_GET['method'] === 'jc' ? 'lire' : 'lire_cl';
     $trial = 0;
     while($trial < 3){
         $trial++;
@@ -173,7 +173,7 @@ if (!$image && !$_GET['url'] && !isset($_FILES['image'])) {
 
         unset($nodes);
         for($i = 0; $i <= 31; $i++){
-            $nodes[]= "http://127.0.0.1:${port}/solr/lire_{$i}/lireq?{$filter_str}&field=${method}_ha&ms=false&accuracy={$trial}&candidates=800000&rows=10";
+            $nodes[]= "http://127.0.0.1:8988/solr/{$prefix}_{$i}/lireq?{$filter_str}&field=${method}_ha&ms=false&accuracy={$trial}&candidates=800000&rows=10";
         }
 
         $node_count = count($nodes);
