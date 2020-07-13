@@ -173,7 +173,7 @@ if (!$image && !$_GET['url'] && !isset($_FILES['image'])) {
 
         unset($nodes);
         for($i = 0; $i <= 31; $i++){
-            $nodes[]= "http://127.0.0.1:8988/solr/{$prefix}_{$i}/lireq?{$filter_str}&field=${method}_ha&ms=false&accuracy={$trial}&candidates=800000&rows=10";
+            $nodes[]= "http://127.0.0.1:8988/solr/{$prefix}_{$i}/lireq?{$filter_str}&field=${method}_ha&ms=false&accuracy={$trial}&candidates=600000&rows=10";
         }
 
         $node_count = count($nodes);
@@ -216,8 +216,9 @@ if (!$image && !$_GET['url'] && !isset($_FILES['image'])) {
               usort($final_result->docs, "reRank");
             }
         }
+        $threshold = isset($_GET['method']) && $_GET['method'] === 'jc' ? 3 : 8; // target 97% for JCD, 92% for ColorLayout
         foreach($final_result->docs as $doc){
-          if($doc->d <= 2) break 2; //break outer loop
+          if($doc->d <= $threshold) break 2; //break outer loop
         }
     }
     usort($final_result->docs, "reRank");
