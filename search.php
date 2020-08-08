@@ -103,7 +103,7 @@ if (isset($_POST['data']) || isset($_FILES['image'])) {
         $prefix = 'lire';
     }
 
-    $candidates = 600000;
+    $candidates = 800000;
     $accuracy = $trial;
 
     unset($nodes);
