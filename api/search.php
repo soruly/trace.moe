@@ -131,7 +131,23 @@ if (!$image && !$_GET['url'] && !isset($_FILES['image'])) {
             curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0); // <-- don't forget this
             curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0); // <-- and this
             $raw = curl_exec($curl);
-            file_put_contents("../thumbnail/".$filename, $raw);
+            $contentType = curl_getinfo($curl, CURLINFO_CONTENT_TYPE);
+            if (explode("/", $contentType)[0] === "video") {
+                file_put_contents("../clip/".$filename.".video", $raw);
+                $ffmpeg = FFMpeg\FFMpeg::create([
+                    'ffmpeg.binaries' => '/usr/bin/avconv',
+                    'ffmpeg.binaries' => '/usr/bin/ffmpeg',
+                    'ffprobe.binaries' => '/usr/bin/avprobe',
+                    'ffprobe.binaries' => '/usr/bin/ffprobe'
+                 ]);
+                 $video = $ffmpeg->open("../clip/".$filename.".video");
+                 $video
+                   ->frame(FFMpeg\Coordinate\TimeCode::fromSeconds(0))
+                   ->save("../thumbnail/".$filename);
+                unlink("../clip/".$filename.".video");
+            } else {
+                file_put_contents("../thumbnail/".$filename, $raw);
+            }
         } catch(Exception $e) {
             header('HTTP/1.1 400 Bad Request');
             exit('"Failed to fetch image '.$imageURL.'"');
