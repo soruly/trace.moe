@@ -117,7 +117,7 @@ if (!$image && !$_GET['url'] && !isset($_FILES['image'])) {
     $savePath = '../temp/';
     $filename = microtime(true).'.jpg';
 
-    if ($_GET['url']) {
+    if (isset($_GET['url']) && $_GET['url']) {
         try {
             $imageURL = str_replace(' ','%20',rawurldecode($_GET["url"]));
             $proxyImageURL = "https://trace-moe-image-proxy.now.sh/api/image-proxy?url=".str_replace(' ','%20',rawurlencode($imageURL));
@@ -357,7 +357,7 @@ if (!$image && !$_GET['url'] && !isset($_FILES['image'])) {
                     try{
                         $res = curl_exec($curl);
                         $result = json_decode($res);
-                        if($result->hits && $result->hits->total > 0){
+                        if($result->hits && $result->hits->hits && $result->hits->hits[0]){
                             $doc->mal_id = intval($result->hits->hits[0]->_source->idMal);
                             $doc->title_romaji = $result->hits->hits[0]->_source->title->romaji ?? "";
                             $doc->title_native = $result->hits->hits[0]->_source->title->native ?? $doc->title_romaji;
