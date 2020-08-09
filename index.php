@@ -3,7 +3,7 @@ header("Link: </css/style.css>; rel=preload; as=style", false);
 header("Link: </css/index.css>; rel=preload; as=style", false);
 header("Link: </css/bootstrap.min.css>; rel=preload; as=style", false);
 header("Link: </js/analytics.js>; rel=preload; as=script", false);
-header("Link: </js/index_v6.js>; rel=preload; as=script", false);
+header("Link: </js/index_v7.js>; rel=preload; as=script", false);
 header("Link: </js/info_v6.js>; rel=preload; as=script", false);
 header("Link: </fonts/glyphicons-halflings-regular.woff>; rel=preload; as=font; crossorigin", false);
 
@@ -13,7 +13,7 @@ $originalImage = "";
 if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
   $autosearch = true;
   $imageURL = str_replace(' ','%20',rawurldecode($_GET["url"]));
-  $originalImage = "/image-proxy?url=".str_replace(' ','%20',rawurlencode($imageURL));
+  $originalImage = "https://trace-moe-image-proxy.now.sh/api/image-proxy?url=".str_replace(' ','%20',rawurlencode($imageURL));
 }
 ?>
 <!DOCTYPE html>
@@ -31,7 +31,7 @@ if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
   $og_image = 'https://trace.moe/favicon128.png';
   if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
     $imgURL = str_replace(' ','%20',rawurldecode($_GET["url"]));
-    $og_image = "/image-proxy?url=".str_replace(' ','%20',rawurlencode($imgURL));
+    $og_image = "https://trace-moe-image-proxy.now.sh/api/image-proxy?url=".str_replace(' ','%20',rawurlencode($imgURL));
   }
   ?>
   <!-- Schema.org markup (Google) -->
@@ -148,7 +148,7 @@ if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
   </a>
   <style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
 
-  <script src="/js/index_v6.js"></script>
+  <script src="/js/index_v7.js"></script>
   <script src="/js/info_v6.js"></script>
 </main>
 <script defer src="/js/analytics.js"></script>
