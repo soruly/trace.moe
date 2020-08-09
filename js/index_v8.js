@@ -109,6 +109,12 @@ originalImage.onload = function() {
   prepareSearchImage();
 };
 
+window.addEventListener("load", (event) => {
+  if(originalImage.dataset.url) {
+    originalImage.src = originalImage.dataset.url;
+  }
+});
+
 player.volume = 0.5;
 
 var imgData;

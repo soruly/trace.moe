@@ -3,7 +3,7 @@ header("Link: </css/style.css>; rel=preload; as=style", false);
 header("Link: </css/index.css>; rel=preload; as=style", false);
 header("Link: </css/bootstrap.min.css>; rel=preload; as=style", false);
 header("Link: </js/analytics.js>; rel=preload; as=script", false);
-header("Link: </js/index_v7.js>; rel=preload; as=script", false);
+header("Link: </js/index_v8.js>; rel=preload; as=script", false);
 header("Link: </js/info_v6.js>; rel=preload; as=script", false);
 header("Link: </fonts/glyphicons-halflings-regular.woff>; rel=preload; as=font; crossorigin", false);
 
@@ -67,7 +67,7 @@ if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
 <body>
 <main>
   <input id="autoSearch" type="checkbox" style="display: none;" <?php echo $autosearch ? "checked" : ""; ?>>
-  <img id="originalImage" src="<?php echo $originalImage; ?>" crossorigin="anonymous" style="display: none;">
+  <img id="originalImage" src="" data-url="<?php echo $originalImage; ?>" crossorigin="anonymous" style="display: none;">
   <nav class="navbar header">
     <div class="container">
       <ul class="nav navbar-nav">
@@ -148,7 +148,7 @@ if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
   </a>
   <style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
 
-  <script src="/js/index_v7.js"></script>
+  <script src="/js/index_v8.js"></script>
   <script src="/js/info_v6.js"></script>
 </main>
 <script defer src="/js/analytics.js"></script>
