@@ -25,8 +25,8 @@ if(isset($_GET['token']) && $_GET['token'] !== "") {
     mysqli_query($sql, "SET NAMES 'utf8'");
 
     if ($stmt = mysqli_prepare($sql, "SELECT `user_id`,`email`,`user_limit`,`user_limit_ttl`,`user_quota`,`user_quota_ttl` FROM `users` WHERE `api_key`=? LIMIT 0,1")) {
-
-      mysqli_stmt_bind_param($stmt, "s", $_GET['token']);
+      $token = $_GET['token'];
+      mysqli_stmt_bind_param($stmt, "s", $token);
       mysqli_stmt_execute($stmt);
       mysqli_stmt_store_result($stmt);
       mysqli_stmt_bind_result($stmt, $user_id, $user_email, $user_limit, $user_limit_ttl, $user_quota, $user_quota_ttl);

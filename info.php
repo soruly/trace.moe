@@ -8,7 +8,8 @@ if(isset($_GET["anilist_id"])){
   $sql = mysqli_connect($sql_anime_hostname, $sql_anime_username, $sql_anime_password, $sql_anime_database);
   mysqli_query($sql, "SET NAMES 'utf8'");
   if ($stmt = mysqli_prepare($sql, "SELECT `json` FROM `anilist_view` WHERE `id`=? LIMIT 0,1")){
-    mysqli_stmt_bind_param($stmt, "i", intval($_GET["anilist_id"]));
+    $anilist_id = intval($_GET["anilist_id"]);
+    mysqli_stmt_bind_param($stmt, "i", $anilist_id);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_store_result($stmt);
     mysqli_stmt_bind_result($stmt, $json);
@@ -18,6 +19,6 @@ if(isset($_GET["anilist_id"])){
     }
     mysqli_stmt_close($stmt);
   }
-  mysqli_close($sql2);
+  mysqli_close($sql);
 }
 ?>
