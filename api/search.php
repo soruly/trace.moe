@@ -169,6 +169,9 @@ if (!$image && !isset($_GET['url']) && !isset($_FILES['image'])) {
     }
     exec("cd .. && python crop.py thumbnail/".$filename." ./temp/".$filename);
     // exec("cd .. && python crop.py thumbnail/".$filename." thumbnail/".$filename.".jpg");
+    if (!file_exists($savePath.$filename)) {
+        exit('"Failed to process image"');
+    }
     unlink("../thumbnail/".$filename);
     
     $final_result = new stdClass;
@@ -189,7 +192,7 @@ if (!$image && !isset($_GET['url']) && !isset($_FILES['image'])) {
 
         unset($nodes);
         for($i = 0; $i <= 31; $i++){
-            $nodes[]= "http://127.0.0.1:8988/solr/{$prefix}_{$i}/lireq?{$filter_str}&field=${method}_ha&ms=false&accuracy={$trial}&candidates=800000&rows=10";
+            $nodes[]= "http://127.0.0.1:8988/solr/{$prefix}_{$i}/lireq?{$filter_str}&field=${method}_ha&ms=false&accuracy={$trial}&candidates=600000&rows=10";
         }
 
         $node_count = count($nodes);
