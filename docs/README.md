@@ -257,4 +257,4 @@ Example Response
 
 ## Rate limit and Search Quota
 
-Every IP address has a rate limit of 10/minute, counting API and WebUI together. There is no daily search quota.
+Every IP address has a rate limit of 10/minute, counting API and WebUI together. There is no limit to daily search quota.

@@ -28,11 +28,13 @@ trace.moe uses [sola](https://github.com/soruly/sola) to index video and work wi
 
 To learn more, read the presentation slides below
 
-[Presentation slides](https://go-talks.appspot.com/github.com/soruly/slides/whatanime.ga.slide) given in May 2016
+[Presentation slides](https://go-talks.appspot.com/github.com/soruly/slides/whatanime.ga.slide) May 2016
 
-[Presentation slides](https://go-talks.appspot.com/github.com/soruly/slides/whatanime.ga-2017.slide) given in Jun 2017
+[Presentation slides](https://go-talks.appspot.com/github.com/soruly/slides/whatanime.ga-2017.slide) Jun 2017
 
-[Presentation slides](https://go-talks.appspot.com/github.com/soruly/slides/whatanime.ga-2018.slide) given in Jun 2018
+[Presentation slides](https://go-talks.appspot.com/github.com/soruly/slides/whatanime.ga-2018.slide) Jun 2018
+
+[Presentation slides](https://github.com/soruly/slides/blob/master/2019-COSCUP-trace.moe.md) Aug 2019
 
 System Overview
 
@@ -47,9 +49,11 @@ You may find some other related repo here
 - [trace.moe-telegram-bot](https://github.com/soruly/trace.moe-telegram-bot)
 
 ## Official API Docs (Beta)
+
 https://soruly.github.io/trace.moe/
 
 ## Mobile Apps (3rd party)
+
 WhatAnime by Andrée Torres
 https://play.google.com/store/apps/details?id=com.maddog05.whatanime
 Source: https://github.com/maddog05/whatanime-android
@@ -59,12 +63,15 @@ https://play.google.com/store/apps/details?id=pw.janyo.whatanime
 Source: https://github.com/JanYoStudio/WhatAnime
 
 ## Integrating search with trace.moe
+
 To add trace.moe as a search option for your site, pass the image URL via query string like this
+
 ```
 https://trace.moe/?url=http://searchimageurl
 ```
 
 You can also specify playback options like this
+
 ```
 https://trace.moe/?autoplay=0&loop&mute=1&url=http://searchimageurl
 ```
@@ -72,10 +79,10 @@ https://trace.moe/?autoplay=0&loop&mute=1&url=http://searchimageurl
 Playback URL params:
 
 | param    | value  | default (not set in URL param) | set with empty or other value |
-|----------|--------|---|---|
-| autoplay | 0 or 1 | 1 | 1 |
-| mute     | 0 or 1 | 0 | 1 |
-| loop     | 0 or 1 | 0 | 1 |
+| -------- | ------ | ------------------------------ | ----------------------------- |
+| autoplay | 0 or 1 | 1                              | 1                             |
+| mute     | 0 or 1 | 0                              | 1                             |
+| loop     | 0 or 1 | 0                              | 1                             |
 
 The `auto` URL parameter is no longer used, it would always search automatically when there is `?url=` param.
 
