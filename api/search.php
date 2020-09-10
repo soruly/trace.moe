@@ -132,6 +132,11 @@ if (!$image && !isset($_GET['url']) && !isset($_FILES['image'])) {
             curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0); // <-- and this
             $raw = curl_exec($curl);
             $contentType = curl_getinfo($curl, CURLINFO_CONTENT_TYPE);
+            $code = curl_getinfo($curl, CURLINFO_RESPONSE_CODE);
+            if ($code >= 400) {
+                header('HTTP/1.1 400 Bad Request');
+                exit('"Failed to fetch image '.$imageURL.'"');
+            }
             if (explode("/", $contentType)[0] === "video") {
                 file_put_contents("../clip/".$filename.".video", $raw);
                 $ffmpeg = FFMpeg\FFMpeg::create([
@@ -169,10 +174,10 @@ if (!$image && !isset($_GET['url']) && !isset($_FILES['image'])) {
     }
     exec("cd .. && python crop.py thumbnail/".$filename." ./temp/".$filename);
     // exec("cd .. && python crop.py thumbnail/".$filename." thumbnail/".$filename.".jpg");
+    unlink("../thumbnail/".$filename);
     if (!file_exists($savePath.$filename)) {
         exit('"Failed to process image"');
     }
-    unlink("../thumbnail/".$filename);
     
     $final_result = new stdClass;
     $final_result->RawDocsCount = 0;

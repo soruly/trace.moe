@@ -79,6 +79,11 @@ if (isset($_POST['data']) || isset($_FILES['image'])) {
     } else {
       file_put_contents($savePath.$filename, $data);
     }
+
+    if (!file_exists($savePath.$filename)) {
+        http_response_code(500);
+        exit('500 Failed to process image');
+    }
     
     $final_result = new stdClass;
     $final_result->CacheHit = false;
