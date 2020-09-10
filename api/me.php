@@ -52,20 +52,12 @@ else {
 
 $client_id = $user_id ?? $_SERVER['HTTP_X_FORWARDED_FOR'];
 $limit_id = $client_id."_limit"; // request per minute
-$quota_id = $client_id."_quota"; // quota per day
 
 $limit = $user_limit;
 $limit_ttl = $user_limit_ttl;
 if($redis->exists($limit_id)){
   $limit = intval($redis->get($limit_id));
   $limit_ttl = $redis->ttl($limit_id);
-}
-
-$quota = $user_quota;
-$quota_ttl = $user_quota_ttl;
-if($redis->exists($quota_id)){
-  $quota = intval($redis->get($quota_id));
-  $quota_ttl = $redis->ttl($quota_id);
 }
 
 header('Content-Type: application/json');
@@ -75,8 +67,8 @@ $res = array(
   'email' => $user_email,
   'limit' => $limit,
   'limit_ttl' => $limit_ttl,
-  'quota' => $quota,
-  'quota_ttl' => $quota_ttl,
+  'quota' => $user_quota,
+  'quota_ttl' => $user_quota_ttl,
   'user_limit' => $user_limit,
   'user_limit_ttl' => $user_limit_ttl,
   'user_quota' => $user_quota,

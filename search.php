@@ -23,7 +23,6 @@ if (isset($_POST['data']) || isset($_FILES['image'])) {
 
     $client_id = $_SERVER['HTTP_X_FORWARDED_FOR'];
     $limit_id = $client_id."_limit"; // request per minute
-    $quota_id = $client_id."_quota"; // quota per day
 
     // rate limit per minute
     if(!$redis->exists($limit_id)){
@@ -39,22 +38,6 @@ if (isset($_POST['data']) || isset($_FILES['image'])) {
         header("HTTP/1.0 429 Too Many Requests");
         header("Retry-After: ".$limit_ttl);
         exit("You have searched too much, try again in ".$limit_ttl." seconds.");
-    }
-
-    // quota limit per day
-    if(!$redis->exists($quota_id)){
-        $redis->set($quota_id, 150);
-        $redis->expire($quota_id, 86400);
-    }
-    $quota = intval($redis->get($quota_id));
-    $quota--;
-    $quota_ttl = $redis->ttl($quota_id);
-    $redis->set($quota_id, $quota);
-    $redis->expire($quota_id, $quota_ttl);
-    if($quota < 0) {
-        header("HTTP/1.0 429 Too Many Requests");
-        header("Retry-After: ".$quota_ttl);
-        exit("You have searched too much, try again in ".$quota_ttl." seconds.");
     }
 
     header('Content-Type: application/json');
@@ -263,8 +246,6 @@ if (isset($_POST['data']) || isset($_FILES['image'])) {
     //$final_result->accuracy = $accuracy;
     $final_result->limit = $limit;
     $final_result->limit_ttl = $limit_ttl;
-    $final_result->quota = $quota;
-    $final_result->quota_ttl = $quota_ttl;
     echo json_encode($final_result);
 }
 

@@ -4,7 +4,7 @@ This API is always under development. Please stay up-to-date with this project v
 
 ## Search
 
-You have 2 ways to use the API for searching: 
+You have 2 ways to use the API for searching:
 
 Search by image URL
 
@@ -65,10 +65,10 @@ ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 fetch("https://trace.moe/api/search", {
   method: "POST",
   body: JSON.stringify({ image: canvas.toDataURL("image/jpeg", 0.8) }),
-  headers: { "Content-Type": "application/json" }
+  headers: { "Content-Type": "application/json" },
 })
-  .then(res => res.json())
-  .then(result => {
+  .then((res) => res.json())
+  .then((result) => {
     console.log(result);
   });
 ```
@@ -84,8 +84,8 @@ Example Response
   "trial": 1,
   "limit": 9,
   "limit_ttl": 60,
-  "quota": 148,
-  "quota_ttl": 85899,
+  "quota": 150,
+  "quota_ttl": 86400,
   "docs": [
     {
       "from": 663.17,
@@ -175,8 +175,8 @@ Aside from the JSON response or the [/me](#Me) endpoint, you can also get the cu
 ```
 x-whatanime-limit: 9
 x-whatanime-limit-ttl: 60
-x-whatanime-quota: 148
-x-whatanime-quota-ttl: 85899
+x-whatanime-quota: 150
+x-whatanime-quota-ttl: 86400
 ```
 
 Once the limit is reached. Server would respond HTTP 429 Too Many Requests, with a double quoted string showing when the quota will reset.
@@ -204,14 +204,6 @@ https://trace.moe/thumbnail.php?anilist_id=${anilist_id}&file=${encodeURICompone
 ```
 
 ### Video Preview
-
-There is a 3 second video preview of the matched scene. (1 seconds before and 2 seconds ahead)
-
-```
-https://trace.moe/preview.php?anilist_id=${anilist_id}&file=${encodeURIComponent(filename)}&t=${at}&token=${tokenthumb}
-```
-
-### Video Preview with Natural Scene Cutting
 
 With [trace.moe-media](https://github.com/soruly/trace.moe-media), it can now detect timestamp boundaries of a scene naturally.
 
@@ -241,8 +233,8 @@ Example Response
   "email": "soruly@gmail.com",
   "limit": 9,
   "limit_ttl": 45,
-  "quota": 999,
-  "quota_ttl": 86385,
+  "quota": 1000,
+  "quota_ttl": 86400,
   "user_limit": 10,
   "user_limit_ttl": 60,
   "user_quota": 1000,
@@ -250,34 +242,19 @@ Example Response
 }
 ```
 
-| Fields         | Meaning                                      | Value                               |
-| -------------- | -------------------------------------------- | ----------------------------------- |
-| user_id        | Your Account ID                              | Number (null if no API token)       |
-| email          | Your Account Email                           | String (IP address if no API token) |
-| limit          | Current remaining limit for your account now | Number                              |
-| limit_ttl      | Time until limit reset                       | Number (seconds)                    |
-| quota          | Current remaining limit for your account now | Number                              |
-| quota_ttl      | Time until quota reset                       | Number (seconds)                    |
-| user_limit     | Rate limit associated with your account      | Number                              |
-| user_limit_ttl | Usually set to 60 (1 minute)                 | Number (seconds)                    |
-| user_quota     | Quota associated with your account           | Number                              |
-| user_quota_ttl | Usually set to 86400 (1 day)                 | Number (seconds)                    |
+| Fields         | Meaning                                      | Value            |
+| -------------- | -------------------------------------------- | ---------------- |
+| user_id        | Null or Account ID                           | Null or Number   |
+| email          | IP address or your Account Email             | String           |
+| limit          | Current remaining limit for your account now | Number           |
+| limit_ttl      | Time until limit reset                       | Number (seconds) |
+| quota          | Current remaining limit for your account now | Number           |
+| quota_ttl      | Time until quota reset                       | Number (seconds) |
+| user_limit     | Rate limit associated with your account      | Number           |
+| user_limit_ttl | Usually set to 60 (1 minute)                 | Number (seconds) |
+| user_quota     | Quota associated with your account           | Number           |
+| user_quota_ttl | Usually set to 86400 (1 day)                 | Number (seconds) |
 
 ## Rate limit and Search Quota
 
-You can use the API with / without an API token. The difference is the limit when you access the `/api/search` endpoint.
-
-When no API token is given, the system limit search by IP address, and count both search via API and webpage together.
-
-|              | via Webpage / via API without token | Registered Developers | Patreons      |
-| ------------ | ----------------------------------- | --------------------- | ------------- |
-| Rate Limit   | 10/minute                           | 10/minute             | 10-30/minute  |
-| Search quota | 150/day[^1]                         | 1000/day[^2]          | 1000-3000/day |
-
-If you need more search quota, send me email (soruly@gmail.com) to become registered developers.
-
-- [^1]: This quota is proportional to the Successful Pledges on [patreon](https://www.patreon.com/soruly)
-- [^2]: This quota is proportional to API limit without token
-
-To request with token, just add `token=your_api_token` to the URL param.  
-e.g. `https://trace.moe/api/me?token=your_api_token`
+Every IP address has a rate limit of 10/minute, counting API and WebUI together. There is no daily search quota.

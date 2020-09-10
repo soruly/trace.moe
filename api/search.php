@@ -69,7 +69,6 @@ if (!$image && !isset($_GET['url']) && !isset($_FILES['image'])) {
 
     $client_id = $user_id ?? $_SERVER['HTTP_X_FORWARDED_FOR'];
     $limit_id = $client_id."_limit"; // request per minute
-    $quota_id = $client_id."_quota"; // quota per day
 
     // rate limit per minute
     if(!$redis->exists($limit_id)){
@@ -89,30 +88,10 @@ if (!$image && !isset($_GET['url']) && !isset($_FILES['image'])) {
       exit('"Search limit exceeded. Please wait ".$limit_ttl." seconds."');
     }
 
-    // quota limit per day
-    if(!$redis->exists($quota_id)){
-        $redis->set($quota_id, $user_quota);
-        $redis->expire($quota_id, $user_quota_ttl);
-    }
-    $quota = intval($redis->get($quota_id));
-    $quota--;
-    $quota_ttl = $redis->ttl($quota_id);
-    $redis->set($quota_id, $quota);
-    $redis->expire($quota_id, $quota_ttl);
-    if($quota < 0) {
-      header("HTTP/1.1 429 Too Many Requests");
-      header("Retry-After: ".$quota_ttl);
-      header("X-whatanime-quota: ${quota}");
-      header("X-whatanime-quota-ttl: ${quota_ttl}");
-      exit('"Search quota exceeded. Please wait ".$quota_ttl." seconds."');
-    }
-
     header("X-whatanime-limit: ${limit}");
     header("X-whatanime-limit-ttl: ${limit_ttl}");
-    header("X-whatanime-quota: ${quota}");
-    header("X-whatanime-quota-ttl: ${quota_ttl}");
-
-
+    header("X-whatanime-quota: ${user_quota}");
+    header("X-whatanime-quota-ttl: ${user_quota_ttl}");
 
     $savePath = '../temp/';
     $filename = microtime(true).'.jpg';
@@ -252,8 +231,8 @@ if (!$image && !isset($_GET['url']) && !isset($_FILES['image'])) {
     $final_result->docs = array_slice($final_result->docs, 0, 20);
     $final_result->limit = $limit;
     $final_result->limit_ttl = $limit_ttl;
-    $final_result->quota = $quota;
-    $final_result->quota_ttl = $quota_ttl;
+    $final_result->quota = $user_quota;
+    $final_result->quota_ttl = $user_quota_ttl;
     
     //combine adjacent time frames
     $docs = [];
