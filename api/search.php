@@ -116,6 +116,7 @@ if (!$image && !isset($_GET['url']) && !isset($_FILES['image'])) {
 
     $savePath = '../temp/';
     $filename = microtime(true).'.jpg';
+    $tempname = microtime(true).'-temp.jpg';
 
     if (isset($_GET['url']) && $_GET['url']) {
         try {
@@ -138,20 +139,20 @@ if (!$image && !isset($_GET['url']) && !isset($_FILES['image'])) {
                 exit('"Failed to fetch image '.$imageURL.'"');
             }
             if (explode("/", $contentType)[0] === "video") {
-                file_put_contents("../clip/".$filename.".video", $raw);
+                file_put_contents($savePath.$tempname.".video", $raw);
                 $ffmpeg = FFMpeg\FFMpeg::create([
                     'ffmpeg.binaries' => '/usr/bin/avconv',
                     'ffmpeg.binaries' => '/usr/bin/ffmpeg',
                     'ffprobe.binaries' => '/usr/bin/avprobe',
                     'ffprobe.binaries' => '/usr/bin/ffprobe'
                  ]);
-                 $video = $ffmpeg->open("../clip/".$filename.".video");
+                 $video = $ffmpeg->open($savePath.$tempname.".video");
                  $video
                    ->frame(FFMpeg\Coordinate\TimeCode::fromSeconds(0))
-                   ->save("../thumbnail/".$filename);
-                unlink("../clip/".$filename.".video");
+                   ->save($savePath.$tempname);
+                unlink($savePath.$tempname.".video");
             } else {
-                file_put_contents("../thumbnail/".$filename, $raw);
+                file_put_contents($savePath.$tempname, $raw);
             }
         } catch(Exception $e) {
             header('HTTP/1.1 400 Bad Request');
@@ -161,7 +162,7 @@ if (!$image && !isset($_GET['url']) && !isset($_FILES['image'])) {
         }
     } else if (isset($_FILES['image'])) {
         $data = file_get_contents($_FILES['image']['tmp_name']);
-        file_put_contents("../thumbnail/".$filename, $data);
+        file_put_contents($savePath.$tempname, $data);
      } else {
         $data = strpos($image, ",") === false ? $image : substr($image, strpos($image, ",") + 1);
         $data = str_replace(' ', '+', $data);
@@ -170,12 +171,12 @@ if (!$image && !isset($_GET['url']) && !isset($_FILES['image'])) {
             exit('"Image is empty"');
         }
 
-        file_put_contents("../thumbnail/".$filename, base64_decode($data));
+        file_put_contents($savePath.$tempname, base64_decode($data));
     }
-    exec("cd .. && python crop.py thumbnail/".$filename." ./temp/".$filename);
-    // exec("cd .. && python crop.py thumbnail/".$filename." thumbnail/".$filename.".jpg");
-    unlink("../thumbnail/".$filename);
+    exec("cd .. && python crop.py temp/".$tempname." ./temp/".$filename);
+    unlink($savePath.$tempname);
     if (!file_exists($savePath.$filename)) {
+        header('HTTP/1.1 500 Internal Server Error');
         exit('"Failed to process image"');
     }
     
@@ -246,6 +247,7 @@ if (!$image && !isset($_GET['url']) && !isset($_FILES['image'])) {
         }
     }
     usort($final_result->docs, "reRank");
+    unlink($savePath.$filename);
     
     $final_result->docs = array_slice($final_result->docs, 0, 20);
     $final_result->limit = $limit;
@@ -371,7 +373,6 @@ if (!$image && !isset($_GET['url']) && !isset($_FILES['image'])) {
     //$final_result->accuracy = $accuracy;
     header('Content-Type: application/json');
     echo json_encode($final_result);
-    unlink($savePath.$filename);
 }
 
 function reRank($a, $b){

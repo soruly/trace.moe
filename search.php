@@ -61,6 +61,7 @@ if (isset($_POST['data']) || isset($_FILES['image'])) {
 
     $savePath = './temp/';
     $filename = microtime(true).'.jpg';
+    $tempname = microtime(true).'-temp.jpg';
 
     if (isset($_FILES['image'])) {
         $data = file_get_contents($_FILES['image']['tmp_name']);
@@ -72,10 +73,9 @@ if (isset($_POST['data']) || isset($_FILES['image'])) {
     // file_put_contents($savePath.$filename, $data);
     $crop = true;
     if($crop){
-      file_put_contents("thumbnail/".$filename, $data);
-      exec("python crop.py thumbnail/".$filename." ".$savePath.$filename);
-      // exec("python crop.py thumbnail/".$filename." thumbnail/".$filename.".jpg");
-      unlink("thumbnail/".$filename);
+      file_put_contents($savePath.$tempname, $data);
+      exec("python crop.py ".$savePath.$tempname." ".$savePath.$filename);
+      unlink($savePath.$tempname);
     } else {
       file_put_contents($savePath.$filename, $data);
     }
@@ -141,6 +141,7 @@ if (isset($_POST['data']) || isset($_FILES['image'])) {
     {
         $results[] = curl_multi_getcontent($curl_arr[$i]);
     }
+    unlink($savePath.$filename);
 
     foreach ($results as $res) {
         $result = json_decode($res);
@@ -265,7 +266,6 @@ if (isset($_POST['data']) || isset($_FILES['image'])) {
     $final_result->quota = $quota;
     $final_result->quota_ttl = $quota_ttl;
     echo json_encode($final_result);
-    unlink($savePath.$filename);
 }
 
 function reRank($a, $b){
