@@ -100,7 +100,7 @@ if (!$image && !isset($_GET['url']) && !isset($_FILES['image'])) {
     if (isset($_GET['url']) && $_GET['url']) {
         try {
             $imageURL = str_replace(' ','%20',rawurldecode($_GET["url"]));
-            $proxyImageURL = "https://trace-moe-image-proxy.now.sh/api/image-proxy?url=".str_replace(' ','%20',rawurlencode($imageURL));
+            $proxyImageURL = "https://trace.moe/image-proxy?url=".str_replace(' ','%20',rawurlencode($imageURL));
             $curl = curl_init();
             curl_setopt($curl, CURLOPT_URL, $proxyImageURL);
             curl_setopt($curl, CURLOPT_VERBOSE, 1);

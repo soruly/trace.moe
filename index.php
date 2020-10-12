@@ -13,7 +13,7 @@ $originalImage = "";
 if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
   $autosearch = true;
   $imageURL = str_replace(' ','%20',rawurldecode($_GET["url"]));
-  $originalImage = "https://trace-moe-image-proxy.now.sh/api/image-proxy?url=".str_replace(' ','%20',rawurlencode($imageURL));
+  $originalImage = "https://trace.moe/image-proxy?url=".str_replace(' ','%20',rawurlencode($imageURL));
 }
 ?>
 <!DOCTYPE html>
@@ -31,7 +31,7 @@ if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
   $og_image = 'https://trace.moe/favicon128.png';
   if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
     $imgURL = str_replace(' ','%20',rawurldecode($_GET["url"]));
-    $og_image = "https://trace-moe-image-proxy.now.sh/api/image-proxy?url=".str_replace(' ','%20',rawurlencode($imgURL));
+    $og_image = "https://trace.moe/image-proxy?url=".str_replace(' ','%20',rawurlencode($imgURL));
   }
   ?>
   <!-- Schema.org markup (Google) -->
