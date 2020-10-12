@@ -100,7 +100,11 @@ if (!$image && !isset($_GET['url']) && !isset($_FILES['image'])) {
     if (isset($_GET['url']) && $_GET['url']) {
         try {
             $imageURL = str_replace(' ','%20',rawurldecode($_GET["url"]));
-            $proxyImageURL = "https://trace.moe/image-proxy?url=".str_replace(' ','%20',rawurlencode($imageURL));
+            if (strpos($imageURL, "https://cdn.discordapp.com/") === 0 || strpos($imageURL, "https://media.discordapp.net/") === 0) {
+              $proxyImageURL = $imageURL;
+            } else {
+              $proxyImageURL = "https://trace.moe/image-proxy?url=".str_replace(' ','%20',rawurlencode($imageURL));
+            }
             $curl = curl_init();
             curl_setopt($curl, CURLOPT_URL, $proxyImageURL);
             curl_setopt($curl, CURLOPT_VERBOSE, 1);
