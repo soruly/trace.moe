@@ -132,8 +132,8 @@ Source: <a href="https://github.com/JanYoStudio/WhatAnime">https://github.com/Ja
 <p><?php echo 'Last Database Index update: '.humanTiming($lastModified).' ago with '.$numDocsMillion.' Million analyzed frames. ('.$sizeInGB.' GB)<br>'; ?></p>
 <p>This database automatically index most airing anime in a few hours after broadcast.<br>You may subscribe to the updates on Telegram <a href="https://t.me/whatanimeupdates">@whatanimeupdates</a></p>
 <p></p>
-<a href="https://nyaa.si/download/1140819.torrent">Full Database Dump 2019-04 (24.8GB)</a><br>
-<a href="magnet:?xt=urn:btih:d408d8f35ebff5c5c1f71fee02c3cfc0b8cf2c7b&dn=trace.moe%20database%20dump%202019-04&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce">magnet:?xt=urn:btih:d408d8f35ebff5c5c1f71fee02c3cfc0b8cf2c7b</a>
+<a href="https://nyaa.si/download/1292174.torrent">Full Database Dump 2020-10 (17.4GB)</a><br>
+<a href="magnet:?xt=urn:btih:45900fa256d7773c30accf9ec54fac469d1b0500&dn=trace.moe%20database%20dump%202020-10&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce">magnet:?xt=urn:btih:45900fa256d7773c30accf9ec54fac469d1b0500</a>
 </p>
 <div class="page-header">
 <h3>Contact</h3>
