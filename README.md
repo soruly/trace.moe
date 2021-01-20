@@ -28,13 +28,7 @@ trace.moe uses [sola](https://github.com/soruly/sola) to index video and work wi
 
 To learn more, read the presentation slides below
 
-[Presentation slides](https://go-talks.appspot.com/github.com/soruly/slides/whatanime.ga.slide) May 2016
-
-[Presentation slides](https://go-talks.appspot.com/github.com/soruly/slides/whatanime.ga-2017.slide) Jun 2017
-
-[Presentation slides](https://go-talks.appspot.com/github.com/soruly/slides/whatanime.ga-2018.slide) Jun 2018
-
-[Presentation slides](https://github.com/soruly/slides/blob/master/2019-COSCUP-trace.moe.md) Aug 2019
+https://github.com/soruly/slides
 
 System Overview
 
