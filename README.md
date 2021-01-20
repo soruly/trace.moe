@@ -47,11 +47,13 @@ You may find some other related repo here
 - [anilist-crawler](https://github.com/soruly/anilist-crawler)
 - [trace.moe-WebExtension](https://github.com/soruly/trace.moe-WebExtension)
 - [trace.moe-telegram-bot](https://github.com/soruly/trace.moe-telegram-bot)
-- [trace.moe-CLI](https://github.com/irevenko/what-anime-cli)
 
 ## Official API Docs (Beta)
 
 https://soruly.github.io/trace.moe/
+
+# CLI tools (3rd party)
+what-anime-cli by Ilya Revenko https://github.com/irevenko/what-anime-cli
 
 ## Mobile Apps (3rd party)
 
