@@ -46,6 +46,9 @@ You may find some other related repo here
 
 https://soruly.github.io/trace.moe/
 
+# CLI tools (3rd party)
+what-anime-cli by Ilya Revenko https://github.com/irevenko/what-anime-cli
+
 ## Mobile Apps (3rd party)
 
 WhatAnime by Andrée Torres
