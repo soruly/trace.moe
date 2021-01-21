@@ -77,7 +77,7 @@ $sizeInGB = floor($sizeInBytes / 1073741824);
 <p>Life is too short to answer all the "What is the anime?" questions. Let computers do that for you.</p>
 <p>
 trace.moe is a test-of-concept prototype search engine that helps users trace back the original anime by screenshot. 
-It searches over 22300 hours of anime and find the best matching scene. 
+It search in ~30000 hours of anime and find the best matching scene. 
 It tells you what anime it is, from which episode and the time that scene appears. 
 Since the search result may not be accurate, it provides a few seconds of preview for verification. 
 </p>
@@ -122,9 +122,7 @@ Source: <a href="https://github.com/JanYoStudio/WhatAnime">https://github.com/Ja
 <div class="page-header">
 <h3>Presentation slides</h3>
 </div>
-<p><a href="https://go-talks.appspot.com/github.com/soruly/slides/whatanime.ga.slide">Go-talk presentation on 27 May 2016</a></p>
-<p><a href="https://go-talks.appspot.com/github.com/soruly/slides/whatanime.ga-2017.slide">Go-talk presentation on 4 Jun 2017</a></p>
-<p><a href="https://go-talks.appspot.com/github.com/soruly/slides/whatanime.ga-2018.slide">Go-talk presentation on 17 Jun 2018</a></p>
+<p><a href="https://github.com/soruly/slides">https://github.com/soruly/slides</a></p>
 <div class="page-header">
 <h3>System Status</h3>
 </div>
@@ -138,9 +136,8 @@ Source: <a href="https://github.com/JanYoStudio/WhatAnime">https://github.com/Ja
 <div class="page-header">
 <h3>Contact</h3>
 </div>
-<p>If you have any feedback, suggestions or anything else, please email to <a href="mailto:help@trace.moe">help@trace.moe</a>.</p>
-<p>You may also reach the author on Telegram <a href="https://t.me/soruly">@soruly</a> or <a href="https://discord.gg/K9jn6Kj">Discord</a>.</p>
-<p>Follow the development of trace.moe and learn more about the underlying technologies on <a href="https://github.com/soruly/slides">GitHub</a>, <a href="https://www.facebook.com/whatanime.ga/">Facebook Page</a> or <a href="https://www.patreon.com/soruly">Patreon page</a>.</p>
+<p>If you have any feedback, suggestions or anything else, you may reach the author on Telegram <a href="https://t.me/soruly">@soruly</a> or <a href="https://discord.gg/K9jn6Kj">Discord</a>.</p>
+<p>Follow the development of trace.moe and learn more about the underlying technologies on <a href="https://github.com/soruly/slides">GitHub</a> and <a href="https://www.patreon.com/soruly">Patreon page</a>.</p>
 
 <div class="page-header">
 <h3>Credit</h3>
