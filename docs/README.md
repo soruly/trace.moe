@@ -197,21 +197,27 @@ All error messages are double quoted string in order to ensure they are always v
 
 With `tokenthumb` you obtained from [/search](#Search), you can get previews of the matched scene. (not 100% accurate due to timecode and seeking method)
 
-### Image Preview
+### Image and Video Preview
+
+Media preview is served by [trace.moe-media](https://github.com/soruly/trace.moe-media)
 
 ```
-https://trace.moe/thumbnail.php?anilist_id=${anilist_id}&file=${encodeURIComponent(filename)}&t=${at}&token=${tokenthumb}
+https://media.trace.moe/image/${anilist_id}/${encodeURIComponent(filename)}?t=${at}&token=${tokenthumb}`
 ```
 
-### Video Preview
+It can generate image or video preview of 3 sizes: `size=l` (large), `size=m` (medium, default), `size=s` (small)
 
-With [trace.moe-media](https://github.com/soruly/trace.moe-media), it can now detect timestamp boundaries of a scene naturally.
+```
+https://media.trace.moe/image/${anilist_id}/${encodeURIComponent(filename)}?t=${at}&token=${tokenthumb}&size=s`
+```
+
+Video previews are cut on timestamp boundaries of a scene.
 
 ```
 https://media.trace.moe/video/${anilist_id}/${encodeURIComponent(filename)}?t=${at}&token=${tokenthumb}`
 ```
 
-Or, if you prefer getting a mute video:
+If you prefer getting a mute video, add `mute` in your querystring
 
 ```
 https://media.trace.moe/video/${anilist_id}/${encodeURIComponent(filename)}?t=${at}&token=${tokenthumb}&mute`
