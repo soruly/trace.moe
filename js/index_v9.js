@@ -69,8 +69,6 @@ window.addEventListener("load", (event) => {
   }
 });
 
-player.volume = 0.5;
-
 var imgData;
 var searchRequest;
 var search = function (t, prev_result) {
@@ -330,7 +328,7 @@ var playfile = function () {
   var tfrom = this.getAttribute("data-from");
   var t = this.getAttribute("data-t");
   var anilistID = this.getAttribute("data-anilist-id");
-  var src = "https://media.trace.moe/video/" + anilistID + "/" + encodeURIComponent(file) + "?t=" + t + "&token=" + tokenthumb + "&size=l";
+  var src = "https://media.trace.moe/video/" + anilistID + "/" + encodeURIComponent(file) + "?t=" + t + "&token=" + tokenthumb + "&size=l&mute";
 
   var xhr = new XMLHttpRequest();
 
