@@ -83,7 +83,7 @@ var search = function (t, prev_result) {
   document.querySelector("#progressBarControl").style.visibility = "hidden";
   document.querySelector("#fileNameDisplay").innerText = "";
   document.querySelector("#timeCodeDisplay").innerText = "";
-  if (navigator.userAgent.indexOf("Chrome") || !navigator.userAgent.indexOf("Safari")) {
+  if (!navigator.userAgent.indexOf("Safari")) {
     document.querySelector("#loader").classList.add("ripple");
   }
   document.querySelector("#searchBtn span").classList.remove("glyphicon-search");
@@ -309,7 +309,7 @@ preview.addEventListener("contextmenu", function (e) {
 var preview_heartbeat;
 var time;
 var animeInfo = null;
-var playfile = function () {
+var playfile = async function() {
   [].forEach.call(document.querySelectorAll(".result"), function (result) {
     result.classList.remove("active");
   });
@@ -319,33 +319,10 @@ var playfile = function () {
   window.cancelAnimationFrame(preview_heartbeat);
 
   preview_heartbeat = window.requestAnimationFrame(drawVideoPreview);
-  var season = this.getAttribute("data-season");
   var file = this.getAttribute("data-file");
-  var start = this.getAttribute("data-start");
-  var end = this.getAttribute("data-end");
-  var token = this.getAttribute("data-token");
   var tokenthumb = this.getAttribute("data-tokenthumb");
-  var tfrom = this.getAttribute("data-from");
   var t = this.getAttribute("data-t");
   var anilistID = this.getAttribute("data-anilist-id");
-  var src = "https://media.trace.moe/video/" + anilistID + "/" + encodeURIComponent(file) + "?t=" + t + "&token=" + tokenthumb + "&size=l&mute";
-
-  var xhr = new XMLHttpRequest();
-
-  xhr.open("GET", "/duration.php?anilist_id=" + anilistID + "&file=" + encodeURIComponent(file) + "&token=" + token, true);
-  xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-  xhr.onreadystatechange = function () {
-    document.querySelector("#fileNameDisplay").innerText = file;
-    document.querySelector("#timeCodeDisplay").innerText = formatTime(t) + "/" + formatTime(xhr.responseText);
-    var left = parseFloat(t) / parseFloat(xhr.responseText) * 640 - 6;
-
-    document.querySelector("#progressBarControl").style.visibility = "visible";
-    document.querySelector("#progressBarControl").style.left = left + "px";
-  };
-  xhr.send();
-
-  document.querySelector("#loading").classList.remove("hidden");
-  document.querySelector("#player").src = src;
 
   if (typeof ga === "function") {
     ga("send", "event", "playfile", "src", "/" + anilistID + "/" + file, t);
@@ -356,6 +333,19 @@ var playfile = function () {
     resetInfo();
     showAnilistInfo(anilistID);
   }
+  
+  document.querySelector("#loading").classList.remove("hidden");
+  document.querySelector("#loader").classList.add("ripple");
+  var response = await fetch("https://media.trace.moe/video/" + anilistID + "/" + encodeURIComponent(file) + "?t=" + t + "&token=" + tokenthumb + "&size=l&mute");
+  document.querySelector("#player").src = URL.createObjectURL(await response.blob());
+  var duration = response.headers.get("x-video-duration");
+
+  document.querySelector("#fileNameDisplay").innerText = file;
+  document.querySelector("#timeCodeDisplay").innerText = formatTime(t) + "/" + formatTime(duration);
+  var left = parseFloat(t) / parseFloat(duration) * 640 - 6;
+
+  document.querySelector("#progressBarControl").style.visibility = "visible";
+  document.querySelector("#progressBarControl").style.left = left + "px";
 };
 
 var playPause = function () {
