@@ -90,7 +90,7 @@ if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
         <div id="loader" class="ripple"></div>
       </div>
       <canvas id="preview" width="640" height="360"></canvas>
-      <video id="player" style="display:none" volume="0.5" autoplay></video>
+      <video id="player" style="display:none" volume="0" autoplay muted></video>
     </div>
     <div style="height: 15px">
       <span id="progressBarControl" class="glyphicon glyphicon-triangle-top"></span>
@@ -132,11 +132,6 @@ if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
 
 
   <div id="results-list">
-    <div id="controls" class="checkbox">
-      <label><input type="checkbox" id="autoplay" name="autoplay" checked />AutoPlay</label>
-      <label><input type="checkbox" id="loop" name="loop" />Loop</label>
-      <label><input type="checkbox" id="mute" name="mute" />Mute</label>
-    </div>
     <ul id="results" class="nav nav-pills nav-stacked"></ul>
   </div>
 

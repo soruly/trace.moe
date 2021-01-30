@@ -47,6 +47,7 @@ You may find some other related repo here
 https://soruly.github.io/trace.moe/
 
 # CLI tools (3rd party)
+
 what-anime-cli by Ilya Revenko https://github.com/irevenko/what-anime-cli
 
 ## Mobile Apps (3rd party)
@@ -66,22 +67,6 @@ To add trace.moe as a search option for your site, pass the image URL via query 
 ```
 https://trace.moe/?url=http://searchimageurl
 ```
-
-You can also specify playback options like this
-
-```
-https://trace.moe/?autoplay=0&loop&mute=1&url=http://searchimageurl
-```
-
-Playback URL params:
-
-| param    | value  | default (not set in URL param) | set with empty or other value |
-| -------- | ------ | ------------------------------ | ----------------------------- |
-| autoplay | 0 or 1 | 1                              | 1                             |
-| mute     | 0 or 1 | 0                              | 1                             |
-| loop     | 0 or 1 | 0                              | 1                             |
-
-The `auto` URL parameter is no longer used, it would always search automatically when there is `?url=` param.
 
 Note that the server cannot access private image URLs.
 In that case, users has to copy and paste (Ctrl+V/Cmd+V) the image directly, or save and upload the file.

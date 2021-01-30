@@ -231,15 +231,6 @@ td:nth-child(3) {
   }
 }
 
-#results-list #controls {
-  padding: 10px;
-  text-align: center;
-}
-
-#results-list #controls.checkbox {
-  margin: 0;
-}
-
 #results-list #status {
   text-align: center;
 }

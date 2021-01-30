@@ -4,61 +4,15 @@ if (typeof NodeList !== "undefined" && NodeList.prototype && !NodeList.prototype
   NodeList.prototype.forEach = Array.prototype.forEach;
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  document.querySelector("#mute").checked = true;
-  document.querySelector("#player").muted = true;
-
-  document.querySelector("#autoplay").checked = true;
-  document.querySelector("#loop").checked = false;
-
-  location.search.substr(1).split("&").forEach(function (param) {
-    var key = param.split("=")[0];
-    var val = param.split("=")[1];
-
-    if (key === "autoplay") {
-      document.querySelector("#autoplay").checked = val !== "0";
-    }
-    if (key === "mute") {
-      document.querySelector("#mute").checked = val !== "0";
-    }
-    if (key === "loop") {
-      document.querySelector("#loop").checked = val !== "0";
-    }
-  });
-
-  document.querySelector("#autoplay").onchange = updateURLParam;
-  document.querySelector("#mute").onchange = updateURLParam;
-  document.querySelector("#loop").onchange = updateURLParam;
-});
-
 if (document.querySelector(".alert")) {
   document.querySelector(".alert").onclick = function () {
     this.style.display = "none";
   };
 }
 
-document.querySelector("#mute").addEventListener("change", function () {
-  document.querySelector("#player").muted = document.querySelector("#mute").checked;
-});
-
 var updateURLParam = function () {
   var urlString = "";
-  var params = [];
-
-  if (document.querySelector("#autoplay").checked !== true) {
-    params.push("autoplay=0");
-  }
-  if (document.querySelector("#mute").checked === true) {
-    params.push("mute");
-  }
-  if (document.querySelector("#loop").checked === true) {
-    params.push("loop");
-  }
-  urlString += params.sort().join("&");
   if (document.querySelector("#imageURL").value) {
-    if (params.length > 0) {
-      urlString += "&";
-    }
     urlString += "url=" + encodeURIComponent(document.querySelector("#imageURL").value.replace(/ /g, "%20"));
   }
   if (urlString.length > 0) {
@@ -431,21 +385,16 @@ var loadedmetadata = function () {
   document.querySelector("#loading").style.height = preview.height + "px";
   document.querySelector("#loader").style.top = (preview.height - 800) / 2 + "px";
   preview.addEventListener("click", playPause);
-  if (document.querySelector("#autoplay").checked) {
-    player.oncanplaythrough = canPlayThrough;
-    player.play();
-  }
+  player.oncanplaythrough = canPlayThrough;
+  player.play();
 };
 
 document.querySelector("#player").addEventListener("loadedmetadata", loadedmetadata, false);
-var ended = function () {
-  if (document.querySelector("#loop").checked) {
-    document.querySelector("#player").currentTime = 0;
-    player.play();
-  }
-};
 
-document.querySelector("#player").addEventListener("ended", ended, false);
+document.querySelector("#player").addEventListener("ended", function () {
+  document.querySelector("#player").currentTime = 0;
+  player.play();
+}, false);
 
 var searchImage = document.createElement("canvas");
 
