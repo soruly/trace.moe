@@ -223,7 +223,7 @@ var search = function (t, prev_result) {
             result.setAttribute("data-t", entry.t);
             result.setAttribute("data-anilist-id", entry.anilist_id);
 
-            var thumbnailLink = "/thumbnail.php?anilist_id=" + entry.anilist_id + "&file=" + encodeURIComponent(entry.file) + "&t=" + entry.t + "&token=" + entry.tokenthumb;
+            var thumbnailLink = "https://media.trace.moe/image/" + entry.anilist_id + "/" + encodeURIComponent(entry.file) + "?t=" + entry.t + "&token=" + entry.tokenthumb + "&size=m";
             var opacity = (Math.pow((100 - parseFloat(entry.diff)) / 100, 4) + 0.2).toFixed(3);
 
             result.style.opacity = opacity > 1 ? 1 : opacity;
@@ -372,10 +372,11 @@ var playfile = function () {
   var start = this.getAttribute("data-start");
   var end = this.getAttribute("data-end");
   var token = this.getAttribute("data-token");
+  var tokenthumb = this.getAttribute("data-tokenthumb");
   var tfrom = this.getAttribute("data-from");
   var t = this.getAttribute("data-t");
   var anilistID = this.getAttribute("data-anilist-id");
-  var src = "/" + anilistID + "/" + encodeURIComponent(file) + "?start=" + start + "&end=" + end + "&token=" + token;
+  var src = "https://media.trace.moe/video/" + anilistID + "/" + encodeURIComponent(file) + "?t=" + t + "&token=" + tokenthumb + "&size=l";
 
   var xhr = new XMLHttpRequest();
 
@@ -393,14 +394,7 @@ var playfile = function () {
 
   document.querySelector("#loading").classList.remove("hidden");
   document.querySelector("#player").src = src;
-  if (document.querySelector("#autoplay").checked) {
-    time = parseFloat(tfrom) - parseFloat(start);
-  } else {
-    time = parseFloat(t) - parseFloat(start);
-  }
-  if (time < 0) {
-    time = 0;
-  }
+
   if (typeof ga === "function") {
     ga("send", "event", "playfile", "src", "/" + anilistID + "/" + file, t);
   }
@@ -413,9 +407,6 @@ var playfile = function () {
 };
 
 var playPause = function () {
-  if (player.currentTime < time) {
-    document.querySelector("#player").currentTime = time;
-  }
   if (player.paused) {
     player.play();
   } else {
@@ -440,7 +431,6 @@ var loadedmetadata = function () {
   document.querySelector("#loading").style.height = preview.height + "px";
   document.querySelector("#loader").style.top = (preview.height - 800) / 2 + "px";
   preview.addEventListener("click", playPause);
-  player.currentTime = time;
   if (document.querySelector("#autoplay").checked) {
     player.oncanplaythrough = canPlayThrough;
     player.play();
@@ -450,10 +440,8 @@ var loadedmetadata = function () {
 document.querySelector("#player").addEventListener("loadedmetadata", loadedmetadata, false);
 var ended = function () {
   if (document.querySelector("#loop").checked) {
-    document.querySelector("#player").currentTime = time - 0.3;
+    document.querySelector("#player").currentTime = 0;
     player.play();
-  } else {
-    document.querySelector("#player").currentTime = time;
   }
 };
 
