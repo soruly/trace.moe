@@ -4,13 +4,11 @@
 [![Discord](https://img.shields.io/discord/437578425767559188.svg)](https://discord.gg/K9jn6Kj)
 [![Donate](https://img.shields.io/badge/donate-patreon-orange.svg)](https://www.patreon.com/soruly)
 
-The website of trace.moe (whatanime.ga)
+Anime Scene Seach Engine
 
-Image Reverse Search for Anime Scenes
+Trace back the scene where an anime screenshots is taken from.
 
-Use anime screenshots to search where this scene is taken from.
-
-It tells you which anime, which episode, and exactly which moment this scene appears in Japanese Anime.
+It tells you which anime, which episode, and the exact moment this scene appears.
 
 ## Demo
 
@@ -24,23 +22,17 @@ Search result tells you which moment it appears.
 
 ## How does it work
 
-trace.moe uses [sola](https://github.com/soruly/sola) to index video and work with liresolr. This repo only include the webapp for trace.moe, which demonstrate how to integrate anilist info, and how thumbnail/video previews are generated. If you want to make your own video scene search engine, please refer to sola instead.
+This repo only include the webapp for trace.moe. To learn more, read the repos and presentation slides below
 
-To learn more, read the presentation slides below
+- [slides](https://github.com/soruly/slides) - presentation slides
+- [sola](https://github.com/soruly/sola) - video indexing
+- [LireSolr](https://github.com/soruly/liresolr) - image analysis and searching
+- [anilist-crawler](https://github.com/soruly/anilist-crawler) - getting anilist info
+- [trace.moe-media](https://github.com/soruly/trace.moe-media) - thumbnail / scene preview generation
+- [trace.moe-WebExtension](https://github.com/soruly/trace.moe-WebExtension) - browser intergration
+- [trace.moe-telegram-bot](https://github.com/soruly/trace.moe-telegram-bot) - official telegram bot
 
-https://github.com/soruly/slides
-
-System Overview
-
-![](https://pbs.twimg.com/media/CstZmrxUIAAi8La.jpg)
-
-You may find some other related repo here
-
-- [sola](https://github.com/soruly/sola)
-- [LireSolr](https://github.com/soruly/liresolr)
-- [anilist-crawler](https://github.com/soruly/anilist-crawler)
-- [trace.moe-WebExtension](https://github.com/soruly/trace.moe-WebExtension)
-- [trace.moe-telegram-bot](https://github.com/soruly/trace.moe-telegram-bot)
+If you want to make your own video scene search engine, please refer to sola first.
 
 ## Official API Docs (Beta)
 
