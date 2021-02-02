@@ -168,14 +168,13 @@ var search = function (t, prev_result) {
             result.setAttribute("data-start", entry.start);
             result.setAttribute("data-end", entry.end);
             result.setAttribute("data-token", entry.token);
-            result.setAttribute("data-tokenthumb", entry.tokenthumb);
             result.setAttribute("data-expires", entry.expires);
             result.setAttribute("data-from", entry.from);
             result.setAttribute("data-to", entry.to);
             result.setAttribute("data-t", entry.t);
             result.setAttribute("data-anilist-id", entry.anilist_id);
 
-            var thumbnailLink = "https://media.trace.moe/image/" + entry.anilist_id + "/" + encodeURIComponent(entry.file) + "?t=" + entry.t + "&token=" + entry.tokenthumb + "&size=m";
+            var thumbnailLink = "https://media.trace.moe/image/" + entry.anilist_id + "/" + encodeURIComponent(entry.file) + "?t=" + entry.t + "&token=" + entry.token + "&size=m";
             var opacity = (Math.pow((100 - parseFloat(entry.diff)) / 100, 4) + 0.2).toFixed(3);
 
             result.style.opacity = opacity > 1 ? 1 : opacity;
@@ -252,6 +251,7 @@ var search = function (t, prev_result) {
   formData.append("filter", document.querySelector("#seasonSelector").value);
   formData.append("trial", trial);
   xhr.send(formData);
+  fetch("https://api.trace.moe/search", {method:"POST", body:formData});
 };
 
 document.querySelector("#searchBtn").addEventListener("click", function () {
@@ -320,7 +320,7 @@ var playfile = async function() {
 
   preview_heartbeat = window.requestAnimationFrame(drawVideoPreview);
   var file = this.getAttribute("data-file");
-  var tokenthumb = this.getAttribute("data-tokenthumb");
+  var token = this.getAttribute("data-token");
   var t = this.getAttribute("data-t");
   var anilistID = this.getAttribute("data-anilist-id");
 
@@ -336,7 +336,7 @@ var playfile = async function() {
   
   document.querySelector("#loading").classList.remove("hidden");
   document.querySelector("#loader").classList.add("ripple");
-  var response = await fetch("https://media.trace.moe/video/" + anilistID + "/" + encodeURIComponent(file) + "?t=" + t + "&token=" + tokenthumb + "&size=l&mute");
+  var response = await fetch("https://media.trace.moe/video/" + anilistID + "/" + encodeURIComponent(file) + "?t=" + t + "&token=" + token + "&size=l&mute");
   document.querySelector("#player").src = URL.createObjectURL(await response.blob());
   var duration = response.headers.get("x-video-duration");
 

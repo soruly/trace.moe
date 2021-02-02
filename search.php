@@ -197,10 +197,9 @@ if (isset($_POST['data']) || isset($_FILES['image'])) {
         $doc->episode = $episode;
         $expires = time() + 300;
         $doc->expires = $expires;
-        $token = str_replace(array('+','/','='),array('-','_',''),base64_encode(md5('/'.$path.$start.$end.$secretSalt,true)));
+        $token = hash("sha256", $t.$secretSalt);
         $doc->token = $token;
-        $tokenthumb = str_replace(array('+','/','='),array('-','_',''),base64_encode(md5($t.$secretSalt,true)));
-        $doc->tokenthumb = $tokenthumb;
+        $doc->tokenthumb = $token;
         $doc->diff = $doc->d;
         unset($doc->id);
         unset($doc->d);
