@@ -76,7 +76,7 @@ $sizeInGB = floor($sizeInBytes / 1073741824);
       <img src="/favicon128.png" alt="" style="display:none" />
 <p>Life is too short to answer all the "What is the anime?" questions. Let computers do that for you.</p>
 <p>
-trace.moe is a test-of-concept prototype search engine that helps users trace back the original anime by screenshot. 
+trace.moe is a anime scene search engine that helps users trace back the original anime by screenshot. 
 It search in ~30000 hours of anime and find the best matching scene. 
 It tells you what anime it is, from which episode and the time that scene appears. 
 Since the search result may not be accurate, it provides a few seconds of preview for verification. 
@@ -85,14 +85,19 @@ Since the search result may not be accurate, it provides a few seconds of previe
 There has been a lot of anime screencaps and GIFs spreading around the internet, but very few of them mention the source. While those online platforms are gaining popularity, trace.moe respects the original producers and staffs by showing interested anime fans what the original source is. This search engine encourages users to give credits to the original creators / owners before they share stuff online.
 </p>
 <p>
-This website is non-profit making. There is no pro/premium features at all.
-This website is not intended for watching anime. The server has effective measures to forbid users to access the original video beyond the preview limit. I would like to redirect users to somewhere they can watch that anime legally, if possible.
+This website is non-profit making. This website is not intended for watching anime. The server has effective measures to forbid users to access the original video beyond the preview limit. I would like to redirect users to somewhere they can watch that anime legally, if possible.
 </p>
 <p>
 Most Anime since 2000 are indexed, but some are excluded (see FAQ).
 No Doujin work, no derived art work are indexed. The system only analyzes officially published anime. 
 If you wish to search artwork / wallpapers, try to use <a href="https://saucenao.com/">SauceNAO</a> and <a href="https://iqdb.org/">iqdb.org</a>
 </p>
+<div class="page-header">
+<h3>How does it work?</h3>
+</div>
+<p>It uses a technology called <a href="https://en.wikipedia.org/wiki/Content-based_image_retrieval">Content-based image retrieval</a>.</p>
+<p>No Machine Learning / Neural Network used. No recognition power, Not train-able</p>
+<p>See presentation slides: <a href="https://github.com/soruly/slides">https://github.com/soruly/slides</a></p>
 <div class="page-header">
 <h3>WebExtension</h3>
 </div>
@@ -119,10 +124,6 @@ WhatAnime - 以图搜番 by Mystery0 (Simplified Chinese)<br>
 <a href="https://play.google.com/store/apps/details?id=pw.janyo.whatanime">https://play.google.com/store/apps/details?id=pw.janyo.whatanime</a><br>
 Source: <a href="https://github.com/JanYoStudio/WhatAnime">https://github.com/JanYoStudio/WhatAnime</a><br>
 </p>
-<div class="page-header">
-<h3>Presentation slides</h3>
-</div>
-<p><a href="https://github.com/soruly/slides">https://github.com/soruly/slides</a></p>
 <div class="page-header">
 <h3>System Status</h3>
 </div>
@@ -153,6 +154,7 @@ Source: <a href="https://github.com/JanYoStudio/WhatAnime">https://github.com/Ja
 </div>
 <p>
 <div>
+  <a href="https://github.com/sponsors/soruly"><img src="img/donate-via-github.png" alt="Donate via GitHub" style="display:inline-block;max-height:50px;"></a> or 
   <a href="https://www.paypal.me/soruly"><img src="img/donate-with-paypal.png" alt="Donate with PayPal" style="display:inline-block;max-height:50px;"></a> or 
   <a href="https://www.patreon.com/soruly"><img src="img/become_a_patron_button.png" alt="Become a Patron!" style="display:inline-block;max-height:50px"></a>
 </div>
