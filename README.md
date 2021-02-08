@@ -1,8 +1,7 @@
 # trace.moe
 
-[![License](https://img.shields.io/github/license/soruly/trace.moe.svg)](https://github.com/soruly/trace.moe/blob/master/LICENSE)
-[![Discord](https://img.shields.io/discord/437578425767559188.svg)](https://discord.gg/K9jn6Kj)
-[![Donate](https://img.shields.io/badge/donate-patreon-orange.svg)](https://www.patreon.com/soruly)
+[![License](https://img.shields.io/github/license/soruly/trace.moe.svg?style=flat-square)](https://github.com/soruly/trace.moe/blob/master/LICENSE)
+[![Discord](https://img.shields.io/discord/437578425767559188.svg?style=flat-square)](https://discord.gg/K9jn6Kj)
 
 Anime Scene Seach Engine
 
