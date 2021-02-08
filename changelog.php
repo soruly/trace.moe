@@ -32,6 +32,182 @@ header("Link: </js/analytics.js>; rel=preload; as=script", false);
 <div class="container">
 <div class="page-header"><h1>Changelog</h1></div>
 
+<h3>Website updated to use new trace.moe API</h3>
+<h6>9 Feb 2021</h6>
+<p>
+- the API is now served by the 96 core servers on cloud<br>
+- front end code rewrite with ES6+ syntax. Dropped IE and some old browsers support. <br>
+- safe search button is removed, it shows only when NSFW results are found<br>
+- search will now perform first 3 trials at once (in DB), you will no longer see results appearing one after another<br>
+- the candidate size is now set automatically on server side. If it finds that some search results are trimmed, it would increase candidate size and search again. This is done entirely on server side.<br>
+- keep searching button removed. I'm pretty sure you can no longer find relevant results with that function.<br>
+- Flip button removed. (caused many bugs in website, before I add this back, please flip the image on your own.)<br>
+- JCD algo button removed. (will add this back after migration complete, you can still use this algo via trace.moe API)<br>
+- loop/autoplay/mute button removed. (I may add back an unmute button if possible)<br>
+</p>
+
+<h3>Updates to trace.moe API</h3>
+<h6>30 Jan 2021</h6>
+<p>
+- Change: image preview endpoint has changed, the url is now consistent with video preview<br>
+- New: size param for image/video preview<br>
+<br>
+Please refer to <a href="https://soruly.github.io/trace.moe/#/#previews">https://soruly.github.io/trace.moe/#/#previews</a><br>
+</p>
+
+<h3>trace.moe database dump 2020-10</h3>
+<h6>18 Oct 2020</h6>
+<p>
+<br>
+This is the most recent database dump for trace.moe which contains image hashes of ~5000 anime titles. (No video files included)<br>
+<br>
+Comparing to last DB dump, this data set has recent anime added, and has replaced many subbed versions with raw anime.<br>
+<br>
+These can be loaded into sola database for searching locally. You can follow the project on GitHub if you are interested.<br>
+<br>
+<a href="https://github.com/soruly/sola">https://github.com/soruly/sola</a><br>
+</p>
+
+<h3>New Image Search Algorithm (JCD)</h3>
+<h6>13 Apr 2020</h6>
+<p>
+A new search algorithm has been added to trace.moe. You can try this using the "Use new algo" check box near the search button. This new algorithm has better support on flipped and cropped images. See results above.<br>
+<br>
+This new algorithm still needs fine-tuning of its parameters, so I'm now opening this option for everyone to try. For developers using the API, you can use /search?method=jc . In upcoming months, I'll review the performance and accuracy of these two algorithms and see if JCD is good enough to replace ColorLayout. Or else, methods to combine the two.<br>
+<br>
+The new algorithm, JCD (Joint Composite Descriptor) is composed of CEDD (Color and Edge Directivity Descriptor) and FCTH (Fuzzy Color and Texture Histogram), takes both color, edge (shape) and texture into image analysis. trace.moe has been using ColorLayout descriptor, which does not analyze the image edge and shape but only the distribution of colors in a 8x8 grid. With this new algorithm, it makes it possible to search for flipped/cropped images which previously fails.<br>
+<br>
+Note that none of these Image Descriptors are invented by me. If you're interested in the principles of the the algorithm(s), please read the paper from the original author. and its open source implementation, LIRE.<br>
+<br>
+When indexed on the same video data set, the size of indexed database (extracted) is 232GB, 85% larger than that of ColorLayout (125GB). The database cache of two algos and memory for apache solr now occupies 420GB RAM (out of 512GB) RAM on server.<br>
+<br>
+Serving the database for the new algorithm requires powerful servers. Please continue to support this project for ACG fans! :3<br>
+</p>
+
+<h3>trace.moe database dump 2020-04</h3>
+<h6>13 Apr 2020</h6>
+<p>
+This is the most recent database dump for trace.moe which contains image hashes of ~100,000 anime files. (No video files included)<br>
+<br>
+Comparing to last DB dump, this data set has recent anime added and versions from different subgroups de-duplicated. For most anime, only one version of the same episode is kept in db. This results a smaller database size and faster search time.<br>
+<br>
+These can be loaded into sola database for searching locally. I'm still modifying sola and document the the steps how to do so. You can follow the project on GitHub if you are interested.<br>
+<br>
+<a href="https://github.com/soruly/sola">https://github.com/soruly/sola</a><br>
+</p>
+
+<h3>Added dark theme support</h3>
+<h6>14 Sep 2019</h6>
+<p>
+If your OS is in dark mode, it would switch to dark mode automatically without any settings.<br>
+For windows, it'd be in settings => personalization => color<br>
+For macOS, it'd be in system preferences => general => appearance <br>
+</p>
+
+<h3>Added image URL support to trace.moe API</h3>
+<h6>4 May 2019</h6>
+<p>
+You can now easily use http://trace.moe API directly with image URL<br>
+<br>
+<a href="https://soruly.github.io/trace.moe/">https://soruly.github.io/trace.moe/</a>
+</p>
+
+<h3>trace.moe database dump 2019-04</h3>
+<h6>4 May 2019</h6>
+<p>
+This is the most recent database dump for trace.moe which contains image hashes of ~100,000 anime files. (No video files included)<br>
+<br>
+These can be loaded into sola database for searching locally. I'm still modifying sola and document the the steps how to do so. You can follow the project on GitHub if you are interested.<br>
+<a href="https://github.com/soruly/sola">https://github.com/soruly/sola</a><br>
+</p>
+
+<h3>Optimizing website loading speed</h3>
+<h6>1 May 2019</h6>
+<p>
+Recently I've been improving webpage loading times in various ways:<br>
+- Re-write webpage js to remove heavy libraries like jQuery / bootstrap.js<br>
+- Use HTTP/2 Push to reduce round-trip times<br>
+- Upgraded Cloudflare CDN to pro plan ($20/month)<br>
+<br>
+Now the webpage can complete loading in just 90ms!! (from regions close to origin server)<br>
+<br>
+trace.moe is now scoring 98 and 100 in Google PageSpeed Insights<br>
+<br>
+<a href="https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Ftrace.moe&tab=desktop">https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Ftrace.moe&tab=desktop</a><br>
+<br>
+I've also improved website security to score A+ (115/100) in Mozilla Observatory test.<br>
+<br>
+<a href="https://observatory.mozilla.org/analyze/trace.moe">https://observatory.mozilla.org/analyze/trace.moe</a><br>
+<br>
+Recently I've found that Cloudflare's free plan did not route to nearest edge server due to it's network capacity. When traffic is busy for the region during that period, it may route to thousands of miles away which increase page load time by hundreds of milliseconds. That's why I've upgraded to Cloudflare pro plan to ensure the website is consistently fast from the whole world. I hope your support can cover the increased cost.<br>
+</p>
+
+<h3>Recent updates to trace.moe</h3>
+<h6>3 Feb 2019</h6>
+<p>
+New web UI layout for mobile devices!<br>
+A few days ago, I redesigned a the webpage layout a bit to better support mobile devices. (finally!) Though the layout isn't very perfect, at least it's easier to use and browse compared to the fixed viewport before. Try the webpage now at https://trace.moe<br>
+<br>
+Natural Scene Cutter for video preview<br>
+I started a new project late October 2018 to cut video scene previews naturally, by detecting timestamp boundaries of a scene. This method is better than the fixed time offset cutting. So you can loop the video of the scene. I'm still writing description of this project, which you can find it on Github <a href="https://github.com/soruly/trace.moe-media">https://github.com/soruly/trace.moe-media</a><br>
+<br>
+GIF Preview for Telegram bot<br>
+To try the natural scene cutter, you can use the Telegram bot.<br>
+<a href="https://telegram.me/WhatAnimeBot">https://telegram.me/WhatAnimeBot</a><br>
+Send an image with caption "mute", and it will return a muted video preview (same as GIF), which can loop a scene.<br>
+<br>
+API updates<br>
+The natural scene cutter can also be used via API now.<br>
+The API and API docs have updated to resolve some confusions around search image format and error handling issues. Now the API has removed strict restrictions on image format and is supporting both JSON and FORM POST. Details are written in <a href="https://soruly.github.io/trace.moe/">https://soruly.github.io/trace.moe/</a><br>
+<br>
+Dockerizing sola<br>
+sola is now mostly dockerized. It is a lot easier for developers to setup their own video scene search engine now. Instructions are written in details in the project:<br>
+<a href="https://github.com/soruly/sola">https://github.com/soruly/sola</a><br>
+<br>
+<br>
+The domain incident hit this project quite hard last October. But with the help of fans and developers around the world, the daily search queries has now restored to same levels as half a year ago. Thank you for all your support!! ;)<br>
+<br>
+</p>
+
+<h3>Moving to new domain: trace.moe</h3>
+<h6>22 Oct 2018</h6>
+<p>
+Yesterday, the .ga domain provided by Freenom (domain name registrar) was suddenly suspended. I had no choice but immediately moved to trace.moe which I've been planning to move to.<br>
+As of today, officially supported integrations (WebExtensions, Telegram bot), and some major integrations (Discord, SauceNAO) has been updated to the new domain. In upcoming days I'll work with developers of remaining 3rd party integrations (including API users) to notify the change.<br>
+<br>
+Why the name trace.moe?<br>
+This search engine tells you more than the anime name, but actually trace back the moment of the scene. And quite a number of users actually need "time tracing" even they already know the anime. That's why I think using "trace" instead of "whatanime" better describes this search engine.<br>
+</p>
+
+<h3>open sourcing scene search with sola</h3>
+<h6>2 May 2018</h6>
+<p>
+The last piece of puzzle in whatanime.ga has published.<br>
+The whatanime repository on GitHub has gain lot of developers' attention. However, it only include the code for the website and is not a fully functional system. Some of them are puzzled when they try to look into the code.<br>
+<br>
+Last month, I've re-written those messy scripts into a new project - sola.<br>
+<br>
+This include all the scripts that whatanime.ga currently used to put mp4 video files into solr for search. It has been running for a month, so this should be stable enough to publish. sola is not limited to searching anime, any types of video (like movies, TV shows) can also be indexed. It does not depends on whatanime and anilist, the only dependeny is liresolr. So users that doesn't need anime info and web UI can avoid those complexities.<br>
+<br>
+sola is a node.js app. Many developers would feel easy to read and modify the code. Hopefully this would encourage contribution to the project. It has just ~700 lines of code in total. For developers that doesn't like Javascript (or would like to avoid GPLv3), it's not difficult to rewrite the whole thing.<br>
+<br>
+I've written a setup guide for developers to easily setup their own video scene search engine. Spread the news to developers and let them try!<br>
+<br>
+<a href="https://github.com/soruly/sola">https://github.com/soruly/sola</a><br>
+</p>
+
+<h3>Speeding up search on whatanime.ga !</h3>
+<h6>2 Apr 2018</h6>
+<p>
+<iframe width="640" height="640" src="https://www.youtube.com/embed/HjL5O3k3C7s" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br>
+New testing site on https://beta.whatanime.ga<br>
+I've been testing a new beta site with improved performance on search speed.<br>
+A copy of the 130GB solr core from http://whatanime.ga is split into 10 smaller cores (10-16GB each, with 59-89 million hashes). Each search queries all 10 solr cores in parallel and then merge back. Early tests shows that it can query 950 million image hashes in 1.35 seconds! Almost 10 times as much than the existing one.<br>
+<br>
+I've rewritten a lot of backend scripts into a nice CLI tool. I'm going to publish it on github later this month, after I've completed the docs and tutorial. For experienced developers, it will be a lot easier to setup their own video reverse search engine.<br>
+</p>
+
 <h3>Added auto black border crop</h3>
 <h6>13 Nov 2017</h6>
 <p>
