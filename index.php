@@ -102,9 +102,6 @@ if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
         Browse a file <input type="file" id="file" name="files[]" />
       </span>
       <span id="instruction"> / Drag &amp; Drop Anime ScreenShot / Ctrl+V / Enter Image URL</span>
-      <button id="flipBtn" type="button" class="btn btn-default btn-sm" disabled>
-        <span class="glyphicon glyphicon-unchecked"></span> Flip Image
-      </button>
       <br>
       <form method="post">
         <input type="url" pattern="https?://.+" name="imageURL" class="form-control" id="imageURL" placeholder="Image URL" value="<?php echo $imageURL; ?>" style="margin:5px 0 5px 0">
@@ -112,21 +109,17 @@ if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
       </form>
       <div style="text-align: right">
         <span id="messageText" style="float:left;line-height:30px"><?php if($originalImage) echo '<span class="glyphicon glyphicon-repeat spinning"></span>' ?></span>
-        <label for="seasonSelector" style="font-weight: inherit">Search in (anilist ID):</label>
-        <input type="text" id="seasonSelector" class="form-control input-sm" style="display:inline-block; width:100px">
+        <label for="anilistFilter" style="font-weight: inherit">Anime Filter</label>
+        <input type="text" id="anilistFilter" class="form-control input-sm" style="display:inline-block; width:100px" placeholder="anilist ID">
 
-        <button id="jcBtn" type="button" class="btn btn-default btn-sm">
+        <!--<button id="jcBtn" type="button" class="btn btn-default btn-sm">
           <span class="glyphicon glyphicon-unchecked"></span> Use new algo
-        </button>
-        <button id="safeBtn" type="button" class="btn btn-default btn-sm">
-          <span class="glyphicon glyphicon-unchecked"></span> Safe Search
-        </button>
+        </button>-->
         <button id="searchBtn" type="button" class="btn btn-default btn-sm btn-primary" disabled>
           <span class="glyphicon glyphicon-search"></span> Search
         </button>
       </div>
-      <span style="color:#EA0000">Caution: some results may be NSFW (Not Safe for Work).</span><br>
-      <a href="https://telegram.me/WhatAnimeBot">Official Telegram Bot</a> | Official WebExtension for <a href="https://chrome.google.com/webstore/detail/search-anime-by-screensho/gkamnldpllcbiidlfacaccdoadedncfp">Chrome</a>, <a href="https://addons.mozilla.org/en-US/firefox/addon/search-anime-by-screenshot/">Firefox</a>, and <a href="https://addons.opera.com/en/extensions/details/search-anime-by-screenshot/">Opera</a><br>
+      <a href="https://telegram.me/WhatAnimeBot">Telegram Bot</a> | WebExtension for <a href="https://chrome.google.com/webstore/detail/search-anime-by-screensho/gkamnldpllcbiidlfacaccdoadedncfp">Chrome</a>, <a href="https://addons.mozilla.org/en-US/firefox/addon/search-anime-by-screenshot/">Firefox</a>, and <a href="https://addons.opera.com/en/extensions/details/search-anime-by-screenshot/">Opera</a><br>
     </div>
   </div>
 

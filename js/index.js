@@ -1,271 +1,211 @@
-
-if (typeof NodeList !== "undefined" && NodeList.prototype && !NodeList.prototype.forEach) {
-  // Yes, there's really no need for `Object.defineProperty` here
-  NodeList.prototype.forEach = Array.prototype.forEach;
-}
-
 if (document.querySelector(".alert")) {
-  document.querySelector(".alert").onclick = function () {
-    this.style.display = "none";
+  document.querySelector(".alert").onclick = () => {
+    document.querySelector(".alert").style.display = "none";
   };
 }
 
-var updateURLParam = function () {
-  var urlString = "";
+const updateURLParam = () => {
   if (document.querySelector("#imageURL").value) {
-    urlString += "url=" + encodeURIComponent(document.querySelector("#imageURL").value.replace(/ /g, "%20"));
-  }
-  if (urlString.length > 0) {
-    history.replaceState(null, null, "/?" + urlString);
+    history.replaceState(
+      null,
+      null,
+      `/?url=${encodeURIComponent(
+        document.querySelector("#imageURL").value.replace(/ /g, "%20")
+      )}`
+    );
   } else {
     history.replaceState(null, null, "/");
   }
 };
 
-var formatTime = function (timeInSeconds) {
-  var sec_num = parseInt(timeInSeconds, 10);
-  var hours = Math.floor(sec_num / 3600);
-  var minutes = Math.floor((sec_num - hours * 3600) / 60);
-  var seconds = sec_num - hours * 3600 - minutes * 60;
-
-  if (hours < 10) {
-    hours = "0" + hours;
-  }
-  if (minutes < 10) {
-    minutes = "0" + minutes;
-  }
-  if (seconds < 10) {
-    seconds = "0" + seconds;
-  }
-  var timestring = hours + ":" + minutes + ":" + seconds;
-
-  return timestring;
+const formatTime = (timeInSeconds) => {
+  const sec_num = parseInt(timeInSeconds, 10);
+  const hours = Math.floor(sec_num / 3600);
+  const minutes = Math.floor((sec_num - hours * 3600) / 60);
+  const seconds = sec_num - hours * 3600 - minutes * 60;
+  return [
+    hours < 10 ? `0${hours}` : hours,
+    minutes < 10 ? `0${minutes}` : minutes,
+    seconds < 10 ? `0${seconds}` : seconds,
+  ].join(":");
 };
 
-var zeroPad = function (n, width) {
+const zeroPad = (n, width) => {
   if (n.length === undefined) {
     return n.toString();
   }
-  return n.length >= width ? n.toString() : new Array(width - n.toString().length + 1).join("0") + n;
+  return n.length >= width
+    ? n.toString()
+    : new Array(width - n.toString().length + 1).join("0") + n;
 };
 
-var player = document.querySelector("#player");
-var preview = document.querySelector("#preview");
-var originalImage = document.querySelector("#originalImage");
+const player = document.querySelector("#player");
+const preview = document.querySelector("#preview");
+const originalImage = document.querySelector("#originalImage");
 
-originalImage.onload = function() {
+originalImage.onload = () => {
   resetAll();
   // clear the input if user upload/paste image
   if (/^blob:/.test(originalImage.src)) {
     document.querySelector("#imageURL").value = "";
   }
-  updateURLParam();
+  // updateURLParam();
   prepareSearchImage();
 };
 
 window.addEventListener("load", (event) => {
-  if(originalImage.dataset.url) {
+  if (originalImage.dataset.url) {
     originalImage.src = originalImage.dataset.url;
   }
 });
 
-var imgData;
-var searchRequest;
-var search = function (t, prev_result) {
-  var trial = t;
-  if (!trial) {
-    trial = 0;
-  }
-  if (searchRequest && searchRequest.readyState !== 4) {
-    searchRequest.abort();
-  }
+let imgData;
+const search = async () => {
   document.querySelector("#loading").classList.remove("hidden");
+  document.querySelector("#loader").classList.add("ripple");
   document.querySelector("#progressBarControl").style.visibility = "hidden";
   document.querySelector("#fileNameDisplay").innerText = "";
   document.querySelector("#timeCodeDisplay").innerText = "";
-  if (!navigator.userAgent.indexOf("Safari")) {
-    document.querySelector("#loader").classList.add("ripple");
-  }
-  document.querySelector("#searchBtn span").classList.remove("glyphicon-search");
+
+  document
+    .querySelector("#searchBtn span")
+    .classList.remove("glyphicon-search");
   document.querySelector("#searchBtn span").classList.add("glyphicon-refresh");
   document.querySelector("#searchBtn span").classList.add("spinning");
-  if (document.querySelector("#search2Btn span")) {
-    document.querySelector("#search2Btn span").classList.remove("glyphicon-search");
-    document.querySelector("#search2Btn span").classList.add("glyphicon-refresh");
-    document.querySelector("#search2Btn span").classList.add("spinning");
-  }
   resetInfo();
   animeInfo = null;
   document.querySelector("#player").pause();
   preview.removeEventListener("click", playPause);
-  if (trial === 0) {
-    document.querySelector("#results").innerHTML = "<div id=\"status\">Submitting image for searching...</div>";
-  }
+  document.querySelector("#results").innerHTML =
+    '<div id="status">Submitting image for searching...</div>';
   document.querySelector("#searchBtn").disabled = true;
-  if (document.querySelector("#search2Btn span")) {
-    document.querySelector("#search2Btn").disabled = true;
-  }
-  document.querySelector("#flipBtn").disabled = true;
   document.querySelector("#imageURL").disabled = true;
-  var endpoint = "/search";
-  if (document.querySelector("#jcBtn .glyphicon").classList.contains("glyphicon-check")) {
-    endpoint = "/search?method=jc";
+
+  const formData = new FormData();
+  formData.append("image", imgData);
+  const queryString = document.querySelector("#anilistFilter").value
+    ? `anilistID=${document.querySelector("#anilistFilter").value}`
+    : "";
+  const res = await fetch(`https://api.trace.moe/search?${queryString}`, {
+    method: "POST",
+    body: formData,
+  });
+
+  document
+    .querySelector("#searchBtn span")
+    .classList.remove("glyphicon-refresh");
+  document.querySelector("#searchBtn span").classList.remove("spinning");
+  document.querySelector("#searchBtn span").classList.add("glyphicon-search");
+
+  document.querySelector("#searchBtn").disabled = false;
+  document.querySelector("#imageURL").disabled = false;
+
+  document.querySelector("#loading").classList.add("hidden");
+  document.querySelector("#loader").classList.remove("ripple");
+  document.querySelector("#searchBtn").disabled = false;
+  document.querySelector("#imageURL").disabled = false;
+  document.querySelector("#results").innerHTML = "";
+
+  if (res.status === 429) {
+    document.querySelector("#results").innerHTML =
+      '<div id="status">You have searched too many times, please try again later.</div>';
+    return;
+  }
+  if (res.status !== 200) {
+    document.querySelector("#results").innerHTML =
+      '<div id="status">Connection to Search Server Failed</div>';
+    return;
+  }
+  const { frameCount, result } = await res.json();
+
+  document.querySelector(
+    "#results"
+  ).innerHTML += `<div id="status">${frameCount
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")} frames searched.</div>`;
+
+  if (result.length === 0) {
+    document.querySelector("#results").innerHTML =
+      '<div id="status">No result</div>';
+    return;
   }
 
-  var xhr = new XMLHttpRequest();
-  xhr.open("POST", endpoint, true);
-  xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-  xhr.onreadystatechange = function () {
-    document.querySelector("#searchBtn span").classList.remove("glyphicon-refresh");
-    document.querySelector("#searchBtn span").classList.remove("spinning");
-    document.querySelector("#searchBtn span").classList.add("glyphicon-search");
-    if (document.querySelector("#search2Btn span")) {
-      document.querySelector("#search2Btn span").classList.remove("glyphicon-refresh");
-      document.querySelector("#search2Btn span").classList.remove("spinning");
-      document.querySelector("#search2Btn span").classList.add("glyphicon-search");
+  result.forEach((entry, index) => {
+    const result = document.createElement("li");
+
+    result.classList.add("result");
+    if (entry.is_adult) {
+      result.classList.add("hidden");
     }
 
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      var data = JSON.parse(xhr.responseText);
-
-      document.querySelector("#loading").classList.add("hidden");
-      document.querySelector("#loader").classList.remove("ripple");
-      document.querySelector("#searchBtn").disabled = false;
-      if (document.querySelector("#search2Btn span")) {
-        document.querySelector("#search2Btn").disabled = false;
-      }
-      document.querySelector("#flipBtn").disabled = false;
-      document.querySelector("#imageURL").disabled = false;
-      document.querySelector("#results").innerHTML = "";
-      if (prev_result) {
-        data.RawDocsCount += prev_result.RawDocsCount;
-        data.RawDocsSearchTime += prev_result.RawDocsSearchTime;
-        data.ReRankSearchTime += prev_result.ReRankSearchTime;
-      }
-
-      document.querySelector("#results").innerHTML += "<div id=\"status\">" + data.RawDocsCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " images searched.</div>";
-      if (prev_result) {
-        data.docs = data.docs.concat(prev_result.docs);
-      }
-      data.docs.sort(function (a, b) {
-        return a.diff - b.diff;
-      });
-      if (data.docs.length > 0) {
-        data.docs.forEach(function (entry, index) {
-          if (document.querySelector("#safeBtn .glyphicon").classList.contains("glyphicon-check") === false || entry.is_adult === false) {
-            var similarity = (100 - parseFloat(entry.diff)).toFixed(1);
-            var result = document.createElement("li");
-
-            result.setAttribute("class", "result");
-            result.setAttribute("data-season", entry.season);
-            result.setAttribute("data-title", entry.title);
-            result.setAttribute("data-title-native", entry.title_native);
-            result.setAttribute("data-title-chinese", entry.title_chinese);
-            result.setAttribute("data-title-english", entry.title_english);
-            result.setAttribute("data-title-romaji", entry.title_romaji);
-            result.setAttribute("data-file", entry.file);
-            result.setAttribute("data-episode", entry.episode);
-            result.setAttribute("data-start", entry.start);
-            result.setAttribute("data-end", entry.end);
-            result.setAttribute("data-token", entry.token);
-            result.setAttribute("data-expires", entry.expires);
-            result.setAttribute("data-from", entry.from);
-            result.setAttribute("data-to", entry.to);
-            result.setAttribute("data-t", entry.t);
-            result.setAttribute("data-anilist-id", entry.anilist_id);
-
-            var thumbnailLink = "https://media.trace.moe/image/" + entry.anilist_id + "/" + encodeURIComponent(entry.file) + "?t=" + entry.t + "&token=" + entry.token + "&size=m";
-            var opacity = (Math.pow((100 - parseFloat(entry.diff)) / 100, 4) + 0.2).toFixed(3);
-
-            result.style.opacity = opacity > 1 ? 1 : opacity;
-            var title_display = entry.title_romaji;
-
-            if (navigator.language.indexOf("ja") === 0) {
-              title_display = entry.title_native || entry.title_romaji;
-            }
-            if (navigator.language.indexOf("zh") === 0) {
-              title_display = entry.title_chinese || entry.title_romaji;
-            }
-            var thumbnailImage = (trial >= 2 || parseFloat(data.docs[0].diff) < 10) && index < 5 ? "<div class=\"thumb\" style=\"min-height:166px\"><img src=\"" + thumbnailLink + "\"></div>" : "";
-
-            if (formatTime(entry.from) === formatTime(entry.to)) {
-              result.innerHTML = "<div><div class=\"text\"><span class=\"title\">" + title_display + "</span><br><span class=\"ep\">EP#" + zeroPad(entry.episode, 2) + "</span> <span class=\"time\">" + formatTime(entry.from) + "</span> <span class=\"similarity\">~" + similarity + "%</span><br><span class=\"file\">" + entry.file + "</span></div>" + thumbnailImage + "</div>";
-            } else {
-              result.innerHTML = "<div><div class=\"text\"><span class=\"title\">" + title_display + "</span><br><span class=\"ep\">EP#" + zeroPad(entry.episode, 2) + "</span> <span class=\"time\">" + formatTime(entry.from) + "-" + formatTime(entry.to) + "</span> <span class=\"similarity\">~" + similarity + "%</span><br><span class=\"file\">" + entry.file + "</span></div>" + thumbnailImage + "</div>";
-            }
-            document.querySelector("#results").appendChild(result);
-          }
-        });
-        document.querySelectorAll(".result").forEach(function (result) {
-          result.addEventListener("click", playfile);
-        });
-
-        var keepSearchDiv = document.createElement("div");
-
-        keepSearchDiv.style.textAlign = "center";
-        keepSearchDiv.innerHTML = "<button id=\"search2Btn\" type=\"button\" class=\"btn btn-default btn-sm btn-primary\"><span class=\"glyphicon glyphicon-search\"></span> Keep Searching</button>";
-
-        var threshold = document.querySelector("#jcBtn .glyphicon").classList.contains("glyphicon-check") ? 3 : 8;
-
-        if (parseFloat(data.docs[0].diff) > threshold) { // target 97% for JCD, 92% for ColorLayout
-          if (trial < 2) {
-            search(trial + 1, data);
-          } else if (trial < 5) {
-            document.querySelector("#results").insertBefore(keepSearchDiv, document.querySelector("#results").firstChild);
-            document.querySelector("#search2Btn").addEventListener("click", function () {
-              search(trial + 1, data);
-            });
-            if (document.querySelector("#safeBtn .glyphicon").classList.contains("glyphicon-check") === false) {
-              document.querySelectorAll(".result")[0].click();
-            }
-          }
-        } else {
-          if (trial < 5) {
-            document.querySelector("#results").insertBefore(keepSearchDiv, document.querySelector("#results").firstChild);
-            document.querySelector("#search2Btn").addEventListener("click", function () {
-              search(trial + 1, data);
-            });
-          }
-          if (document.querySelector("#safeBtn .glyphicon").classList.contains("glyphicon-check") === false) {
-            document.querySelectorAll(".result")[0].click();
-          }
-        }
-      } else {
-        document.querySelector("#results").innerHTML = "<div id=\"status\">No result</div>";
-      }
-    } else if (xhr.status === 429) {
-      document.querySelector("#results").innerHTML = "<div id=\"status\">" + xhr.responseText + "</div>";
-    } else {
-      document.querySelector("#results").innerHTML = "<div id=\"status\">Connection to Search Server Failed</div>";
+    let title_display = entry.title_romaji;
+    if (navigator.language.includes("ja")) {
+      title_display = entry.title_native || entry.title_romaji;
     }
-    document.querySelector("#searchBtn").disabled = false;
-    if (document.querySelector("#search2Btn span")) {
-      document.querySelector("#search2Btn").disabled = false;
+    if (navigator.language.includes("zh")) {
+      title_display = entry.title_chinese || entry.title_romaji;
     }
-    document.querySelector("#flipBtn").disabled = false;
-    document.querySelector("#imageURL").disabled = false;
-  };
-  var formData = new FormData();
 
-  formData.append("image", imgData);
-  formData.append("filter", document.querySelector("#seasonSelector").value);
-  formData.append("trial", trial);
-  xhr.send(formData);
-  fetch("https://api.trace.moe/search", {method:"POST", body:formData});
+    result.innerHTML = [
+      `<div>`,
+      `<div class="text">`,
+      `<span class="title">${title_display}</span><br>`,
+      entry.episode
+        ? `<span class="ep">EP#${zeroPad(entry.episode, 2)}</span>`
+        : "",
+      formatTime(entry.from) === formatTime(entry.to)
+        ? `<span class="time">${formatTime(entry.from)}</span>`
+        : `<span class="time">${formatTime(entry.from)}-${formatTime(
+            entry.to
+          )}</span>`,
+      `<span class="similarity">~${(entry.similarity * 100).toFixed(
+        2
+      )}%</span><br>`,
+      `<span class="file">${entry.file}</span>`,
+      `</div>`,
+      entry.similarity > 0.9 && index < 5
+        ? `<div class="thumb" style="min-height:166px"><img src="${entry.image}"></div>`
+        : "",
+      `</div>`,
+    ].join(" ");
+
+    const opacity = Math.pow(entry.similarity, 4) + 0.2;
+    result.style.opacity = opacity > 1 ? 1 : opacity;
+
+    result.addEventListener("click", (e) => {
+      playfile(result, entry.video, entry.file, entry.anilist_id, entry.from);
+    });
+
+    document.querySelector("#results").appendChild(result);
+  });
+
+  if (result.find((e) => e.is_adult)) {
+    const nswfMsg = document.createElement("div");
+    nswfMsg.style.textAlign = "center";
+    const showNSFWBtn = document.createElement("button");
+    showNSFWBtn.type = "button";
+    showNSFWBtn.classList.add("btn", "btn-default", "btn-sm", "btn-primary");
+    showNSFWBtn.innerText = `Click here to show ${
+      result.filter((e) => e.is_adult).length
+    } NSFW results`;
+    showNSFWBtn.addEventListener("click", () => {
+      document
+        .querySelectorAll(".result.hidden")
+        .forEach((e) => e.classList.remove("hidden"));
+      nswfMsg.classList.add("hidden");
+    });
+    nswfMsg.appendChild(showNSFWBtn);
+    document.querySelector("#results").appendChild(nswfMsg);
+  }
+
+  if (!document.querySelectorAll(".result")[0].classList.contains("hidden")) {
+    document.querySelectorAll(".result")[0].click();
+  }
 };
 
-document.querySelector("#searchBtn").addEventListener("click", function () {
-  search();
-});
+document.querySelector("#searchBtn").addEventListener("click", search);
 
-document.querySelector("#flipBtn").addEventListener("click", function () {
-  document.querySelector("#flipBtn .glyphicon").classList.toggle("glyphicon-unchecked");
-  document.querySelector("#flipBtn .glyphicon").classList.toggle("glyphicon-check");
-  resetAll();
-  prepareSearchImage();
-});
-
-var fetchImageDelay;
+let fetchImageDelay;
 
 document.querySelector("#imageURL").addEventListener("input", function () {
   clearTimeout(fetchImageDelay);
@@ -274,9 +214,21 @@ document.querySelector("#imageURL").addEventListener("input", function () {
   if (document.querySelector("#imageURL").value.length) {
     if (document.querySelector("form").checkValidity()) {
       fetchImageDelay = setTimeout(function () {
-        document.querySelector("#messageText").innerHTML = "<span class=\"glyphicon glyphicon-repeat spinning\"></span>";
-        originalImage.src = "https://trace.moe/image-proxy?url=" + encodeURIComponent(document.querySelector("#imageURL").value.replace(/ /g, "%20"));
-        history.replaceState(null, null, "/?url=" + encodeURIComponent(document.querySelector("#imageURL").value.replace(/ /g, "%20")));
+        document.querySelector("#messageText").innerHTML =
+          '<span class="glyphicon glyphicon-repeat spinning"></span>';
+        originalImage.src =
+          "https://trace.moe/image-proxy?url=" +
+          encodeURIComponent(
+            document.querySelector("#imageURL").value.replace(/ /g, "%20")
+          );
+        history.replaceState(
+          null,
+          null,
+          "/?url=" +
+            encodeURIComponent(
+              document.querySelector("#imageURL").value.replace(/ /g, "%20")
+            )
+        );
       }, 500);
     } else {
       document.querySelector("#submit").click();
@@ -284,21 +236,21 @@ document.querySelector("#imageURL").addEventListener("input", function () {
   }
 });
 
+// document.querySelector("#jcBtn").addEventListener("click", () => {
+//   document
+//     .querySelector("#jcBtn .glyphicon")
+//     .classList.toggle("glyphicon-unchecked");
+//   document
+//     .querySelector("#jcBtn .glyphicon")
+//     .classList.toggle("glyphicon-check");
+// });
 
-document.querySelector("#safeBtn").addEventListener("click", function () {
-  document.querySelector("#safeBtn .glyphicon").classList.toggle("glyphicon-unchecked");
-  document.querySelector("#safeBtn .glyphicon").classList.toggle("glyphicon-check");
-});
-
-document.querySelector("#jcBtn").addEventListener("click", function () {
-  document.querySelector("#jcBtn .glyphicon").classList.toggle("glyphicon-unchecked");
-  document.querySelector("#jcBtn .glyphicon").classList.toggle("glyphicon-check");
-});
-
-var drawVideoPreview = function () {
+let drawVideoPreview = function () {
   preview_heartbeat = window.requestAnimationFrame(drawVideoPreview);
   if (preview.getContext("2d")) {
-    preview.getContext("2d").drawImage(player, 0, 0, preview.width, preview.height);
+    preview
+      .getContext("2d")
+      .drawImage(player, 0, 0, preview.width, preview.height);
   }
 };
 
@@ -306,61 +258,51 @@ preview.addEventListener("contextmenu", function (e) {
   e.preventDefault();
 });
 
-var preview_heartbeat;
-var time;
-var animeInfo = null;
-var playfile = async function() {
+let preview_heartbeat;
+let time;
+let animeInfo = null;
+let playfile = async (target, videoURL, fileName, anilistID, timeCode) => {
   [].forEach.call(document.querySelectorAll(".result"), function (result) {
     result.classList.remove("active");
   });
 
-  this.classList.add("active");
+  target.classList.add("active");
   document.querySelector("#player").pause();
   window.cancelAnimationFrame(preview_heartbeat);
-
-  preview_heartbeat = window.requestAnimationFrame(drawVideoPreview);
-  var file = this.getAttribute("data-file");
-  var token = this.getAttribute("data-token");
-  var t = this.getAttribute("data-t");
-  var anilistID = this.getAttribute("data-anilist-id");
-
-  if (typeof ga === "function") {
-    ga("send", "event", "playfile", "src", "/" + anilistID + "/" + file, t);
-  }
 
   if (animeInfo !== anilistID) {
     animeInfo = anilistID;
     resetInfo();
     showAnilistInfo(anilistID);
   }
-  
+
   document.querySelector("#loading").classList.remove("hidden");
   document.querySelector("#loader").classList.add("ripple");
-  var response = await fetch("https://media.trace.moe/video/" + anilistID + "/" + encodeURIComponent(file) + "?t=" + t + "&token=" + token + "&size=l&mute");
-  document.querySelector("#player").src = URL.createObjectURL(await response.blob());
-  var duration = response.headers.get("x-video-duration");
+  let response = await fetch(`${videoURL}&size=l`);
+  document.querySelector("#player").src = URL.createObjectURL(
+    await response.blob()
+  );
+  let duration = response.headers.get("x-video-duration");
 
-  document.querySelector("#fileNameDisplay").innerText = file;
-  document.querySelector("#timeCodeDisplay").innerText = formatTime(t) + "/" + formatTime(duration);
-  var left = parseFloat(t) / parseFloat(duration) * 640 - 6;
+  document.querySelector("#fileNameDisplay").innerText = fileName;
+  document.querySelector("#timeCodeDisplay").innerText =
+    formatTime(timeCode) + "/" + formatTime(duration);
+  let left = (parseFloat(timeCode) / parseFloat(duration)) * 640 - 6;
 
   document.querySelector("#progressBarControl").style.visibility = "visible";
   document.querySelector("#progressBarControl").style.left = left + "px";
 };
 
-var playPause = function () {
+let playPause = function () {
   if (player.paused) {
     player.play();
   } else {
     player.pause();
   }
 };
-var canPlayThrough = function () {
-  document.querySelector("#loading").classList.add("hidden");
-  document.querySelector("#loader").classList.remove("ripple");
-};
-var loadedmetadata = function () {
-  var aspectRatio;
+
+let loadedmetadata = function () {
+  let aspectRatio;
 
   if (player.height === 0 && player.width === 0) {
     aspectRatio = player.videoWidth / player.videoHeight;
@@ -371,29 +313,42 @@ var loadedmetadata = function () {
   preview.width = 640;
   preview.height = 640 / aspectRatio;
   document.querySelector("#loading").style.height = preview.height + "px";
-  document.querySelector("#loader").style.top = (preview.height - 800) / 2 + "px";
+  document.querySelector("#loader").style.top =
+    (preview.height - 800) / 2 + "px";
   preview.addEventListener("click", playPause);
-  player.oncanplaythrough = canPlayThrough;
+  player.oncanplaythrough = () => {
+    document.querySelector("#loading").classList.add("hidden");
+    document.querySelector("#loader").classList.remove("ripple");
+    window.cancelAnimationFrame(preview_heartbeat);
+    preview_heartbeat = window.requestAnimationFrame(drawVideoPreview);
+  };
   player.play();
 };
 
-document.querySelector("#player").addEventListener("loadedmetadata", loadedmetadata, false);
+document
+  .querySelector("#player")
+  .addEventListener("loadedmetadata", loadedmetadata, false);
 
-document.querySelector("#player").addEventListener("ended", function () {
-  document.querySelector("#player").currentTime = 0;
-  player.play();
-}, false);
+document.querySelector("#player").addEventListener(
+  "ended",
+  function () {
+    document.querySelector("#player").currentTime = 0;
+    player.play();
+  },
+  false
+);
 
-var searchImage = document.createElement("canvas");
+let searchImage = document.createElement("canvas");
 
-var resetAll = function () {
+let resetAll = function () {
   preview.width = 640;
   preview.height = 360;
   document.querySelector("#progressBarControl").style.visibility = "hidden";
   document.querySelector("#fileNameDisplay").innerText = "";
   document.querySelector("#timeCodeDisplay").innerText = "";
   document.querySelector("#loading").style.height = preview.height + "px";
-  document.querySelector("#loader").style.top = (preview.height - 800) / 2 + "px";
+  document.querySelector("#loader").style.top =
+    (preview.height - 800) / 2 + "px";
   preview.getContext("2d").fillStyle = "#FFFFFF";
   preview.getContext("2d").fillRect(0, 0, preview.width, preview.height);
   resetInfo();
@@ -407,38 +362,45 @@ originalImage.onerror = function () {
   document.querySelector("#messageText").innerText = "";
 };
 
-var prepareSearchImage = function () {
-  var img = originalImage
-  var imageAspectRatio = img.width / img.height;
+let prepareSearchImage = function () {
+  let img = originalImage;
+  let imageAspectRatio = img.width / img.height;
 
   searchImage.width = 640;
   searchImage.height = 640 / imageAspectRatio;
 
-  searchImage.getContext("2d").drawImage(img, 0, 0, img.width, img.height, 0, 0, searchImage.width, searchImage.height);
-
-  if (document.querySelector("#flipBtn .glyphicon").classList.contains("glyphicon-check")) {
-    searchImage.getContext("2d").save();
-    searchImage.getContext("2d").translate(searchImage.width, 0);
-    searchImage.getContext("2d").scale(-1, 1);
-    searchImage.getContext("2d").drawImage(searchImage, 0, 0);
-    searchImage.getContext("2d").restore();
-  }
+  searchImage
+    .getContext("2d")
+    .drawImage(
+      img,
+      0,
+      0,
+      img.width,
+      img.height,
+      0,
+      0,
+      searchImage.width,
+      searchImage.height
+    );
 
   preview.height = searchImage.height;
   document.querySelector("#loading").style.height = preview.height + "px";
-  document.querySelector("#loader").style.top = (preview.height - 800) / 2 + "px";
+  document.querySelector("#loader").style.top =
+    (preview.height - 800) / 2 + "px";
 
-  preview.getContext("2d").drawImage(searchImage, 0, 0, searchImage.width, searchImage.height);
+  preview
+    .getContext("2d")
+    .drawImage(searchImage, 0, 0, searchImage.width, searchImage.height);
 
   searchImage.toBlob(
-    function(blob) {
+    function (blob) {
       imgData = blob;
 
       document.querySelector("#searchBtn").disabled = false;
-      document.querySelector("#flipBtn").disabled = false;
       document.querySelector("#messageText").classList.add("success");
       document.querySelector("#messageText").innerHTML = "";
-      document.querySelector("#results").innerHTML = "<div id=\"status\">Press Search button to begin searching.</div>";
+      document.querySelector("#results").innerHTML =
+        '<div id="status">Press Search button to begin searching.</div>';
       if (document.querySelector("#autoSearch").checked) {
         document.querySelector("#messageText").classList.remove("error");
         document.querySelector("#messageText").classList.remove("success");
@@ -452,11 +414,11 @@ var prepareSearchImage = function () {
   );
 };
 
-var handleFileSelect = function (evt) {
+let handleFileSelect = function (evt) {
   evt.stopPropagation();
   evt.preventDefault();
 
-  var file;
+  let file;
 
   if (evt.dataTransfer) {
     file = evt.dataTransfer.files[0];
@@ -465,82 +427,97 @@ var handleFileSelect = function (evt) {
   }
 
   if (file) {
-    document.querySelector("#results").innerHTML = "<div id=\"status\">Reading File...</div>";
+    document.querySelector("#results").innerHTML =
+      '<div id="status">Reading File...</div>';
     if (file.type.match("image.*")) {
       URL.revokeObjectURL(originalImage.src);
       originalImage.src = URL.createObjectURL(file);
     } else {
-      document.querySelector("#results").innerHTML = "<div id=\"status\">Error: File is not an image</div>";
+      document.querySelector("#results").innerHTML =
+        '<div id="status">Error: File is not an image</div>';
       return false;
     }
   }
 };
 
-var handleDragOver = function (evt) {
+let handleDragOver = function (evt) {
   evt.stopPropagation();
   evt.preventDefault();
   evt.dataTransfer.dropEffect = "copy";
 };
 
-var dropZone = document.querySelector("#preview");
+let dropZone = document.querySelector("#preview");
 
 dropZone.addEventListener("dragover", handleDragOver, false);
 dropZone.addEventListener("drop", handleFileSelect, false);
 
-document.querySelector("#file").addEventListener("change", handleFileSelect, false);
+document
+  .querySelector("#file")
+  .addEventListener("change", handleFileSelect, false);
 
-var CLIPBOARD = new CLIPBOARD_CLASS("preview");
+let CLIPBOARD = new CLIPBOARD_CLASS("preview");
 
-function CLIPBOARD_CLASS (canvas_id) {
-  var _self = this;
-  var canvas = document.getElementById(canvas_id);
-  var ctx = document.getElementById(canvas_id).getContext("2d");
-  var ctrl_pressed = false;
-  var pasteCatcher;
-  var paste_mode;
+function CLIPBOARD_CLASS(canvas_id) {
+  let _self = this;
+  let canvas = document.getElementById(canvas_id);
+  let ctx = document.getElementById(canvas_id).getContext("2d");
+  let ctrl_pressed = false;
+  let pasteCatcher;
+  let paste_mode;
 
-  document.addEventListener("paste", function (e) {
-    _self.paste_auto(e);
-  }, false);
+  document.addEventListener(
+    "paste",
+    function (e) {
+      _self.paste_auto(e);
+    },
+    false
+  );
 
   this.init = (function () {
     pasteCatcher = document.createElement("div");
     pasteCatcher.setAttribute("contenteditable", "");
     pasteCatcher.style.cssText = "opacity:0;position:fixed;top:0px;left:0px;";
     document.body.appendChild(pasteCatcher);
-    pasteCatcher.addEventListener("DOMSubtreeModified", function () {
-      if (paste_mode === "auto" || ctrl_pressed === false) {
-        return true;
-      }
-      if (pasteCatcher.children.length === 1) {
-        if (pasteCatcher.firstElementChild.src) {
-          _self.paste_createImage(pasteCatcher.firstElementChild.src);
+    pasteCatcher.addEventListener(
+      "DOMSubtreeModified",
+      function () {
+        if (paste_mode === "auto" || ctrl_pressed === false) {
+          return true;
         }
-      }
-      // register cleanup after some time.
-      setTimeout(function () {
-        pasteCatcher.innerHTML = "";
-      }, 20);
-    }, false);
-  }());
+        if (pasteCatcher.children.length === 1) {
+          if (pasteCatcher.firstElementChild.src) {
+            _self.paste_createImage(pasteCatcher.firstElementChild.src);
+          }
+        }
+        // register cleanup after some time.
+        setTimeout(function () {
+          pasteCatcher.innerHTML = "";
+        }, 20);
+      },
+      false
+    );
+  })();
   // default paste action
   this.paste_auto = function (e) {
-    if (e.target !== document.querySelector("#imageURL") && e.target !== document.querySelector("#seasonSelector")) {
+    if (
+      e.target !== document.querySelector("#imageURL") &&
+      e.target !== document.querySelector("#anilistFilter")
+    ) {
       paste_mode = "";
       pasteCatcher.innerHTML = "";
 
       if (e.clipboardData) {
-        var items = e.clipboardData.items;
+        let items = e.clipboardData.items;
 
         if (items) {
           paste_mode = "auto";
           // access data directly
-          for (var i = 0; i < items.length; i++) {
+          for (let i = 0; i < items.length; i++) {
             if (items[i].type.indexOf("image") !== -1) {
               // image
-              var blob = items[i].getAsFile();
-              var URLObj = window.URL || window.webkitURL;
-              var source = URLObj.createObjectURL(blob);
+              let blob = items[i].getAsFile();
+              let URLObj = window.URL || window.webkitURL;
+              let source = URLObj.createObjectURL(blob);
 
               this.paste_createImage(source);
             }
@@ -553,7 +530,7 @@ function CLIPBOARD_CLASS (canvas_id) {
   // draw image
   this.paste_createImage = function (source) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    var pastedImage = new Image();
+    let pastedImage = new Image();
 
     pastedImage.onload = function () {
       ctx.drawImage(pastedImage, 0, 0);
@@ -562,7 +539,7 @@ function CLIPBOARD_CLASS (canvas_id) {
   };
 }
 
-var resetInfo = function () {
+let resetInfo = function () {
   document.querySelector("#info").innerHTML = "";
   document.querySelector("#info").style.display = "none";
   document.querySelector("#info").style.visibility = "hidden";
