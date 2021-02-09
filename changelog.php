@@ -32,6 +32,16 @@ header("Link: </js/analytics.js>; rel=preload; as=script", false);
 <div class="container">
 <div class="page-header"><h1>Changelog</h1></div>
 
+<h3>Tweaked the auto black border cropping function</h3>
+<h6>9 Feb 2021</h6>
+<p>
+Added a toggle border crop button in case you do not like the border cropping function, you can turn it off.<br>
+- black level threshold is lowered, so dark grey backgrounds are not over-cropped<br>
+- always crop a little bit inwards than the detected black borders (to cut away anti-aliasing / bleeding edges)<br>
+cutting away a little bit more borders from a dark image would not affect much of accuracy, they are of similar colors anyway<br>
+but leaving an excess black border on a bright image would affect accuracy a lot, so cutting a little bit more seems better<br>
+</p>
+
 <h3>Website updated to use new trace.moe API</h3>
 <h6>9 Feb 2021</h6>
 <p>
