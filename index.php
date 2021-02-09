@@ -122,7 +122,9 @@ if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
           <span class="glyphicon glyphicon-search"></span> Search
         </button>
       </div>
-      <a href="https://telegram.me/WhatAnimeBot">Telegram Bot</a> | WebExtension for <a href="https://chrome.google.com/webstore/detail/search-anime-by-screensho/gkamnldpllcbiidlfacaccdoadedncfp">Chrome</a>, <a href="https://addons.mozilla.org/en-US/firefox/addon/search-anime-by-screenshot/">Firefox</a>, and <a href="https://addons.opera.com/en/extensions/details/search-anime-by-screenshot/">Opera</a><br>
+    </div>
+    <div style="font-size: 12px; text-align: center; margin: 0.2em">
+      <a href="https://discord.gg/K9jn6Kj">Discord</a> | <a href="https://t.me/whatanimeupdates">Telegram</a> | <a href="https://telegram.me/WhatAnimeBot">Telegram Bot</a> | <a href="https://chrome.google.com/webstore/detail/search-anime-by-screensho/gkamnldpllcbiidlfacaccdoadedncfp">Chrome Extension</a> | <a href="https://addons.mozilla.org/en-US/firefox/addon/search-anime-by-screenshot/">Firefox Add-on</a> | <a href="https://addons.opera.com/en/extensions/details/search-anime-by-screenshot/">Opera Add-on</a> | <a href="https://github.com/soruly/trace.moe">GitHub</a> | <a href="https://www.patreon.com/soruly">Patreon</a><br>
     </div>
   </div>
 
