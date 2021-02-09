@@ -64,6 +64,13 @@ const search = async () => {
   document.querySelector("#loading").classList.remove("hidden");
   document.querySelector("#loader").classList.add("ripple");
   document.querySelector("#progressBarControl").style.visibility = "hidden";
+  document.querySelector("#soundBtn").style.visibility = "hidden";
+  document.querySelector("#soundBtn").classList.remove("glyphicon-volume-up");
+  document.querySelector("#soundBtn").classList.remove("glyphicon-volume-off");
+  document.querySelector("#soundBtn").classList.add("glyphicon-volume-off");
+  player.volume = 0;
+  player.muted = true;
+
   document.querySelector("#fileNameDisplay").innerText = "";
   document.querySelector("#timeCodeDisplay").innerText = "";
 
@@ -243,6 +250,22 @@ document.querySelector("#imageURL").addEventListener("input", function () {
   }
 });
 
+document.querySelector("#soundBtn").addEventListener("click", () => {
+  document.querySelector("#soundBtn").classList.toggle("glyphicon-volume-up");
+  document.querySelector("#soundBtn").classList.toggle("glyphicon-volume-off");
+  if (
+    document
+      .querySelector("#soundBtn")
+      .classList.contains("glyphicon-volume-up")
+  ) {
+    player.volume = 1;
+    player.muted = false;
+  } else {
+    player.volume = 0;
+    player.muted = true;
+  }
+});
+
 document.querySelector("#cutBordersBtn").addEventListener("click", () => {
   document
     .querySelector("#cutBordersBtn .glyphicon")
@@ -307,6 +330,7 @@ let playfile = async (target, videoURL, fileName, anilistID, timeCode) => {
 
   document.querySelector("#progressBarControl").style.visibility = "visible";
   document.querySelector("#progressBarControl").style.left = left + "px";
+  document.querySelector("#soundBtn").style.visibility = "visible";
 };
 
 let playPause = function () {
@@ -360,6 +384,13 @@ let resetAll = function () {
   preview.width = 640;
   preview.height = 360;
   document.querySelector("#progressBarControl").style.visibility = "hidden";
+  document.querySelector("#soundBtn").style.visibility = "hidden";
+  document.querySelector("#soundBtn").classList.remove("glyphicon-volume-up");
+  document.querySelector("#soundBtn").classList.remove("glyphicon-volume-off");
+  document.querySelector("#soundBtn").classList.add("glyphicon-volume-off");
+  player.volume = 0;
+  player.muted = true;
+
   document.querySelector("#fileNameDisplay").innerText = "";
   document.querySelector("#timeCodeDisplay").innerText = "";
   document.querySelector("#loading").style.height = preview.height + "px";

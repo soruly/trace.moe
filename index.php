@@ -96,6 +96,7 @@ if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
       <span id="progressBarControl" class="glyphicon glyphicon-triangle-top"></span>
       <span id="fileNameDisplay"></span>
       <span id="timeCodeDisplay"></span>
+      <span id="soundBtn" class="glyphicon glyphicon glyphicon-volume-off"></span>
     </div>
     <div id="form">
       <span class="btn btn-default btn-file btn-sm">

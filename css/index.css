@@ -182,9 +182,18 @@ td:nth-child(3) {
 }
 #timeCodeDisplay {
   position: absolute;
-  right: 16px;
+  right: 30px;
   font-size: 10px;
   margin-top: 10px;
+}
+#soundBtn {
+  visibility: hidden;
+  position: absolute;
+  right: 5px;
+  font-size: 18px;
+  margin-top: 7px;
+  top: auto;
+  cursor: pointer;
 }
 
 #main,
