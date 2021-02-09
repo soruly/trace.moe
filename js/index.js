@@ -83,9 +83,16 @@ const search = async () => {
 
   const formData = new FormData();
   formData.append("image", imgData);
-  const queryString = document.querySelector("#anilistFilter").value
-    ? `anilistID=${document.querySelector("#anilistFilter").value}`
-    : "";
+  const queryString = [
+    document
+      .querySelector("#cutBordersBtn .glyphicon")
+      .classList.contains("glyphicon-check")
+      ? "cutBorders=1"
+      : "cutBorders=",
+    document.querySelector("#anilistFilter").value
+      ? `anilistID=${document.querySelector("#anilistFilter").value}`
+      : "anilistID=",
+  ].join("&");
   const res = await fetch(`https://api.trace.moe/search?${queryString}`, {
     method: "POST",
     body: formData,
@@ -234,6 +241,15 @@ document.querySelector("#imageURL").addEventListener("input", function () {
       document.querySelector("#submit").click();
     }
   }
+});
+
+document.querySelector("#cutBordersBtn").addEventListener("click", () => {
+  document
+    .querySelector("#cutBordersBtn .glyphicon")
+    .classList.toggle("glyphicon-unchecked");
+  document
+    .querySelector("#cutBordersBtn .glyphicon")
+    .classList.toggle("glyphicon-check");
 });
 
 // document.querySelector("#jcBtn").addEventListener("click", () => {

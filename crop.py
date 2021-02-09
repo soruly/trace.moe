@@ -9,7 +9,7 @@ imgray = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
 
 # Set threshold
 #th1 = cv2.adaptiveThreshold(imgray,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,cv2.THRESH_BINARY,1023,0)
-_,th2 = cv2.threshold(imgray,8,255,cv2.THRESH_BINARY)
+_,th2 = cv2.threshold(imgray,4,255,cv2.THRESH_BINARY)
 contours, hierarchy = cv2.findContours(th2,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
 
 # Find with the largest rectangle
@@ -32,6 +32,8 @@ x = round(x)
 y = round(y)
 w = round(w)
 h = round(h)
+y = y + round(height * 0.015);
+h = h - round(height * 0.03);
 y = 0 if y < 0 else y
 x = 0 if x < 0 else x
 w = 1 if w < 1 else w

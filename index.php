@@ -111,7 +111,9 @@ if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
         <span id="messageText" style="float:left;line-height:30px"><?php if($originalImage) echo '<span class="glyphicon glyphicon-repeat spinning"></span>' ?></span>
         <label for="anilistFilter" style="font-weight: inherit">Anime Filter</label>
         <input type="text" id="anilistFilter" class="form-control input-sm" style="display:inline-block; width:100px" placeholder="anilist ID">
-
+        <button id="cutBordersBtn" type="button" class="btn btn-default btn-sm">
+          <span class="glyphicon glyphicon-check"></span> Cut Borders
+        </button>
         <!--<button id="jcBtn" type="button" class="btn btn-default btn-sm">
           <span class="glyphicon glyphicon-unchecked"></span> Use new algo
         </button>-->
