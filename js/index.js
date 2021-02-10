@@ -369,15 +369,6 @@ document
   .querySelector("#player")
   .addEventListener("loadedmetadata", loadedmetadata, false);
 
-document.querySelector("#player").addEventListener(
-  "ended",
-  function () {
-    document.querySelector("#player").currentTime = 0;
-    player.play();
-  },
-  false
-);
-
 let searchImage = document.createElement("canvas");
 
 let resetAll = function () {

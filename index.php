@@ -90,7 +90,7 @@ if (isset($_GET["url"]) && filter_var($_GET["url"], FILTER_VALIDATE_URL)) {
         <div id="loader" class="ripple"></div>
       </div>
       <canvas id="preview" width="640" height="360"></canvas>
-      <video id="player" style="display:none" volume="0" autoplay muted></video>
+      <video id="player" style="display:none" volume="0" muted autoplay loop playsinline></video>
     </div>
     <div style="height: 15px">
       <span id="progressBarControl" class="glyphicon glyphicon-triangle-top"></span>
