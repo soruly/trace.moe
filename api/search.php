@@ -28,7 +28,7 @@ if (!$image && !isset($_GET['url']) && !isset($_FILES['image'])) {
     $res = null;
     
     if (isset($_GET['url']) && $_GET['url']) {
-        $curl = curl_init("https://api.trace.moe/search?cutBorders=1&url=".$_GET['url']);
+        $curl = curl_init("https://api.trace.moe/search?cutBorders=1&url=".rawurlencode($_GET['url']));
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         $res = curl_exec($curl);
         curl_close($curl);
