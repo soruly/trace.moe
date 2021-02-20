@@ -1,7 +1,0 @@
-{
-    "require": {
-        "predis/predis": "^1.0",
-        "google/recaptcha": "~1.1",
-        "php-ffmpeg/php-ffmpeg": "^0.17"
-    }
-}
