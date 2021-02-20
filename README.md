@@ -11,53 +11,49 @@ It tells you which anime, which episode, and the exact moment this scene appears
 
 ## Demo
 
-Demo image
+![](demo-result.jpg)
 
-![](https://images.plurk.com/2FKxneXP64qiKwjlUA7sKj.jpg)
+Try this image yourself.
 
-Search result tells you which moment it appears.
+![](demo.jpg)
 
-![](https://addons.cdn.mozilla.net/user-media/previews/full/209/209947.png)
+## Overview
 
-## How does it work
+This repo is just an index page for the whole trace.moe system. It consists of different parts as below:
 
-This repo only include the webapp for trace.moe. To learn more, read the repos and presentation slides below
+![](overview.png)
 
-- [slides](https://github.com/soruly/slides) - presentation slides
-- [sola](https://github.com/soruly/sola) - video indexing
-- [LireSolr](https://github.com/soruly/liresolr) - image analysis and searching
-- [anilist-crawler](https://github.com/soruly/anilist-crawler) - getting anilist info
-- [trace.moe-media](https://github.com/soruly/trace.moe-media) - thumbnail / scene preview generation
-- [trace.moe-WebExtension](https://github.com/soruly/trace.moe-WebExtension) - browser intergration
-- [trace.moe-telegram-bot](https://github.com/soruly/trace.moe-telegram-bot) - official telegram bot
+Client-side (gray parts):
 
-If you want to make your own video scene search engine, please refer to sola first.
+- [trace.moe-www](https://github.com/soruly/trace.moe-www) - web server serving the webpage [trace.moe](https://trace.moe)
+- [trace.moe-WebExtension](https://github.com/soruly/trace.moe-WebExtension) - browser add-ons to help copying and pasting images
+- [trace.moe-telegram-bot](https://github.com/soruly/trace.moe-telegram-bot) - official Telegram Bot
 
-## Official API Docs (Beta)
+Server-side (blue and red parts):
 
-https://soruly.github.io/trace.moe/
+- [trace.moe-api](https://github.com/soruly/trace.moe-api) - API server for image search and database updates
+- [trace.moe-media](https://github.com/soruly/trace.moe-media) - media server for video storage and scene preview generation
+- [LireSolr](https://github.com/soruly/liresolr) - image analysis and search plugin for Solr
 
-# CLI tools (3rd party)
+Others (orange parts):
 
-what-anime-cli by Ilya Revenko https://github.com/irevenko/what-anime-cli
+- [trace.moe-worker](https://github.com/soruly/trace.moe-worker) - video analysis and indexing
+- [anilist-crawler](https://github.com/soruly/anilist-crawler) - getting anilist info and store in mariaDB
+- [slides](https://github.com/soruly/slides) - pass presentation slides on project status
+- [sola](https://github.com/soruly/sola) - an offline standalone version that combines liresolr and trace.moe-worker. (no longer in development)
 
-## Mobile Apps (3rd party)
+## Integrations
 
-WhatAnime by Andrée Torres
-https://play.google.com/store/apps/details?id=com.maddog05.whatanime
-Source: https://github.com/maddog05/whatanime-android
+The easiest way to integrate with trace.moe is by query string. No API needed.
 
-WhatAnime - 以图搜番 by Mystery0 (Simplified Chinese)
-https://play.google.com/store/apps/details?id=pw.janyo.whatanime
-Source: https://github.com/JanYoStudio/WhatAnime
-
-## Integrating search with trace.moe
-
-To add trace.moe as a search option for your site, pass the image URL via query string like this
+You can pass image URL in query string like this
 
 ```
 https://trace.moe/?url=http://searchimageurl
 ```
 
-Note that the server cannot access private image URLs.
-In that case, users has to copy and paste (Ctrl+V/Cmd+V) the image directly, or save and upload the file.
+## trace.moe API
+
+A new API is going to be released, stay tuned for updates. Refer to below document for programs using the legacy API.
+
+https://soruly.github.io/trace.moe/
