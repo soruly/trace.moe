@@ -28,7 +28,7 @@ if (!$image && !isset($_GET['url']) && !isset($_FILES['image'])) {
     $res = null;
     
     if (isset($_GET['url']) && $_GET['url']) {
-        $curl = curl_init("https://api.trace.moe/search?cutBorders=1&url=".rawurlencode($_GET['url']));
+        $curl = curl_init("https://api.trace.moe/search?info=basic&cutBorders=1&url=".rawurlencode($_GET['url']));
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         $res = curl_exec($curl);
         curl_close($curl);
@@ -37,7 +37,7 @@ if (!$image && !isset($_GET['url']) && !isset($_FILES['image'])) {
         $savePath = '../temp/'.microtime(true).'.jpg';
         file_put_contents($savePath, $data);
         
-        $curl = curl_init("https://api.trace.moe/search?cutBorders=1");
+        $curl = curl_init("https://api.trace.moe/search?info=basic&cutBorders=1");
         curl_setopt($curl, CURLOPT_POST, true);
         $cFile = curl_file_create($savePath);
         curl_setopt($curl, CURLOPT_POSTFIELDS, array('image'=> $cFile));
@@ -55,7 +55,7 @@ if (!$image && !isset($_GET['url']) && !isset($_FILES['image'])) {
         $savePath = '../temp/'.microtime(true).'.jpg';
         file_put_contents($savePath, base64_decode($data));
         
-        $curl = curl_init("https://api.trace.moe/search?cutBorders=1");
+        $curl = curl_init("https://api.trace.moe/search?info=basic&cutBorders=1");
         curl_setopt($curl, CURLOPT_POST, true);
         $cFile = curl_file_create($savePath);
         curl_setopt($curl, CURLOPT_POSTFIELDS, array('image'=> $cFile));
