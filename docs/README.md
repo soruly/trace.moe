@@ -119,10 +119,10 @@ Example Response
 | ReRankSearchTime  | Time taken to compare the frames (sum of all cores)                                  | Number           |
 | CacheHit          | Whether the search result is cached. (Results are cached by extracted image feature) | Boolean          |
 | trial             | Number of times searched                                                             | Number           |
-| limit             | Number of search limit remaining                                                     | Number           |
-| limit_ttl         | Time until limit resets (seconds)                                                    | Number           |
-| quota             | Number of search quota remaining                                                     | Number           |
-| quota_ttl         | Time until quota resets (seconds)                                                    | Number           |
+| limit             | Number of search limit remaining (to be deprecated)                                  | Number           |
+| limit_ttl         | Time until limit resets (to be deprecated)                                           | Number           |
+| quota             | Number of search quota remaining  (to be deprecated)                                 | Number           |
+| quota_ttl         | Time until quota resets  (to be deprecated)                                          | Number           |
 | docs              | Search results (see table below)                                                     | Array of Objects |
 
 | Fields           | Meaning                                                 | Value                                 |
@@ -168,30 +168,7 @@ If your image is malformed, you may got an error message (HTTP 500) like this:
 "Error reading image from URL: http://192.168.2.11/pic/1549186015.8901.jpg: http://192.168.2.11/pic/1549186015.8901.jpg"
 ```
 
-These image URLs are for debugging use, and is not accessible from internet. You may send this to admin to inspect what went wrong. All images send to server are deleted after 24 hours.
-
-Aside from the JSON response or the [/me](#Me) endpoint, you can also get the current limit from HTTP response header.
-
-```
-x-whatanime-limit: 9
-x-whatanime-limit-ttl: 60
-x-whatanime-quota: 150
-x-whatanime-quota-ttl: 86400
-```
-
-Once the limit is reached. Server would respond HTTP 429 Too Many Requests, with a double quoted string showing when the quota will reset.
-
-Example
-
-```
-"Search limit exceeded. Please wait 87 seconds."
-```
-
-<Note type="tip">
-
-All error messages are double quoted string in order to ensure they are always valid JSON format.
-
-</Note>
+These image URLs are for debugging use, and is not accessible from internet. You may send this to admin to inspect what went wrong. All images send to server are deleted immediately.
 
 ## Previews
 
@@ -236,15 +213,7 @@ Example Response
 ```json
 {
   "user_id": 1001,
-  "email": "soruly@gmail.com",
-  "limit": 9,
-  "limit_ttl": 45,
-  "quota": 1000,
-  "quota_ttl": 86400,
-  "user_limit": 10,
-  "user_limit_ttl": 60,
-  "user_quota": 1000,
-  "user_quota_ttl": 86400
+  "email": "soruly@gmail.com"
 }
 ```
 
@@ -252,15 +221,9 @@ Example Response
 | -------------- | -------------------------------------------- | ---------------- |
 | user_id        | Null or Account ID                           | Null or Number   |
 | email          | IP address or your Account Email             | String           |
-| limit          | Current remaining limit for your account now | Number           |
-| limit_ttl      | Time until limit reset                       | Number (seconds) |
-| quota          | Current remaining limit for your account now | Number           |
-| quota_ttl      | Time until quota reset                       | Number (seconds) |
-| user_limit     | Rate limit associated with your account      | Number           |
-| user_limit_ttl | Usually set to 60 (1 minute)                 | Number (seconds) |
-| user_quota     | Quota associated with your account           | Number           |
-| user_quota_ttl | Usually set to 86400 (1 day)                 | Number (seconds) |
 
 ## Rate limit and Search Quota
 
-Every IP address has a rate limit of 10/minute, counting API and WebUI together. There is no limit to daily search quota.
+Every IP address has a rate limit, which may change from time to time. (currently: 5/min and 15 per 5-min and 120/hour). You should relies on the HTTP status code (429) to decide if you should retry/limit your request rate.
+
+There is no limit to daily search quota.
