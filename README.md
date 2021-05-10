@@ -54,6 +54,4 @@ https://trace.moe/?url=http://searchimageurl
 
 ## trace.moe API
 
-A new API is going to be released, stay tuned for updates. Refer to below document for programs using the legacy API.
-
-https://soruly.github.io/trace.moe/
+Refer to https://github.com/soruly/trace.moe-api
