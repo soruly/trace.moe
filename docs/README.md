@@ -1,6 +1,8 @@
-# trace.moe API Docs
+# trace.moe API Docs (To Be Deprecated)
 
-This API is always under development. Please stay up-to-date with this project via Discord or Patreon, and <a href="https://www.patreon.com/soruly">donate</a> <ExternalLinkIcon /> to support this project!
+Please refer to the new API https://github.com/soruly/trace.moe-api
+
+This API will be deprecated on 30th June 2021. Below legacy document is for reference only.
 
 ## Search
 
