@@ -1,0 +1,151 @@
+version: "3"
+
+services:
+  www:
+    image: ghcr.io/soruly/trace.moe-www:latest
+    init: true
+    restart: unless-stopped
+    ports:
+      - "${WWW_PORT}:80"
+    networks:
+      trace_moe_net:
+
+  media:
+    image: ghcr.io/soruly/trace.moe-media:latest
+    init: true
+    restart: unless-stopped
+    environment:
+      - ELASTICSEARCH_HOST=elasticsearch
+      - TRACE_API_SECRET=TRACE_API_SECRET
+    ports:
+      - "${MEDIA_PORT}:3000"
+    volumes:
+      - type: bind
+        source: /mnt/trace.moe-media/
+        target: /mnt/
+
+  api:
+    image: ghcr.io/soruly/trace.moe-api:latest
+    init: true
+    depends_on:
+      - redis
+      - mariadb
+      - liresolr
+    restart: unless-stopped
+    environment:
+      - TRACE_ALGO=cl
+      - SOLA_DB_HOST=mariadb
+      - SOLA_DB_PORT=3306
+      - SOLA_DB_USER=root
+      - SOLA_DB_PWD=MARIADB_ROOT_PASSWORD
+      - SOLA_DB_NAME=sola
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - SERVER_PORT=3000
+      - SERVER_WS_HOST=ws
+      - SERVER_WS_PORT=3333
+      - SOLA_SOLR_LIST=http://172.17.0.1:8983/solr/
+      - TRACE_MEDIA_URL=http://172.17.0.1:${MEDIA_PORT}
+      - TRACE_API_SECRET=TRACE_API_SECRET
+      - HASH_PATH=/mnt/anilist_hash
+    ports:
+      - "${API_PORT}:3000"
+    volumes:
+      - type: bind
+        source: /mnt/trace.moe-hash/
+        target: /mnt/anilist_hash
+    networks:
+      trace_moe_net:
+
+  ws:
+    image: ghcr.io/soruly/trace.moe-api-ws:latest
+    init: true
+    depends_on:
+      - mariadb
+      - liresolr
+    restart: unless-stopped
+    environment:
+      - TRACE_ALGO=cl
+      - SOLA_DB_HOST=mariadb
+      - SOLA_DB_PORT=3306
+      - SOLA_DB_USER=root
+      - SOLA_DB_PWD=MARIADB_ROOT_PASSWORD
+      - SOLA_DB_NAME=sola
+      - SERVER_WS_PORT=3333
+      - SOLA_SOLR_LIST=http://172.17.0.1:8983/solr/
+    networks:
+      trace_moe_net:
+
+  adminer:
+    image: adminer:latest
+    restart: always
+    environment:
+      - ADMINER_DEFAULT_SERVER=mariadb
+      - ADMINER_DEFAULT_USER=root
+      - ADMINER_DEFAULT_PASSWORD=MARIADB_ROOT_PASSWORD
+    ports:
+      - 8800:8080
+    networks:
+      trace_moe_net:
+
+  mariadb:
+    image: mariadb:latest
+    restart: unless-stopped
+    environment:
+      - MARIADB_ROOT_PASSWORD=MARIADB_ROOT_PASSWORD
+    networks:
+      trace_moe_net:
+
+  redis:
+    image: redis:latest
+    networks:
+      trace_moe_net:
+
+  liresolr:
+    image: ghcr.io/soruly/liresolr:latest
+    command: solr-precreate mycore
+    restart: unless-stopped
+    ports:
+      - "8983:8983"
+    volumes:
+      - type: bind
+        source: /mnt/mycores
+        target: /opt/solr/server/solr/mycores
+    networks:
+      trace_moe_net:
+
+  hasher:
+    image: ghcr.io/soruly/trace.moe-worker-hasher:latest
+    init: true
+    restart: unless-stopped
+    environment:
+      - TRACE_API_URL=http://172.17.0.1:${API_PORT}
+      - TRACE_API_SECRET=TRACE_API_SECRET
+      - TRACE_MEDIA_URL=http://172.17.0.1:${MEDIA_PORT}
+
+  loader:
+    image: ghcr.io/soruly/trace.moe-worker-loader:latest
+    init: true
+    restart: unless-stopped
+    environment:
+      - TRACE_API_URL=http://172.17.0.1:${API_PORT}
+      - TRACE_API_SECRET=TRACE_API_SECRET
+      - TRACE_MEDIA_URL=http://172.17.0.1:${MEDIA_PORT}
+
+  watcher:
+    image: ghcr.io/soruly/trace.moe-worker-watcher:latest
+    init: true
+    restart: unless-stopped
+    environment:
+      - TRACE_API_URL=http://172.17.0.1:${API_PORT}
+      - TRACE_API_SECRET=TRACE_API_SECRET
+      - TRACE_MEDIA_URL=http://172.17.0.1:${MEDIA_PORT}
+      - TRACE_WATCH_PATH=/mnt/
+    volumes:
+      - type: bind
+        source: /mnt/trace.moe-incoming/
+        target: /mnt/
+
+networks:
+  trace_moe_net:
+    driver: bridge
