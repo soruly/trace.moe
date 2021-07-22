@@ -5,10 +5,11 @@ services:
     image: ghcr.io/soruly/trace.moe-www:latest
     init: true
     restart: unless-stopped
+    environment:
+      - NEXT_PUBLIC_API_ENDPOINT=http://172.17.0.1:${API_PORT}
+      - NEXT_PUBLIC_MEDIA_ENDPOINT=http://172.17.0.1:${MEDIA_PORT}
     ports:
-      - "${WWW_PORT}:80"
-    networks:
-      trace_moe_net:
+      - "${WWW_PORT}:3000"
 
   media:
     image: ghcr.io/soruly/trace.moe-media:latest
@@ -73,6 +74,7 @@ services:
       - SOLA_DB_NAME=sola
       - SERVER_WS_PORT=3333
       - SOLA_SOLR_LIST=http://172.17.0.1:8983/solr/
+      - SOLA_SOLR_SIZE=1
     networks:
       trace_moe_net:
 
@@ -103,7 +105,7 @@ services:
 
   liresolr:
     image: ghcr.io/soruly/liresolr:latest
-    command: solr-precreate mycore
+    command: solr-precreate cl_0
     restart: unless-stopped
     ports:
       - "8983:8983"
