@@ -125,6 +125,10 @@ services:
       - TRACE_API_URL=http://172.17.0.1:${API_PORT}
       - TRACE_API_SECRET=${TRACE_API_SECRET}
       - TRACE_MEDIA_URL=http://172.17.0.1:${MEDIA_PORT}
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
 
   loader:
     image: ghcr.io/soruly/trace.moe-worker-loader:latest
