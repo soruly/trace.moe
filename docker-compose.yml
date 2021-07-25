@@ -6,23 +6,23 @@ services:
     init: true
     restart: unless-stopped
     environment:
-      - NEXT_PUBLIC_API_ENDPOINT=http://172.17.0.1:${API_PORT}
-      - NEXT_PUBLIC_MEDIA_ENDPOINT=http://172.17.0.1:${MEDIA_PORT}
+      - NEXT_PUBLIC_API_ENDPOINT=${NEXT_PUBLIC_API_ENDPOINT}
+      - NEXT_PUBLIC_MEDIA_ENDPOINT=${NEXT_PUBLIC_MEDIA_ENDPOINT}
     ports:
-      - "${WWW_PORT}:3000"
+      - ${WWW_PORT}:3000
 
   media:
     image: ghcr.io/soruly/trace.moe-media:latest
     init: true
     restart: unless-stopped
     environment:
-      - ELASTICSEARCH_HOST=elasticsearch
-      - TRACE_API_SECRET=TRACE_API_SECRET
+      - TRACE_MEDIA_SALT=${TRACE_MEDIA_SALT}
+      - TRACE_API_SECRET=${TRACE_API_SECRET}
     ports:
-      - "${MEDIA_PORT}:3000"
+      - ${MEDIA_PORT}:3000
     volumes:
       - type: bind
-        source: /mnt/trace.moe-media/
+        source: ${MEDIA_DIR}
         target: /mnt/
 
   api:
@@ -38,23 +38,24 @@ services:
       - SOLA_DB_HOST=mariadb
       - SOLA_DB_PORT=3306
       - SOLA_DB_USER=root
-      - SOLA_DB_PWD=MARIADB_ROOT_PASSWORD
+      - SOLA_DB_PWD=${MARIADB_ROOT_PASSWORD}
       - SOLA_DB_NAME=sola
       - REDIS_HOST=redis
       - REDIS_PORT=6379
       - SERVER_PORT=3000
       - SERVER_WS_HOST=ws
       - SERVER_WS_PORT=3333
-      - SOLA_SOLR_LIST=http://172.17.0.1:8983/solr/
-      - TRACE_MEDIA_URL=http://172.17.0.1:${MEDIA_PORT}
-      - TRACE_API_SECRET=TRACE_API_SECRET
-      - HASH_PATH=/mnt/anilist_hash
+      - SOLA_SOLR_LIST=http://172.17.0.1:${SOLR_PORT}/solr/
+      - TRACE_MEDIA_URL=${NEXT_PUBLIC_MEDIA_ENDPOINT}
+      - TRACE_MEDIA_SALT=${TRACE_MEDIA_SALT}
+      - TRACE_API_SECRET=${TRACE_API_SECRET}
+      - HASH_PATH=/mnt/hash
     ports:
-      - "${API_PORT}:3000"
+      - ${API_PORT}:3000
     volumes:
       - type: bind
-        source: /mnt/trace.moe-hash/
-        target: /mnt/anilist_hash
+        source: ${HASH_DIR}
+        target: /mnt/hash
     networks:
       trace_moe_net:
 
@@ -70,10 +71,10 @@ services:
       - SOLA_DB_HOST=mariadb
       - SOLA_DB_PORT=3306
       - SOLA_DB_USER=root
-      - SOLA_DB_PWD=MARIADB_ROOT_PASSWORD
+      - SOLA_DB_PWD=${MARIADB_ROOT_PASSWORD}
       - SOLA_DB_NAME=sola
       - SERVER_WS_PORT=3333
-      - SOLA_SOLR_LIST=http://172.17.0.1:8983/solr/
+      - SOLA_SOLR_LIST=http://172.17.0.1:${SOLR_PORT}/solr/
       - SOLA_SOLR_SIZE=1
     networks:
       trace_moe_net:
@@ -84,9 +85,9 @@ services:
     environment:
       - ADMINER_DEFAULT_SERVER=mariadb
       - ADMINER_DEFAULT_USER=root
-      - ADMINER_DEFAULT_PASSWORD=MARIADB_ROOT_PASSWORD
+      - ADMINER_DEFAULT_PASSWORD=${MARIADB_ROOT_PASSWORD}
     ports:
-      - 8800:8080
+      - ${ADMINER_PORT}:8080
     networks:
       trace_moe_net:
 
@@ -94,7 +95,7 @@ services:
     image: mariadb:latest
     restart: unless-stopped
     environment:
-      - MARIADB_ROOT_PASSWORD=MARIADB_ROOT_PASSWORD
+      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
     networks:
       trace_moe_net:
 
@@ -108,10 +109,10 @@ services:
     command: solr-precreate cl_0
     restart: unless-stopped
     ports:
-      - "8983:8983"
+      - ${SOLR_PORT}:8983
     volumes:
       - type: bind
-        source: /mnt/mycores
+        source: ${SOLR_DIR}
         target: /opt/solr/server/solr/mycores
     networks:
       trace_moe_net:
@@ -122,7 +123,7 @@ services:
     restart: unless-stopped
     environment:
       - TRACE_API_URL=http://172.17.0.1:${API_PORT}
-      - TRACE_API_SECRET=TRACE_API_SECRET
+      - TRACE_API_SECRET=${TRACE_API_SECRET}
       - TRACE_MEDIA_URL=http://172.17.0.1:${MEDIA_PORT}
 
   loader:
@@ -131,7 +132,7 @@ services:
     restart: unless-stopped
     environment:
       - TRACE_API_URL=http://172.17.0.1:${API_PORT}
-      - TRACE_API_SECRET=TRACE_API_SECRET
+      - TRACE_API_SECRET=${TRACE_API_SECRET}
       - TRACE_MEDIA_URL=http://172.17.0.1:${MEDIA_PORT}
 
   watcher:
@@ -140,12 +141,12 @@ services:
     restart: unless-stopped
     environment:
       - TRACE_API_URL=http://172.17.0.1:${API_PORT}
-      - TRACE_API_SECRET=TRACE_API_SECRET
+      - TRACE_API_SECRET=${TRACE_API_SECRET}
       - TRACE_MEDIA_URL=http://172.17.0.1:${MEDIA_PORT}
       - TRACE_WATCH_PATH=/mnt/
     volumes:
       - type: bind
-        source: /mnt/trace.moe-incoming/
+        source: ${WATCH_DIR}
         target: /mnt/
 
 networks:
