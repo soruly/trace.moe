@@ -40,8 +40,6 @@ services:
       - REDIS_HOST=redis
       - REDIS_PORT=6379
       - SERVER_PORT=3000
-      - SERVER_WS_HOST=ws
-      - SERVER_WS_PORT=3333
       - SOLA_SOLR_LIST=http://172.17.0.1:${SOLR_PORT}/solr/
       - SOLA_SOLR_SIZE=1
       - TRACE_MEDIA_URL=${NEXT_PUBLIC_MEDIA_ENDPOINT}
@@ -54,25 +52,6 @@ services:
       - type: bind
         source: ${HASH_DIR}
         target: /mnt/hash
-    networks:
-      trace_moe_net:
-
-  ws:
-    image: ghcr.io/soruly/trace.moe-api-ws:latest
-    depends_on:
-      - mariadb
-      - liresolr
-    restart: unless-stopped
-    environment:
-      - TRACE_ALGO=cl
-      - SOLA_DB_HOST=mariadb
-      - SOLA_DB_PORT=3306
-      - SOLA_DB_USER=root
-      - SOLA_DB_PWD=${MARIADB_ROOT_PASSWORD}
-      - SOLA_DB_NAME=sola
-      - SERVER_WS_PORT=3333
-      - SOLA_SOLR_LIST=http://172.17.0.1:${SOLR_PORT}/solr/
-      - SOLA_SOLR_SIZE=1
     networks:
       trace_moe_net:
 
