@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/github/license/soruly/trace.moe.svg?style=flat-square)](https://github.com/soruly/trace.moe/blob/master/LICENSE)
 [![Discord](https://img.shields.io/discord/437578425767559188.svg?style=flat-square)](https://discord.gg/K9jn6Kj)
 
-Anime Scene Seach Engine
+Anime Scene Search Engine
 
 Trace back the scene where an anime screenshots is taken from.
 
