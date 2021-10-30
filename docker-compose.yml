@@ -82,14 +82,14 @@ services:
 
   liresolr:
     image: ghcr.io/soruly/liresolr:latest
-    command: solr-precreate cl_0
+    command: solr-precreate cl_0 /opt/solr/server/solr/configsets/liresolr
     restart: unless-stopped
     ports:
       - ${SOLR_PORT}:8983
     volumes:
       - type: bind
         source: ${SOLR_DIR}
-        target: /opt/solr/server/solr/mycores
+        target: /var/solr
     networks:
       trace_moe_net:
 
