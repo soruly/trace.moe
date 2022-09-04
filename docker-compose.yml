@@ -72,6 +72,10 @@ services:
     restart: unless-stopped
     environment:
       - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
+    volumes:
+      - type: bind
+        source: ${MYSQL_DIR}
+        target: /var/lib/mysql
     networks:
       trace_moe_net:
 
