@@ -84,6 +84,7 @@ WATCH_DIR=/home/soruly/trace.moe-incoming/  # suggest using fast drives
 MEDIA_DIR=/home/soruly/trace.moe-media/     # suggest using large drives
 HASH_DIR=/home/soruly/trace.moe-hash/       # suggest using fast drives
 SOLR_DIR=/home/soruly/mycores               # suggest using super fast drives
+MYSQL_DIR=/home/soruly/mysql
 
 TRACE_MEDIA_SALT=YOUR_TRACE_MEDIA_SALT
 TRACE_API_SALT=YOUR_TRACE_API_SALT
@@ -98,6 +99,7 @@ mkdir -p /home/soruly/trace.moe-incoming/
 mkdir -p /home/soruly/trace.moe-media/
 mkdir -p /home/soruly/trace.moe-hash/
 mkdir -p /home/soruly/mycores
+mkdir -p /home/soruly/mysql
 sudo chown 8983:8983 /home/soruly/mycores
 ```
 
