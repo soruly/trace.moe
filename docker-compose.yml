@@ -9,6 +9,8 @@ services:
       - NEXT_PUBLIC_MEDIA_ENDPOINT=${NEXT_PUBLIC_MEDIA_ENDPOINT}
     ports:
       - ${WWW_PORT}:3000
+    networks:
+      trace_moe_net:
 
   media:
     image: ghcr.io/soruly/trace.moe-media:latest
@@ -22,6 +24,8 @@ services:
       - type: bind
         source: ${MEDIA_DIR}
         target: /mnt/
+    networks:
+      trace_moe_net:        
 
   api:
     image: ghcr.io/soruly/trace.moe-api:latest
@@ -108,6 +112,8 @@ services:
       nofile:
         soft: 1000000
         hard: 1000000
+    networks:
+      trace_moe_net:        
 
   loader:
     image: ghcr.io/soruly/trace.moe-worker-loader:latest
@@ -116,6 +122,8 @@ services:
       - TRACE_API_URL=http://172.17.0.1:${API_PORT}
       - TRACE_API_SECRET=${TRACE_API_SECRET}
       - TRACE_MEDIA_URL=http://172.17.0.1:${MEDIA_PORT}
+    networks:
+      trace_moe_net:
 
   watcher:
     image: ghcr.io/soruly/trace.moe-worker-watcher:latest
@@ -129,6 +137,8 @@ services:
       - type: bind
         source: ${WATCH_DIR}
         target: /mnt/
+    networks:
+      trace_moe_net:        
 
 networks:
   trace_moe_net:
