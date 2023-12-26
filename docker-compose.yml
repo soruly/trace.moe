@@ -62,7 +62,7 @@ services:
 
   adminer:
     image: adminer:latest
-    restart: always
+    restart: unless-stopped
     environment:
       - ADMINER_DEFAULT_SERVER=mariadb
       - ADMINER_DEFAULT_USER=root
@@ -86,6 +86,7 @@ services:
 
   redis:
     image: redis:latest
+    restart: unless-stopped
     networks:
       trace_moe_net:
 
