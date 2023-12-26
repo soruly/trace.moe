@@ -53,7 +53,7 @@ Others:
 
 ## Hosting your own trace.moe system
 
-You're going to need these docker images.
+You're going to need these docker images. They are provided in the `docker-compose.yaml` file.
 
 | Parts                                                                  | Docker CI Build                                                                                                                                                                              | Docker Image                                                                                                                                                                                                  |
 | ---------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -68,7 +68,9 @@ You're going to need these docker images.
 | [trace.moe-worker-loader](https://github.com/soruly/trace.moe-worker)  | [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/soruly/trace.moe-worker/docker-image.yml?style=flat-square)](https://github.com/soruly/trace.moe-worker/actions) | [![Docker Image Size](https://img.shields.io/docker/image-size/soruly/trace.moe-worker-loader/latest?style=flat-square)](https://github.com/soruly/trace.moe-worker/pkgs/container/trace.moe-worker-loader)   |
 | [trace.moe-worker-watcher](https://github.com/soruly/trace.moe-worker) | [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/soruly/trace.moe-worker/docker-image.yml?style=flat-square)](https://github.com/soruly/trace.moe-worker/actions) | [![Docker Image Size](https://img.shields.io/docker/image-size/soruly/trace.moe-worker-watcher/latest?style=flat-square)](https://github.com/soruly/trace.moe-worker/pkgs/container/trace.moe-worker-watcher) |
 
-1. Copy `.env.example` to `.env` and update config as you need
+### Configuration
+
+Copy `.env.example` to `.env` and update config as you need.
 
 ```
 WWW_PORT=3310
@@ -77,14 +79,14 @@ MEDIA_PORT=3312
 ADMINER_PORT=3313
 SOLR_PORT=8983
 
-NEXT_PUBLIC_API_ENDPOINT=http://172.17.0.1:3311    # external URL
-NEXT_PUBLIC_MEDIA_ENDPOINT=http://172.17.0.1:3312  # external URL
+NEXT_PUBLIC_API_ENDPOINT=http://localhost:3311    # external URL
+NEXT_PUBLIC_MEDIA_ENDPOINT=http://localhost:3312  # external URL
 
-WATCH_DIR=/home/soruly/trace.moe-incoming/  # suggest using fast drives
-MEDIA_DIR=/home/soruly/trace.moe-media/     # suggest using large drives
-HASH_DIR=/home/soruly/trace.moe-hash/       # suggest using fast drives
-SOLR_DIR=/home/soruly/mycores               # suggest using super fast drives
-MYSQL_DIR=/home/soruly/mysql
+WATCH_DIR=trace.moe-incoming/  # suggest using fast drives
+MEDIA_DIR=trace.moe-media/     # suggest using large drives
+HASH_DIR=trace.moe-hash/       # suggest using fast drives
+SOLR_DIR=mycores               # suggest using super fast drives
+MYSQL_DIR=mysql
 
 TRACE_MEDIA_SALT=YOUR_TRACE_MEDIA_SALT
 TRACE_API_SALT=YOUR_TRACE_API_SALT
@@ -92,26 +94,28 @@ TRACE_API_SECRET=YOUR_TRACE_API_SECRET
 MARIADB_ROOT_PASSWORD=YOUR_MARIADB_ROOT_PASSWORD
 ```
 
-2. Ensure the directories are created and are empty before starting the containers. And for `SOLR_DIR`, you must set the owner to uid,gid to 8983
+2. If you are installing it on Linux, ensure the directories are created and empty before starting the containers. The `SOLR_DIR`, must have it's owner `uid` and `gid` set to `8983`.
 
 ```bash
-mkdir -p /home/soruly/trace.moe-incoming/
-mkdir -p /home/soruly/trace.moe-media/
-mkdir -p /home/soruly/trace.moe-hash/
-mkdir -p /home/soruly/mycores
-mkdir -p /home/soruly/mysql
-sudo chown 8983:8983 /home/soruly/mycores
+mkdir -p trace.moe-incoming/
+mkdir -p trace.moe-media/
+mkdir -p trace.moe-hash/
+mkdir -p mycores
+mkdir -p mysql
+sudo chown 8983:8983 mycores
 ```
 
-3. Start the containers
+### Starting the cluster
 
 ```bash
 docker-compose up
 ```
 
-4. Once the cluster is ready, you can adding files to incoming folder
+### Importing media files
 
-The files in incoming folder must be contained in 1-level folders, e.g.
+Media files will be imported when placed into the incoming folder (`trace.moe-incoming`).
+
+The files must be contained in 1-level folders, e.g.
 
 ```
 trace.moe-incoming/foo.mp4  <= not ok
@@ -121,6 +125,8 @@ trace.moe-incoming/1/bar/foo.mp4 <= ok, but will be uploaded as /1/foo.mp4
 
 trace.moe assumes the folder name is anilist ID. If your data is not related to anilist ID, you can use any id/text you want. The system would still work without anilist data.
 
-Do not create the folders in the incoming directory. You should first put video files in folders, then move/copy the folders into the incoming directory.
+Files must have the `.mp4` extension and must be in the mp4 format inorder to be imported, other files will be ignored.
+
+Do not create the folders in the incoming directory. You should first put video files in folders, then move or copy the folders into the incoming directory.
 
 Once the video files are in incoming directory, the watcher would start uploading the video to trace.moe-media. When it's done, it would delete the video in incoming directory. After Hash worker and Load workers complete the job, you can search the video by image in your www website at WWW_PORT.
