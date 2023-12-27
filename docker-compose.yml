@@ -50,6 +50,7 @@ services:
       - TRACE_MEDIA_SALT=${TRACE_MEDIA_SALT}
       - TRACE_API_SECRET=${TRACE_API_SECRET}
       - TRACE_API_SALT=${TRACE_API_SALT}
+      - TRACE_ACCURACY=0.03
       - HASH_PATH=/mnt/hash
     ports:
       - ${API_PORT}:3000
