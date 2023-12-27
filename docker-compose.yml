@@ -49,6 +49,8 @@ services:
       - TRACE_MEDIA_URL=${NEXT_PUBLIC_MEDIA_ENDPOINT}
       - TRACE_MEDIA_SALT=${TRACE_MEDIA_SALT}
       - TRACE_API_SECRET=${TRACE_API_SECRET}
+      - TRACE_API_SALT=${TRACE_API_SALT}
+      - TRACE_ACCURACY=0.03
       - HASH_PATH=/mnt/hash
     ports:
       - ${API_PORT}:3000
@@ -61,7 +63,7 @@ services:
 
   adminer:
     image: adminer:latest
-    restart: always
+    restart: unless-stopped
     environment:
       - ADMINER_DEFAULT_SERVER=mariadb
       - ADMINER_DEFAULT_USER=root
@@ -85,6 +87,7 @@ services:
 
   redis:
     image: redis:latest
+    restart: unless-stopped
     networks:
       trace_moe_net:
 
