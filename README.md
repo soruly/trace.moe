@@ -79,6 +79,8 @@ MEDIA_PORT=3312
 ADMINER_PORT=3313
 SOLR_PORT=8983
 
+TRACE_IMPORT_MODE=false # Bulk import mode
+
 NEXT_PUBLIC_API_ENDPOINT=http://localhost:3311    # external URL
 NEXT_PUBLIC_MEDIA_ENDPOINT=http://localhost:3312  # external URL
 
@@ -108,7 +110,7 @@ sudo chown 8983:8983 mycores
 ### Starting the cluster
 
 ```bash
-docker-compose up
+docker-compose up -d --force-recreate
 ```
 
 ### Importing media files
@@ -130,3 +132,10 @@ Files must have the `.mp4` extension and must be in the mp4 format inorder to be
 Do not create the folders in the incoming directory. You should first put video files in folders, then move or copy the folders into the incoming directory.
 
 Once the video files are in incoming directory, the watcher would start uploading the video to trace.moe-media. When it's done, it would delete the video in incoming directory. After Hash worker and Load workers complete the job, you can search the video by image in your www website at WWW_PORT.
+
+### Bulk import mode
+
+It is possible to import data in bulk. When the application is started with `TRACE_IMPORT_MODE` set to `true`, it will disable search, rate limiting of API requests and auto commiting when the loader submits media to Solr. This is done so the internal systems go as fast as possible.
+The default value is `false`.
+
+When you are finished importing. Make sure you commit your files in your Solr cluster(s) before you turn it off. This can be done by manually visiting the update commit for your cluster(s). The default is: `http://localhost:8983/solr/cl_0/update?commit=true`. It might take a while for the cluster to fully process the imported documents.
