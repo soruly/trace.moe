@@ -9,18 +9,18 @@ Trace back the scene where an anime screenshots is taken from.
 
 It tells you which anime, which episode, and the exact moment this scene appears.
 
-![](demo-result.jpg)
+![](https://images.plurk.com/4YFSKDO1Yc5Fbj6yj4ot2.jpg)
 
 Try this image yourself.
 
-![](demo.jpg)
+![](https://images.plurk.com/32B15UXxymfSMwKGTObY5e.jpg)
 
 ## Web Integrations
 
 Link to trace.moe from other websites, you can pass image URL in query string like this:
 
 ```
-https://trace.moe/?url=http://searchimageurl
+https://trace.moe/?url=https://images.plurk.com/32B15UXxymfSMwKGTObY5e.jpg
 ```
 
 ## trace.moe API
