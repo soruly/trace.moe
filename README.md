@@ -64,9 +64,11 @@ You're going to need these docker images. They are provided in the `docker-compo
 | [trace.moe-www](https://github.com/soruly/trace.moe-www) | [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/soruly/trace.moe-www/docker-image.yml?style=flat-square)](https://github.com/soruly/trace.moe-www/actions) | [![Docker Image Size](https://img.shields.io/docker/image-size/soruly/trace.moe-www/latest?style=flat-square)](https://github.com/soruly/trace.moe-www/pkgs/container/trace.moe-www) |
 | [trace.moe-api](https://github.com/soruly/trace.moe-api) | [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/soruly/trace.moe-api/docker-image.yml?style=flat-square)](https://github.com/soruly/trace.moe-api/actions) | [![Docker Image Size](https://img.shields.io/docker/image-size/soruly/trace.moe-api/latest?style=flat-square)](https://github.com/soruly/trace.moe-api/pkgs/container/trace.moe-api) |
 
-### Getting started
+### Prerequisites
 
-Windows is supported using WSL2.
+You need docker-compose for your OS. Windows is supported via WSL2.
+
+### Getting started
 
 1. Copy `.env.example` to `.env` and update config as you need.
 
