@@ -42,9 +42,9 @@ Client-side (gray parts):
 Server-side (blue and red parts):
 
 - [trace.moe-api](https://github.com/soruly/trace.moe-api) - API server for image search and database updates
-- [trace.moe-media](https://github.com/soruly/trace.moe-media) - media server for video storage and scene preview generation
+- [trace.moe-media](https://github.com/soruly/trace.moe-media) - media server for video storage and scene preview generation, now integrated into trace.moe-api
+- [trace.moe-worker](https://github.com/soruly/trace.moe-worker) - includes hasher, loader and watcher now integrated into trace.moe-api
 - [LireSolr](https://github.com/soruly/liresolr) - image analysis and search plugin for Solr
-- [trace.moe-worker](https://github.com/soruly/trace.moe-worker) - includes hasher, loader and watcher
 
 Others:
 
@@ -55,78 +55,52 @@ Others:
 
 You're going to need these docker images. They are provided in the `docker-compose.yaml` file.
 
-| Parts                                                                  | Docker CI Build                                                                                                                                                                              | Docker Image                                                                                                                                                                                                  |
-| ---------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [MariaDB](https://mariadb.org/)                                        |                                                                                                                                                                                              | [![Docker Image Size](https://img.shields.io/docker/image-size/_/mariadb/latest?style=flat-square)](https://hub.docker.com/_/mariadb)                                                                         |
-| [Adminer](https://www.adminer.org/)                                    |                                                                                                                                                                                              | [![Docker Image Size](https://img.shields.io/docker/image-size/_/adminer/latest?style=flat-square)](https://hub.docker.com/_/adminer)                                                                         |
-| [redis](https://redis.io/)                                             |                                                                                                                                                                                              | [![Docker Image Size](https://img.shields.io/docker/image-size/_/redis/latest?style=flat-square)](https://hub.docker.com/_/redis)                                                                             |
-| [liresolr](https://github.com/soruly/liresolr)                         | [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/soruly/liresolr/docker-image.yml?style=flat-square)](https://github.com/soruly/liresolr/actions)                 | [![Docker Image Size](https://img.shields.io/docker/image-size/soruly/liresolr/latest?style=flat-square)](https://github.com/soruly/liresolr/pkgs/container/liresolr)                                         |
-| [trace.moe-www](https://github.com/soruly/trace.moe-www)               | [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/soruly/trace.moe-www/docker-image.yml?style=flat-square)](https://github.com/soruly/trace.moe-www/actions)       | [![Docker Image Size](https://img.shields.io/docker/image-size/soruly/trace.moe-www/latest?style=flat-square)](https://github.com/soruly/trace.moe-www/pkgs/container/trace.moe-www)                          |
-| [trace.moe-api](https://github.com/soruly/trace.moe-api)               | [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/soruly/trace.moe-api/docker-image.yml?style=flat-square)](https://github.com/soruly/trace.moe-api/actions)       | [![Docker Image Size](https://img.shields.io/docker/image-size/soruly/trace.moe-api/latest?style=flat-square)](https://github.com/soruly/trace.moe-api/pkgs/container/trace.moe-api)                          |
-| [trace.moe-media](https://github.com/soruly/trace.moe-media)           | [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/soruly/trace.moe-media/docker-image.yml?style=flat-square)](https://github.com/soruly/trace.moe-media/actions)   | [![Docker Image Size](https://img.shields.io/docker/image-size/soruly/trace.moe-media/latest?style=flat-square)](https://github.com/soruly/trace.moe-media/pkgs/container/trace.moe-media)                    |
-| [trace.moe-worker-hasher](https://github.com/soruly/trace.moe-worker)  | [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/soruly/trace.moe-worker/docker-image.yml?style=flat-square)](https://github.com/soruly/trace.moe-worker/actions) | [![Docker Image Size](https://img.shields.io/docker/image-size/soruly/trace.moe-worker-hasher/latest?style=flat-square)](https://github.com/soruly/trace.moe-worker/pkgs/container/trace.moe-worker-hasher)   |
-| [trace.moe-worker-loader](https://github.com/soruly/trace.moe-worker)  | [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/soruly/trace.moe-worker/docker-image.yml?style=flat-square)](https://github.com/soruly/trace.moe-worker/actions) | [![Docker Image Size](https://img.shields.io/docker/image-size/soruly/trace.moe-worker-loader/latest?style=flat-square)](https://github.com/soruly/trace.moe-worker/pkgs/container/trace.moe-worker-loader)   |
-| [trace.moe-worker-watcher](https://github.com/soruly/trace.moe-worker) | [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/soruly/trace.moe-worker/docker-image.yml?style=flat-square)](https://github.com/soruly/trace.moe-worker/actions) | [![Docker Image Size](https://img.shields.io/docker/image-size/soruly/trace.moe-worker-watcher/latest?style=flat-square)](https://github.com/soruly/trace.moe-worker/pkgs/container/trace.moe-worker-watcher) |
+| Parts                                                    | Docker CI Build                                                                                                                                                                             | Docker Image                                                                                                                                                                         |
+| -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [MariaDB](https://mariadb.org/)                          |                                                                                                                                                                                             | [![Docker Image Size](https://img.shields.io/docker/image-size/_/mariadb/latest?style=flat-square)](https://hub.docker.com/_/mariadb)                                                |
+| [Adminer](https://www.adminer.org/)                      |                                                                                                                                                                                             | [![Docker Image Size](https://img.shields.io/docker/image-size/_/adminer/latest?style=flat-square)](https://hub.docker.com/_/adminer)                                                |
+| [redis](https://redis.io/)                               |                                                                                                                                                                                             | [![Docker Image Size](https://img.shields.io/docker/image-size/_/redis/latest?style=flat-square)](https://hub.docker.com/_/redis)                                                    |
+| [liresolr](https://github.com/soruly/liresolr)           | [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/soruly/liresolr/docker-image.yml?style=flat-square)](https://github.com/soruly/liresolr/actions)           | [![Docker Image Size](https://img.shields.io/docker/image-size/soruly/liresolr/latest?style=flat-square)](https://github.com/soruly/liresolr/pkgs/container/liresolr)                |
+| [trace.moe-www](https://github.com/soruly/trace.moe-www) | [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/soruly/trace.moe-www/docker-image.yml?style=flat-square)](https://github.com/soruly/trace.moe-www/actions) | [![Docker Image Size](https://img.shields.io/docker/image-size/soruly/trace.moe-www/latest?style=flat-square)](https://github.com/soruly/trace.moe-www/pkgs/container/trace.moe-www) |
+| [trace.moe-api](https://github.com/soruly/trace.moe-api) | [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/soruly/trace.moe-api/docker-image.yml?style=flat-square)](https://github.com/soruly/trace.moe-api/actions) | [![Docker Image Size](https://img.shields.io/docker/image-size/soruly/trace.moe-api/latest?style=flat-square)](https://github.com/soruly/trace.moe-api/pkgs/container/trace.moe-api) |
 
-### Configuration
+### Getting started
 
-Copy `.env.example` to `.env` and update config as you need.
+Windows is supported using WSL2.
 
-```
-WWW_PORT=3310
-API_PORT=3311
-MEDIA_PORT=3312
-ADMINER_PORT=3313
-SOLR_PORT=8983
+1. Copy `.env.example` to `.env` and update config as you need.
 
-NEXT_PUBLIC_API_ENDPOINT=http://localhost:3311    # external URL
-NEXT_PUBLIC_MEDIA_ENDPOINT=http://localhost:3312  # external URL
-
-WATCH_DIR=trace.moe-incoming/  # suggest using fast drives
-MEDIA_DIR=trace.moe-media/     # suggest using large drives
-HASH_DIR=trace.moe-hash/       # suggest using fast drives
-SOLR_DIR=mycores               # suggest using super fast drives
-MYSQL_DIR=mysql
-
-TRACE_MEDIA_SALT=YOUR_TRACE_MEDIA_SALT
-TRACE_API_SALT=YOUR_TRACE_API_SALT
-TRACE_API_SECRET=YOUR_TRACE_API_SECRET
-MARIADB_ROOT_PASSWORD=YOUR_MARIADB_ROOT_PASSWORD
-```
-
-2. If you are installing it on Linux, ensure the directories are created and empty before starting the containers. The `SOLR_DIR`, must have it's owner `uid` and `gid` set to `8983`.
+2. Ensure the directories exist before starting the containers. The `SOLR_DIR`, must have it's owner `uid` and `gid` set to `8983`.
 
 ```bash
-mkdir -p trace.moe-incoming/
-mkdir -p trace.moe-media/
-mkdir -p trace.moe-hash/
-mkdir -p mycores
-mkdir -p mysql
-sudo chown 8983:8983 mycores
+mkdir -p /mnt/c/trace.moe/video/
+mkdir -p /mnt/c/trace.moe/hash/
+mkdir -p /mnt/c/trace.moe/solr/
+mkdir -p /mnt/c/trace.moe/mysql/
+sudo chown 8983:8983 /mnt/c/trace.moe/solr/
 ```
 
-### Starting the cluster
+3. Start the cluster
 
 ```bash
 docker-compose up
 ```
 
-### Importing media files
+### How to begin hashing
 
-Media files will be imported when placed into the incoming folder (`trace.moe-incoming`).
+trace.moe-api will scan the `VIDEO_PATH` every minute for new video files (.mp4 or .mkv). You can manually trigger a scan by calling `/scan` at the api server
 
+```
+curl http://localhost:3311/scan
+```
+
+Any video format readable by ffmpeg is supported. But the file extension must be either `.mp4` or `.mkv`, other files will be ignored.
+
+### Folder structure for anilist ID
+
+trace.moe assumes the folder name is anilist ID. If your data is not related to anilist ID, you can use any id/text you want. The system would still work partially without anilist data.
 The files must be contained in 1-level folders, e.g.
 
 ```
-trace.moe-incoming/foo.mp4  <= not ok
-trace.moe-incoming/1/foo.mp4 <= ok
-trace.moe-incoming/1/bar/foo.mp4 <= ok, but will be uploaded as /1/foo.mp4
+/mnt/c/trace.moe/video/{anilist_ID}/foo.mp4
 ```
-
-trace.moe assumes the folder name is anilist ID. If your data is not related to anilist ID, you can use any id/text you want. The system would still work without anilist data.
-
-Files must have the `.mp4` extension and must be in the mp4 format inorder to be imported, other files will be ignored.
-
-Do not create the folders in the incoming directory. You should first put video files in folders, then move or copy the folders into the incoming directory.
-
-Once the video files are in incoming directory, the watcher would start uploading the video to trace.moe-media. When it's done, it would delete the video in incoming directory. After Hash worker and Load workers complete the job, you can search the video by image in your www website at WWW_PORT.

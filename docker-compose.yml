@@ -6,23 +6,8 @@ services:
     restart: unless-stopped
     environment:
       - NEXT_PUBLIC_API_ENDPOINT=${NEXT_PUBLIC_API_ENDPOINT}
-      - NEXT_PUBLIC_MEDIA_ENDPOINT=${NEXT_PUBLIC_MEDIA_ENDPOINT}
     ports:
       - ${WWW_PORT}:3000
-    networks:
-      trace_moe_net:
-
-  media:
-    image: ghcr.io/soruly/trace.moe-media:latest
-    restart: unless-stopped
-    environment:
-      - TRACE_MEDIA_SALT=${TRACE_MEDIA_SALT}
-    ports:
-      - ${MEDIA_PORT}:3000
-    volumes:
-      - type: bind
-        source: ${MEDIA_DIR}
-        target: /mnt/
     networks:
       trace_moe_net:
 
@@ -45,8 +30,6 @@ services:
       - SERVER_PORT=3000
       - SOLA_SOLR_LIST=http://172.17.0.1:${SOLR_PORT}/solr/
       - SOLA_SOLR_SIZE=1
-      - TRACE_MEDIA_URL=${NEXT_PUBLIC_MEDIA_ENDPOINT}
-      - TRACE_MEDIA_SALT=${TRACE_MEDIA_SALT}
       - TRACE_API_SALT=${TRACE_API_SALT}
       - TRACE_ACCURACY=0.02
       - HASH_PATH=/mnt/hash/
@@ -56,10 +39,10 @@ services:
       - ${API_PORT}:3000
     volumes:
       - type: bind
-        source: ${HASH_DIR}
+        source: ${HASH_PATH}
         target: /mnt/hash/
       - type: bind
-        source: ${MEDIA_DIR}
+        source: ${VIDEO_PATH}
         target: /mnt/video/
     networks:
       trace_moe_net:
