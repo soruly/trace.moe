@@ -31,24 +31,22 @@ For Bots/Apps, refer to https://soruly.github.io/trace.moe-api/
 
 This repo is just an index page for the whole trace.moe system. It consists of different parts as below:
 
-![](overview.png)
-
-Client-side (gray parts):
+Client-side:
 
 - [trace.moe-www](https://github.com/soruly/trace.moe-www) - web server serving the webpage [trace.moe](https://trace.moe)
 - [trace.moe-WebExtension](https://github.com/soruly/trace.moe-WebExtension) - browser add-ons to help copying and pasting images
 - [trace.moe-telegram-bot](https://github.com/soruly/trace.moe-telegram-bot) - official Telegram Bot
 
-Server-side (blue and red parts):
+Server-side:
 
 - [trace.moe-api](https://github.com/soruly/trace.moe-api) - API server for image search and database updates
 - [trace.moe-media](https://github.com/soruly/trace.moe-media) - media server for video storage and scene preview generation, now integrated into trace.moe-api
-- [trace.moe-worker](https://github.com/soruly/trace.moe-worker) - includes hasher, loader and watcher now integrated into trace.moe-api
+- [trace.moe-worker](https://github.com/soruly/trace.moe-worker) - includes hasher, loader and watcher, now integrated into trace.moe-api
 - [LireSolr](https://github.com/soruly/liresolr) - image analysis and search plugin for Solr
 
 Others:
 
-- [anilist-crawler](https://github.com/soruly/anilist-crawler) - getting anilist info and store in mariaDB
+- [anilist-crawler](https://github.com/soruly/anilist-crawler) - getting anilist info and store in mariaDB, now integrated into trace.moe-api
 - [slides](https://github.com/soruly/slides) - past presentation slides on the project
 
 ## Hosting your own trace.moe system
