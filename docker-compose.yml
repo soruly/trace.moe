@@ -14,7 +14,6 @@ services:
   api:
     image: ghcr.io/soruly/trace.moe-api:latest
     depends_on:
-      - redis
       - mariadb
       - liresolr
     restart: unless-stopped
@@ -25,25 +24,23 @@ services:
       - SOLA_DB_USER=root
       - SOLA_DB_PWD=${MARIADB_ROOT_PASSWORD}
       - SOLA_DB_NAME=sola
-      - REDIS_HOST=redis
-      - REDIS_PORT=6379
       - SERVER_PORT=3000
       - SOLA_SOLR_LIST=http://172.17.0.1:${SOLR_PORT}/solr/
       - SOLA_SOLR_SIZE=1
       - TRACE_API_SALT=${TRACE_API_SALT}
       - TRACE_ACCURACY=0.02
-      - HASH_PATH=/mnt/hash/
-      - VIDEO_PATH=/mnt/video/
+      - VIDEO_PATH=/mnt/c/trace.moe/video/
+      - HASH_PATH=/mnt/c/trace.moe/hash/
       - MAX_WORKER=1
     ports:
       - ${API_PORT}:3000
     volumes:
       - type: bind
-        source: ${HASH_PATH}
-        target: /mnt/hash/
-      - type: bind
         source: ${VIDEO_PATH}
-        target: /mnt/video/
+        target: /mnt/c/trace.moe/video/
+      - type: bind
+        source: ${HASH_PATH}
+        target: /mnt/c/trace.moe/hash/
     networks:
       trace_moe_net:
 
@@ -68,12 +65,6 @@ services:
       - type: bind
         source: ${MYSQL_DIR}
         target: /var/lib/mysql
-    networks:
-      trace_moe_net:
-
-  redis:
-    image: redis:latest
-    restart: unless-stopped
     networks:
       trace_moe_net:
 
