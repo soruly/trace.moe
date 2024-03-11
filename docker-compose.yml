@@ -75,6 +75,8 @@ services:
     image: ghcr.io/soruly/liresolr:latest
     command: solr-precreate cl_0 /opt/solr/server/solr/configsets/liresolr
     restart: unless-stopped
+    environment:
+      - SOLR_HEAP=${SOLR_HEAP}
     ports:
       - ${SOLR_PORT}:8983
     volumes:
