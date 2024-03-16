@@ -14,24 +14,17 @@ services:
   api:
     image: ghcr.io/soruly/trace.moe-api:latest
     depends_on:
-      - mariadb
       - liresolr
     restart: unless-stopped
     environment:
-      - VIDEO_PATH=/mnt/c/trace.moe/video/
-      - HASH_PATH=/mnt/c/trace.moe/hash/
+      - VIDEO_PATH=/app/video/
+      - HASH_PATH=/app/hash/
       - TRACE_API_SALT=${TRACE_API_SALT}
-      - TRACE_ALGO=cl
       - TRACE_ACCURACY=${TRACE_ACCURACY}
       - MAX_WORKER=${MAX_WORKER}
-      - MEDIA_QUEUE=${MEDIA_QUEUE}
-      - SEARCH_QUEUE=${SEARCH_QUEUE}
-      - USE_IMAGE_PROXY=${USE_IMAGE_PROXY}
-      - SOLA_DB_HOST=mariadb
-      - SOLA_DB_PORT=3306
-      - SOLA_DB_USER=root
-      - SOLA_DB_PWD=${MARIADB_ROOT_PASSWORD}
-      - SOLA_DB_NAME=sola
+      # - MEDIA_QUEUE=${MEDIA_QUEUE}
+      # - SEARCH_QUEUE=${SEARCH_QUEUE}
+      # - USE_IMAGE_PROXY=${USE_IMAGE_PROXY}
       - SOLA_SOLR_LIST=http://172.17.0.1:${SOLR_PORT}/solr/
       - SOLA_SOLR_SIZE=1
       - SERVER_PORT=3000
@@ -39,35 +32,14 @@ services:
       - ${API_PORT}:3000
     volumes:
       - type: bind
+        source: ${DB_PATH}
+        target: /app/db
+      - type: bind
         source: ${VIDEO_PATH}
-        target: /mnt/c/trace.moe/video/
+        target: /app/video/
       - type: bind
         source: ${HASH_PATH}
-        target: /mnt/c/trace.moe/hash/
-    networks:
-      trace_moe_net:
-
-  adminer:
-    image: adminer:latest
-    restart: unless-stopped
-    environment:
-      - ADMINER_DEFAULT_SERVER=mariadb
-      - ADMINER_DEFAULT_USER=root
-      - ADMINER_DEFAULT_PASSWORD=${MARIADB_ROOT_PASSWORD}
-    ports:
-      - ${ADMINER_PORT}:8080
-    networks:
-      trace_moe_net:
-
-  mariadb:
-    image: mariadb:latest
-    restart: unless-stopped
-    environment:
-      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
-    volumes:
-      - type: bind
-        source: ${MYSQL_DIR}
-        target: /var/lib/mysql
+        target: /app/hash/
     networks:
       trace_moe_net:
 

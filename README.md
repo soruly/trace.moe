@@ -55,8 +55,6 @@ You're going to need these docker images. They are provided in the `docker-compo
 
 | Parts                                                    | Docker CI Build                                                                                                                                                                             | Docker Image                                                                                                                                                                         |
 | -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [MariaDB](https://mariadb.org/)                          |                                                                                                                                                                                             | [![Docker Image Size](https://img.shields.io/docker/image-size/_/mariadb/latest?style=flat-square)](https://hub.docker.com/_/mariadb)                                                |
-| [Adminer](https://www.adminer.org/)                      |                                                                                                                                                                                             | [![Docker Image Size](https://img.shields.io/docker/image-size/_/adminer/latest?style=flat-square)](https://hub.docker.com/_/adminer)                                                |
 | [liresolr](https://github.com/soruly/liresolr)           | [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/soruly/liresolr/docker-image.yml?style=flat-square)](https://github.com/soruly/liresolr/actions)           | [![Docker Image Size](https://img.shields.io/docker/image-size/soruly/liresolr/latest?style=flat-square)](https://github.com/soruly/liresolr/pkgs/container/liresolr)                |
 | [trace.moe-www](https://github.com/soruly/trace.moe-www) | [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/soruly/trace.moe-www/docker-image.yml?style=flat-square)](https://github.com/soruly/trace.moe-www/actions) | [![Docker Image Size](https://img.shields.io/docker/image-size/soruly/trace.moe-www/latest?style=flat-square)](https://github.com/soruly/trace.moe-www/pkgs/container/trace.moe-www) |
 | [trace.moe-api](https://github.com/soruly/trace.moe-api) | [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/soruly/trace.moe-api/docker-image.yml?style=flat-square)](https://github.com/soruly/trace.moe-api/actions) | [![Docker Image Size](https://img.shields.io/docker/image-size/soruly/trace.moe-api/latest?style=flat-square)](https://github.com/soruly/trace.moe-api/pkgs/container/trace.moe-api) |
@@ -74,8 +72,8 @@ You need docker-compose for your OS. Windows is supported via WSL2.
 ```bash
 mkdir -p /mnt/c/trace.moe/video/
 mkdir -p /mnt/c/trace.moe/hash/
+mkdir -p /mnt/c/trace.moe/sqlite/
 mkdir -p /mnt/c/trace.moe/solr/
-mkdir -p /mnt/c/trace.moe/mysql/
 sudo chown 8983:8983 /mnt/c/trace.moe/solr/
 ```
 
