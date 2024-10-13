@@ -51,7 +51,7 @@ Others:
 
 ## Hosting your own trace.moe system
 
-You're going to need these docker images. They are provided in the `docker-compose.yaml` file.
+You're going to need these docker images. They are provided in the `compose.yml` file.
 
 | Parts                                                    | Docker CI Build                                                                                                                                                                             | Docker Image                                                                                                                                                                         |
 | -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -61,7 +61,7 @@ You're going to need these docker images. They are provided in the `docker-compo
 
 ### Prerequisites
 
-You need docker-compose for your OS. Windows is supported via WSL2.
+You need docker compose for your OS. Windows is supported via WSL2.
 
 ### Getting started
 
@@ -80,7 +80,7 @@ sudo chown 8983:8983 /mnt/c/trace.moe/solr/
 3. Start the cluster
 
 ```bash
-docker-compose up
+docker compose up
 ```
 
 ### How to begin hashing
