@@ -1,5 +1,3 @@
-version: "3"
-
 services:
   www:
     image: ghcr.io/soruly/trace.moe-www:latest
