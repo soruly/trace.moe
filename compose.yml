@@ -3,59 +3,122 @@ services:
     image: ghcr.io/soruly/trace.moe-www:latest
     restart: unless-stopped
     environment:
-      - NEXT_PUBLIC_API_ENDPOINT=${NEXT_PUBLIC_API_ENDPOINT}
+      - NEXT_PUBLIC_API_ENDPOINT=http://localhost:3001
     ports:
-      - ${WWW_PORT}:3000
-    networks:
-      trace_moe_net:
+      - 3000:3000
 
   api:
     image: ghcr.io/soruly/trace.moe-api:latest
     depends_on:
-      - liresolr
+      - postgres
+      - milvus
     restart: unless-stopped
     environment:
       - VIDEO_PATH=/app/video/
       - HASH_PATH=/app/hash/
-      - TRACE_API_SALT=${TRACE_API_SALT}
-      - TRACE_ACCURACY=${TRACE_ACCURACY}
-      - MAX_WORKER=${MAX_WORKER}
-      # - MEDIA_QUEUE=${MEDIA_QUEUE}
-      # - SEARCH_QUEUE=${SEARCH_QUEUE}
-      # - USE_IMAGE_PROXY=${USE_IMAGE_PROXY}
-      - SOLA_SOLR_LIST=http://172.17.0.1:${SOLR_PORT}/solr/
-      - SOLA_SOLR_SIZE=1
+      - TRACE_API_SALT=SALT
+      - MAX_WORKER=4
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASS=postgres
+      - DB_NAME=postgres
+      - MILVUS_ADDR=http://milvus:19530
+      - MILVUS_TOKEN=root:Milvus
       - SERVER_PORT=3000
     ports:
-      - ${API_PORT}:3000
+      - 3001:3000
     volumes:
+      - hash:/app/hash
       - type: bind
-        source: ${DB_PATH}
-        target: /app/db
-      - type: bind
-        source: ${VIDEO_PATH}
+        source: ${VIDEO_PATH:?error}
         target: /app/video/
-      - type: bind
-        source: ${HASH_PATH}
-        target: /app/hash/
-    networks:
-      trace_moe_net:
+        read_only: true
 
-  liresolr:
-    image: ghcr.io/soruly/liresolr:latest
-    command: solr-precreate cl_0 /opt/solr/server/solr/configsets/liresolr
+  postgres:
+    image: postgres:17
+    restart: unless-stopped
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer:latest
     restart: unless-stopped
     environment:
-      - SOLR_HEAP=${SOLR_HEAP}
+      - ADMINER_DEFAULT_SERVER=postgres
     ports:
-      - ${SOLR_PORT}:8983
-    volumes:
-      - type: bind
-        source: ${SOLR_DIR}
-        target: /var/solr
-    networks:
-      trace_moe_net:
+      - 8080:8080
 
-networks:
-  trace_moe_net:
-    driver: bridge
+  etcd:
+    container_name: milvus-etcd
+    image: quay.io/coreos/etcd:v3.5.18
+    restart: unless-stopped
+    environment:
+      - ETCD_AUTO_COMPACTION_MODE=revision
+      - ETCD_AUTO_COMPACTION_RETENTION=1000
+      - ETCD_QUOTA_BACKEND_BYTES=4294967296
+      - ETCD_SNAPSHOT_COUNT=50000
+    volumes:
+      - etcd:/etcd
+    command: etcd -advertise-client-urls=http://etcd:2379 -listen-client-urls http://0.0.0.0:2379 --data-dir /etcd
+    healthcheck:
+      test: ["CMD", "etcdctl", "endpoint", "health"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+  minio:
+    container_name: milvus-minio
+    image: minio/minio:RELEASE.2024-12-18T13-15-44Z
+    restart: unless-stopped
+    environment:
+      MINIO_ACCESS_KEY: minioadmin
+      MINIO_SECRET_KEY: minioadmin
+    ports:
+      - "9001:9001"
+      - "9000:9000"
+    volumes:
+      - minio:/minio_data
+    command: minio server /minio_data --console-address ":9001"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+  milvus:
+    container_name: milvus-standalone
+    image: milvusdb/milvus:v2.6.0
+    restart: unless-stopped
+    command: ["milvus", "run", "standalone"]
+    security_opt:
+      - seccomp:unconfined
+    environment:
+      ETCD_ENDPOINTS: etcd:2379
+      MINIO_ADDRESS: minio:9000
+      MQ_TYPE: woodpecker
+    volumes:
+      - milvus:/var/lib/milvus
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9091/healthz"]
+      interval: 30s
+      start_period: 90s
+      timeout: 20s
+      retries: 3
+    ports:
+      - "19530:19530"
+      - "9091:9091"
+    depends_on:
+      - "etcd"
+      - "minio"
+
+volumes:
+  postgres:
+  etcd:
+  minio:
+  milvus:
+  hash:

@@ -42,7 +42,7 @@ Server-side:
 - [trace.moe-api](https://github.com/soruly/trace.moe-api) - API server for image search and database updates
 - [trace.moe-media](https://github.com/soruly/trace.moe-media) - media server for video storage and scene preview generation, now integrated into trace.moe-api
 - [trace.moe-worker](https://github.com/soruly/trace.moe-worker) - includes hasher, loader and watcher, now integrated into trace.moe-api
-- [LireSolr](https://github.com/soruly/liresolr) - image analysis and search plugin for Solr
+- [LireSolr](https://github.com/soruly/liresolr) - image analysis and search plugin for Solr, now integrated into trace.moe-api
 
 Others:
 
@@ -55,7 +55,6 @@ You're going to need these docker images. They are provided in the `compose.yml`
 
 | Parts                                                    | Docker CI Build                                                                                                                                                                             | Docker Image                                                                                                                                                                         |
 | -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [liresolr](https://github.com/soruly/liresolr)           | [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/soruly/liresolr/docker-image.yml?style=flat-square)](https://github.com/soruly/liresolr/actions)           | [![Docker Image Size](https://img.shields.io/docker/image-size/soruly/liresolr/latest?style=flat-square)](https://github.com/soruly/liresolr/pkgs/container/liresolr)                |
 | [trace.moe-www](https://github.com/soruly/trace.moe-www) | [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/soruly/trace.moe-www/docker-image.yml?style=flat-square)](https://github.com/soruly/trace.moe-www/actions) | [![Docker Image Size](https://img.shields.io/docker/image-size/soruly/trace.moe-www/latest?style=flat-square)](https://github.com/soruly/trace.moe-www/pkgs/container/trace.moe-www) |
 | [trace.moe-api](https://github.com/soruly/trace.moe-api) | [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/soruly/trace.moe-api/docker-image.yml?style=flat-square)](https://github.com/soruly/trace.moe-api/actions) | [![Docker Image Size](https://img.shields.io/docker/image-size/soruly/trace.moe-api/latest?style=flat-square)](https://github.com/soruly/trace.moe-api/pkgs/container/trace.moe-api) |
 
@@ -65,39 +64,24 @@ You need docker compose for your OS. Windows is supported via WSL2.
 
 ### Getting started
 
-1. Copy `.env.example` to `.env` and update config as you need.
+1. Create directory `/mnt/c/trace.moe/video/`
 
-2. Ensure the directories exist before starting the containers. The `SOLR_DIR`, must have it's owner `uid` and `gid` set to `8983`.
+2. Create subdirectory using anilist ID as folder name.
 
-```bash
-mkdir -p /mnt/c/trace.moe/video/
-mkdir -p /mnt/c/trace.moe/hash/
-mkdir -p /mnt/c/trace.moe/sqlite/
-mkdir -p /mnt/c/trace.moe/solr/
-sudo chown 8983:8983 /mnt/c/trace.moe/solr/
-```
+3. Put video files in it. The full path should look like this `/mnt/c/trace.moe/video/{anilist_ID}/foo.mp4`
 
-3. Start the cluster
+4. Copy `.env.example` to `.env` and set `VIDEO_PATH` to `/mnt/c/trace.moe/video/`
 
-```bash
-docker compose up
-```
+5. Start the containers `docker compose up -d`
 
-### How to begin hashing
+It will scan the `VIDEO_PATH` every minute for new video files (.mp4 .mkv .webm files only, others are ignored).
 
-trace.moe-api will scan the `VIDEO_PATH` every minute for new video files (.mp4 or .mkv). You can manually trigger a scan by calling `/scan` at the api server
+You can check the indexing process the from logs of api server
 
-```
-curl http://localhost:3311/scan
-```
+6. Open http://localhost:3000 and start searching
 
-Any video format readable by ffmpeg is supported. But the file extension must be either `.mp4` or `.mkv`, other files will be ignored.
+### More configurations
 
-### Folder structure for anilist ID
+Other configurations like port mapping are defined in compose.yml
 
-trace.moe assumes the folder name is anilist ID. If your data is not related to anilist ID, you can use any id/text you want. The system would still work partially without anilist data.
-The files must be contained in 1-level folders, e.g.
-
-```
-/mnt/c/trace.moe/video/{anilist_ID}/foo.mp4
-```
+You can also increase `MAX_WORKER` to make hashing faster.
