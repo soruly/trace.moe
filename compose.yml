@@ -15,7 +15,6 @@ services:
     restart: unless-stopped
     environment:
       - VIDEO_PATH=/app/video/
-      - HASH_PATH=/app/hash/
       - TRACE_API_SALT=SALT
       - MAX_WORKER=4
       - DB_HOST=postgres
@@ -29,7 +28,6 @@ services:
     ports:
       - 3001:3000
     volumes:
-      - hash:/app/hash
       - type: bind
         source: ${VIDEO_PATH:?error}
         target: /app/video/
@@ -121,4 +119,3 @@ volumes:
   etcd:
   minio:
   milvus:
-  hash:
