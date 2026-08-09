@@ -118,13 +118,7 @@ This process takes a few minutes. You can ignore all errors like `ERROR: relatio
 5. Load all hashes to Milvus
 
 ```
-docker exec -i tracemoe-postgres-1 psql -U postgres postgres < <(echo "UPDATE files SET status='HASHED'")
-```
-
-wait a minute for scan to start, or trigger it manually by
-
-```
-curl http://localhost:3001/scan
+docker exec -i tracemoe-postgres-1 psql -U postgres postgres < <(echo "UPDATE files SET loaded=NULL")
 ```
 
 This process may take 24 hours. You can check the progress by
