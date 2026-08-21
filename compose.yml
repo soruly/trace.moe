@@ -90,7 +90,7 @@ services:
 
   milvus:
     container_name: milvus-standalone
-    image: milvusdb/milvus:v2.6.10
+    image: milvusdb/milvus:v3.0.0
     restart: unless-stopped
     command: ["milvus", "run", "standalone"]
     security_opt:
