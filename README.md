@@ -31,23 +31,13 @@ For Bots/Apps, refer to https://soruly.github.io/trace.moe-api/
 
 This repo is just an index page for the whole trace.moe system. It consists of different parts as below:
 
-Client-side:
-
-- [trace.moe-www](https://github.com/soruly/trace.moe-www) - web server serving the webpage [trace.moe](https://trace.moe)
-- [trace.moe-WebExtension](https://github.com/soruly/trace.moe-WebExtension) - browser add-ons to help copying and pasting images
-- [trace.moe-telegram-bot](https://github.com/soruly/trace.moe-telegram-bot) - official Telegram Bot
-
-Server-side:
-
 - [trace.moe-api](https://github.com/soruly/trace.moe-api) - API server for image search and database updates
-- ~~[trace.moe-media](https://github.com/soruly/trace.moe-media) - media server for video storage and scene preview generation.~~ Integrated into trace.moe-api
-- ~~[trace.moe-worker](https://github.com/soruly/trace.moe-worker) - includes hasher, loader and watcher.~~ Integrated into trace.moe-api
-- ~~[LireSolr](https://github.com/soruly/liresolr) - image analysis and search plugin for Solr.~~ Integrated into trace.moe-api
-
-Others:
-
-- ~~[anilist-crawler](https://github.com/soruly/anilist-crawler) - getting anilist info and store in database.~~ Integrated into trace.moe-api
-- [slides](https://github.com/soruly/slides) - past presentation slides on the project
+- [trace.moe-www](https://github.com/soruly/trace.moe-www) - Web server serving the webpage [trace.moe](https://trace.moe)
+- [trace.moe-telegram-bot](https://github.com/soruly/trace.moe-telegram-bot) - Official Telegram Bot
+- [trace.moe-mcp](https://github.com/soruly/trace.moe-mcp) - MCP server for AI agents to use
+- [trace.moe-WebExtension](https://github.com/soruly/trace.moe-WebExtension) - Browser add-ons to help copying and pasting images
+- [trace.moe-id](https://github.com/soruly/trace.moe-id) - Library to analyze image features and generate image vectors for image search
+- [slides](https://github.com/soruly/slides) - Past presentation slides on the project
 
 ## Hosting your own trace.moe system
 
@@ -88,7 +78,7 @@ You can also increase `MAX_WORKER` to make hashing faster.
 
 ### Using pre-hashed data
 
-> Loading all 100,000+ files to memory requires about 160GB RAM
+> Loading all 114,514 files to memory requires about 140GB RAM
 
 1. Download the database dump.sql.zst on https://huggingface.co/datasets/soruly/trace.moe-database-dump
 
