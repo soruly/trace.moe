@@ -71,7 +71,7 @@ services:
 
   minio:
     container_name: milvus-minio
-    image: minio/minio:RELEASE.2024-12-18T13-15-44Z
+    image: quay.io/minio/minio:RELEASE.2024-12-18T13-15-44Z
     restart: unless-stopped
     environment:
       MINIO_ACCESS_KEY: minioadmin
@@ -90,7 +90,7 @@ services:
 
   milvus:
     container_name: milvus-standalone
-    image: milvusdb/milvus:v3.0.0
+    image: milvusdb/milvus:v3.0.2
     restart: unless-stopped
     command: ["milvus", "run", "standalone"]
     security_opt:
